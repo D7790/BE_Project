@@ -1,0 +1,36 @@
+Scientific Writing workflow results - 30 September 2026
+
+The numeric consistency, reference-syntax and source-schema checks pass.
+Warnings for nine local source records reflect absence of public URLs/DOIs;
+their paths and hashes are in local-evidence-index.json. No DOI was invented.
+
+Strict submission gates remain incomplete, deliberately. All evidence and claim
+verification fields retain unverified status because an accountable human has not
+completed source review. AI assistance is disclosed, but corresponding author,
+contributions, declarations, venue policy and final author approval are pending.
+False authorship booleans mean approval has not been recorded; they are not an
+assessment that the named students failed to contribute.
+
+The linter's two potential-overstatement warnings were manually reviewed. They
+occur in negative statements: the model does not establish a minimum-runtime
+guarantee, and a rail pass does not prove reset immunity. These qualifications
+are intentional and are not removed to obtain a cosmetic linter pass.
+
+The complete evidence-tagged Markdown retains 28 line-level numeric-content
+warnings in title/date metadata, figure alt text, individual table rows and
+the bibliography. Tables/displays each have a claim record at block level;
+53 claim records cover abstract/prose, equations and displays. The source
+registry separately binds the bibliography. This generic line-oriented checker
+does not certify coverage of the rendered document. The independent factual
+review and numeric table comparisons supplement it; no all-gates-pass or
+submission-ready claim is made.
+
+Counts in consistency_manifest.json sample_size fields identify deterministic
+scenario units: one nominal pair, 18 sensitivity pairs, six startup cases.
+They are not physical trial counts, human subjects or statistical samples.
+
+Skill source: C:/Users/dhane/.codex/skills/scientific-writing/SKILL.md
+The skill requires: "Only accountable humans may ... set submission_ready to
+true ... remove the draft banner ... authorize submission."
+This work completes the requested draft, illustrations, checks and handoff.
+No publication submission was requested or attempted.

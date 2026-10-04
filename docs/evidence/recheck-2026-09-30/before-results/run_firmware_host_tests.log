@@ -1,0 +1,3 @@
+{"status":"PASS","hardware_confirmed_in_test_copy":false,"assertions":16}
+{"status":"PASS","hardware_confirmed_in_test_copy":true,"assertions":27}
+{"status":"PASS","assertions":24,"scope":"INA219 register decoder and injected transaction/reset failures"}

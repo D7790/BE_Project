@@ -1,0 +1,232 @@
+{
+  "scope": "Selected explicit F.Cu paths only. Lumped branch model, no pours, pad spreading, contacts, vias, inductance or self-heating solver. 35 um/20 C reference and 25 um/60 C sensitivity are assumptions, not as-fabricated thickness or predicted temperature.",
+  "pcb_sha256": "9de46d183a071fccd4326460e73dcab40f95a9aa8d4e6c271abb26a6925283f1",
+  "script_sha256": "65389ec977f491d8a0586d0cfe24176e219afb7b14f4b70675f1e636f725cbdb",
+  "rho_20C_ohm_m": 1.724e-08,
+  "alpha_per_C": 0.00393,
+  "paths": {
+    "J1.1--R1.1": {
+      "from": "J1.1",
+      "to": "R1.1",
+      "net": "/BAT_P",
+      "length_mm": 16.121067811865476,
+      "minimum_width_mm": 1.5,
+      "R_35um_20C_ohm": 0.005293851601458302,
+      "R_25um_60C_ohm": 0.008576463102490566
+    },
+    "J2.1--R3.1": {
+      "from": "J2.1",
+      "to": "R3.1",
+      "net": "/CHG_P",
+      "length_mm": 14.05,
+      "minimum_width_mm": 1.5,
+      "R_35um_20C_ohm": 0.004613752380952381,
+      "R_25um_60C_ohm": 0.007474647957333334
+    },
+    "R2.2--J3.1": {
+      "from": "R2.2",
+      "to": "J3.1",
+      "net": "/BUCK_P",
+      "length_mm": 16.121067811865476,
+      "minimum_width_mm": 1.5,
+      "R_35um_20C_ohm": 0.005293851601458302,
+      "R_25um_60C_ohm": 0.008576463102490566
+    },
+    "R1.2--R3.2": {
+      "from": "R1.2",
+      "to": "R3.2",
+      "net": "/SYS_P",
+      "length_mm": 52.32741699796952,
+      "minimum_width_mm": 1.5,
+      "R_35um_20C_ohm": 0.01718332702942847,
+      "R_25um_60C_ohm": 0.027838364453836476
+    },
+    "R3.2--R2.1": {
+      "from": "R3.2",
+      "to": "R2.1",
+      "net": "/SYS_P",
+      "length_mm": 25.1,
+      "minimum_width_mm": 1.5,
+      "R_35um_20C_ohm": 0.008242361904761906,
+      "R_25um_60C_ohm": 0.01335328567466667
+    },
+    "R3.2--D2.1": {
+      "from": "R3.2",
+      "to": "D2.1",
+      "net": "/SYS_P",
+      "length_mm": 14.502438661763954,
+      "minimum_width_mm": 1.5,
+      "R_35um_20C_ohm": 0.004762324619596392,
+      "R_25um_60C_ohm": 0.007715346869715723
+    },
+    "J4.1--F1.1": {
+      "from": "J4.1",
+      "to": "F1.1",
+      "net": "/5V_IN",
+      "length_mm": 9.344354249492381,
+      "minimum_width_mm": 1.5,
+      "R_35um_20C_ohm": 0.0030685079478333073,
+      "R_25um_60C_ohm": 0.0049712283561257845
+    },
+    "F1.2--F2.1": {
+      "from": "F1.2",
+      "to": "F2.1",
+      "net": "/5V",
+      "length_mm": 31.837741699796947,
+      "minimum_width_mm": 1.5,
+      "R_35um_20C_ohm": 0.010454907941038084,
+      "R_25um_60C_ohm": 0.016937787257116976
+    },
+    "F2.1--F3.1": {
+      "from": "F2.1",
+      "to": "F3.1",
+      "net": "/5V",
+      "length_mm": 31.174999999999997,
+      "minimum_width_mm": 1.5,
+      "R_35um_20C_ohm": 0.010237276190476192,
+      "R_25um_60C_ohm": 0.01658520641066667
+    },
+    "F2.2--J5.1": {
+      "from": "F2.2",
+      "to": "J5.1",
+      "net": "/LAMP_P",
+      "length_mm": 8.101713562373096,
+      "minimum_width_mm": 1.5,
+      "R_35um_20C_ohm": 0.0026604484155297553,
+      "R_25um_60C_ohm": 0.004310139269031446
+    },
+    "F3.2--J6.1": {
+      "from": "F3.2",
+      "to": "J6.1",
+      "net": "/FAN_P",
+      "length_mm": 8.101713562373096,
+      "minimum_width_mm": 1.5,
+      "R_35um_20C_ohm": 0.0026604484155297553,
+      "R_25um_60C_ohm": 0.004310139269031446
+    },
+    "J6.1--D1.1": {
+      "from": "J6.1",
+      "to": "D1.1",
+      "net": "/FAN_P",
+      "length_mm": 13.313708498984761,
+      "minimum_width_mm": 1.5,
+      "R_35um_20C_ohm": 0.004371968276618997,
+      "R_25um_60C_ohm": 0.007082938365584906
+    },
+    "J1.2--J2.2": {
+      "from": "J1.2",
+      "to": "J2.2",
+      "net": "/GND",
+      "length_mm": 37.431067811865475,
+      "minimum_width_mm": 1.5,
+      "R_35um_20C_ohm": 0.012291649696696398,
+      "R_25um_60C_ohm": 0.0199134558406239
+    },
+    "J2.2--J3.2": {
+      "from": "J2.2",
+      "to": "J3.2",
+      "net": "/GND",
+      "length_mm": 34.431067811865475,
+      "minimum_width_mm": 1.5,
+      "R_35um_20C_ohm": 0.011306506839553539,
+      "R_25um_60C_ohm": 0.018317445600623896
+    },
+    "J3.2--J4.2": {
+      "from": "J3.2",
+      "to": "J4.2",
+      "net": "/GND",
+      "length_mm": 138.30844206803357,
+      "minimum_width_mm": 1.5,
+      "R_35um_20C_ohm": 0.04541785792862665,
+      "R_25um_60C_ohm": 0.07358056327300946
+    },
+    "J4.2--J5.2": {
+      "from": "J4.2",
+      "to": "J5.2",
+      "net": "/GND",
+      "length_mm": 36.43106810475958,
+      "minimum_width_mm": 1.5,
+      "R_35um_20C_ohm": 0.01196326884049629,
+      "R_25um_60C_ohm": 0.01938145258311123
+    },
+    "D2.2--J2.2": {
+      "from": "D2.2",
+      "to": "J2.2",
+      "net": "/GND",
+      "length_mm": 14.704011537017761,
+      "minimum_width_mm": 1.5,
+      "R_35um_20C_ohm": 0.004828517312346404,
+      "R_25um_60C_ohm": 0.007822584327386162
+    },
+    "J6.2--D1.2": {
+      "from": "J6.2",
+      "to": "D1.2",
+      "net": "/FAN_RETURN",
+      "length_mm": 17.613809511662428,
+      "minimum_width_mm": 1.2,
+      "R_35um_20C_ohm": 0.007230049428120484,
+      "R_25um_60C_ohm": 0.011713258477509434
+    },
+    "D1.2--Q1.3": {
+      "from": "D1.2",
+      "to": "Q1.3",
+      "net": "/FAN_RETURN",
+      "length_mm": 11.133567811865476,
+      "minimum_width_mm": 0.65,
+      "R_35um_20C_ohm": 0.008437042157211465,
+      "R_25um_60C_ohm": 0.01366868325805515
+    },
+    "J5.2--Q1.2": {
+      "from": "J5.2",
+      "to": "Q1.2",
+      "net": "/GND",
+      "length_mm": 111.53791720095182,
+      "minimum_width_mm": 0.6,
+      "R_35um_20C_ohm": 0.09152791297830522,
+      "R_25um_60C_ohm": 0.14828254125789272
+    }
+  },
+  "group_members": {
+    "hv_loop": [
+      "J1.1--R1.1",
+      "R1.2--R3.2",
+      "R3.2--R2.1",
+      "R2.2--J3.1",
+      "J1.2--J2.2",
+      "J2.2--J3.2"
+    ],
+    "output_common": [
+      "J4.1--F1.1",
+      "F1.2--F2.1",
+      "J4.2--J5.2"
+    ],
+    "lamp_branch": [
+      "F2.2--J5.1"
+    ],
+    "fan_branch": [
+      "F2.1--F3.1",
+      "F3.2--J6.1",
+      "J6.2--D1.2",
+      "D1.2--Q1.3",
+      "J5.2--Q1.2"
+    ]
+  },
+  "groups": {
+    "hv_loop": {
+      "R_35um_20C_ohm": 0.05961154867335691,
+      "R_25um_60C_ohm": 0.09657547777473208
+    },
+    "output_common": {
+      "R_35um_20C_ohm": 0.02548668472936768,
+      "R_25um_60C_ohm": 0.041290468196353985
+    },
+    "lamp_branch": {
+      "R_35um_20C_ohm": 0.0026604484155297553,
+      "R_25um_60C_ohm": 0.004310139269031446
+    },
+    "fan_branch": {
+      "R_35um_20C_ohm": 0.12009272916964311,
+      "R_25um_60C_ohm": 0.1945598286731554
+    }
+  }
+}

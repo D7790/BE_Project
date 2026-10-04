@@ -1,0 +1,1 @@
+Direct load control-based approach can ensure a continuous supply of power to the loads with various priorities.

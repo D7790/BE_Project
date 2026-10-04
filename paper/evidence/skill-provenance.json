@@ -1,0 +1,14 @@
+{
+  "name": "scientific-writing",
+  "version": "2.1",
+  "installed_path": "C:\\Users\\dhane\\.codex\\skills\\scientific-writing\\SKILL.md",
+  "sha256": "f6026e7d79cd3133e9343a7d6e6c5e06f4ad061888efb6a73fcb95e073eebf67",
+  "source": "https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/scientific-writing",
+  "discovery": "https://skills.sh/k-dense-ai/scientific-agent-skills/scientific-writing",
+  "observed_date": "2026-09-30",
+  "discovery_installs": "2.1K",
+  "github_stars_display": "47.2K",
+  "used_for": "evidence mapping, numeric consistency, draft disclosure and review",
+  "human_approval_pending": true,
+  "browser": "Supported hidden in-app browser fallback after isolated shell headless launch was blocked; no literal headless Chrome run claimed."
+}

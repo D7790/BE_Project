@@ -1,0 +1,181 @@
+{
+  "created_utc": "2026-09-30T06:40:33.746207+00:00",
+  "status": "PASS_DOCUMENTATION_ONLY_CORRECTIONS",
+  "software_and_model_sources_match_28_Sep_checkpoint": true,
+  "native_CAD_matches_28_Sep_checkpoint": true,
+  "manufacturing_archive_matches_28_Sep_checkpoint": true,
+  "document_changes": [
+    {
+      "path": "README.md",
+      "before_sha256": "8c4f8f7a2be837377b8caa65dfb0982d36d6eb39e886c96b4050857aec36979f",
+      "after_sha256": "02193e454014c8c073b557384f98d6e03bdaf2ba716a9f6dff7ec8acc3ce8ddc"
+    },
+    {
+      "path": "docs\\PROTOCOL.md",
+      "before_sha256": "c022d73cc3ba9efe80ab0c3745a59bb8e25bb5d07c8137774d2658c13172ae31",
+      "after_sha256": "9ac4604a1433a2ccc2ba73e1a2e5f280ceff5829db4ec548b4cf41905957590d"
+    },
+    {
+      "path": "docs\\REVIEW_DEMO.md",
+      "before_sha256": "9a835ad4e0c002ebbc78c2ca49ce4f9cf2366b8170df915ad8d1beff337c3386",
+      "after_sha256": "bf493cb00fa4ec43ccffaa55aeb9c2b4b3432f8863629aaf267e385200f92171"
+    },
+    {
+      "path": "firmware\\README.md",
+      "before_sha256": "cc95ff536f9277ebc2c6e6acc9d7d3ce1174afbd48fbafc49157f0fb8357a50a",
+      "after_sha256": "095ebd6be632e668cd9840b74f236e476e048824e2ee79f5b3779b6530e29a78"
+    },
+    {
+      "path": "WATTSENSE_PROJECT_BLUEPRINT.md",
+      "before_sha256": "6d7d8892fc297e30f4f7bfac1ffbde2469b61ce76cb257c6160954eb06acb064",
+      "after_sha256": "945d01069a77cc2541be197a4deeff63e646083f9a6305afe5b108b3eabac2f3"
+    },
+    {
+      "path": "docs\\PROJECT_FLOW.md",
+      "before_sha256": "598da0f8dae5585d11a6b1c2d7f31cc29e53ceca86488b55a84fc47781a3e17d",
+      "after_sha256": "d00c967b120aa323ad606e1804d0f24799869c765750a1889cb6ac6746133095"
+    }
+  ],
+  "earlier_recheck": "publication-evidence-check.json is an accurate pre-correction snapshot. Documentation hashes intentionally differ now; no historical audit is overwritten.",
+  "historical_final_audit_record_sha256": "4c5701f416275deaea16597b255db18408885b97931b4043173a5d0a94ff6f61",
+  "source_hardware_summary_sha256": "2ca604dcd83eb2e0e31b83117fd9bc9b8e1fa77961f9fdf5b92ec979d6757a5d",
+  "startup_cases": [
+    {
+      "case": "startup_no_surge",
+      "assumed_start_current_at_5v_a": 0.6,
+      "lamp_current_at_5v_a": 0.6,
+      "fan_run_current_at_5v_a": 0.6,
+      "assumed_supply_limit_a": 2.0,
+      "assumed_module_capacitance_uf": 470,
+      "min_rail_v": 4.8247461736333905,
+      "min_fan_terminal_v": 4.677085316766191,
+      "peak_supply_a": 1.293513283003179,
+      "rail_screening_floor_v": 4.75,
+      "rail_screen": "PASS_MODEL_ONLY",
+      "steady_startup_rail_analytic_v": 4.824746173635812,
+      "steady_startup_rail_spice_v": 4.824746173633394
+    },
+    {
+      "case": "startup_2x_2A",
+      "assumed_start_current_at_5v_a": 1.2,
+      "lamp_current_at_5v_a": 0.6,
+      "fan_run_current_at_5v_a": 0.6,
+      "assumed_supply_limit_a": 2.0,
+      "assumed_module_capacitance_uf": 470,
+      "min_rail_v": 4.756408851237264,
+      "min_fan_terminal_v": 4.4739157237545095,
+      "peak_supply_a": 1.7978973302813586,
+      "rail_screening_floor_v": 4.75,
+      "rail_screen": "PASS_MODEL_ONLY",
+      "steady_startup_rail_analytic_v": 4.756408851239727,
+      "steady_startup_rail_spice_v": 4.756408851237264
+    },
+    {
+      "case": "startup_3x_1_5A",
+      "assumed_start_current_at_5v_a": 1.8,
+      "lamp_current_at_5v_a": 0.6,
+      "fan_run_current_at_5v_a": 0.6,
+      "assumed_supply_limit_a": 1.5,
+      "assumed_module_capacitance_uf": 470,
+      "min_rail_v": 2.994659802812407,
+      "min_fan_terminal_v": 2.735565172291331,
+      "peak_supply_a": 1.4999999999984999,
+      "rail_screening_floor_v": 4.75,
+      "rail_screen": "FAIL_MODEL_ONLY",
+      "steady_startup_rail_analytic_v": 2.9946598028524676,
+      "steady_startup_rail_spice_v": 2.994659802812407
+    },
+    {
+      "case": "startup_3x_1_5A_large_cap",
+      "assumed_start_current_at_5v_a": 1.8,
+      "lamp_current_at_5v_a": 0.6,
+      "fan_run_current_at_5v_a": 0.6,
+      "assumed_supply_limit_a": 1.5,
+      "assumed_module_capacitance_uf": 2200,
+      "min_rail_v": 2.994659811585177,
+      "min_fan_terminal_v": 2.73556518030509,
+      "peak_supply_a": 1.4999999999984999,
+      "rail_screening_floor_v": 4.75,
+      "rail_screen": "FAIL_MODEL_ONLY",
+      "steady_startup_rail_analytic_v": 2.9946598028524676,
+      "steady_startup_rail_spice_v": 2.994659861807533
+    },
+    {
+      "case": "startup_3x_3A",
+      "assumed_start_current_at_5v_a": 1.8,
+      "lamp_current_at_5v_a": 0.6,
+      "fan_run_current_at_5v_a": 0.6,
+      "assumed_supply_limit_a": 3.0,
+      "assumed_module_capacitance_uf": 470,
+      "min_rail_v": 4.6937614226009545,
+      "min_fan_terminal_v": 4.287662412489436,
+      "peak_supply_a": 2.2602854148478997,
+      "rail_screening_floor_v": 4.75,
+      "rail_screen": "FAIL_MODEL_ONLY",
+      "steady_startup_rail_analytic_v": 4.693761422603449,
+      "steady_startup_rail_spice_v": 4.6937614226009545
+    },
+    {
+      "case": "startup_starter_2x_2A",
+      "assumed_start_current_at_5v_a": 1.0,
+      "lamp_current_at_5v_a": 0.5,
+      "fan_run_current_at_5v_a": 0.5,
+      "assumed_supply_limit_a": 2.0,
+      "assumed_module_capacitance_uf": 470,
+      "min_rail_v": 4.790715691312717,
+      "min_fan_terminal_v": 4.551236257685004,
+      "peak_supply_a": 1.5446854361090772,
+      "rail_screening_floor_v": 4.75,
+      "rail_screen": "PASS_MODEL_ONLY",
+      "steady_startup_rail_analytic_v": 4.790715691315176,
+      "steady_startup_rail_spice_v": 4.790715691312717
+    }
+  ],
+  "ignored_cad_checks": [
+    {
+      "report": "ERC",
+      "description": "Global label only appears once in the schematic",
+      "key": "single_global_label"
+    },
+    {
+      "report": "ERC",
+      "description": "Four connection points are joined together",
+      "key": "four_way_junction"
+    },
+    {
+      "report": "ERC",
+      "description": "SPICE model issue",
+      "key": "simulation_model_issue"
+    },
+    {
+      "report": "ERC",
+      "description": "Assigned footprint doesn't match footprint filters",
+      "key": "footprint_filter"
+    },
+    {
+      "report": "DRC",
+      "description": "Footprint has no courtyard defined",
+      "key": "missing_courtyard"
+    },
+    {
+      "report": "DRC",
+      "description": "Track endpoint not centered on via",
+      "key": "track_not_centered_on_via"
+    },
+    {
+      "report": "DRC",
+      "description": "Tuning profile track geometries",
+      "key": "tuning_profile_track_geometries"
+    },
+    {
+      "report": "DRC",
+      "description": "Footprint doesn't match symbol's footprint filters",
+      "key": "footprint_filters_mismatch"
+    },
+    {
+      "report": "DRC",
+      "description": "Footprint component type doesn't match footprint pads",
+      "key": "footprint_type_mismatch"
+    }
+  ]
+}

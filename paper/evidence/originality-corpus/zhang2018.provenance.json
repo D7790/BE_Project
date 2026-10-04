@@ -1,0 +1,17 @@
+{
+  "id": "zhang2018",
+  "format": "pdf",
+  "coverage": "full article plus references and repository cover",
+  "url": "https://wrap.warwick.ac.uk/id/eprint/94268/9/WRAP-online-estimation-battery-Marco-2017.pdf",
+  "alternate_url": "https://pure.coventry.ac.uk/ws/portalfiles/portal/27426271/Binder9.pdf",
+  "doi": "10.1016/j.energy.2017.10.043",
+  "retrieved_date": "2026-09-30",
+  "status": "available",
+  "raw_path": "paper/evidence/originality-corpus/zhang2018.pdf",
+  "downloaded_from": "https://wrap.warwick.ac.uk/id/eprint/94268/9/WRAP-online-estimation-battery-Marco-2017.pdf",
+  "raw_sha256": "ec3fb2d192717ada10cf900562b816c906b85c5bb407d7a2eb6a8c67699e1813",
+  "pages": 12,
+  "text_path": "paper/evidence/originality-corpus/zhang2018.txt",
+  "text_sha256": "15a36d4a8c8fedf4ffaa2f7cfef9553b02deffe94d6ac49d2bf9d28cce36cc51",
+  "normalized_words": 5229
+}

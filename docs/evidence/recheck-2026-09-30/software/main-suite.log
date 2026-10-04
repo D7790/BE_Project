@@ -1,0 +1,8 @@
+Passed: python-tests
+Passed: run_firmware_host_tests
+Passed: run_spice
+Passed: run_system
+Passed: run_hardware
+Passed: make_plots
+Passed: make_hardware_plots
+Simulation suite passed. Results are synthetic, not hardware measurements.

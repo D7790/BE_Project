@@ -1,0 +1,205 @@
+# Wattsense: Design and Reproducible Simulation of a Runtime-Triggered Priority Load Controller
+
+Dhanesh Chaudhari, Ujjwal Kshirsagar, Mrudula Pagar, Yash Ahire
+
+IEEE-style working draft | 30 September 2026 | Simulation study; author review pending
+
+## Abstract
+
+This paper presents the design and reproducible simulation of Wattsense, a low-power battery monitoring and priority load controller. A four-layer interface board connects an ESP32, current monitors, an external converter, an essential lamp and a switchable fan to a separately protected battery pack. A charge-counting estimator supplies a runtime heuristic that triggers optional-load shedding. The evaluation combines a lumped discharge model, resistance extracted from selected PCB paths, reduced SPICE circuits and software verification. In an illustrative 6 Ah discharge from 68% to 20% state of charge, with 2.5 W per load, 0.8 W controller demand and 90% converter efficiency, lamp service increases from 5.476 to 7.884 h while fan service decreases from 5.476 to 2.494 h. The corresponding changes are +43.96% and -54.47%; they describe a service tradeoff, not an equal-service efficiency gain. Eighteen deterministic parameter pairs and six separate startup screening cases expose dependence on assumed capacity, efficiency and source limitations. Three startup cases fail a provisional common-rail screen. The work provides an inspectable implementation and identifies measurements needed for a prototype. No physical measurements or solar-harvesting performance are reported. [claim:C000] [evidence:E101,E102,E103,E104,E109]
+
+**Index Terms:** Battery monitoring, coulomb counting, priority load control, embedded systems, printed circuit board, reproducible simulation.
+
+## I. Introduction
+
+When a battery supplies loads with different priorities, continued operation of every load can shorten the service available to an essential function. Prior DC microgrid studies have addressed this allocation problem using state-of-charge thresholds and priority groups [1], as well as forecast-assisted scheduling [2]. A small student-built system offers a narrower design question: what service tradeoff follows from one explicit shedding rule, and which electrical constraints must be checked before constructing it? [claim:C001] [evidence:E002,E004]
+
+Wattsense considers a 5 V lamp and fan supplied from a nominal 12.8 V battery system through an external converter. The lamp is essential; the fan is optional. Its local controller estimates charge and requests fan disconnection when a remaining-runtime heuristic stays below a configurable threshold. A purchased battery protection system remains responsible for cell-level protection. The proposed interface includes a charging measurement channel, but the principal comparison has zero charging current and does not evaluate solar generation. [claim:C002] [evidence:E101,E102,E103]
+
+The contribution is an implementation case study connecting a routed PCB, explicit controller logic and reproducible numerical checks. The evaluation reports both loads' service, the assumptions behind the battery model, and unsuccessful startup screening cases. It does not propose a new charge-estimation algorithm or an optimal scheduler. The board has not been fabricated or measured for this study; all performance outcomes below are synthetic. [claim:C003] [evidence:E101,E104,E105]
+
+## II. Related Work and Study Scope
+
+Coulomb counting integrates current relative to an initial charge reference. Movassagh et al. analyze errors associated with current measurement, integration, capacity uncertainty and timing [3]. Their analysis motivates explicit capacity and initialization assumptions here. Agreement between a simulator's true and estimated charge cannot establish sensor accuracy when both use the same current and capacity. [claim:C004] [evidence:E001,E103]
+
+Marahatta et al. describe priority-based power management for a stand-alone DC microgrid with essential and nonessential loads, battery state-of-charge decisions, monitoring and experimental results [1]. Rajbhandari et al. address essential-load scheduling with forecast and optimization methods [2]. These studies establish that prioritization is existing practice. Wattsense uses a single optional branch and a transparent runtime trigger, without forecasts or an optimization claim; no common-dataset comparison with those controllers is attempted. [claim:C005] [evidence:E002,E004]
+
+Zhang et al. estimate battery equivalent-circuit parameters and state of charge, with lithium-ion cell measurements [4]. Their work illustrates the need to characterize a battery model before claiming predictive accuracy. Wattsense instead uses an assumed voltage curve and resistance; its estimator approximates energy using constant nominal voltage. The resulting runtime is a no-future-charge heuristic, not a guaranteed lower bound. The present evidence supports design verification and model-based screening, with physical validation left to a later study. [claim:C006] [evidence:E003,E103]
+
+## III. Hardware and Control Architecture
+
+Figure 1 shows the proposed power and information paths. A protected four-series-cell LiFePO4 pack connects through an external fuse/disconnect and the board's battery path. U1 measures signed battery current, positive during discharge; U2 measures converter-input load power. A third INA219 channel is provisioned for charge-current measurement. The selected INA219 supports bus and shunt-voltage measurements [5]. The external charger must match the pack; raw panel voltage is not connected to the charger interface. [claim:C007] [evidence:E101,E106,E006]
+
+![Power flows from a proposed protected battery through an external fuse, U1, a system junction, U2 and an external 5 V buck to an unswitched lamp and a fan with Q1 on its return. A dashed, untested charger-to-U3 path joins the system junction. Sensor data enter the ESP32; GPIO25 controls Q1; serial telemetry feeds a read-only local hardware dashboard.](figures/fig1_architecture.png)
+
+Fig. 1. Proposed Wattsense topology. U1 and U2 monitor signed battery current and load-branch input; U3 provides an unexercised charge-input interface and its readout is disabled in the supplied production configuration. The protected pack, matched charging device, converter and ESP32 are external to the custom board. Power arrows show discharge and charging directions; only the fan return is switched by Q1. The figure omits ground returns, 5 V fuse details and the alternative USB/isolated-data supply arrangements. The principal discharge simulations include battery-powered controller consumption. No assembled hardware is pictured or claimed. [claim:C042] [evidence:E101]
+
+The 100 mm by 90 mm board uses four copper layers, with two inner ground planes. Its nominal stackup is 1.6 mm, with 1 oz outer and 0.5 oz inner copper. Three 0.1 ohm shunts, branch fuses, connectors, a fan MOSFET and flyback diode provide the interface around purchased pack and converter modules. The declared design limits are 2 A on the battery path and 1.5 A continuous on the 5 V path, including controller demand. These are design limits pending qualification, not measured current ratings. Four layers alone do not establish thermal or electromagnetic performance. [claim:C008] [evidence:E101,E106]
+
+An AO3400A switches the fan return; the lamp remains connected. The startup model uses 48 milliohms for MOSFET conduction, consistent with the selected part's room-temperature maximum at 2.5 V gate drive [6]. Fuse cold-resistance inputs are nominal data-sheet values [7], not predictions of hot resistance or clearing time. A DS18B20 is intended to monitor pack-surface temperature. The ESP32 makes local decisions and exports telemetry to a read-only dashboard. The switch state in telemetry is a command, not an independent measurement of load interruption. [claim:C009] [evidence:E101,E007,E008]
+
+### A. Charge and runtime estimates
+
+Let s be estimated state of charge in percent, C the configured capacity in Ah before reserving charge, I the signed battery current in A and dt the elapsed time in seconds. The implemented update is [claim:C010] [evidence:E102]
+
+s[k+1] = clip(s[k] - 100 I<sub>eff</sub> dt / (3600 C), 0, 100). (1) [claim:C043] [evidence:E102]
+
+Here I_eff equals I during discharge and 0.98 I during charging. The nominal voltage V_nom is 12.8 V and reserve s_res is 20%. Estimated energy above reserve and the load-based trigger time are [claim:C011] [evidence:E102]
+
+E_est = C V<sub>nom</sub> max(s - s<sub>res</sub>, 0) / 100, (2) [claim:C044] [evidence:E102]
+
+T_est = E_est / P<sub>U2</sub>,     P<sub>U2</sub> &gt; 0.2 W. (3) [claim:C045] [evidence:E102]
+
+E_est is in Wh and T_est in hours. P_U2 is measured upstream of the load shunt and converter, so it includes downstream conversion and distribution losses. It excludes battery/internal and some upstream losses. Equation (2) also substitutes nominal voltage for an integrated voltage curve. Consequently, excluding future charging does not make (3) a minimum-runtime guarantee. A separate net-discharge display uses battery terminal power with a 3 s exponential filter; that filtered denominator is not the denominator of (3). [claim:C012] [evidence:E102,E103]
+
+### B. Decision sequence and invalid data
+
+Figure 2 summarizes the local policy. With the hardware armed and measurements valid, three consecutive seconds below T_min = 3 h command the fan off and latch the decision. Restoration requires an explicit request and a prospective estimate of at least T_min + 0.25 h. The reference firmware configuration reserves a provisional 3.5 W increment for that check; this must be replaced by measured optional-load input power. The principal discharge comparison starts with the fan on and does not exercise restoration. [claim:C013] [evidence:E102]
+
+![A vertical sample-update sequence checks valid timing and readings, current-boot charge reference, estimator update, hardware enable and temperature, reserve/voltage, manual request and sustained runtime threshold. Failed gates command fan off. An explicit restore rule with prospective runtime margin is listed below; essential-load stopping remains external.](figures/fig2_control_flow.png)
+
+Fig. 2. Simplified control sequence matching the firmware's ordered checks. The no-future-charge estimate is an energy/power heuristic, not a guaranteed lower runtime bound. A below-threshold condition lasting three seconds sheds the optional load; a shorter condition enters WATCH. OFF outcomes latch until an explicit restore request is accepted. Restore tests the prospective consumption with the fan on and an additional 0.25 h margin. Manual full-reference confirmation follows a verified charge procedure and does not automatically enable the fan. The distributed production firmware is hardware-locked. Only the fan is switched, so supervised physical trials require an external/operator stop at the agreed reserve endpoint. [claim:C046] [evidence:E102]
+
+Electrical acquisition and control run nominally at 10 Hz; temperature readings and telemetry refresh at 1 Hz. Missing or invalid measurements, gaps exceeding 2 s, unknown charge reference and configured operating-limit violations command the optional branch off. The monitoring bounds are 11.6-14.7 V, 45 degrees C at the surface sensor and 2 A; they do not replace cell-level protection. Charge reference is unknown after reboot until a supervised synchronization procedure is completed. Voltage and low-current guards during synchronization are not proof of full charge. [claim:C014] [evidence:E102]
+
+The delivered production configuration keeps HARDWARE_CONFIRMED and SOLAR_SENSOR_FITTED false. Host tests exercise both locked and armed policy behavior without operating a physical switch. The numerical endpoint stops the discharge experiment using the plant's true state of charge; the board cannot disconnect the essential lamp at that endpoint. A physical test therefore requires independent endpoint tracking and an operator-controlled disconnect. [claim:C015] [evidence:E102,E104]
+
+## IV. Models and Evaluation Procedure
+
+### A. Coupled DC and discharge model
+
+Table I lists the principal inputs. The open-circuit-voltage table is an invented teaching curve, linearly interpolated through (SOC %, V) pairs (0, 11.0), (10, 12.5), (20, 12.8), (50, 13.05), (80, 13.2) and (100, 13.45). It is neither a fit to a measured pack nor a manufacturer's characterization. The nominal battery/BMS resistance is 0.10 ohm; the assumed upstream wiring, contacts and external fuse add 0.08 ohm. [claim:C016] [evidence:E103]
+
+Table I. Principal discharge inputs and provenance
+
+| Quantity | Value | Basis |
+| --- | --- | --- |
+| Capacity / initial SOC | 6 Ah / 68% | Scenario |
+| Endpoint / time step | 20% / 1 s | Scenario |
+| Lamp / fan delivered power | 2.5 / 2.5 W | Assumed |
+| Controller demand | 0.8 W | Assumed |
+| Converter efficiency | 90% fixed | Assumed |
+| Battery/BMS resistance | 0.10 ohm | Assumed |
+| Shunt resistance, each | 0.10 ohm | Design |
+| Outer copper / temperature | 35 um / 20 C | Nominal inputs |
+| Main / branch fuse cold R | 0.030 / 0.075 ohm | Data sheet [7] |
+
+[claim:C047] [evidence:E101,E103,E008]
+
+Selected explicit front-copper paths are extracted from the routed board. Their resistance is summed as rho L/(w t), using rho = 1.724 x 10^-8 ohm m and a temperature coefficient of 0.00393 per degree C. The extraction omits parallel plane/pour paths, pad spreading, contact variation and inductive effects; it is a trace-path approximation rather than a field solution. A separate 25 um, 60 degrees C case changes assumed copper parameters; it does not predict board temperature. [claim:C017] [evidence:E103,E106]
+
+The steady/discharge model assigns constant delivered power to each active load. For local supply V, series resistance R and delivered power P, the low-current solution is [claim:C018] [evidence:E103]
+
+I = 2P / [V + sqrt(V<super>2</super> - 4RP)]. (4) [claim:C048] [evidence:E103]
+
+An outer solution accounts for common output-path drop. Converter input demand is output power divided by fixed efficiency. The battery-side equation is solved similarly with open-circuit voltage and total upstream series resistance. A non-positive discriminant rejects the operating point. Charge is integrated with a 1 s step; an additional 0.25 s run checks discretization. Calculated chemical power equals delivered load power plus converter and resistive losses within numerical tolerance. The coupled discharge simulation executes the Python reference controller. Production C++ control logic is tested separately on a host compiler; the plant run is not firmware-in-the-loop or ESP32 execution. [claim:C019] [evidence:E103]
+
+### B. Comparison and sensitivity scenarios
+
+The baseline retains both loads by disabling the runtime threshold while preserving operating limits. Priority mode uses a 3 h threshold. Both begin at the same exact 68% charge reference and stop at the first modeled true-SOC reserve or low-voltage endpoint. Main outputs are essential and optional service hours and delivered energy. This comparison measures allocation against retained-load operation, not superiority over an optimized controller. [claim:C020] [evidence:E103,E104]
+
+A deterministic full factorial contains 18 paired scenarios: capacities of 4.8 and 6 Ah, efficiencies of 80%, 90% and 95%, and battery/BMS resistances of 0.05, 0.10 and 0.20 ohm. Each run gives the estimator the same capacity as the plant, with exact current and initial charge. Thus the scenario ranges do not quantify unknown-capacity or sensor-error robustness, and are not confidence intervals. A separate earlier arithmetic example combines 4.8 Ah true versus 6 Ah configured capacity and 0.50 A true versus 0.52 A reported current for four hours to illustrate accumulated estimation error. [claim:C021] [evidence:E103]
+
+### C. Separate startup and circuit screens
+
+Six ngspice startup cases use a separate reduced circuit. Its instantaneous behavioral source is I_src = max(0, min(I_lim, (5 - V_reg)/0.04)), with volts, amperes and ohms. The output capacitor is 470 uF with 0.05 ohm ESR, except one 2200 uF case. A 100 ms resistive-equivalent fan demand produces voltage-dependent current; controller current is 0.16 A. This differs deliberately from the discharge model's constant-power loads and fixed efficiency. It is not a converter switching/control-loop simulation or a brushless-fan electromechanical model. [claim:C022] [evidence:E103,E105]
+
+The startup screen uses a provisional 4.75 V common-rail floor, independent of any selected device's actual operating limit. Other reduced circuits check shunt DC losses, fan switching, gate discharge and I2C rise time. For the latter, a first-order RC estimate t_r approximately equals 0.8473 R C, consistent with TI's pull-up calculation method [8]. Passing these screens cannot establish reset immunity, successful fan startup, fuse survival or electromagnetic compatibility. [claim:C023] [evidence:E105,E009]
+
+### D. Reproduction and verification
+
+The local package includes Python models, raw CSV traces, ngspice circuits, firmware sources, native KiCad files and an independent evidence-check script. The main suite invokes unit tests, native C++ policy/register checks, SPICE, system scenarios and hardware-model scenarios. The publication recheck also compares saved numerical summaries with raw traces and independently integrates the nominal discharge equations. KiCad 10.0.6 checks electrical rules, routing connectivity and schematic parity. These activities verify consistency of artifacts and equations; they are not physical experiments. [claim:C024] [evidence:E104,E106,E109]
+
+## V. Results
+
+### A. Service allocation at the nominal point
+
+Figure 3 and Table II report the nominal paired outcome. The baseline provides 5.4764 h to each load. Priority mode disconnects the fan at 2.4936 h and supplies the lamp until 7.8836 h. Lamp service gains 2.4072 h (+43.96%), while fan service loses 2.9828 h (-54.47%). Both trajectories end at the same true-charge reserve. This is a redistribution of service under the stated assumptions. [claim:C025] [evidence:E103,E109]
+
+![The two SOC curves overlap until the fan is shed at 2.49 hours and approximately 46.31% SOC. The retained-load curve reaches 20% after 5.48 hours; the lower-power priority curve reaches the same true-SOC endpoint after 7.88 hours.](figures/fig3_runtime.png)
+
+Fig. 3. Simulated true-SOC trajectories with 6 Ah known capacity, 68% initial SOC, 20% common true-SOC endpoint, 90% converter efficiency, 0.10 Ω battery/BMS resistance, 2.5 W lamp, 2.5 W fan and 0.8 W controller/sensors. Both-load operation supplies the lamp and fan for 5.476 h. Priority control sheds the fan at 2.494 h and supplies the lamp for 7.884 h: 43.96% more lamp service accompanies 54.47% less fan service. This reallocates service rather than increasing battery capacity. Straight segments join stored approximately one-minute samples and state-transition records; the integration step was one second. [claim:C049] [evidence:E103]
+
+Table II. Simulated service and delivered energy
+
+| Metric | Baseline | Priority |
+| --- | --- | --- |
+| Lamp service (h) | 5.4764 | 7.8836 |
+| Fan service (h) | 5.4764 | 2.4936 |
+| Lamp + fan energy (Wh) | 27.3819 | 25.9431 |
+| All loads incl. controller (Wh) | 31.7631 | 32.2499 |
+| Chemical energy (Wh, approx.) | 37.41 | 37.41 |
+
+[claim:C050] [evidence:E101,E103,E008]
+
+Lamp-plus-fan energy decreases even as lamp service rises. Including the controller, total delivered energy increases slightly because the lower-power operating interval changes modeled losses and keeps the controller operating longer. The approximately equal chemical energy, 37.41 Wh, rules out interpreting the service increase as additional battery capacity. These results do not demonstrate a 43.96% conversion-efficiency improvement. [claim:C026] [evidence:E103,E109]
+
+At the shedding event the runtime heuristic is 2.9993 h. Retaining both loads from that time would reach the baseline endpoint in 2.9828 h, about 59 s less than the estimate. This within-model example confirms that the estimate is not strictly conservative. It is one scenario, not an accuracy specification. The 3 h setting is a trigger under current load demand; it does not prescribe exactly three more hours of lamp operation. [claim:C027] [evidence:E103,E109]
+
+### B. DC operating point and parameter dependence
+
+At the nominal initial operating point, total converter-output current is 1.2077 A and battery current is 0.5196 A. The common rail, lamp and fan terminals are 4.8847, 4.8342 and 4.7461 V, respectively. The fan's allowable supply range is therefore a component-selection constraint even in steady operation. Modelled converter loss is 0.6709 W, output-path loss 0.2384 W and combined loss in the two active shunts 0.0540 W. These are dissipated-power calculations, not temperature measurements. [claim:C028] [evidence:E103]
+
+![Two stacked plots separate 4.8 Ah and 6 Ah capacity. Each shows retained-load and priority lamp-service hours at 80, 90 and 95 percent efficiency, with distinct color and marker shapes for three selected battery resistances. Priority lamp service is higher in all 18 paired scenarios; resistance traces nearly coincide.](figures/fig4_sensitivity.png)
+
+Fig. 4. All 18 deterministic paired discharge scenarios: capacity 4.8/6 Ah, efficiency 80/90/95%, and assumed battery/BMS resistance 0.05/0.10/0.20 Ω. Dashed lines retain both loads; solid lines use priority control. Resistance-series symbols nearly overlap because its influence is small within these selected ranges. Capacity is known exactly to the estimator in each run, other assumptions match the starter case, and lines connect the three sampled efficiencies only. These are scenario results, not statistical confidence intervals or robustness bounds against calibration error. Fan service is not shown here and is reduced by the priority policy. [claim:C051] [evidence:E103]
+
+Across the 18 deterministic pairs in Fig. 4, baseline lamp service spans 3.8667-5.7978 h and priority lamp service spans 6.2836-8.2031 h. The sweep shows model dependence on chosen parameters while holding sensing and capacity knowledge ideal. The separate four-hour estimation-error example produces a 7.0 percentage-point SOC overestimate, illustrating why the same result cannot be assumed when capacity or current calibration is wrong. [claim:C029] [evidence:E103]
+
+### C. Startup limits and local circuit checks
+
+![Six horizontal paired markers compare minimum common-rail voltage with the lower fan-terminal voltage. S3 and S4 fall to about 3.00 V common rail and 2.74 V at the fan, despite increased capacitance in S4. S5 also misses the 4.75 V common-rail screen. S1, S2 and S6 pass only that provisional model screen.](figures/fig5_startup.png)
+
+Fig. 5. Minimum common-rail and fan-terminal voltage in six separate behavioural SPICE startup scenarios. S1–S5 use a nominal 0.6 A lamp/fan running demand; S6 uses 0.5 A each. Fan starting demand at 5 V / source current limit / capacitance are: S1 0.6 A/2 A/470 µF; S2 1.2 A/2 A/470 µF; S3 1.8 A/1.5 A/470 µF; S4 1.8 A/1.5 A/2200 µF; S5 1.8 A/3 A/470 µF; S6 1.0 A/2 A/470 µF. Increased demand lasts an assumed 100 ms and decreases with terminal voltage. The dotted 4.75 V criterion applies to the common rail only; it is neither a fan-start specification nor an ESP32 reset limit. Three cases fail that screen. These equivalent-source/load models do not represent a purchased converter control loop or an actual BLDC fan. [claim:C052] [evidence:E103]
+
+Figure 5 includes every startup screen. Three of six cases remain above the provisional common-rail floor. With a 1.8 A equivalent fan startup demand and 1.5 A source limit, the common rail falls to approximately 2.995 V. Increasing capacitance from 470 to 2200 uF does not remove the eventual sag during the sustained assumed demand. A 3 A source case still reaches 4.694 V on the common rail because of series-path losses; this scenario does not increase the board's declared current limit. [claim:C030] [evidence:E103,E105]
+
+For the smaller starter case, with 0.5 A nominal lamp/fan demands, 1.0 A equivalent fan startup demand and 2 A source limit, the common-rail minimum is 4.7907 V. The fan-terminal minimum is only 4.5512 V. A rail-screen pass therefore does not qualify a fan or prove processor reset immunity. Actual converter current limiting, fan electronics, wiring, pulse duration and fuse behavior must be characterized. [claim:C031] [evidence:E103]
+
+The shunt DC screen gives 0.4 W in each 0.1 ohm shunt at 2 A; two series shunts then drop 0.4 V and dissipate 0.8 W. The I2C RC screen gives approximately 746 ns with 2.2 kohm and 400 pF, compared with 1593 ns for 4.7 kohm and 400 pF. This supports the chosen pull-up value for the modeled 100 kHz bus load, while actual capacitance and waveform quality remain unmeasured. [claim:C032] [evidence:E105,E009]
+
+### D. Artifact and numerical checks
+
+The refreshed suite passes 45 Python unit tests and 67 native C++ assertions, including locked/armed policy behavior and injected register-read faults. The independent publication recheck passed 38 checks before separately logged documentation wording corrections. Fresh ERC/DRC reports contain zero reported violations, zero unconnected items and zero schematic-parity differences under the saved rule configuration. Four ERC and five DRC categories are configured as ignored and disclosed in the evidence package. A scratch check enabling the ignored categories reports six generic connector footprint-filter mismatches (J1-J6), while independent pin, pitch and drill checks match the selected terminals. The fabrication archive matches its audited files; these facts do not constitute manufacturing or safety qualification. [claim:C033] [evidence:E104,E106,E109]
+
+Changing the integration step from 1 s to 0.25 s changes nominal baseline and priority service by 0.50 and 0.75 s, respectively. Independent quadrature of the same equations agrees with the saved service endpoints within one second. The agreement checks numerical implementation of the assumed model, not agreement with an actual battery or converter. [claim:C034] [evidence:E103,E109]
+
+## VI. Limitations and Hardware Validation Plan
+
+The central limitation is absence of physical validation. The OCV curve, pack resistance, wiring resistance, constant load power and converter efficiency are assumed. The model omits aging, temperature-dependent pack behavior, cell imbalance, dynamic protection cutoffs, ADC noise and timing, converter control dynamics and actual fan startup. Surface-temperature limits and calculated dissipation do not establish thermal safety. Solar generation, maximum-power-point tracking, charge control and forecast-based scheduling are outside the evaluated scope. [claim:C035] [evidence:E101,E102,E103]
+
+The capacity sweep is not a measurement-uncertainty analysis. Its exact capacity, current and initialization deliberately favor estimator agreement. The retained-load baseline also provides no evidence of optimality. Fixed-SOC shedding, an essential-only upper-service reference and threshold sweeps would strengthen a later comparison. These additional comparisons are proposed, not reported results. [claim:C036] [evidence:E103,E109]
+
+A hardware validation sequence should first qualify the purchased pack, matched charger, converter and selected loads, and measure permitted terminal voltages and startup demand. Bring-up should begin with a current-limited laboratory supply and checked polarity, continuity and isolated USB/power connections. Each current channel should be calibrated against an independent instrument in the intended operating range. Startup captures should record converter, common-rail and fan-terminal voltages together with current, followed by loaded temperature measurements. [claim:C037] [evidence:E101,E110]
+
+For the service comparison, repeated paired baseline and priority trials should use the same characterized pack, initial charge reference, loads, environmental conditions and independently tracked stopping criterion. Record both loads' operating time, input/output energy, calibration uncertainty and failure events. Repeated cycling and order effects should be planned before collection rather than selecting favorable runs. The essential branch must be disconnected externally at the supervised endpoint. No trial count, experimental uncertainty or measured result is asserted in this draft. [claim:C038] [evidence:E110]
+
+## VII. Conclusion
+
+Wattsense provides a traceable design and simulation case study for runtime-triggered priority load control. Under the illustrative nominal assumptions, lamp service increases by 43.96% while fan service decreases by 54.47%. Separate startup screens reveal electrical constraints that a runtime-only model would miss. Reproducible software, circuit and CAD checks support implementation consistency. Physical performance, component compatibility and any solar-system benefit remain to be established through the stated measurements. [claim:C039] [evidence:E103,E104,E106,E109]
+
+## Reproducibility and Draft Declarations
+
+Code, model inputs, generated CSVs, original figure code and audit records are retained in the local project package. No public archival repository or DOI has been assigned. The included reproduction guide identifies entry points and evidence hashes. Author affiliations, corresponding author, contributions, funding and conflict declarations remain to be supplied and approved by the authors before submission; no declaration is inferred from their absence. [claim:C040] [evidence:E104,E109,E110]
+
+OpenAI Codex assisted with project artifacts, literature retrieval, evidence checks, drafting and figure code. The Scientific Writing workflow from K-Dense's Scientific Agent Skills [9] informed evidence tracking and draft review. Numerical displays were generated from project data by plotting code; no generative-image results are presented as scientific evidence. The named authors must review the content, sources and applicable venue disclosure requirements. This document remains a working draft, with no claim of institutional similarity clearance or publication acceptance. [claim:C041] [evidence:E005,E111]
+
+## References
+
+[1] A. Marahatta, Y. Rajbhandari, A. Shrestha, A. Singh, A. Gachhadar, and A. Thapa, Priority-based low voltage DC microgrid system for rural electrification, Energy Reports, vol. 7, pp. 43-51, 2021, doi: 10.1016/j.egyr.2020.11.030. [Source](https://www.sciencedirect.com/science/article/pii/S2352484720314554).
+
+[2] Y. Rajbhandari et al., Enhanced demand side management for solar-based isolated microgrid system: Load prioritisation and energy optimisation, IET Smart Grid, vol. 7, no. 3, pp. 294-313, 2024, doi: 10.1049/stg2.12151. [Source](https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/stg2.12151).
+
+[3] K. Movassagh, A. Raihan, B. Balasingam, and K. Pattipati, A Critical Look at Coulomb Counting Approach for State of Charge Estimation in Batteries, Energies, vol. 14, no. 14, Art. no. 4074, 2021, doi: 10.3390/en14144074. [Source](https://www.mdpi.com/1996-1073/14/14/4074).
+
+[4] C. Zhang, W. Allafi, Q. Dinh, P. Ascencio, and J. Marco, Online estimation of battery equivalent circuit model parameters and state of charge using decoupled least squares technique, Energy, vol. 142, pp. 678-688, 2018, doi: 10.1016/j.energy.2017.10.043. [Source](https://www.sciencedirect.com/science/article/pii/S0360544217317127).
+
+[5] Texas Instruments, INA219 Zero-Drift, Bidirectional Current/Power Monitor With I2C Interface, SBOS448G, rev. G, Dec. 2015. [Data sheet](https://www.ti.com/lit/ds/symlink/ina219.pdf).
+
+[6] Alpha and Omega Semiconductor, AO3400A: 30 V N-Channel MOSFET, rev. 3.1, July 2023. [Data sheet](https://www.aosmd.com/res/data_sheets/AO3400A.pdf).
+
+[7] Littelfuse, 1206 Fast-Acting Fuse: 466 Series, data sheet, accessed Sep. 30, 2026. [Data sheet](https://www.littelfuse.com/assetdocs/littelfuse_fuse_466_datasheet?assetguid=dbe9bcd7-6072-4adf-bf5b-d33e52a6b90f).
+
+[8] R. Arora, I2C Bus Pull-Up Resistor Calculation, Texas Instruments, SLVA689, Feb. 2015. [Application note](https://www.ti.com/lit/an/slva689/slva689.pdf).
+
+[9] T. Kassis, V. Agarwal, Y. He, D. Patel, and A. M. Brueckner, Scientific Agent Skills: A Library of Procedural Knowledge for Research Agents, arXiv:2609.00065, 2026, doi: 10.48550/arXiv.2609.00065. [Source](https://arxiv.org/abs/2609.00065).

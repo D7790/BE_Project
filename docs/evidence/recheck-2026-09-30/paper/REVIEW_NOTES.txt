@@ -1,0 +1,29 @@
+WATTSENSE INDEPENDENT SUBSTANTIVE PAPER RECHECK
+30 September 2026
+
+Scope
+Read the canonical manuscript, the actual PDF-extracted prose, the scientific-writing skill, firmware policy/acquisition, hardware model and runtime experiment, all five figure PNGs and their source code, stored primary-literature inspection records, source/claim manifests, and bounded originality report/code. No manuscript or project file was uploaded; no new web requests were needed. The agent did not rerun shared simulations or change manuscript/CAD/firmware files.
+
+Machine-checkable record
+review_paper.py reads the workspace and writes only independent-paper-review.json beside it. It checks canonical paragraphs against actual PDF text, the supplied author order, Table II arithmetic, abstract/result values, raw time endpoints, shedding state transition, sensitivity ranges, DC/startup numbers, convergence, I2C results, and disclosure boundaries. Hashes identify the inspected version. During concurrent edits a PDF-text mismatch means the PDF needs rebuilding, not that an older version contained a false performance result. Run again on the final PDF before treating this audit as final.
+
+Findings communicated to the main agent
+PAPER-01 (methods clarity): The discharge experiment invokes wattsense.model.Controller (simulations/run_hardware.py, import on line 16 and use in discharge), while firmware/include/controller.h is separately host tested. The manuscript did not explicitly identify this separation. Add a sentence in IV-A/IV-D so readers cannot mistake the numerical plant for firmware-in-the-loop or ESP32 execution.
+
+PAPER-02 (notation): build_paper.py converted E_hat/T_hat to E_est/T_est in the rendered PDF, while Figure 2 retained hatted T and Markdown retained E_hat/T_hat. Use one notation throughout canonical text, PDF and Figure 2; no equation or numerical result changes are needed.
+
+PAPER-03 (claim binding): C004's closing sentence about identical plant/estimator capacity and current is a local-method inference, while its evidence list originally contained only literature E001. Add E103 for the local experiment.
+
+PAPER-04 (audit coverage): prepare_records.py initially copied each hardware-summary value twice into consistency_manifest.json under Results and Evidence registry. The scientific-writing consistency pass therefore checked duplicate records, not manuscript prose or tables. The main checker initially checked three abstract runtimes and hardcoded the service percentages. Use direct manuscript-vs-current-evidence checks for Abstract, Table II and results paragraphs, and treat the skill's consistency output as a registry check only.
+
+Substantive results
+No unsupported physical-performance claim, fabricated experimental sample size, imported prior-work performance result, invented affiliation, or undeclared failed startup case was found. The manuscript explicitly presents a simulation case study, names the invented teaching OCV curve and exact-capacity/current assumptions, explains the lamp/fan service tradeoff, discloses all three rail-screen failures and the unqualified fan terminal voltage, and distinguishes cold-resistance calculations from thermal/fuse qualification. The counterfactual remaining-time comparison demonstrates that the runtime heuristic is not a guaranteed lower bound.
+
+Figure review
+All five PNG figures were visually inspected. Figure 1 is a concept diagram with the omitted return, controller power and fuse arrangements explicitly named; it is not an assembly drawing. Figure 2 follows the implemented ordered gates and explicit restoration behavior. Figure 3 uses stored trajectories and names the sampling/integration distinction. Figure 4 includes all 18 pairs with redundant marker/line-style cues and discloses omitted fan service. Figure 5 includes all six cases, distinguishes rail from fan terminal voltage, and names the provisional screen. No clipping, misleading omitted failed case, or numeric mismatch was found. The notation issue in Figure 2 is listed above.
+
+Literature/originality scope
+Stored reference metadata and inspected-source locators are consistent with the manuscript's nine references; first-citation order is appropriate. This review did not independently re-open remote references or complete an accountable human source-verification gate. The overlap script checks abstract/prose paragraphs only, case-folds and normalizes tokens, and searches exact eight-word spans. It excludes equations, figures/captions, tables and bibliography. Two full papers and two 18-word excerpts are available locally. Zero matches in that bounded corpus is not a plagiarism percentage, certificate, originality proof, or novelty search. Full copyrighted paper files should remain outside the review ZIP. These limits are already accurately disclosed.
+
+Legitimate remaining work
+Author and guide review, affiliations/corresponding author/contribution/declaration details, target venue and actual template/policy review, human source/claim verification, and institutional similarity review are incomplete. Physical calibration, component startup/voltage/temperature measurements and repeated paired service trials are still required for hardware claims. Leave submission_ready and human-approval flags false. Passing local checks cannot establish that a journal will accept the project.

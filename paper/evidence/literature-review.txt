@@ -1,0 +1,58 @@
+WATTSENSE: TARGETED LITERATURE CHECK
+Reviewed 30 September 2026
+
+Targeted primary-literature check for a design-and-simulation case study; not a systematic review or exhaustive novelty search.
+Inspected primary publisher records and available author/institution-hosted papers through web retrieval. Search snippets alone were not used to support detailed method claims. No manuscript was uploaded to an external service.
+
+MOVASSAGH2021
+Kiarash Movassagh, Arif Raihan, Balakumar Balasingam, Krishna Pattipati
+A Critical Look at Coulomb Counting Approach for State of Charge Estimation in Batteries
+Energies, 2021, vol. 14, no. 14, article 4074
+DOI: 10.3390/en14144074
+Primary URL: https://www.mdpi.com/1996-1073/14/14/4074
+Inspected copy/record: https://ntrs.nasa.gov/citations/20220008848
+Full text: https://ntrs.nasa.gov/api/citations/20220008848/downloads/2021.07%20-%20Energies%20-%20A%20Critical%20Look%20at%20Coulomb%20Counting%20Approach%20for%20State%20of%20Charge%20Estimation.pdf
+Evidence inspected: Publisher citation record and NASA-hosted accepted manuscript, including abstract, inspected. NASA identifies the manuscript as externally peer reviewed and records publication on 6 July 2021. Later PDF section requests intermittently returned retrieval errors.
+Supported claim: Coulomb-counting errors can arise from current measurement, numerical integration, capacity uncertainty and timing; their accumulation requires attention to calibration and initialization.
+Manuscript use: Motivate the current/calibration and known-capacity limitations, while citing the established method rather than claiming it is new.
+Limit: Does not validate Wattsense, its sensor settings, its full-charge procedure, or any particular percentage SOC accuracy. The arXiv precursor has a different title and author-name variant; use the final journal metadata above.
+
+MARAHATTA2021
+Anup Marahatta, Yaju Rajbhandari, Ashish Shrestha, Ajay Singh, Anand Gachhadar, Anup Thapa
+Priority-based low voltage DC microgrid system for rural electrification
+Energy Reports, 2021, vol. 7, pp. 43-51
+DOI: 10.1016/j.egyr.2020.11.030
+Primary URL: https://www.sciencedirect.com/science/article/pii/S2352484720314554
+Inspected copy/record: https://www.researchgate.net/publication/346036129_Priority-based_low_voltage_DC_microgrid_system_for_rural_electrification
+Evidence inspected: Publisher abstract and citation metadata retrieved. Direct publisher open failed, so the author-uploaded full paper (Ashish Shrestha, uploaded 20 November 2020) was inspected, especially section 2.2.2 and Table 3. Author byline matches the article title page.
+Supported claim: Earlier work combines SCADA with priority-based control in a DC microgrid, including three load levels and battery-charge thresholds for staged disconnection.
+Manuscript use: Closest practical prior art; establishes that maintaining essential-load service through lower-priority shedding is an existing concept.
+Limit: Its multi-level solar/microgrid experiment is not directly comparable to the two-load Wattsense discharge scenario. Its claimed reliability results must not be transferred to Wattsense.
+
+RAJBHANDARI2024
+Yaju Rajbhandari, Anup Marahatta, Ashish Shrestha, Anand Gachhadar, Anup Thapa, Francisco Gonzalez-Longatt, Petr Korba
+Enhanced demand side management for solar-based isolated microgrid system: Load prioritisation and energy optimisation
+IET Smart Grid, 2024, vol. 7, no. 3, pp. 294-313
+DOI: 10.1049/stg2.12151
+Primary URL: https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/stg2.12151
+Evidence inspected: Publisher full text inspected: abstract, sections 2.1-2.2, author metadata, and issue citation. First online 18 December 2023; cite the June 2024 volume/issue publication year.
+Supported claim: Priority-based demand management has also been formulated using day-ahead generation/load forecasts and particle-swarm optimization to allocate energy across load groups.
+Manuscript use: Position Wattsense as a local deterministic threshold case study with no forecasting or optimization; the difference is scope and implementation, not demonstrated superiority.
+Limit: No head-to-head comparison has been conducted. Do not quote its load-satisfaction or continuity percentages as evidence of Wattsense performance.
+
+ZHANG2018
+Cheng Zhang, Walid Allafi, Quang Dinh, Pedro Ascencio, James Marco
+Online estimation of battery equivalent circuit model parameters and state of charge using decoupled least squares technique
+Energy, 2018, vol. 142, pp. 678-688
+DOI: 10.1016/j.energy.2017.10.043
+Primary URL: https://www.sciencedirect.com/science/article/pii/S0360544217317127
+Inspected copy/record: https://wrap.warwick.ac.uk/id/eprint/94268/
+Full text: https://wrap.warwick.ac.uk/id/eprint/94268/9/WRAP-online-estimation-battery-Marco-2017.pdf
+Evidence inspected: University repository published-version PDF inspected: title page, abstract, introduction, experimental section 4.1 and discussion 6.1. Names follow the article byline; repository expands Dinh and Ascencio differently.
+Supported claim: Battery equivalent-circuit parameters depend on operating conditions; this study estimates fast and slow dynamics separately and tests the method with lithium-ion cell measurements.
+Manuscript use: Explain why Wattsense's assumed OCV/resistance plant is only a design-screening model and requires pack-specific characterization before predictive accuracy claims.
+Limit: The published experimental accuracy and cell parameters do not apply to the unmeasured Wattsense LiFePO4 pack; no DWRLS estimator is implemented in Wattsense.
+
+SYNTHESIS
+The established components are Coulomb counting, priority shedding, telemetry and equivalent-circuit modeling. A defensible contribution is reproducible integration of firmware checks, PCB-path assumptions and explicit service/startup tradeoffs. No novel control algorithm or hardware validation is established.
+All claims above are short original paraphrases. Do not copy external figures. Use original project diagrams and cite prior concepts. Keep the final paper's source-derived discussion concise; retrieval sources carried 200-word per-source response budgets.

@@ -1,0 +1,10 @@
+report,key,description
+ERC,single_global_label,Global label only appears once in the schematic
+ERC,four_way_junction,Four connection points are joined together
+ERC,simulation_model_issue,SPICE model issue
+ERC,footprint_filter,Assigned footprint doesn't match footprint filters
+DRC,missing_courtyard,Footprint has no courtyard defined
+DRC,track_not_centered_on_via,Track endpoint not centered on via
+DRC,tuning_profile_track_geometries,Tuning profile track geometries
+DRC,footprint_filters_mismatch,Footprint doesn't match symbol's footprint filters
+DRC,footprint_type_mismatch,Footprint component type doesn't match footprint pads

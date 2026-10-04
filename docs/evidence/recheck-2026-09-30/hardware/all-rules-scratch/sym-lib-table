@@ -1,0 +1,1 @@
+(sym_lib_table (version 7) (lib (name "Wattsense") (type "KiCad") (uri "${KIPRJMOD}/Wattsense.kicad_sym") (options "") (descr "Project-local symbols copied from KiCad 10; manufacturer mappings checked")))

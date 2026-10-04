@@ -1,0 +1,111 @@
+{
+  "engine": "KiCad bundled ngspice shared DLL",
+  "version_log": [
+    "stderr Warning: can't find the initialization file spinit.",
+    "stdout ******",
+    "stdout ** ngspice-46 shared library",
+    "stdout ** Creation Date: Apr 14 2026   05:15:29",
+    "stdout ******",
+    "stdout ******",
+    "stdout ** ngspice-46 : Circuit level simulation program",
+    "stdout ** Compiled with KLU Direct Linear Solver",
+    "stdout ** The U. C. Berkeley CAD Group",
+    "stdout ** Copyright 1985-1994, Regents of the University of California.",
+    "stdout ** Copyright 2001-2025, The ngspice team.",
+    "stdout ** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html",
+    "stdout ** Please file your bug-reports at https://ngspice.sourceforge.io/bugrep.html",
+    "stdout ** Creation Date: Apr 14 2026   05:15:29",
+    "stdout ******"
+  ],
+  "hardware_tested": false,
+  "cases": [
+    {
+      "case": "Three-shunt signed DC sweep",
+      "status": "PASS",
+      "points": 27,
+      "maximum_shunt_dissipation_W": 0.40000000000000424,
+      "max_numeric_error": 2.842170943040401e-14,
+      "battery_to_load_drop_at_2A_V": 0.4
+    },
+    {
+      "case": "Behavioural fan switch and generic flyback transient",
+      "status": "PASS",
+      "gate_high_V": 3.277565912579935,
+      "peak_drain_V": 5.394057461528327,
+      "steady_fan_A": 0.5965638105488457,
+      "switch_conduction_W_at_48mOhm": 0.017082642242714833,
+      "scope": "Not a vendor MOSFET/BLDC fan model; no parasitic overshoot or junction-temperature prediction."
+    },
+    {
+      "case": "Gate pulldown with GPIO high impedance",
+      "status": "PASS",
+      "time_below_0_5V_us": 88.3960000000013,
+      "assumed_gate_capacitance_nF": 1
+    },
+    {
+      "case": "I2C rise with 4700 ohm at 100 pF",
+      "status": "PASS",
+      "rise_30_70_ns": 398.2291971510753,
+      "standard_mode_limit_ns": 1000,
+      "ideal_sink_current_mA": 0.7021276595744681
+    },
+    {
+      "case": "I2C rise with 4700 ohm at 200 pF",
+      "status": "PASS",
+      "rise_30_70_ns": 796.4598269483477,
+      "standard_mode_limit_ns": 1000,
+      "ideal_sink_current_mA": 0.7021276595744681
+    },
+    {
+      "case": "I2C rise with 4700 ohm at 400 pF",
+      "status": "OUTSIDE_ENVELOPE",
+      "rise_30_70_ns": 1592.9199739798362,
+      "standard_mode_limit_ns": 1000,
+      "ideal_sink_current_mA": 0.7021276595744681
+    },
+    {
+      "case": "I2C rise with 2200 ohm at 100 pF",
+      "status": "PASS",
+      "rise_30_70_ns": 186.4054772328789,
+      "standard_mode_limit_ns": 1000,
+      "ideal_sink_current_mA": 1.5
+    },
+    {
+      "case": "I2C rise with 2200 ohm at 200 pF",
+      "status": "PASS",
+      "rise_30_70_ns": 372.8112034927459,
+      "standard_mode_limit_ns": 1000,
+      "ideal_sink_current_mA": 1.5
+    },
+    {
+      "case": "I2C rise with 2200 ohm at 400 pF",
+      "status": "PASS",
+      "rise_30_70_ns": 745.6217700083415,
+      "standard_mode_limit_ns": 1000,
+      "ideal_sink_current_mA": 1.5
+    }
+  ],
+  "checked_cad_sha256": {
+    "wattsense-main.kicad_sch": "36ab6bbf821e43cff3f6d44e22e026264d79af908c6752d489ef2ab9a02a2146",
+    "wattsense-main.kicad_pcb": "9de46d183a071fccd4326460e73dcab40f95a9aa8d4e6c271abb26a6925283f1",
+    "wattsense-main.kicad_pro": "0fb2c184b8a00d4234887b7cde1f03a0b099921adde5f9513f65b6b8b635802f",
+    "BOM.csv": "00802af26c2f057d605f6048d05aa86c459c6810d5baac71f42886952afa6e1b",
+    "design.json": "d8602664f8dd28386e927c9920a31ea64236964f6e1745d31aefff2c13821308",
+    "tools/audit_design.py": "3ca8952cf8b1fffe9a7a453d6ce899d5f432e0e054addddfe69c58177eb6e547"
+  },
+  "netlist_sha256": {
+    "three_shunt_dc.cir": "4082be658a5d26d3655f28c7c0b35a3983bcb3c0eef8efaa0eb5c1dc2c84c85c",
+    "fan_switch_transient.cir": "e6228fd31420240d6c6dca199711424b2f5e6af782f84b17d9bcf1f5fdf3e7ba",
+    "gate_high_impedance_reset.cir": "439c4fa94b9a307bd702dbec830f4c28152b5b46185900310613070b8ccb754c",
+    "i2c_rise_4700ohm_100pF.cir": "f1fd3eb5c297cfa7d1b46444ce0e1ca6705c78f3fad16d70cafdbd076b8e4ba2",
+    "i2c_rise_4700ohm_200pF.cir": "2edbb3f56c4874c53bde3df6f498ca486812667629245bd7a5152d0cbc0d1667",
+    "i2c_rise_4700ohm_400pF.cir": "5d551ebf86ae33cebf1ff662f874d80448bbcdd413f5596bc9b3bc012ecd0df6",
+    "i2c_rise_2200ohm_100pF.cir": "7aed0abfbd1af8f9889d45dd668a4b0281ed92734b68135b683f801ec903ebf6",
+    "i2c_rise_2200ohm_200pF.cir": "c348a3523aa09d287048af47fadd47a9177e31e57c48c6afc0da62ce5e28d1a2",
+    "i2c_rise_2200ohm_400pF.cir": "93b6fbab12a6b172c1fcd1a8d130b7410e25d4f965f8b6d3eb60d02364dde066"
+  },
+  "source_sha256": {
+    "run_spice.py": "1cd3be5db5e526020e7d8c00caab6576d79a541ff94748aa9c831bf6cdbafdde",
+    "ngspice_shared.py": "297f2e08fdefa0e2f552e5664ba9888e45e8a2ad20a32f844c727453d8b651e2"
+  }
+}

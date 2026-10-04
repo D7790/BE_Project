@@ -1,0 +1,567 @@
+{
+  "created_utc": "2026-09-30T07:23:29.561952+00:00",
+  "status": "REVIEW_REQUIRED",
+  "scope": "Independent local manuscript/PDF/prose, key result arithmetic, raw trace, diagrams and disclosure review. Does not re-open remote reference sources or certify plagiarism/hardware/publication readiness.",
+  "checks": [
+    {
+      "check": "Hardware outcomes remain simulation only",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Four supplied authors preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "No invented affiliation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph abstract",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C001",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C002",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C003",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C004",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C005",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C006",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C007",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C008",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C009",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C010",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C011",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C012",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C013",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C014",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C015",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C016",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C017",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C018",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C019",
+      "pass": false,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C020",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C021",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C022",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C023",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C024",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C025",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C026",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C027",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C028",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C029",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C030",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C031",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C032",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C033",
+      "pass": false,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C034",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C035",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C036",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C037",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C038",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C039",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C040",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Rendered PDF contains canonical paragraph C041",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Abstract rounds baseline hours correctly",
+      "pass": true,
+      "detail": 5.476388888888889
+    },
+    {
+      "check": "Abstract rounds priority hours correctly",
+      "pass": true,
+      "detail": 7.883611111111111
+    },
+    {
+      "check": "Abstract rounds fan hours correctly",
+      "pass": true,
+      "detail": 2.493611111111111
+    },
+    {
+      "check": "Abstract discloses lamp gain and fan loss",
+      "pass": true,
+      "detail": {
+        "lamp_gain_pct": 43.95637839208724,
+        "fan_loss_pct": 54.46614253106772
+      }
+    },
+    {
+      "check": "Table II recomputed Lamp service (h)",
+      "pass": true,
+      "detail": {
+        "actual": [
+          "5.4764",
+          "7.8836"
+        ],
+        "expected": [
+          "5.4764",
+          "7.8836"
+        ]
+      }
+    },
+    {
+      "check": "Table II recomputed Fan service (h)",
+      "pass": true,
+      "detail": {
+        "actual": [
+          "5.4764",
+          "2.4936"
+        ],
+        "expected": [
+          "5.4764",
+          "2.4936"
+        ]
+      }
+    },
+    {
+      "check": "Table II recomputed Lamp + fan energy (Wh)",
+      "pass": true,
+      "detail": {
+        "actual": [
+          "27.3819",
+          "25.9431"
+        ],
+        "expected": [
+          "27.3819",
+          "25.9431"
+        ]
+      }
+    },
+    {
+      "check": "Table II recomputed All loads incl. controller (Wh)",
+      "pass": true,
+      "detail": {
+        "actual": [
+          "31.7631",
+          "32.2499"
+        ],
+        "expected": [
+          "31.7631",
+          "32.2499"
+        ]
+      }
+    },
+    {
+      "check": "Table II recomputed Chemical energy (Wh, approx.)",
+      "pass": true,
+      "detail": {
+        "actual": [
+          "37.41",
+          "37.41"
+        ],
+        "expected": [
+          "37.41",
+          "37.41"
+        ]
+      }
+    },
+    {
+      "check": "baseline endpoint matches raw trace",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "baseline endpoint crosses true SOC reserve",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "priority endpoint matches raw trace",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "priority endpoint crosses true SOC reserve",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Fan shedding time matches raw state transition",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "All 18 sensitivity pairs retained",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Every paired scenario reports both-load and priority service",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C025 states both numerical service changes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C027 heuristic and counterfactual recomputed from shedding trace",
+      "pass": true,
+      "detail": {
+        "heuristic_h": 2.9992614597357217,
+        "counterfactual_h": 2.9827777777777778,
+        "overestimate_s": 59.34125504859811
+      }
+    },
+    {
+      "check": "C028 reported output_a matches DC result",
+      "pass": true,
+      "detail": 1.207676645609548
+    },
+    {
+      "check": "C028 reported battery_a matches DC result",
+      "pass": true,
+      "detail": 0.5196361781494065
+    },
+    {
+      "check": "C028 reported rail_v matches DC result",
+      "pass": true,
+      "detail": 4.884682960885675
+    },
+    {
+      "check": "C028 reported lamp_v matches DC result",
+      "pass": true,
+      "detail": 4.834177759549935
+    },
+    {
+      "check": "C028 reported fan_v matches DC result",
+      "pass": true,
+      "detail": 4.746099298480055
+    },
+    {
+      "check": "C028 reported converter_loss_w matches DC result",
+      "pass": true,
+      "detail": 0.6709314697830822
+    },
+    {
+      "check": "C028 reported output_path_loss_w matches DC result",
+      "pass": true,
+      "detail": 0.23838322804775777
+    },
+    {
+      "check": "C028 reported two_shunts_loss_w matches DC result",
+      "pass": true,
+      "detail": 0.05400435152834435
+    },
+    {
+      "check": "C029 baseline_h range from all 18 pairs",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C029 priority_h range from all 18 pairs",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C029 seven-percentage-point example independently recomputed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Three startup cases fail the stated 4.75 V rail criterion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C030 reported startup S3 min_rail_v",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C030 reported startup S5 min_rail_v",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C031 reported startup S6 min_rail_v",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C031 reported startup S6 min_fan_terminal_v",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C034 convergence result 1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C034 convergence result 2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C032 I2C 2200 ohm rise time",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C032 I2C 4700 ohm rise time",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C032 shunt loss independently calculated",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Originality claim is bounded, with no certification",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Originality scope explicitly excludes captions/tables/equations",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Originality corpus is exactly two full sources and two 18-word excerpts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "No source reports physical validation of Wattsense",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Author approval not fabricated",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "passed": 87,
+  "total": 89,
+  "pdf_pages": 7,
+  "inspected_sha256": {
+    "paper/src/manuscript.json": "c24c47abbd968977b0146268889c1ed62dccc8ae48eefb0c4245b497573c7b2b",
+    "output/pdf/wattsense_research_paper.pdf": "3687c377299b82fd2d513eb52eac1856e61281828b124eb61ee80213388e02a3",
+    "paper/src/make_figures.py": "fef1331513bd35fcec96c066780c2ee2e4f9fda87401039fecb08bbe6b01f05c",
+    "paper/src/build_paper.py": "d04d501e8fac715f8e4e83698a7cce678814361553786a8037b6cb9063ca8a1d",
+    "firmware/include/controller.h": "7be594808347f0e92ef468de28d10a9c16f6e57f3d66a332030a176cae384565",
+    "firmware/src/main.cpp": "0cdc08d2dce99ba73be3c9d399aa9e9c178242ec46b35544a047b6cb5e358bc3",
+    "simulations/run_hardware.py": "75b8bd43fcac88ba4422d01f1cb673de2ff9e07da8dd6c49d334173aca8ee152",
+    "simulations/hardware_model.py": "7e4445c59948ca3bda737d872d62a251e9f3eb295a4b4d1f88dcbadb6bcff81e",
+    "simulations/results/hardware-summary.json": "355f55531617a35f5d9c483dcb6578e71cd817236cbbc238b7f98578beb76ecd",
+    "paper/evidence/literature-review.txt": "7f6ca954272cdae83edea97dcbbe0d81ab61f77ebdee9bbb1284f07c4a052f88",
+    "paper/evidence/originality-report.json": "77bc77b7a531cbac52516d5c30b7862df56e196e2802c9813cdd4324a06a09f0"
+  },
+  "figure_review": {
+    "method": "Visually inspected all five current 300-dpi PNGs; compared flowchart to firmware controller.h and topology to reference wiring.",
+    "scientific_content": "All 18 paired scenarios and all six startup cases retained; limitations, failed rail screens, fan service loss and omitted paths are disclosed.",
+    "human_review_pending": true
+  },
+  "recommendations": [
+    {
+      "id": "PAPER-01",
+      "priority": "medium",
+      "type": "methods clarity",
+      "location": "paper/src/manuscript.json C024; simulations/run_hardware.py:16,86,102",
+      "finding": "The coupled plant executes wattsense.model.Controller, while C++ policy is separately host-tested. Manuscript does not explicitly name this separation.",
+      "action": "Add one sentence naming the Python reference controller and separate C++ host checks; state that no firmware-in-loop or ESP32 execution is represented."
+    },
+    {
+      "id": "PAPER-02",
+      "priority": "low",
+      "type": "notation consistency",
+      "location": "paper/src/build_paper.py clean(); paper/src/make_figures.py Figure 2; manuscript equations 2-3",
+      "finding": "Canonical text uses E_hat/T_hat, PDF translates those to E_est/T_est, while Figure 2 retains hatted T.",
+      "action": "Use E_est/T_est consistently in canonical text, PDF and Figure 2; preserve meaning and regenerate evidence."
+    },
+    {
+      "id": "PAPER-03",
+      "priority": "low",
+      "type": "claim binding",
+      "location": "paper/src/manuscript.json C004",
+      "finding": "C004 maps only to literature E001, although its final sentence draws an inference about the project's shared plant/estimator inputs.",
+      "action": "Add local model evidence E103 to C004 to make the mixed-source paragraph traceable."
+    },
+    {
+      "id": "PAPER-04",
+      "priority": "medium",
+      "type": "verification coverage",
+      "location": "paper/src/prepare_records.py:92-96",
+      "finding": "Consistency registry copies each summary value twice into Results and Evidence registry; its pass checks duplicated records rather than actual manuscript numbers.",
+      "action": "Bind Table II, results prose and abstract values to current simulation evidence with parsed numeric checks. The read-only audit here performs such direct checks; the skill checker is still a registry check only."
+    }
+  ],
+  "legitimate_pending_gates": [
+    "No hardware measurements or parts purchased",
+    "Human source/claim verification",
+    "Author affiliations, contributions, approval and corresponding author",
+    "Venue/template and disclosure-policy review",
+    "Institutional similarity review; the two full papers plus two excerpts are only bounded wording evidence"
+  ],
+  "new_web_requests": 0
+}

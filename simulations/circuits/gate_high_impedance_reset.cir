@@ -1,0 +1,6 @@
+Wattsense gate discharge when controller goes high impedance
+* External 47k pulldown and assumed 1nF gate capacitance.
+R8 FAN_GATE 0 47k
+Cgate FAN_GATE 0 1n IC=3.277
+.tran .1u 1m 0 .1u UIC
+.end

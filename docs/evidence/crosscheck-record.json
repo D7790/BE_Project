@@ -1,0 +1,32 @@
+{
+  "created_utc": "2026-09-28T06:52:50.658375+00:00",
+  "status": "PASS_FOR_RECORDED_SOFTWARE_AND_CAD_CHECKS",
+  "hardware_tested": false,
+  "python_tests": 37,
+  "native_cpp_assertions": 67,
+  "power_paths": 20,
+  "builds": {
+    "esp32dev": {
+      "observed_build_result": "SUCCESS",
+      "observed_ram_bytes": 22164,
+      "observed_flash_bytes": 323053,
+      "binary_sha256": "640b793f24b9d5bb319e17e32e7f587ada419be98df69939628dbd4b32e3f46a",
+      "flashed": false
+    },
+    "bringup": {
+      "observed_build_result": "SUCCESS",
+      "observed_ram_bytes": 21960,
+      "observed_flash_bytes": 303189,
+      "binary_sha256": "831b52520bf488cae1d5766aa6f173101af8886f2f2f237e0b3b9cc01715b887",
+      "flashed": false
+    }
+  },
+  "suite_record_sha256": "25d38ebe0795af07cc5e7a0be45b48fa08138e48c238ed084d64763834d3bc8f",
+  "cad_record_sha256": "b1954c567708774770e18c4d3f39c9692af26fb2fdb3df7eee2fde3098b0e411",
+  "archive_sha256": "67104e14f3a16d4c21f371d1b55bd28e5f06980c7c53ddc32208ecef1b4bc20a",
+  "archive_files": 15,
+  "dashboard_observations": "In-app browser: normal, priority shedding, refused restore and sensor fault; no captured console warnings/errors. Synthetic data only.",
+  "screenshot_sha256": "1cc5a85e6f63a0f56d9cfdf72173fa3b22ff31d3e4f2c7d3d7c29135251b1d7b",
+  "pricing": "Allocation only; no delivered quote/ETA or purchase",
+  "report_sha256": "31b71c089622f6f1b504b61589e79f8030c1341bad7918e42366196248979f0b"
+}

@@ -1,0 +1,168 @@
+{
+  "status": "PASS",
+  "scope": "20 explicit front-copper power/return paths; no reliance on a signal via or GND pour to pass this check. Not an ampacity calculation.",
+  "pcb_sha256": "9de46d183a071fccd4326460e73dcab40f95a9aa8d4e6c271abb26a6925283f1",
+  "script_sha256": "5d3be18bc15fd5b84b90ceaf7bab35eabcf37459d46bb94a692e7ee0fafd3ac1",
+  "paths": [
+    {
+      "from": "J1.1",
+      "to": "R1.1",
+      "net": "/BAT_P",
+      "minimum_track_width_mm": 1.5,
+      "layer": "F.Cu",
+      "status": "PASS"
+    },
+    {
+      "from": "J2.1",
+      "to": "R3.1",
+      "net": "/CHG_P",
+      "minimum_track_width_mm": 1.5,
+      "layer": "F.Cu",
+      "status": "PASS"
+    },
+    {
+      "from": "R2.2",
+      "to": "J3.1",
+      "net": "/BUCK_P",
+      "minimum_track_width_mm": 1.5,
+      "layer": "F.Cu",
+      "status": "PASS"
+    },
+    {
+      "from": "R1.2",
+      "to": "R3.2",
+      "net": "/SYS_P",
+      "minimum_track_width_mm": 1.5,
+      "layer": "F.Cu",
+      "status": "PASS"
+    },
+    {
+      "from": "R3.2",
+      "to": "R2.1",
+      "net": "/SYS_P",
+      "minimum_track_width_mm": 1.5,
+      "layer": "F.Cu",
+      "status": "PASS"
+    },
+    {
+      "from": "R3.2",
+      "to": "D2.1",
+      "net": "/SYS_P",
+      "minimum_track_width_mm": 1.5,
+      "layer": "F.Cu",
+      "status": "PASS"
+    },
+    {
+      "from": "J4.1",
+      "to": "F1.1",
+      "net": "/5V_IN",
+      "minimum_track_width_mm": 1.5,
+      "layer": "F.Cu",
+      "status": "PASS"
+    },
+    {
+      "from": "F1.2",
+      "to": "F2.1",
+      "net": "/5V",
+      "minimum_track_width_mm": 1.5,
+      "layer": "F.Cu",
+      "status": "PASS"
+    },
+    {
+      "from": "F2.1",
+      "to": "F3.1",
+      "net": "/5V",
+      "minimum_track_width_mm": 1.5,
+      "layer": "F.Cu",
+      "status": "PASS"
+    },
+    {
+      "from": "F2.2",
+      "to": "J5.1",
+      "net": "/LAMP_P",
+      "minimum_track_width_mm": 1.5,
+      "layer": "F.Cu",
+      "status": "PASS"
+    },
+    {
+      "from": "F3.2",
+      "to": "J6.1",
+      "net": "/FAN_P",
+      "minimum_track_width_mm": 1.5,
+      "layer": "F.Cu",
+      "status": "PASS"
+    },
+    {
+      "from": "J6.1",
+      "to": "D1.1",
+      "net": "/FAN_P",
+      "minimum_track_width_mm": 1.5,
+      "layer": "F.Cu",
+      "status": "PASS"
+    },
+    {
+      "from": "J1.2",
+      "to": "J2.2",
+      "net": "/GND",
+      "minimum_track_width_mm": 1.5,
+      "layer": "F.Cu",
+      "status": "PASS"
+    },
+    {
+      "from": "J2.2",
+      "to": "J3.2",
+      "net": "/GND",
+      "minimum_track_width_mm": 1.5,
+      "layer": "F.Cu",
+      "status": "PASS"
+    },
+    {
+      "from": "J3.2",
+      "to": "J4.2",
+      "net": "/GND",
+      "minimum_track_width_mm": 1.5,
+      "layer": "F.Cu",
+      "status": "PASS"
+    },
+    {
+      "from": "J4.2",
+      "to": "J5.2",
+      "net": "/GND",
+      "minimum_track_width_mm": 1.5,
+      "layer": "F.Cu",
+      "status": "PASS"
+    },
+    {
+      "from": "D2.2",
+      "to": "J2.2",
+      "net": "/GND",
+      "minimum_track_width_mm": 1.5,
+      "layer": "F.Cu",
+      "status": "PASS"
+    },
+    {
+      "from": "J6.2",
+      "to": "D1.2",
+      "net": "/FAN_RETURN",
+      "minimum_track_width_mm": 1.2,
+      "layer": "F.Cu",
+      "status": "PASS"
+    },
+    {
+      "from": "D1.2",
+      "to": "Q1.3",
+      "net": "/FAN_RETURN",
+      "minimum_track_width_mm": 0.65,
+      "layer": "F.Cu",
+      "status": "PASS"
+    },
+    {
+      "from": "J5.2",
+      "to": "Q1.2",
+      "net": "/GND",
+      "minimum_track_width_mm": 0.6,
+      "layer": "F.Cu",
+      "status": "PASS"
+    }
+  ]
+}

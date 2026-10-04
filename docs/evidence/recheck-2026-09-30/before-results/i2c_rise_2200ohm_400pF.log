@@ -1,0 +1,15 @@
+stdout Note: No compatibility mode selected!
+stdout Circuit: wattsense pullup bus capacitance envelope
+stdout Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+stdout Using SPARSE 1.3 as Direct Linear Solver
+stdout Initial Transient Solution
+stdout --------------------------
+stdout Node                                   Voltage
+stdout ----                                   -------
+stdout vcc                                        3.3
+stdout sda                                  0.0297297
+stdout ctrl                                       3.3
+stdout vctrl#branch                                 0
+stdout v3#branch                          -0.00148649
+ Reference value :  0.00000e+00
+stdout No. of Data Rows : 5023

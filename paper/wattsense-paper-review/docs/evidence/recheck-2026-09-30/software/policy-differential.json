@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "seed": 20260930,
+  "sequences": 120,
+  "sample_comparisons": 12000,
+  "policy_state_and_output_matches": 12000,
+  "maximum_absolute_numeric_errors": {
+    "soc_pct": 8.856055444539379e-09,
+    "usable_energy_wh": 5.138998112386162e-06,
+    "runtime_h": 5.562677680259753e-06,
+    "runtime_no_solar_h": 2.469949716754627e-06
+  },
+  "observed_states": [
+    "NORMAL",
+    "PRIORITY",
+    "RECOVERY",
+    "RESERVE",
+    "TEMPERATURE",
+    "WATCH"
+  ],
+  "production_files_unchanged": true,
+  "production_sha256": {
+    "controller.h": "7be594808347f0e92ef468de28d10a9c16f6e57f3d66a332030a176cae384565",
+    "config.h": "da0bc5a059a8b82c31051416cf1eb0786083de2bce32f1d194b98b488f45356c"
+  },
+  "scope": "Host-compiled C++ isolated armed copy versus Python reference; healthy varied inputs only. No ESP32 execution, GPIO, actual sensors, BMS or converter model coupling."
+}

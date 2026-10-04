@@ -1,0 +1,364 @@
+GROUP AND GUIDE DETAILS
+
+WattSense project workbook copying guide | Prepared 3 October 2026
+
+This guide follows the headings and fields in Project_work _Book_AY_2026 Format.doc. Copy the labelled answers into the matching spaces or separate attached sheets. Filling notes are instructions for you; they do not need to be copied.
+
+Cover and group details
+
+Academic year: 2026-27. Department: Electronics and Telecommunication Engineering. Group No./ID: 7.
+
+Project title: WattSense: Battery Monitoring and Priority Load Control
+
+Prepared by: 1. Dhanesh Chaudhari  2. Yash Ahire  3. Mrudula Pagar  4. Ujjwal Kshirsagar
+
+Project category: In-house. Project type: Embedded.
+
+Filling note: Use In-house if there is no formal sponsorship agreement. The current build uses a local USB dashboard; do not tick AI/ML or IoT on the basis of unimplemented features. Leave the printed institutional vision and mission unchanged.
+
+Student details table
+
+Sr. | Student name | Roll No. | Mobile No. | TE result
+1 | Dhanesh Chaudhari | 4114 | ________ | ________
+2 | Yash Ahire | 4101 | ________ | ________
+3 | Mrudula Pagar | ________ | ________ | ________
+4 | Ujjwal Kshirsagar | ________ | ________ | ________
+
+Filling note: Enter the two remaining real roll numbers, personal mobile numbers and actual TE results. Do not repeat another student's roll number.
+
+Internal guide details
+
+Name: Mahesh Sapte. Mobile No.: __________________. Email: __________________.
+
+External guide/company details: Not applicable for an in-house project.
+
+Filling note: Mahesh Sapte is the name confirmed by the team on 3 October. Add the guide's official designation and contact details from the department.
+
+
+========================================================================
+
+PROJECT BACKGROUND AND IDENTIFIED PROBLEM
+
+Project Title
+
+WattSense: Battery Monitoring and Priority Load Control
+
+Problem Statement
+
+A battery supplying multiple loads has limited stored energy. Running essential and optional loads continuously can shorten the useful backup period for essential services. Basic battery protection does not necessarily decide which load should receive priority. This project aims to monitor a small battery-powered DC system, estimate available charge and backup time, and disconnect an optional fan when estimated backup becomes insufficient. An essential lamp remains powered. Lamp and fan service times will be compared under matched starting conditions.
+
+Motivation / Need
+
+During limited backup operation, essential services should receive priority. Battery measurement and embedded control can help allocate available energy. A practical demonstrator provides engineering work in sensor calibration, PCB design, firmware, switching and experimental evaluation. A local dashboard makes measurements and decisions visible and records data. The expected benefit is longer essential-lamp service through reduced fan operation; physical tests must establish the actual result.
+
+Existing System & Limitations
+
+A protected battery pack uses a Battery Management System for cell protection, while a compatible charger regulates charging. Simple arrangements may supply all connected loads until an operating limit is reached without prioritising an essential branch. Published energy-management systems already use priority switching and charge estimation, sometimes with forecasting or optimisation. Their batteries, loads and power levels differ from our demonstrator, so their accuracy and runtime results cannot be transferred directly. Current-sensor error, uncertain capacity and an incorrect starting reference affect charge estimation.
+
+Research Gap / Problem Identified
+
+The project addresses a practical need for an affordable teaching prototype that connects calibrated battery measurement with local priority-load control and records the resulting service tradeoff. The focus is integrating a custom interface PCB, estimation, switching and repeatable experiments. Priority switching is an established method. Our contribution will be the implementation and measured evaluation, including essential-lamp runtime, lost fan service, startup behaviour and limitations.
+
+
+========================================================================
+
+PROPOSED SYSTEM AND OBJECTIVES
+
+Proposed System
+
+The proposed system will use a purchased protected common-port 4S LiFePO4 pack, a supplier-matched charger and an external regulated 5 V buck converter. Nominal pack voltage is 12.8 V. The 6 Ah capacity used in modelling remains provisional.
+
+One custom 100 x 90 mm, four-layer Rev B PCB integrates three INA219 current-sensing channels, shunts, the MOSFET fan switch, branch protection and connectors. An external ESP32 development board reads current, voltage, a DS18B20 temperature probe and local buttons. The essential lamp stays connected; the optional fan has a controlled return path.
+
+The ESP32 estimates state of charge by integrating signed battery current from a valid reference. It starts with unknown charge and the fan OFF. At default settings, estimated backup below 3 hours for 3 seconds switches the fan OFF. Restoration requires an explicit request, valid operating conditions and at least 3.25 hours estimated with the fan included. A measurement gap longer than 2 seconds invalidates the charge reference. The priority runtime estimate assumes no future charging and is not a guaranteed minimum.
+
+USB serial transfers readings to a Python collector and local browser dashboard for display and CSV recording. The ESP32 makes the hardware decision. Physical assembly and measurements are pending. Solar charging may be added later using a compatible controller.
+
+Functional block diagram to draw
+
+Protected battery -> fuse/disconnect -> battery sensor U1 -> system bus -> load sensor U2 -> external 5 V converter -> lamp and switched fan. Charger -> sensor U3 -> system bus. Sensors, temperature probe and buttons -> ESP32 -> fan MOSFET. ESP32 -> USB serial -> dashboard/CSV.
+
+Filling note: This is a functional diagram, not a wiring diagram. Draw the charging branch so charge/discharge both pass U1. Use the native schematic for pin connections.
+
+Goals & Objectives
+
+- Develop and assemble the Rev B sensing and control PCB.
+
+- Acquire current, voltage and probe-temperature measurements.
+
+- Establish a valid charge reference and estimate charge/runtime.
+
+- Implement local fan shedding, controlled restore and fault handling.
+
+- Display operating state and save correctly labelled CSV records.
+
+- Calibrate against independent instruments and test held-out readings.
+
+- Qualify startup, reset and operating temperatures.
+
+- Compare repeated baseline and priority trials at a common endpoint; report both lamp benefit and reduced fan service.
+
+
+========================================================================
+
+FEASIBILITY AND REQUIREMENTS
+
+Feasibility Analysis
+
+Technical: The design uses established embedded components and small DC loads. Firmware builds, software tests, simulation checks and PCB design checks are complete. Fabrication, assembly, calibration and physical qualification remain pending.
+
+Economic: The current allocation totals Rs 9,700, within the below-Rs 10,000 target. It is a planning ceiling; exact compatible parts and delivered quotations must confirm affordability.
+
+Operational: A four-member team can divide hardware, firmware, measurements and documentation. College lab instruments support bring-up and calibration. Startup testing needs oscilloscope access.
+
+Schedule: Review 3 can present design, software and simulation evidence. Procurement, assembly and measured evaluation are planned before final submission next semester.
+
+Requirements
+
+Hardware: Protected common-port 4S LiFePO4 pack with BMS; matched charger; external 5 V buck; Rev B PCB and specified components; classic ESP32 board; powered DS18B20 probe; small 5 V lamp/fan; buttons; wiring; near-pack fuse/disconnect and mounting.
+
+Software: KiCad; PlatformIO/C++ firmware tools; Python and project dependencies; local browser dashboard; CSV logging; existing electrical and battery/load simulation tools.
+
+Laboratory: Multimeter, adjustable current-limited supply, soldering equipment, independent reference measurements and oscilloscope.
+
+Functional: Valid sensor acquisition; unknown-charge handling; current integration; runtime estimate; fan priority control; controlled restore; fault indication and recording.
+
+Performance targets: Voltage error within +/-1%; current error within +/-(3% of reference + 10 mA). Targets have not been achieved by physical measurements. Intended ceilings to qualify are 2 A on the battery path and 1.5 A total continuous at 5 V. Begin with measured lamp/fan current no more than 0.6 A per branch and qualify startup separately. The lamp requires a supervised external stop at the trial endpoint.
+
+Current status for an attached progress note
+
+Design, firmware, dashboard and simulation work are available. The 30 September recorded audit passed 45 Python tests, 67 host C++ assertions and both firmware builds. In the nominal model, lamp service was 5.48 h in the baseline and 7.88 h under priority control; fan service decreased from 5.48 h to 2.49 h. These are simulation results under stated assumptions. Physical performance remains pending.
+
+Filling note: If writing the runtime figures, include the model basis: 6 Ah; 68% to 20% charge; two 2.5 W loads; 0.8 W controller; 90% assumed converter efficiency; no charging. There is no extra battery capacity.
+
+
+========================================================================
+
+LITERATURE SURVEY ENTRIES 1 TO 3
+
+Filling note: Copy each labelled field into the corresponding column of the five-row Literature Survey table. These are prior studies, not WattSense results.
+
+Row 1
+
+Author & Year: Marahatta et al., 2021
+
+Paper Title: Priority-based low voltage DC microgrid system for rural electrification
+
+Journal Name: Energy Reports
+
+Method/Technology Used: Priority switching, battery thresholds and SCADA in a laboratory solar-battery system.
+
+Key Findings: Priority control maintains essential-load service during limited energy availability.
+
+Limitation/Research Gap: Three-priority solar system; differs from our two-load battery demonstrator.
+
+Row 2
+
+Author & Year: Rajbhandari et al., 2024
+
+Paper Title: Enhanced demand side management for solar-based isolated microgrid system: Load prioritisation and energy optimisation
+
+Journal Name: IET Smart Grid
+
+Method/Technology Used: Day-ahead forecasts and particle swarm optimisation; simulated load/generation scenarios.
+
+Key Findings: Forecast-based allocation improves continuity of priority loads in the studied simulations.
+
+Limitation/Research Gap: Needs forecasting and optimisation inputs beyond our present implementation.
+
+Row 3
+
+Author & Year: Movassagh et al., 2021
+
+Paper Title: A Critical Look at Coulomb Counting Approach for State of Charge Estimation in Batteries
+
+Journal Name: Energies
+
+Method/Technology Used: Analytical error decomposition and simulation of coulomb counting.
+
+Key Findings: Current, integration, capacity and timing errors affect estimated charge.
+
+Limitation/Research Gap: Accurate initial reference and calibrated current/capacity remain necessary.
+
+
+========================================================================
+
+LITERATURE SURVEY ENTRIES 4 AND 5
+
+Filling note: Copy each labelled field into the corresponding column of the five-row Literature Survey table. These are prior studies, not WattSense results.
+
+Row 4
+
+Author & Year: Guo and Kors, 2021
+
+Paper Title: Design of a Laboratory Scale Solar Microgrid Cyber-Physical System for Education
+
+Journal Name: Electronics
+
+Method/Technology Used: Sensors, Raspberry Pi, SCADA and relay-controlled loads.
+
+Key Findings: An integrated teaching platform was demonstrated with outdoor hardware measurements.
+
+Limitation/Research Gap: Educational platform; does not report our matched retained-lamp runtime comparison.
+
+Row 5
+
+Author & Year: Bampi et al., 2025
+
+Paper Title: Electronic Load for Parameter Characterization in Equivalent Circuit Models of Lithium-Ion Batteries
+
+Journal Name: Eletrônica de Potência
+
+Method/Technology Used: ESP32 electronic load, equivalent-circuit model and extended Kalman filter.
+
+Key Findings: Laboratory testing provides battery parameters for charge estimation.
+
+Limitation/Research Gap: Lithium-titanate test cell; results do not directly validate our LiFePO4 pack.
+
+Literature summary to write below the table
+
+The reviewed work supports priority switching, practical embedded monitoring and careful charge estimation. WattSense uses an explicit runtime rule and a smaller battery/lamp/fan arrangement. Calibration, a valid charge reference and measured comparison are required. The prior studies do not establish WattSense accuracy, novelty or physical performance.
+
+Filling note: The current presentation contains twenty papers. These five satisfy the workbook's five-row table; do not claim that the complete survey contains only five papers.
+
+
+========================================================================
+
+REFERENCE SHEET TO ATTACH
+
+Filling note: Attach a separate references sheet as the workbook requests. Use normal-case authors and journal names; italicise the paper title and publication year. The PDF below applies those italics. Article numbers are used where conventional page ranges are unavailable. ISSNs were not verified in saved records: leave that field for publisher verification; DOI is not an ISSN.
+
+[1] Anup Marahatta, Yaju Rajbhandari, Ashish Shrestha, Ajay Singh, Anand Gachhadar, Anup Thapa, "Priority-based low voltage DC microgrid system for rural electrification", Energy Reports, Volume 7, pp. 43-51, 2021. DOI: 10.1016/j.egyr.2020.11.030.
+
+[2] Yaju Rajbhandari, Anup Marahatta, Ashish Shrestha, Anand Gachhadar, Anup Thapa, Francisco Gonzalez-Longatt, Petr Korba, "Enhanced demand side management for solar-based isolated microgrid system: Load prioritisation and energy optimisation", IET Smart Grid, Volume 7, Issue 3, pp. 294-313, 2024. DOI: 10.1049/stg2.12151.
+
+[3] Kiarash Movassagh, Arif Raihan, Balakumar Balasingam, Krishna Pattipati, "A Critical Look at Coulomb Counting Approach for State of Charge Estimation in Batteries", Energies, Volume 14, Issue 14, Article 4074, 2021. DOI: 10.3390/en14144074.
+
+[4] Liping Guo, Jason Kors, Jr., "Design of a Laboratory Scale Solar Microgrid Cyber-Physical System for Education", Electronics, Volume 10, Issue 13, Article 1562, 2021. DOI: 10.3390/electronics10131562.
+
+[5] Suelen Bampi, Gierri Waltrich, Anderson Vaccari, "Electronic Load for Parameter Characterization in Equivalent Circuit Models of Lithium-Ion Batteries", Eletrônica de Potência, Volume 30, Article e202521, 2025. DOI: 10.18618/REP.e202521.
+
+
+========================================================================
+
+MONTHLY ACTIVITY LOG ENTRIES SUPPORTED BY RECORDS
+
+Filling note: The workbook uses five week rows per month. The row numbers below assume 1-7, 8-14, 15-21, 22-28 and 29-month end; adjust to the college's actual convention. Copy only after the team confirms the activity dates. These entries describe design/software work, not assembled hardware.
+
+September 2026 Week 4 | documented work 27-28 September
+
+Activity Completed: Refined the WattSense scope and architecture. Prepared ESP32 firmware, the local dashboard, four-layer PCB design, component list and simulation models. Checked control logic, sensor interfaces, fabrication files and the staged testing plan.
+
+September 2026 Week 5 | documented work 30 September
+
+Activity Completed: Cross-checked software, PCB and simulation results. The recorded audit passed 45 Python tests, 67 host C++ assertions and both firmware builds. Prepared and checked the design-and-simulation paper draft and editable companion. Physical assembly and measurements remain pending.
+
+October 2026 Week 1 | documented work 1-3 October
+
+Activity Completed: Prepared and checked the 14-slide Review 3 presentation in the supplied college format. Prepared teammate guides covering hardware, software, simulations, viva, budget and next steps. Prepared workbook content and recorded Group 7 and guide Mahesh Sapte.
+
+Filling note: Do not write "Review 3 presented" until it actually happens. Add the real presentation outcome and feedback after the review.
+
+Suggestion / Modification and Sign of Guide columns
+
+Leave these for actual guide feedback and signatures. Do not copy a proposed engineering task as advice already given by staff. Ask the guide how the suggestion column should be completed.
+
+July, August and earlier September entries
+
+Fill from actual meetings, notebooks, SIH records or earlier submissions. Dates for those activities have not been supplied. Do not redistribute late-September work into earlier weeks.
+
+Future completed-activity rows
+
+Keep October Weeks 2-5 and November-March entries blank until work occurs. Record real dates and actual outcomes later. The separate plan on the last page can guide future work.
+
+
+========================================================================
+
+SEMESTER 1 PROJECT REVIEW 3
+
+Filling note: The following are student-side entries for the current review. If the department reserves a field for the examiner, leave it for them. Previous review dates, staff comments and future review outcomes must come from actual records.
+
+Date
+
+03/10/2026
+
+Project Book report maintained?
+
+Yes - updated with the current project work and attached technical sections.
+
+Filling note: Write Yes only after you have actually filled the hard copy and added the required attachments.
+
+Literature Survey done?
+
+Yes - relevant work on battery estimation, priority control and embedded monitoring reviewed.
+
+Feasibility analysis done?
+
+Preliminary technical and budget feasibility completed; physical performance and delivered costs need confirmation.
+
+Requirements are clearly identified?
+
+Yes - battery/current/temperature monitoring, charge estimation, fan priority control, local dashboard, logging and staged validation.
+
+Staff suggestions considered?
+
+[Enter the actual earlier staff suggestion and the change made in response.]
+
+Sponsorship letter produced?
+
+Not applicable - in-house project.
+
+Status/details of corrections or suggestions
+
+Scope refined to battery monitoring and priority load control. Designed one custom four-layer PCB and prepared firmware, a local dashboard and simulation evidence. The initial build will use a purchased protected pack/BMS and matched charger. Physical assembly, calibration, startup/thermal qualification and matched runtime trials are pending.
+
+Review Committee Comment / Suggestion and Sign
+
+Leave blank for the review committee. Record genuine feedback and obtain the actual signature after the review.
+
+Filling note: For Sem 1 Reviews 1 and 2, use the real dates and progress at those times. Leave Review 4 and Sem 2 reviews for their actual dates. The final Sem 2 block repeats "Project Review 2" in the supplied template; confirm the intended label with the department rather than silently renumbering it.
+
+
+========================================================================
+
+FUTURE PLAN COMPETITION AND PUBLICATION RECORDS
+
+Proposed future plan | not an Activity Completed entry
+
+October-November 2026: Confirm exact parts, delivered cost and fabrication details. Obtain and assemble the PCB. Bring up logic and power on a current-limited supply; check sensor identities and default fan-OFF.
+
+November-December 2026: Calibrate using independent measurements and held-out validation. Qualify startup, faults and operating temperature. Establish a valid capacity/charge-reference procedure.
+
+January-February 2027: Run repeated matched baseline/priority trials without charging. Record lamp and fan service, common endpoint, raw CSVs, scope captures and uncertainties.
+
+March 2027 and the department's final schedule: Complete enclosure, actual BOM/cost, report, code/CAD archive and presentation. Add solar only after the core system works and is measured.
+
+Filling note: This is a proposed sequence, not a deadline promise. Adjust it to procurement, lab findings and the official submission date.
+
+Participation in Project competition
+
+The team reports participation in an SIH programme. Use the actual event/edition name, place and date from the certificate or organiser record. Prizes won: enter only an award actually received. Attach the certificate copy if available.
+
+Filling note: The SIH programme date, event location, stage and award result have not been supplied; leave those fields blank until confirmed.
+
+Paper Publication / Presentation
+
+Current status: Research paper draft prepared; no publication or conference presentation recorded as of 03/10/2026.
+
+Filling note: A draft belongs in a status note, not a completed publication row. Leave journal/conference, publication date, volume/pages/ISSN and certificate fields blank until an actual publication or conference presentation occurs. Review 3 is a college project review.
+
+Draft title: Wattsense: Design and Reproducible Simulation of a Runtime-Triggered Priority Load Controller
+
+Draft authors, in the existing manuscript order: Dhanesh Chaudhari, Ujjwal Kshirsagar, Mrudula Pagar, Yash Ahire.
+
+Before handing in the workbook
+
+- Fill real personal details and confirm the official guide designation.
+
+- Attach technical sections and the separate reference sheet.
+
+- Label model results as simulated; leave physical claims pending.
+
+- Use actual activity dates and obtain real staff comments/signatures.
+
+- Match title, guide and Group 7 across your documents.

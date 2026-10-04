@@ -1,0 +1,91 @@
+{
+  "scope": "Independent algebra/quadrature/CSV/hash checks only; no physical hardware evidence.",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "source_hash",
+      "path": "simulations\\hardware-assumptions.json",
+      "pass": true
+    },
+    {
+      "check": "source_hash",
+      "path": "simulations\\run_hardware.py",
+      "pass": true
+    },
+    {
+      "check": "source_hash",
+      "path": "simulations\\hardware_model.py",
+      "pass": true
+    },
+    {
+      "check": "source_hash",
+      "path": "simulations\\extract_copper.py",
+      "pass": true
+    },
+    {
+      "check": "source_hash",
+      "path": "wattsense\\model.py",
+      "pass": true
+    },
+    {
+      "check": "independent_5v_network_root",
+      "power_w": 6.038383228047759,
+      "rail_v": 4.884682960885661,
+      "pass": true
+    },
+    {
+      "check": "independent_baseline_quadrature",
+      "hours": 5.476224232281357,
+      "difference_seconds": 0.5927637871142366,
+      "pass": true
+    },
+    {
+      "check": "independent_priority_quadrature",
+      "hours": 7.883408191578248,
+      "shed_soc_pct": 46.30929692686052,
+      "difference_seconds": 0.7305103183067985,
+      "pass": true
+    },
+    {
+      "check": "independent_OCV_charge_energy",
+      "wh": 37.407599999999995,
+      "pass": true
+    },
+    {
+      "check": "startup_saved_trace_kcl",
+      "case": "startup_no_surge",
+      "kcl_error_a": -2.5175195261795125e-11,
+      "pass": true
+    },
+    {
+      "check": "startup_saved_trace_kcl",
+      "case": "startup_2x_2A",
+      "kcl_error_a": -2.5873303499679423e-11,
+      "pass": true
+    },
+    {
+      "check": "startup_saved_trace_kcl",
+      "case": "startup_3x_1_5A",
+      "kcl_error_a": -1.6866730234710303e-11,
+      "pass": true
+    },
+    {
+      "check": "startup_saved_trace_kcl",
+      "case": "startup_3x_1_5A_large_cap",
+      "kcl_error_a": 2.6381279827347726e-08,
+      "pass": true
+    },
+    {
+      "check": "startup_saved_trace_kcl",
+      "case": "startup_3x_3A",
+      "kcl_error_a": -2.6418867093980225e-11,
+      "pass": true
+    },
+    {
+      "check": "startup_saved_trace_kcl",
+      "case": "startup_starter_2x_2A",
+      "kcl_error_a": -2.5676127890505995e-11,
+      "pass": true
+    }
+  ]
+}

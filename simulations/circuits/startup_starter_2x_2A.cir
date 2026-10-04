@@ -1,0 +1,19 @@
+Wattsense bounded fan-start supply scenario startup_starter_2x_2A
+* ASSUMED equivalent supply; NOT LM2596 component model or selected module.
+* Resistive fan demand at 5V: 1.0 A for 0.1 s, then 0.5 A.
+* Capacitance includes an assumed external module capacitor, not just PCB C11.
+* Fuses remain resistors; no trip or pulse-life claim.
+Breg 0 supply I=max(0,min(2.0,(5-v(reg))/0.04))
+Vregprobe supply reg 0
+Resr reg cap 0.05
+Cout cap 0 470u
+Rcommon reg rail 0.09548668472936768
+Rlampfeed rail lamp 0.09766044841552976
+Rlamp lamp 0 10.0
+Icontroller rail 0 0.16
+Rfanfeed rail fan 0.2630927291696431
+Vfanprobe fan demand 0
+Bfan demand 0 I=v(demand)*(time < 0.01 ? 0 : (time < 0.11 ? 0.2 : 0.1))
+.options reltol=1e-5
+.tran 20u 150m 0 20u
+.end

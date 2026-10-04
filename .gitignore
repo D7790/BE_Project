@@ -1,0 +1,12 @@
+.venv/
+.pio/
+__pycache__/
+*.pyc
+.analysis/
+logs/
+.local/
+*.kicad_prl
+*.kicad_sch.lck
+*.kicad_pcb.lck
+*.kicad_pro.lck
+*-backups/

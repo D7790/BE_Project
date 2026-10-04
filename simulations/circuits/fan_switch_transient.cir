@@ -1,0 +1,17 @@
+Wattsense illustrative fan switching / flyback
+* Q1 replaced with voltage-controlled resistance: NOT vendor AO3400A model.
+* 48 milliohm on-resistance is a datasheet reference at room temperature.
+* 1nF gate capacitance, 1mH load inductance and diode model are assumptions.
+V5 FAN_P 0 5
+Vgpio GPIO 0 PULSE(0 3.3 2m 10n 10n 3m 10m)
+R7 GPIO FAN_GATE 330
+R8 FAN_GATE 0 47k
+Cgate FAN_GATE 0 1n
+Rfan FAN_P COIL 8.333333
+Lfan COIL FAN_RETURN 1m
+Smos FAN_RETURN 0 FAN_GATE 0 SWQ
+.model SWQ SW(Ron=0.048 Roff=1e9 Vt=1.65 Vh=0.02)
+D1 FAN_RETURN FAN_P DFLY
+.model DFLY D(Is=1u N=1.05 Rs=0.05 Cjo=60p Bv=40)
+.tran 1u 8m 0 1u
+.end

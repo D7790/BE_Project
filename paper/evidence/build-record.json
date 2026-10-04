@@ -1,0 +1,30 @@
+{
+  "status": "RENDERED_AWAITING_VISUAL_QA",
+  "pages": 7,
+  "pdf_sha256": "bd3dbb31a6113b92730afadf65a902c1104e4f1662ecc6721d4e5585c80d1eee",
+  "manuscript_sha256": "c537aef1889ae241c99c2af450bd700ce485c66ba77ffc6f2c271ed4f668e6d8",
+  "inputs_sha256": {
+    "paper/figures/fig1_architecture.svg": "f93855cfd705943af15717169d9f635ffc34ddc08de9256d2b2ac8cce6eab9fd",
+    "paper/figures/fig2_control_flow.svg": "8a7d9ea31777e372178bebdffdd5f51c0e799eb48da14be60e98919b6a27b505",
+    "paper/figures/fig3_runtime.svg": "089d242269637d8342e018a945c18a1481f3e795a062cd888b8324916b8a575c",
+    "paper/figures/fig4_sensitivity.svg": "6c7932814279184fb5c24aed8fec780d8c534af74a68ad492b5eebf307b24a74",
+    "paper/figures/fig5_startup.svg": "90ec5b6838fd6491a087f1721ccedb5e9a85275744c9d6409a73d648441fdb93",
+    "paper/figures/figure-provenance.json": "e1b0f6d49603f9dde104b4ab55af8a3d87c5fa7883c097b0e0546ec687202cb4",
+    "paper/requirements-paper.txt": "56fb4d0fbf2dd5971c3cf983fda1fe0c27167504073473832273362b4f53f353",
+    "paper/src/artifact_integrity.py": "3c6c6c4b7377543a41c5ae13b452cf03ca4679fc3bd9e02a675e78ff03ab70d5",
+    "paper/src/build_paper.py": "16a8a497db056b829b177b9bf0312497b5b1cc8ae8792379169d4583353f137c",
+    "paper/src/manuscript.json": "c537aef1889ae241c99c2af450bd700ce485c66ba77ffc6f2c271ed4f668e6d8"
+  },
+  "outputs_sha256": {
+    "output/pdf/wattsense_research_paper.pdf": "bd3dbb31a6113b92730afadf65a902c1104e4f1662ecc6721d4e5585c80d1eee",
+    "paper/wattsense-manuscript.md": "14a390a7a9b99e9b843a30348dd4fd31a3b69c501ec7260ee7f4232f4800d6be",
+    "paper/evidence/manuscript-with-evidence.md": "f4c065694045bd6ef01b1042f6ef226043afa145c95412ebd8bc1a6637a7504e",
+    "paper/evidence/rendered-manuscript.txt": "c91468eb1bdb5ce6cf679d246b30627b71ae3a4d2a4e216741b787deda6765d8"
+  },
+  "body_font": "Times New Roman 10 pt",
+  "page": "US Letter; two columns",
+  "source": "paper/src/manuscript.json",
+  "standalone_figures": "SVG vector and 300 dpi PNG",
+  "native_pdf_figures": "SVG converted to PDF vector drawing",
+  "human_review_pending": true
+}

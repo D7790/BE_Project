@@ -1,0 +1,39 @@
+WATTSENSE: LIMITED LOCAL ORIGINALITY AND CITATION CHECK
+Audit date: 30 September 2026
+
+Manuscript SHA-256: c537aef1889ae241c99c2af450bd700ce485c66ba77ffc6f2c271ed4f668e6d8
+Local case-folded, diacritic-normalized exact eight-word matching, independently within each paragraph; citation brackets, punctuation and source line-end hyphenation normalized. Adjacent windows merged.
+Abstract and prose paragraphs C001-C041; headings, equations, keywords, tables, figure captions and bibliography excluded. No draft text transmitted externally.
+Paragraphs checked: 42; normalized words: 3280; available reference texts: 4.
+
+COVERAGE
+movassagh2021: available; full article plus references
+https://ntrs.nasa.gov/api/citations/20220008848/downloads/2021.07%20-%20Energies%20-%20A%20Critical%20Look%20at%20Coulomb%20Counting%20Approach%20for%20State%20of%20Charge%20Estimation.pdf
+zhang2018: available; full article plus references and repository cover
+https://wrap.warwick.ac.uk/id/eprint/94268/9/WRAP-online-estimation-battery-Marco-2017.pdf
+marahatta2021: available; One abstract sentence (18 normalized words) only; full-text download unavailable. This is a very narrow excerpt check, not full-paper coverage.
+https://www.researchgate.net/publication/346036129_Priority-based_low_voltage_DC_microgrid_system_for_rural_electrification
+HTTPError: HTTP Error 403: Forbidden
+rajbhandari2024: available; One abstract sentence (18 normalized words) only; full-text download returned HTTP 403. This is a very narrow excerpt check, not full-paper coverage.
+https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/stg2.12151
+HTTPError: HTTP Error 403: Forbidden
+
+EXACT MATCHES
+Merged matching spans: 0.
+No exact eight-word span found within this limited corpus. This is not evidence that no plagiarism exists elsewhere.
+
+CITATION REVIEW
+C001: Supported: Marahatta describes charge-threshold priority groups; Rajbhandari describes forecast-assisted allocation. Opening motivation is an explicit physical/design rationale, not an external numerical claim.
+C004: Supported by Movassagh abstract/error taxonomy. The sentence about shared simulator inputs is a project-method inference and is not claimed as that paper's finding.
+C005: Supported by Marahatta section 2.2.2/Table 3 and reported experiment; Rajbhandari sections 2.1-2.2 support forecast/optimization characterization. No external performance metric transferred.
+C006: Supported by Zhang abstract and experimental section 4.1. Need for model characterization is a reasonable explicitly worded inference; remaining sentences refer to the local Wattsense design.
+
+MANUAL WORDING REVIEW
+The four inspected literature-discussion paragraphs C001/C004/C005/C006 use brief attributed summaries. No distinctive unattributed copying was noticed in that bounded comparison. Terms such as state of charge, coulomb counting and equivalent circuit are standard terminology, not evidence of plagiarism by themselves. This is an assistant review; accountable author/institutional review is pending.
+
+LIMITATIONS
+Not a plagiarism certificate, similarity percentage, or exhaustive originality search.
+Coverage is limited to the locally available texts listed; access failures and excerpts are disclosed per source.
+Exact eight-word matching misses paraphrase, translation, ideas, shorter copying and extraction/line-break errors; generic technical sequences can produce false positives.
+No institutional corpus, paid similarity service, unpublished student theses or proprietary database was searched.
+Scientific novelty is separate: priority shedding and coulomb counting are established methods. Author/institutional review remains necessary.

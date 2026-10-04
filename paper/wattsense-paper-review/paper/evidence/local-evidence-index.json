@@ -1,0 +1,160 @@
+{
+  "E101": [
+    {
+      "path": "hardware/REFERENCE_WIRING.md",
+      "sha256": "290c08381fa4222632fbe3d7a9b7be34fb716ea38cfc8c1d767da7e4e3d8fff0"
+    },
+    {
+      "path": "hardware/PCB_REQUIREMENTS.md",
+      "sha256": "a6aee65cc1ef886e3e929df6319c0caebefe9ee73d807a5df690824fce6e8f99"
+    },
+    {
+      "path": "hardware/pcb/wattsense-main-revB-4layer/wattsense-main.kicad_pcb",
+      "sha256": "9de46d183a071fccd4326460e73dcab40f95a9aa8d4e6c271abb26a6925283f1"
+    }
+  ],
+  "E102": [
+    {
+      "path": "firmware/include/controller.h",
+      "sha256": "7be594808347f0e92ef468de28d10a9c16f6e57f3d66a332030a176cae384565"
+    },
+    {
+      "path": "firmware/include/config.h",
+      "sha256": "da0bc5a059a8b82c31051416cf1eb0786083de2bce32f1d194b98b488f45356c"
+    },
+    {
+      "path": "firmware/src/main.cpp",
+      "sha256": "0cdc08d2dce99ba73be3c9d399aa9e9c178242ec46b35544a047b6cb5e358bc3"
+    },
+    {
+      "path": "wattsense/model.py",
+      "sha256": "9b69bfbe30fda38aebd43f7b7c0b7095046156f247f20f977a7db7c7e6599f46"
+    }
+  ],
+  "E103": [
+    {
+      "path": "simulations/hardware-assumptions.json",
+      "sha256": "c5f0986d26e4cd6ed7b9aaebf4357fa56f6d0a792d8f71a949d33fa8d8b0fb88"
+    },
+    {
+      "path": "simulations/hardware_model.py",
+      "sha256": "7e4445c59948ca3bda737d872d62a251e9f3eb295a4b4d1f88dcbadb6bcff81e"
+    },
+    {
+      "path": "simulations/run_hardware.py",
+      "sha256": "75b8bd43fcac88ba4422d01f1cb673de2ff9e07da8dd6c49d334173aca8ee152"
+    },
+    {
+      "path": "simulations/results/hardware-summary.json",
+      "sha256": "355f55531617a35f5d9c483dcb6578e71cd817236cbbc238b7f98578beb76ecd"
+    },
+    {
+      "path": "simulations/results/hardware-runtime-baseline.csv",
+      "sha256": "7cea5e568e83a45a05e745a9bb567561dff7d0c90a06125a5da1c983d4bb437f"
+    },
+    {
+      "path": "simulations/results/hardware-runtime-priority.csv",
+      "sha256": "93bf7d163e595274021e82426d1894e32dab322f1c013679bcea7f46c68c93ce"
+    },
+    {
+      "path": "simulations/results/system-summary.json",
+      "sha256": "1f74456ba154f7f1bfd0774bc4cbc6bb5e9a9f02f1c7b8b16cf092ae7b9c76f9"
+    }
+  ],
+  "E104": [
+    {
+      "path": "simulations/results/suite-summary.json",
+      "sha256": "e31a51fdc292600797f0f291d2b234ce4c6248c1765f771b5167de9328e8dc07"
+    },
+    {
+      "path": "simulations/results/python-tests.log",
+      "sha256": "1063943f924dd237d772df7da798be68848d0bc2509808b81a1abbd038df9fe3"
+    },
+    {
+      "path": "simulations/results/firmware-host-summary.json",
+      "sha256": "b5fa6bb46adbe3eec3557b55230732b8d888de182fe665c6464c106594af63c5"
+    },
+    {
+      "path": "simulations/run_all.py",
+      "sha256": "9c4cbce36d6c38163d232999ba56d5293ab0d9e2e6c153f0ba15aa77b4ae72a1"
+    }
+  ],
+  "E105": [
+    {
+      "path": "simulations/run_spice.py",
+      "sha256": "1cd3be5db5e526020e7d8c00caab6576d79a541ff94748aa9c831bf6cdbafdde"
+    },
+    {
+      "path": "simulations/results/spice-summary.json",
+      "sha256": "3722f64a8db3aa551e640f9398cc67ac7ce8097e67c60ba9ee3186fb8aad09f3"
+    },
+    {
+      "path": "simulations/run_hardware.py",
+      "sha256": "75b8bd43fcac88ba4422d01f1cb673de2ff9e07da8dd6c49d334173aca8ee152"
+    }
+  ],
+  "E106": [
+    {
+      "path": "docs/evidence/recheck-2026-09-30/hardware/verification.json",
+      "sha256": "05ff61919b36153f6ba6da92e98ebbcd02f60a942ee53a19dcaf6942c939ee77"
+    },
+    {
+      "path": "docs/evidence/recheck-2026-09-30/hardware/erc.json",
+      "sha256": "0751cfc299b50c15f178af9c3ee1eab3f1b3e263a337319988109679b54a78de"
+    },
+    {
+      "path": "docs/evidence/recheck-2026-09-30/hardware/drc.json",
+      "sha256": "cce81c443b2fee37cc1bf3f6654ad0763a71042826b98f2e4f1745cbc48d2c32"
+    },
+    {
+      "path": "docs/evidence/recheck-2026-09-30/hardware/all-rules-erc.json",
+      "sha256": "449c40ced9f263a37f4b7598fb38d0d415a53fd970f3e9c26f17e3b0c53d79d1"
+    },
+    {
+      "path": "docs/evidence/recheck-2026-09-30/hardware/all-rules-drc.json",
+      "sha256": "f47ecb22c40161940198cac573078bec2e3546a971761fe9f676ebecb3d2ad21"
+    },
+    {
+      "path": "paper/evidence/recheck/ignored-cad-checks.csv",
+      "sha256": "fc634d5493c958b34c9527635d4cc5c69af57ac8a5439f0cce1047a2120a42ba"
+    }
+  ],
+  "E109": [
+    {
+      "path": "paper/evidence/recheck/verify_evidence.py",
+      "sha256": "fc7fd337157c52ea58447ad9877fddd02509195edfe09dc94070045e8161f7e8"
+    },
+    {
+      "path": "paper/evidence/recheck/publication-evidence-check.json",
+      "sha256": "aa993369dd2f6c3f726b336d24a640c208fc2d5b9287d9283cf15dab7f86782f"
+    },
+    {
+      "path": "paper/evidence/methodology-review.txt",
+      "sha256": "60c143715734f0f43c5d9af5c2b0de0b1879b050732610d710678aa9116987b1"
+    },
+    {
+      "path": "paper/evidence/recheck/documentation-finalization.json",
+      "sha256": "5dffc0885748d351c10fc007ed2975c50841cc08bd5d270eaff457b488d57e8d"
+    }
+  ],
+  "E110": [
+    {
+      "path": "docs/TEST_PLAN.md",
+      "sha256": "74b015c334dbed6fcc53ebc1abbb6b6f92b3f567bdd50c55ff4dac50c4510b56"
+    },
+    {
+      "path": "docs/LAB_START_GUIDE.md",
+      "sha256": "df713b81712b1afbd1a6be487624f82765fedb59cdcfe63ae9c81f393fdf772a"
+    },
+    {
+      "path": "paper/src/manuscript.json",
+      "sha256": "c537aef1889ae241c99c2af450bd700ce485c66ba77ffc6f2c271ed4f668e6d8"
+    }
+  ],
+  "E111": [
+    {
+      "path": "paper/evidence/skill-provenance.json",
+      "sha256": "4713200d4a7343706c7f95e982363478bfd386dcfa9fb39f9b28b654543a51b3"
+    }
+  ]
+}

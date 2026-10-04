@@ -1,0 +1,81 @@
+Wattsense software, firmware and simulation recheck — 2026-09-30
+
+Result: all current automated software checks passed. No actionable source-code
+defect was found in the intended current configuration. No production source
+was changed, no firmware was flashed, and HARDWARE_CONFIRMED remains false.
+This conclusion is bounded by the tests and inspection described below.
+
+Fresh execution
+- run_simulations.ps1: all 7 stages completed successfully.
+- Python: 45 tests passed, including estimator, hardware-model, calibration,
+  simulator, malformed telemetry, serial recovery, HTTP read-only hardware
+  controls, CSV export and cross-origin request rejection.
+- Native C++: 16 locked-policy + 27 armed-copy policy + 24 INA219 decoder
+  assertions passed. The armed setting exists only in temporary test copies.
+- SPICE: 9 original cases and 6 behavioural startup cases ran. The 4.7 kohm /
+  400 pF comparison intentionally exceeds the rise-time screen; the selected
+  2.2 kohm value meets that lumped RC screen through 400 pF. Three startup cases
+  intentionally fail the 4.75 V common-rail screen. PASS means the checks ran
+  and their expected outcomes were verified, not every circuit met every screen.
+- Runtime model: 18 sensitivity pairs and both 1 s versus 0.25 s convergence
+  checks passed.
+- esp32dev build: RAM 22,164 bytes; flash 323,053 bytes.
+- bringup build: RAM 21,960 bytes; flash 303,189 bytes.
+
+Independent evidence
+- All 32 sources recorded by the fresh suite match the current files.
+- Six summaries reproduce the previous run exactly after removing only run
+  timestamps. All 39 result CSV files are byte-identical to the preserved run.
+- Independent 5 V network bisection and battery-energy quadrature give baseline
+  5.476224232 h and priority 7.883408192 h. Saved 1 s results differ by 0.593 s
+  and 0.731 s respectively. Independent startup-trace KCL checks also pass.
+- A new deterministic comparison uses 120 sequences of 100 varied samples each.
+  Compiled production controller.h in an isolated armed copy and the Python
+  reference match all 12,000 output-command and state transitions. Maximum SOC
+  difference is 8.86e-9 percentage points; maximum compared runtime difference
+  is 5.57e-6 h. Inputs include charging, load changes, sustained low-runtime
+  conditions, temperature and voltage overrides, and recovery. Fault/lock
+  injection remains covered separately by the main native suite.
+
+Source inspection
+- The deployed source samples voltage/current and policy at nominal 10 Hz,
+  temperature and telemetry at nominal 1 Hz. Reboot and invalid/gapped samples
+  invalidate SOC; the saved checkpoint is diagnostic only.
+- INA219 decoding rejects failed reads, reset/configuration/calibration mismatch
+  and overflows. Sequential reads are not claimed to be an atomic ADC frame.
+- Both controllers use signed charge integration, the same 20% reserve and
+  nominal-voltage energy heuristic, a 3 s sustained threshold, a latched optional
+  load, and explicit restoration with 0.25 h additional margin. Firmware adds
+  the physical hardware lock and estimates restoration using a provisional
+  3.5 W increment. The reference model accepts prospective full-load power.
+- The reference model's automatic=false option is used to form the baseline;
+  this is not a firmware operating mode. Simulator scenarios and reference SOC
+  seeding are explicitly simulation functions, not remote hardware control.
+- Hardware serial data require protocol=1 and source_mode=hardware, correct
+  types, finite values and consistency checks. Unknown/partial/oversized frames
+  are discarded. Hardware sessions have no command forwarding to the serial
+  device. The HTTP service binds 127.0.0.1, checks Host and Origin, and rejects
+  hardware control requests; the UI marks stale data and uses textContent for
+  incoming textual fields.
+- Physical control governs only the optional fan. The essential lamp has no
+  automatic disconnect; the operator must end reserve experiments as documented.
+
+Limits and next physical checks
+Compilation, synthetic traces, native host tests and equations do not establish
+real sensor accuracy, usable pack capacity, startup behaviour, regulator/ESP32
+brownout performance, component temperatures, fuse clearing, BMS behaviour,
+EMC, or whole-system safety. The OCV curve and loss parameters remain assumed.
+Measure the selected battery, shunts, converter and actual loads; perform the
+documented current-limited bring-up and calibration before enabling control.
+Compare policy runs at the same measured initial condition and stopping rule.
+Record fan service along with lamp service; the model gains lamp service by
+reducing fan service, not by increasing battery capacity or converter efficiency.
+
+Evidence files in this directory
+software-audit.json: current source/output hashes, counts, reproduction/build data
+main-suite.log and build-*.log: fresh execution logs
+result-summaries/: fresh result summaries and detailed stage logs
+independent_check.py / independent-check.json: independent algebra and quadrature
+policy-differential.py / .cpp / .json: reproducible cross-implementation audit
+record_software_audit.py: audit recorder and snapshot verifier
+../before-results/: unmodified prior result snapshot

@@ -1,0 +1,118 @@
+[
+  {
+    "path": "output/pdf/wattsense_research_paper.pdf",
+    "sha256": "3687c377299b82fd2d513eb52eac1856e61281828b124eb61ee80213388e02a3"
+  },
+  {
+    "path": "paper/wattsense-paper-review.zip",
+    "sha256": "6f54efcea95dd61d98176517adfa44cb589af1c5721e7b27a1e82fdbaa312e68"
+  },
+  {
+    "path": "paper/wattsense-manuscript.md",
+    "sha256": "4d6a8c1a0f4c2983d156fcb366b876d5a115d9c9b22176b279afdc85813bd839"
+  },
+  {
+    "path": "paper/src/build_paper.py",
+    "sha256": "c2d7013faa17f58eb164d50b4ae12b67b8537fb1cb7652be30fc7f97e3022ba0"
+  },
+  {
+    "path": "paper/src/check_paper.py",
+    "sha256": "e0034bd21f5948568edb749a6898438e43f89ed43bc9c533376dc4185697474d"
+  },
+  {
+    "path": "paper/src/finalize_package.py",
+    "sha256": "b37f15687fbe09784d0bea8306644ed83b84bb1db45227def302b69398527204"
+  },
+  {
+    "path": "paper/src/make_figures.py",
+    "sha256": "cdb860d871e0062a42b9049b9cdf6b7fb8025d19bf10fde5ad1779bcde8d9026"
+  },
+  {
+    "path": "paper/src/prepare_records.py",
+    "sha256": "dc307e9e77c29afc3cadeb547a9d0e4f97c11d13888a70bc28997692036636fa"
+  },
+  {
+    "path": "paper/src/manuscript.json",
+    "sha256": "aa49e46066b557055087d32eae05490bec384cde3650003cf39150264fc5d575"
+  },
+  {
+    "path": "paper/evidence/authorship.json",
+    "sha256": "8d754cf1c491b4ac05035b58a4d7cd6e325e6b5c8945555d9cddc9e96343e321"
+  },
+  {
+    "path": "paper/evidence/build-record.json",
+    "sha256": "1eddb462a4e6cae47261938f179287369602fd9ad8f5fd9b368878291a3699f6"
+  },
+  {
+    "path": "paper/evidence/consistency_manifest.json",
+    "sha256": "eb2c5e11742efe7ea87ff343170f27a1fe08fec3fb7820891e42f6f088e4aed3"
+  },
+  {
+    "path": "paper/evidence/final-paper-audit.json",
+    "sha256": "902d3d8f8a06af35f05176feb8b5fa5833b292106770399c4fd11e1a9d16307e"
+  },
+  {
+    "path": "paper/evidence/literature-review.json",
+    "sha256": "37da1123726489270daf2c23bd55aeca0973765a685944f9f9f7abbda6fdd649"
+  },
+  {
+    "path": "paper/evidence/local-evidence-index.json",
+    "sha256": "6da829134222e10cfb8ce2915218714969189f7f6cc7d758df0f4322c7f7adbd"
+  },
+  {
+    "path": "paper/evidence/manuscript_manifest.json",
+    "sha256": "a9db31e0e2fae9539ec82ff92fd26092d86513a133153df1c26daa96159d3875"
+  },
+  {
+    "path": "paper/evidence/originality-report.json",
+    "sha256": "77bc77b7a531cbac52516d5c30b7862df56e196e2802c9813cdd4324a06a09f0"
+  },
+  {
+    "path": "paper/evidence/reporting_coverage.json",
+    "sha256": "2262625da3121086282305e2bf229dd01e6ee89021979abf9fb1a207eb6e5885"
+  },
+  {
+    "path": "paper/evidence/review-package-manifest.json",
+    "sha256": "4bddeed6095ec03ca6b6f6c8c7f1be793eb93f8e7d45e2623d61a3d1ab3c0d65"
+  },
+  {
+    "path": "paper/evidence/skill-authorship-human-gate.json",
+    "sha256": "27dd150b33c75e71f0544dea2050fa4bd26c1556a7407873a44d5e3e2094c692"
+  },
+  {
+    "path": "paper/evidence/skill-claim-human-gate.json",
+    "sha256": "7a9647393574cfea5fe00b7d4bf6f43c54e01f2d3175768133a98a275d036243"
+  },
+  {
+    "path": "paper/evidence/skill-consistency.json",
+    "sha256": "403db0e42c92999b9f2e4f22973b802e83099e859315176ec4a2f9e211e36535"
+  },
+  {
+    "path": "paper/evidence/skill-draft-lint.json",
+    "sha256": "f29b949d29f3ea8c064acecb59198049dc75ca045e6a8cd8a17576a246156355"
+  },
+  {
+    "path": "paper/evidence/skill-provenance.json",
+    "sha256": "4713200d4a7343706c7f95e982363478bfd386dcfa9fb39f9b28b654543a51b3"
+  },
+  {
+    "path": "paper/evidence/skill-reference-syntax.json",
+    "sha256": "4b67e56508ab1b2f4189daf486a5d7580ab0596749826cfbfde8a2ce20368d3a"
+  },
+  {
+    "path": "paper/evidence/skill-source-schema.json",
+    "sha256": "61caed7d573f3e7d4154b02414ff98efa6b44f648c079de389c2b6a7bb3e8c46"
+  },
+  {
+    "path": "paper/evidence/source_manifest.json",
+    "sha256": "aa733f4b9215e72de09eb6f570572f2cd3752dfe01dda861007ad9a77b01d502"
+  },
+  {
+    "path": "paper/figures/figure-provenance.json",
+    "sha256": "caf0f3e6e7f8c58480db674345fb81634786079c2175bad0198b32bfacd72016"
+  },
+  {
+    "path": "paper/figures/figure-qa.json",
+    "sha256": "05165e2121602a1b52502eb4e4afc317416cc91f50c2e0e7f3f0c219b7882ccc"
+  }
+]

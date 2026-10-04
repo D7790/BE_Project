@@ -1,0 +1,196 @@
+{
+  "status": "DRAFT_FIGURES_AGENT_CHECKED_HUMAN_REVIEW_PENDING",
+  "created_utc": "2026-09-30T07:25:37.894544+00:00",
+  "creator": "Codex assistant using local Matplotlib",
+  "script": "paper/src/make_figures.py",
+  "script_sha256": "6a60930938032720c2ea01bce1114f20f25c3c2549114c4141c0b3d20eece0e0",
+  "matplotlib_version": "3.10.8",
+  "processing_boundary": "Local source/results only; no network or image-generation service",
+  "svg_text": "Outlined local DejaVu Sans glyphs for portable vector rendering; captions/alt text remain in this manifest",
+  "data_source_run_finished_utc": "2026-09-30T07:17:27.621877+00:00",
+  "source_scope": "Lumped battery and converter efficiency, selected PCB copper paths, DC loss and constant-power discharge. Six separate behavioural startup circuits. No complete ESP32/BMS/charger/BLDC/PWM/thermal/EMC simulation.",
+  "scientific_review_status": "Agent consistency review complete; accountable human review pending",
+  "third_party_image_permissions": "Not applicable: all figures drawn locally from project topology/data",
+  "figures": [
+    {
+      "figure_id": "fig1_architecture",
+      "files": [
+        "paper/figures/fig1_architecture.svg",
+        "paper/figures/fig1_architecture.png"
+      ],
+      "intended_width_inches": 7.0,
+      "caption": "Proposed Wattsense topology. U1 and U2 monitor signed battery current and load-branch input; U3 provides an unexercised charge-input interface and its readout is disabled in the supplied production configuration. The protected pack, matched charging device, converter and ESP32 are external to the custom board. Power arrows show discharge and charging directions; only the fan return is switched by Q1. The figure omits ground returns, 5 V fuse details and the alternative USB/isolated-data supply arrangements. The principal discharge simulations include battery-powered controller consumption. No assembled hardware is pictured or claimed.",
+      "alt_text": "Power flows from a proposed protected battery through an external fuse, U1, a system junction, U2 and an external 5 V buck to an unswitched lamp and a fan with Q1 on its return. A dashed, untested charger-to-U3 path joins the system junction. Sensor data enter the ESP32; GPIO25 controls Q1; serial telemetry feeds a read-only local hardware dashboard.",
+      "source_files": [
+        {
+          "path": "hardware/REFERENCE_WIRING.md",
+          "sha256": "290c08381fa4222632fbe3d7a9b7be34fb716ea38cfc8c1d767da7e4e3d8fff0"
+        },
+        {
+          "path": "firmware/src/main.cpp",
+          "sha256": "0cdc08d2dce99ba73be3c9d399aa9e9c178242ec46b35544a047b6cb5e358bc3"
+        },
+        {
+          "path": "firmware/include/config.h",
+          "sha256": "da0bc5a059a8b82c31051416cf1eb0786083de2bce32f1d194b98b488f45356c"
+        }
+      ],
+      "transformations": [
+        "Original conceptual diagram drawn with Matplotlib primitives; schematic topology summarized without component-scale geometry.",
+        "No measured waveforms, source images or third-party diagram fragments used."
+      ],
+      "agent_created": true,
+      "human_review_pending": true,
+      "physical_measurements": false,
+      "external_image_assets": [],
+      "output_sha256": {
+        "svg": "f93855cfd705943af15717169d9f635ffc34ddc08de9256d2b2ac8cce6eab9fd",
+        "png": "f0b1d3958ef0dc68804748d8ee75489106dc9fd2a486bfbe46c3bee1abc6b847"
+      }
+    },
+    {
+      "figure_id": "fig2_control_flow",
+      "files": [
+        "paper/figures/fig2_control_flow.svg",
+        "paper/figures/fig2_control_flow.png"
+      ],
+      "intended_width_inches": 7.0,
+      "caption": "Simplified control sequence matching the firmware's ordered checks. The no-future-charge estimate is an energy/power heuristic, not a guaranteed lower runtime bound. A below-threshold condition lasting three seconds sheds the optional load; a shorter condition enters WATCH. OFF outcomes latch until an explicit restore request is accepted. Restore tests the prospective consumption with the fan on and an additional 0.25 h margin. Manual full-reference confirmation follows a verified charge procedure and does not automatically enable the fan. The distributed production firmware is hardware-locked. Only the fan is switched, so supervised physical trials require an external/operator stop at the agreed reserve endpoint.",
+      "alt_text": "A vertical sample-update sequence checks valid timing and readings, current-boot charge reference, estimator update, hardware enable and temperature, reserve/voltage, manual request and sustained runtime threshold. Failed gates command fan off. An explicit restore rule with prospective runtime margin is listed below; essential-load stopping remains external.",
+      "source_files": [
+        {
+          "path": "firmware/include/controller.h",
+          "sha256": "7be594808347f0e92ef468de28d10a9c16f6e57f3d66a332030a176cae384565"
+        },
+        {
+          "path": "firmware/src/main.cpp",
+          "sha256": "0cdc08d2dce99ba73be3c9d399aa9e9c178242ec46b35544a047b6cb5e358bc3"
+        },
+        {
+          "path": "firmware/include/config.h",
+          "sha256": "da0bc5a059a8b82c31051416cf1eb0786083de2bce32f1d194b98b488f45356c"
+        }
+      ],
+      "transformations": [
+        "Ordered checks transcribed from controller.update and restore; repeated-loop arrows omitted to keep diagram legible.",
+        "Simplified flow includes no new controller states or unimplemented automatic restoration."
+      ],
+      "agent_created": true,
+      "human_review_pending": true,
+      "physical_measurements": false,
+      "external_image_assets": [],
+      "output_sha256": {
+        "svg": "8a7d9ea31777e372178bebdffdd5f51c0e799eb48da14be60e98919b6a27b505",
+        "png": "f1a2a0c5e36b15b0aefa8e1a01b212943f24ffe256e0d450278d79070cf9745b"
+      }
+    },
+    {
+      "figure_id": "fig3_runtime",
+      "files": [
+        "paper/figures/fig3_runtime.svg",
+        "paper/figures/fig3_runtime.png"
+      ],
+      "intended_width_inches": 3.4,
+      "caption": "Simulated true-SOC trajectories with 6 Ah known capacity, 68% initial SOC, 20% common true-SOC endpoint, 90% converter efficiency, 0.10 Ω battery/BMS resistance, 2.5 W lamp, 2.5 W fan and 0.8 W controller/sensors. Both-load operation supplies the lamp and fan for 5.476 h. Priority control sheds the fan at 2.494 h and supplies the lamp for 7.884 h: 43.96% more lamp service accompanies 54.47% less fan service. This reallocates service rather than increasing battery capacity. Straight segments join stored approximately one-minute samples and state-transition records; the integration step was one second.",
+      "alt_text": "The two SOC curves overlap until the fan is shed at 2.49 hours and approximately 46.31% SOC. The retained-load curve reaches 20% after 5.48 hours; the lower-power priority curve reaches the same true-SOC endpoint after 7.88 hours.",
+      "source_files": [
+        {
+          "path": "simulations/results/hardware-runtime-baseline.csv",
+          "sha256": "7cea5e568e83a45a05e745a9bb567561dff7d0c90a06125a5da1c983d4bb437f"
+        },
+        {
+          "path": "simulations/results/hardware-runtime-priority.csv",
+          "sha256": "93bf7d163e595274021e82426d1894e32dab322f1c013679bcea7f46c68c93ce"
+        },
+        {
+          "path": "simulations/results/hardware-summary.json",
+          "sha256": "355f55531617a35f5d9c483dcb6578e71cd817236cbbc238b7f98578beb76ecd"
+        }
+      ],
+      "transformations": [
+        "Converted elapsed seconds to hours; prepended documented t=0, SOC=68% initial point.",
+        "Plotted true_soc_pct without smoothing; endpoints and service percentages taken from source summary."
+      ],
+      "agent_created": true,
+      "human_review_pending": true,
+      "physical_measurements": false,
+      "external_image_assets": [],
+      "output_sha256": {
+        "svg": "089d242269637d8342e018a945c18a1481f3e795a062cd888b8324916b8a575c",
+        "png": "8daf86227920cdaf792c7bed669fd4c919dc9da4991279d5c424f5f7c2b827cd"
+      }
+    },
+    {
+      "figure_id": "fig4_sensitivity",
+      "files": [
+        "paper/figures/fig4_sensitivity.svg",
+        "paper/figures/fig4_sensitivity.png"
+      ],
+      "intended_width_inches": 3.4,
+      "caption": "All 18 deterministic paired discharge scenarios: capacity 4.8/6 Ah, efficiency 80/90/95%, and assumed battery/BMS resistance 0.05/0.10/0.20 Ω. Dashed lines retain both loads; solid lines use priority control. Resistance-series symbols nearly overlap because its influence is small within these selected ranges. Capacity is known exactly to the estimator in each run, other assumptions match the starter case, and lines connect the three sampled efficiencies only. These are scenario results, not statistical confidence intervals or robustness bounds against calibration error. Fan service is not shown here and is reduced by the priority policy.",
+      "alt_text": "Two stacked plots separate 4.8 Ah and 6 Ah capacity. Each shows retained-load and priority lamp-service hours at 80, 90 and 95 percent efficiency, with distinct color and marker shapes for three selected battery resistances. Priority lamp service is higher in all 18 paired scenarios; resistance traces nearly coincide.",
+      "source_files": [
+        {
+          "path": "simulations/results/hardware-summary.json",
+          "sha256": "355f55531617a35f5d9c483dcb6578e71cd817236cbbc238b7f98578beb76ecd"
+        },
+        {
+          "path": "simulations/results/hardware-runtime-sensitivity.csv",
+          "sha256": "d45cf3663baa12499f92b1b9772a75c5d8d31fa7dcafce1c51b4cc8e9af615c1"
+        },
+        {
+          "path": "simulations/hardware-assumptions.json",
+          "sha256": "c5f0986d26e4cd6ed7b9aaebf4357fa56f6d0a792d8f71a949d33fa8d8b0fb88"
+        }
+      ],
+      "transformations": [
+        "Selected all sensitivity_pairs; grouped by capacity, resistance and operating policy.",
+        "Converted efficiency to percent; connected existing discrete points without regression, interpolation claims or uncertainty bars."
+      ],
+      "agent_created": true,
+      "human_review_pending": true,
+      "physical_measurements": false,
+      "external_image_assets": [],
+      "output_sha256": {
+        "svg": "6c7932814279184fb5c24aed8fec780d8c534af74a68ad492b5eebf307b24a74",
+        "png": "b7d01855ecdf509b5c9858eea48bb0cd6f309e03e00a4ea9a4a4e285d98d8b02"
+      }
+    },
+    {
+      "figure_id": "fig5_startup",
+      "files": [
+        "paper/figures/fig5_startup.svg",
+        "paper/figures/fig5_startup.png"
+      ],
+      "intended_width_inches": 3.4,
+      "caption": "Minimum common-rail and fan-terminal voltage in six separate behavioural SPICE startup scenarios. S1–S5 use a nominal 0.6 A lamp/fan running demand; S6 uses 0.5 A each. Fan starting demand at 5 V / source current limit / capacitance are: S1 0.6 A/2 A/470 µF; S2 1.2 A/2 A/470 µF; S3 1.8 A/1.5 A/470 µF; S4 1.8 A/1.5 A/2200 µF; S5 1.8 A/3 A/470 µF; S6 1.0 A/2 A/470 µF. Increased demand lasts an assumed 100 ms and decreases with terminal voltage. The dotted 4.75 V criterion applies to the common rail only; it is neither a fan-start specification nor an ESP32 reset limit. Three cases fail that screen. These equivalent-source/load models do not represent a purchased converter control loop or an actual BLDC fan.",
+      "alt_text": "Six horizontal paired markers compare minimum common-rail voltage with the lower fan-terminal voltage. S3 and S4 fall to about 3.00 V common rail and 2.74 V at the fan, despite increased capacitance in S4. S5 also misses the 4.75 V common-rail screen. S1, S2 and S6 pass only that provisional model screen.",
+      "source_files": [
+        {
+          "path": "simulations/results/hardware-summary.json",
+          "sha256": "355f55531617a35f5d9c483dcb6578e71cd817236cbbc238b7f98578beb76ecd"
+        },
+        {
+          "path": "simulations/run_hardware.py",
+          "sha256": "75b8bd43fcac88ba4422d01f1cb673de2ff9e07da8dd6c49d334173aca8ee152"
+        },
+        {
+          "path": "simulations/hardware-assumptions.json",
+          "sha256": "c5f0986d26e4cd6ed7b9aaebf4357fa56f6d0a792d8f71a949d33fa8d8b0fb88"
+        }
+      ],
+      "transformations": [
+        "Used stored minimum voltages from all six startup_cases, without exclusion or smoothing.",
+        "Connected each scenario's two different measurement locations; segment is not an error bar."
+      ],
+      "agent_created": true,
+      "human_review_pending": true,
+      "physical_measurements": false,
+      "external_image_assets": [],
+      "output_sha256": {
+        "svg": "90ec5b6838fd6491a087f1721ccedb5e9a85275744c9d6409a73d648441fdb93",
+        "png": "403915e12ad8f057540d6a34b3360e272df5bbc2d519af3ec8d95ec8e85b9e54"
+      }
+    }
+  ]
+}

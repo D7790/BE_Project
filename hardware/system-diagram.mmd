@@ -1,0 +1,20 @@
+flowchart TB
+    panel["Optional later solar panel<br/>match to actual controller"] --> charger["Compatible 4S LiFePO4 solar charger"]
+    charger --> solar["S3: controller output measurement"]
+    solar --> junction["Protected system DC junction"]
+    battery["Assembled 4S LiFePO4 pack<br/>with independent BMS"] <--> fuse["DC fuse + manual disconnect"]
+    fuse <--> sense["S1: signed battery current<br/>INA219 0x40"]
+    sense <--> junction
+    junction --> loadSense["S2: load input measurement<br/>INA219 0x41"]
+    loadSense --> converter["Purchased 5 V converter"]
+    converter --> lamp["Essential lamp"]
+    converter --> driver["Optional-load driver"]
+    driver --> fan["Optional fan"]
+    sense -. "I2C measurements" .-> esp["ESP32<br/>local estimator + control"]
+    loadSense -. "I2C measurements" .-> esp
+    solar -. "I2C when fitted" .-> esp
+    temp["DS18B20 surface temperature"] -. "GPIO4" .-> esp
+    buttons["Load button GPIO27<br/>Full-reference button GPIO26"] -.-> esp
+    esp -. "GPIO25 active-high command" .-> driver
+    esp -. "USB telemetry" .-> dashboard["Local dashboard + CSV logger"]
+    note["Rev B integrates the three sensors and one fan driver.<br/>Solar is deferred; use one verified charging source at a time.<br/>Power/ground and USB details are in REFERENCE_WIRING.md."]

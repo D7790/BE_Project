@@ -1,0 +1,330 @@
+{
+  "schema_version": "1.0",
+  "numeric_facts": [
+    {
+      "fact_id": "N001",
+      "concept": "baseline_lamp_h",
+      "value": 5.476388888888889,
+      "unit": "h",
+      "section": "Results",
+      "analysis_set": "deterministic simulation",
+      "numerator": null,
+      "denominator": null,
+      "sample_size": null,
+      "evidence_ids": [
+        "E103"
+      ]
+    },
+    {
+      "fact_id": "N002",
+      "concept": "baseline_lamp_h",
+      "value": 5.476388888888889,
+      "unit": "h",
+      "section": "Evidence registry",
+      "analysis_set": "deterministic simulation",
+      "numerator": null,
+      "denominator": null,
+      "sample_size": null,
+      "evidence_ids": [
+        "E103"
+      ]
+    },
+    {
+      "fact_id": "N003",
+      "concept": "priority_lamp_h",
+      "value": 7.883611111111111,
+      "unit": "h",
+      "section": "Results",
+      "analysis_set": "deterministic simulation",
+      "numerator": null,
+      "denominator": null,
+      "sample_size": null,
+      "evidence_ids": [
+        "E103"
+      ]
+    },
+    {
+      "fact_id": "N004",
+      "concept": "priority_lamp_h",
+      "value": 7.883611111111111,
+      "unit": "h",
+      "section": "Evidence registry",
+      "analysis_set": "deterministic simulation",
+      "numerator": null,
+      "denominator": null,
+      "sample_size": null,
+      "evidence_ids": [
+        "E103"
+      ]
+    },
+    {
+      "fact_id": "N005",
+      "concept": "priority_fan_h",
+      "value": 2.493611111111111,
+      "unit": "h",
+      "section": "Results",
+      "analysis_set": "deterministic simulation",
+      "numerator": null,
+      "denominator": null,
+      "sample_size": null,
+      "evidence_ids": [
+        "E103"
+      ]
+    },
+    {
+      "fact_id": "N006",
+      "concept": "priority_fan_h",
+      "value": 2.493611111111111,
+      "unit": "h",
+      "section": "Evidence registry",
+      "analysis_set": "deterministic simulation",
+      "numerator": null,
+      "denominator": null,
+      "sample_size": null,
+      "evidence_ids": [
+        "E103"
+      ]
+    },
+    {
+      "fact_id": "N007",
+      "concept": "lamp_gain_percent",
+      "value": 43.95637839208724,
+      "unit": "percent",
+      "section": "Results",
+      "analysis_set": "deterministic simulation",
+      "numerator": null,
+      "denominator": null,
+      "sample_size": null,
+      "evidence_ids": [
+        "E103"
+      ]
+    },
+    {
+      "fact_id": "N008",
+      "concept": "lamp_gain_percent",
+      "value": 43.95637839208724,
+      "unit": "percent",
+      "section": "Evidence registry",
+      "analysis_set": "deterministic simulation",
+      "numerator": null,
+      "denominator": null,
+      "sample_size": null,
+      "evidence_ids": [
+        "E103"
+      ]
+    },
+    {
+      "fact_id": "N009",
+      "concept": "fan_loss_percent",
+      "value": 54.46614253106772,
+      "unit": "percent",
+      "section": "Results",
+      "analysis_set": "deterministic simulation",
+      "numerator": null,
+      "denominator": null,
+      "sample_size": null,
+      "evidence_ids": [
+        "E103"
+      ]
+    },
+    {
+      "fact_id": "N010",
+      "concept": "fan_loss_percent",
+      "value": 54.46614253106772,
+      "unit": "percent",
+      "section": "Evidence registry",
+      "analysis_set": "deterministic simulation",
+      "numerator": null,
+      "denominator": null,
+      "sample_size": null,
+      "evidence_ids": [
+        "E103"
+      ]
+    },
+    {
+      "fact_id": "N011",
+      "concept": "baseline_energy_wh",
+      "value": 31.763055555549307,
+      "unit": "Wh",
+      "section": "Results",
+      "analysis_set": "deterministic simulation",
+      "numerator": null,
+      "denominator": null,
+      "sample_size": null,
+      "evidence_ids": [
+        "E103"
+      ]
+    },
+    {
+      "fact_id": "N012",
+      "concept": "baseline_energy_wh",
+      "value": 31.763055555549307,
+      "unit": "Wh",
+      "section": "Evidence registry",
+      "analysis_set": "deterministic simulation",
+      "numerator": null,
+      "denominator": null,
+      "sample_size": null,
+      "evidence_ids": [
+        "E103"
+      ]
+    },
+    {
+      "fact_id": "N013",
+      "concept": "priority_energy_wh",
+      "value": 32.24994444442113,
+      "unit": "Wh",
+      "section": "Results",
+      "analysis_set": "deterministic simulation",
+      "numerator": null,
+      "denominator": null,
+      "sample_size": null,
+      "evidence_ids": [
+        "E103"
+      ]
+    },
+    {
+      "fact_id": "N014",
+      "concept": "priority_energy_wh",
+      "value": 32.24994444442113,
+      "unit": "Wh",
+      "section": "Evidence registry",
+      "analysis_set": "deterministic simulation",
+      "numerator": null,
+      "denominator": null,
+      "sample_size": null,
+      "evidence_ids": [
+        "E103"
+      ]
+    },
+    {
+      "fact_id": "N015",
+      "concept": "sensitivity_pairs",
+      "value": 18,
+      "unit": "cases",
+      "section": "Results",
+      "analysis_set": "deterministic simulation",
+      "numerator": null,
+      "denominator": null,
+      "sample_size": null,
+      "evidence_ids": [
+        "E103"
+      ]
+    },
+    {
+      "fact_id": "N016",
+      "concept": "sensitivity_pairs",
+      "value": 18,
+      "unit": "cases",
+      "section": "Evidence registry",
+      "analysis_set": "deterministic simulation",
+      "numerator": null,
+      "denominator": null,
+      "sample_size": null,
+      "evidence_ids": [
+        "E103"
+      ]
+    },
+    {
+      "fact_id": "N017",
+      "concept": "startup_cases",
+      "value": 6,
+      "unit": "cases",
+      "section": "Results",
+      "analysis_set": "deterministic simulation",
+      "numerator": null,
+      "denominator": null,
+      "sample_size": null,
+      "evidence_ids": [
+        "E103"
+      ]
+    },
+    {
+      "fact_id": "N018",
+      "concept": "startup_cases",
+      "value": 6,
+      "unit": "cases",
+      "section": "Evidence registry",
+      "analysis_set": "deterministic simulation",
+      "numerator": null,
+      "denominator": null,
+      "sample_size": null,
+      "evidence_ids": [
+        "E103"
+      ]
+    }
+  ],
+  "methods": [
+    {
+      "method_id": "M001",
+      "name": "Nominal deterministic paired discharge",
+      "analysis_intent": "descriptive",
+      "protocol_status": "not_applicable",
+      "outcome_ids": [
+        "O001"
+      ]
+    },
+    {
+      "method_id": "M002",
+      "name": "Deterministic paired sensitivity scenarios",
+      "analysis_intent": "descriptive",
+      "protocol_status": "not_applicable",
+      "outcome_ids": [
+        "O002"
+      ]
+    },
+    {
+      "method_id": "M003",
+      "name": "Separate behavioral startup scenarios",
+      "analysis_intent": "descriptive",
+      "protocol_status": "not_applicable",
+      "outcome_ids": [
+        "O003"
+      ]
+    }
+  ],
+  "results": [
+    {
+      "result_id": "R001",
+      "method_id": "M001",
+      "outcome_id": "O001",
+      "analysis_intent": "descriptive",
+      "sample_size": 1,
+      "evidence_ids": [
+        "E103"
+      ],
+      "reported_sections": [
+        "Abstract",
+        "V. Results"
+      ]
+    },
+    {
+      "result_id": "R002",
+      "method_id": "M002",
+      "outcome_id": "O002",
+      "analysis_intent": "descriptive",
+      "sample_size": 18,
+      "evidence_ids": [
+        "E103"
+      ],
+      "reported_sections": [
+        "Abstract",
+        "V. Results"
+      ]
+    },
+    {
+      "result_id": "R003",
+      "method_id": "M003",
+      "outcome_id": "O003",
+      "analysis_intent": "descriptive",
+      "sample_size": 6,
+      "evidence_ids": [
+        "E103"
+      ],
+      "reported_sections": [
+        "Abstract",
+        "V. Results"
+      ]
+    }
+  ]
+}

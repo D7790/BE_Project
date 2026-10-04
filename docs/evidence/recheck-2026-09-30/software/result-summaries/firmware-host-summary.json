@@ -1,0 +1,29 @@
+{
+  "scope": "Host execution of production C++ policy and register decoder with a fake transaction source. Not ESP32, electrical I2C, GPIO or timing emulation.",
+  "results": [
+    {
+      "status": "PASS",
+      "hardware_confirmed_in_test_copy": false,
+      "assertions": 16
+    },
+    {
+      "status": "PASS",
+      "hardware_confirmed_in_test_copy": true,
+      "assertions": 27
+    }
+  ],
+  "register_reader": {
+    "status": "PASS",
+    "assertions": 24,
+    "scope": "INA219 register decoder and injected transaction/reset failures"
+  },
+  "compiler": "g++.exe (i686-posix-dwarf-rev0, Built by MinGW-W64 project) 5.1.0",
+  "production_hardware_confirmed": false,
+  "source_sha256": {
+    "firmware\\include\\controller.h": "7be594808347f0e92ef468de28d10a9c16f6e57f3d66a332030a176cae384565",
+    "firmware\\include\\config.h": "da0bc5a059a8b82c31051416cf1eb0786083de2bce32f1d194b98b488f45356c",
+    "firmware\\include\\ina219_checked.h": "02c6b5a07cb84b210e058a7e8dc5e3d4ba9aea61ea96facf1bcce51479794cc3",
+    "simulations\\firmware_policy_tests.cpp": "cd856c7b4302d3a15c8249ddc004385bece0f1255f573eec053c943f28c55086",
+    "simulations\\ina219_register_tests.cpp": "a2f5a09e67ac22eb4643fbfb4d7b65c13a52c7d20b096224fda5029115f3af50"
+  }
+}

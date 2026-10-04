@@ -1,0 +1,25 @@
+stdout Note: No compatibility mode selected!
+stdout Circuit: wattsense bounded fan-start supply scenario startup_starter_2x_2a
+stdout Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+stdout Using SPARSE 1.3 as Direct Linear Solver
+stderr Note: Starting dynamic gmin stepping
+stderr Warning: Dynamic gmin stepping failed
+stderr Note: Starting true gmin stepping
+stderr Warning: True gmin stepping failed
+stderr Note: Starting source stepping
+stderr Note: Source stepping completed
+stdout Initial Transient Solution
+stdout --------------------------
+stdout Node                                   Voltage
+stdout ----                                   -------
+stdout supply                                 4.97414
+stdout reg                                    4.97414
+stdout cap                                    4.97414
+stdout rail                                   4.91241
+stdout lamp                                    4.8649
+stdout fan                                    4.91241
+stdout demand                                 4.91241
+stdout vfanprobe#branch                             0
+stdout vregprobe#branch                       0.64649
+ Reference value :  0.00000e+00
+stdout No. of Data Rows : 7508

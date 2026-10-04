@@ -1,0 +1,449 @@
+{
+  "status": "CONTENT_VALIDATED_RENDER_UNVERIFIED",
+  "created_utc": "2026-09-30T07:48:14.276353+00:00",
+  "runtime": "C:\\Users\\dhane\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+  "output": "output/docx/wattsense_research_paper.docx",
+  "docx_sha256": "049027e66d56dfc241c3b8942dad842cb2b7efd599e211a2af4313c7e2dac71c",
+  "inputs_sha256": {
+    "paper/src/manuscript.json": "c537aef1889ae241c99c2af450bd700ce485c66ba77ffc6f2c271ed4f668e6d8",
+    "paper/figures/figure-provenance.json": "e1b0f6d49603f9dde104b4ab55af8a3d87c5fa7883c097b0e0546ec687202cb4",
+    "paper/src/build_docx.py": "b4c3bc5c0879e4ac952a2e4944db3269d76df7dcb127fb1070f1b53215620a8b",
+    "paper/figures/fig1_architecture.png": "f0b1d3958ef0dc68804748d8ee75489106dc9fd2a486bfbe46c3bee1abc6b847",
+    "paper/figures/fig2_control_flow.png": "f1a2a0c5e36b15b0aefa8e1a01b212943f24ffe256e0d450278d79070cf9745b",
+    "paper/figures/fig3_runtime.png": "8daf86227920cdaf792c7bed669fd4c919dc9da4991279d5c424f5f7c2b827cd",
+    "paper/figures/fig4_sensitivity.png": "b7d01855ecdf509b5c9858eea48bb0cd6f309e03e00a4ea9a4a4e285d98d8b02",
+    "paper/figures/fig5_startup.png": "403915e12ad8f057540d6a34b3360e272df5bbc2d519af3ec8d95ec8e85b9e54"
+  },
+  "layout": "US Letter, single column, 0.75 inch horizontal margins, Times New Roman 11 pt; editable companion to the two-column PDF",
+  "editable": {
+    "body": true,
+    "tables": true,
+    "equations": "4 native OMML equations",
+    "figures": "5 embedded original 300 dpi PNGs; editable SVG and plotting sources are in paper/figures and paper/src/make_figures.py"
+  },
+  "content_validation": {
+    "passed": 102,
+    "total": 102,
+    "checks": [
+      {
+        "check": "title preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "abstract preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "status preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "author order preserved",
+        "pass": true
+      },
+      {
+        "check": "I. Introduction heading preserved",
+        "pass": true
+      },
+      {
+        "check": "C001 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C002 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C003 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "II. Related Work and Study Scope heading preserved",
+        "pass": true
+      },
+      {
+        "check": "C004 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C005 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C006 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "III. Hardware and Control Architecture heading preserved",
+        "pass": true
+      },
+      {
+        "check": "C007 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C008 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C009 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "A. Charge and runtime estimates heading preserved",
+        "pass": true
+      },
+      {
+        "check": "C010 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C011 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C012 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "B. Decision sequence and invalid data heading preserved",
+        "pass": true
+      },
+      {
+        "check": "C013 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C014 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C015 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "IV. Models and Evaluation Procedure heading preserved",
+        "pass": true
+      },
+      {
+        "check": "A. Coupled DC and discharge model heading preserved",
+        "pass": true
+      },
+      {
+        "check": "C016 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C017 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C018 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C019 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "B. Comparison and sensitivity scenarios heading preserved",
+        "pass": true
+      },
+      {
+        "check": "C020 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C021 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C. Separate startup and circuit screens heading preserved",
+        "pass": true
+      },
+      {
+        "check": "C022 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C023 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "D. Reproduction and verification heading preserved",
+        "pass": true
+      },
+      {
+        "check": "C024 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "V. Results heading preserved",
+        "pass": true
+      },
+      {
+        "check": "A. Service allocation at the nominal point heading preserved",
+        "pass": true
+      },
+      {
+        "check": "C025 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C026 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C027 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "B. DC operating point and parameter dependence heading preserved",
+        "pass": true
+      },
+      {
+        "check": "C028 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C029 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C. Startup limits and local circuit checks heading preserved",
+        "pass": true
+      },
+      {
+        "check": "C030 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C031 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C032 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "D. Artifact and numerical checks heading preserved",
+        "pass": true
+      },
+      {
+        "check": "C033 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C034 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "VI. Limitations and Hardware Validation Plan heading preserved",
+        "pass": true
+      },
+      {
+        "check": "C035 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C036 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C037 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C038 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "VII. Conclusion heading preserved",
+        "pass": true
+      },
+      {
+        "check": "C039 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "Reproducibility and Draft Declarations heading preserved",
+        "pass": true
+      },
+      {
+        "check": "C040 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "C041 prose preserved exactly",
+        "pass": true
+      },
+      {
+        "check": "two editable tables",
+        "pass": true
+      },
+      {
+        "check": "table I all cells preserved",
+        "pass": true
+      },
+      {
+        "check": "table II all cells preserved",
+        "pass": true
+      },
+      {
+        "check": "figure 1 caption preserved",
+        "pass": true
+      },
+      {
+        "check": "figure 2 caption preserved",
+        "pass": true
+      },
+      {
+        "check": "figure 3 caption preserved",
+        "pass": true
+      },
+      {
+        "check": "figure 4 caption preserved",
+        "pass": true
+      },
+      {
+        "check": "figure 5 caption preserved",
+        "pass": true
+      },
+      {
+        "check": "reference 1 preserved",
+        "pass": true
+      },
+      {
+        "check": "reference 2 preserved",
+        "pass": true
+      },
+      {
+        "check": "reference 3 preserved",
+        "pass": true
+      },
+      {
+        "check": "reference 4 preserved",
+        "pass": true
+      },
+      {
+        "check": "reference 5 preserved",
+        "pass": true
+      },
+      {
+        "check": "reference 6 preserved",
+        "pass": true
+      },
+      {
+        "check": "reference 7 preserved",
+        "pass": true
+      },
+      {
+        "check": "reference 8 preserved",
+        "pass": true
+      },
+      {
+        "check": "reference 9 preserved",
+        "pass": true
+      },
+      {
+        "check": "four native Office Math equations",
+        "pass": true
+      },
+      {
+        "check": "equation 1 symbols retained",
+        "pass": true
+      },
+      {
+        "check": "equation 2 symbols retained",
+        "pass": true
+      },
+      {
+        "check": "equation 3 symbols retained",
+        "pass": true
+      },
+      {
+        "check": "equation 4 symbols retained",
+        "pass": true
+      },
+      {
+        "check": "four structured fractions",
+        "pass": true
+      },
+      {
+        "check": "one structured square root",
+        "pass": true
+      },
+      {
+        "check": "five embedded original figures",
+        "pass": true
+      },
+      {
+        "check": "all figures have alt text",
+        "pass": true
+      },
+      {
+        "check": "nine live source links",
+        "pass": true
+      },
+      {
+        "check": "editable file has no protection",
+        "pass": true
+      },
+      {
+        "check": "ZIP integrity",
+        "pass": true
+      },
+      {
+        "check": "figure 1 embedded pixels byte-identical to original",
+        "pass": true
+      },
+      {
+        "check": "figure 1 fits 7 inch text width",
+        "pass": true
+      },
+      {
+        "check": "figure 2 embedded pixels byte-identical to original",
+        "pass": true
+      },
+      {
+        "check": "figure 2 fits 7 inch text width",
+        "pass": true
+      },
+      {
+        "check": "figure 3 embedded pixels byte-identical to original",
+        "pass": true
+      },
+      {
+        "check": "figure 3 fits 7 inch text width",
+        "pass": true
+      },
+      {
+        "check": "figure 4 embedded pixels byte-identical to original",
+        "pass": true
+      },
+      {
+        "check": "figure 4 fits 7 inch text width",
+        "pass": true
+      },
+      {
+        "check": "figure 5 embedded pixels byte-identical to original",
+        "pass": true
+      },
+      {
+        "check": "figure 5 fits 7 inch text width",
+        "pass": true
+      }
+    ]
+  },
+  "visual_qa": {
+    "status": "RENDER_UNVERIFIED",
+    "pages_inspected": [],
+    "reason": "The bundled Windows runtime contains no LibreOffice executable. The required packaged renderer failed before conversion with FileNotFoundError for soffice.exe. User desktop LibreOffice was not used; no rendering or visual layout approval is claimed.",
+    "renderer": "C:/Users/dhane/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/render_docx.py",
+    "attempted": true,
+    "exit_code": 1,
+    "log": "tmp/docx-qa/renderer.log",
+    "log_sha256": "c21a5e0f2b094ecb0e58ec43a2a3a5539a97a80df9aab39a74e1759caf733d91",
+    "checked_pdf_is_separate_output": "output/pdf/wattsense_research_paper.pdf"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "checked_utc": "2026-09-30T06:47:53.897010+00:00",
+  "reviewer": "Codex assistant",
+  "human_review_pending": true,
+  "checks": [
+    "All five PNGs visually inspected; text/line overlaps corrected in architecture, runtime and sensitivity figures.",
+    "All five SVGs parsed as XML and converted to ReportLab vector drawings using svglib in the project Python environment.",
+    "SVG glyphs outlined to preserve exact appearance without viewer font dependencies.",
+    "Every source-data/code file hash in figure-provenance.json matched the current workspace.",
+    "All six startup cases and all eighteen sensitivity pairs retained; failed screens were not excluded."
+  ],
+  "files_sha256": {
+    "fig1_architecture.png": "f0b1d3958ef0dc68804748d8ee75489106dc9fd2a486bfbe46c3bee1abc6b847",
+    "fig1_architecture.svg": "f93855cfd705943af15717169d9f635ffc34ddc08de9256d2b2ac8cce6eab9fd",
+    "fig2_control_flow.png": "0eafd2fd1e920fffde4185711114de707acb0253cac3b52aecadf92213255e48",
+    "fig2_control_flow.svg": "2c069d9193a69402f05896705c795661675dbe16370d3a88a7c841e17d96d9e4",
+    "fig3_runtime.png": "8daf86227920cdaf792c7bed669fd4c919dc9da4991279d5c424f5f7c2b827cd",
+    "fig3_runtime.svg": "089d242269637d8342e018a945c18a1481f3e795a062cd888b8324916b8a575c",
+    "fig4_sensitivity.png": "b7d01855ecdf509b5c9858eea48bb0cd6f309e03e00a4ea9a4a4e285d98d8b02",
+    "fig4_sensitivity.svg": "6c7932814279184fb5c24aed8fec780d8c534af74a68ad492b5eebf307b24a74",
+    "fig5_startup.png": "403915e12ad8f057540d6a34b3360e272df5bbc2d519af3ec8d95ec8e85b9e54",
+    "fig5_startup.svg": "90ec5b6838fd6491a087f1721ccedb5e9a85275744c9d6409a73d648441fdb93"
+  }
+}

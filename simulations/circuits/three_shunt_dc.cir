@@ -1,0 +1,10 @@
+Wattsense R1 R2 R3 signed current sweep
+* Exact schematic shunt topology; fixed ideal battery and ideal branch currents.
+Vbat BAT_P 0 12.8
+R1 BAT_P SYS_P 0.1
+R2 SYS_P BUCK_P 0.1
+R3 CHG_P SYS_P 0.1
+Iload BUCK_P 0 0
+Ichg 0 CHG_P 0
+.dc Iload 0 2 0.25 Ichg 0 2 1
+.end

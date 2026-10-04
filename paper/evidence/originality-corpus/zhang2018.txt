@@ -1,0 +1,1228 @@
+ 
+ 
+ 
+ 
+ 
+warwick.ac.uk/lib-publications 
+ 
+ 
+ 
+ 
+ 
+Original citation: 
+Zhang, Cheng, Allafi, Walid, Dinh, Quang Truong, Ascencio, Pedro and Marco, James. (2018) 
+Online estimation of battery equivalent circuit model parameters and state of charge using 
+decoupled least squares technique. Energy, 142 . pp. 678-688. 
+ 
+Permanent WRAP URL: 
+http://wrap.warwick.ac.uk/94268 
+ 
+Copyright and reuse: 
+The Warwick Research Archive Portal (WRAP) makes this work of researchers of the 
+University of Warwick available open access under the following conditions. 
+ 
+This article is made available under the Creative Commons Attribution 4.0 International 
+license (CC BY 4.0) and may be reused according to the conditions of the license.  For more 
+details see: http://creativecommons.org/licenses/by/4.0/   
+ 
+A note on versions: 
+The version presented in WRAP is the published version, or, version of record, and may be 
+cited as it appears here. 
+ 
+For more information, please contact the WRAP Team at: wrap@warwick.ac.uk 
+ 
+Online estimation of battery equivalent circuit model parameters and
+state of charge using decoupled least squares technique
+Cheng Zhang *, Walid Alla ﬁ, Quang Dinh, Pedro Ascencio, James Marco
+WMG, The University of Warwick, Coventry, CV4 7AL, United Kingdom
+article info
+Article history:
+Received 28 June 2017
+Received in revised form
+26 September 2017
+Accepted 4 October 2017
+Available online 1 1 October 2017
+Keywords:
+Equivalent circuit model
+Recursive parameter estimation
+SOC estimation
+Decoupled least squares method
+abstract
+Battery equivalent circuit models (ECMs) are widely employed in online battery management applica-
+tions. The model parameters are known to vary according to the operating conditions, such as the battery
+state of charge (SOC). Therefore, online recursive ECM parameter estimation is one means that may help
+to improve the modelling accuracy. Because a battery system consists of both fast and slow dynamics, the
+classical least squares (LS) method, that estimates together all the model parameters, is known to suffer
+from numerical problems and poor accuracy. The aim of this paper is to overcome this problem by
+proposing a new decoupled weighted recursive least squares (DWRLS) method, which estimates sepa-
+rately the parameters of the battery fast and slow dynamics. Battery SOC estimation is also achieved
+based on the parameter estimation results. This circumvents an additional full-order observer for SOC
+estimation, leading to a reduced complexity. An extensive simulation study is conducted to compare the
+proposed method against the LS technique. Experimental data are collected using a Li ion cell. Finally,
+both the simulation and experimental results have demonstrated that the proposed DWRLS approach
+can improve not only the modelling accuracy but also the SOC estimation performance compared with
+the LS algorithm.
+© 2017 The Authors. Published by Elsevier Ltd. This is an open access article under the CC BY license
+(http://creativecommons.org/licenses/by/4.0/).
+1. Introduction
+Battery energy storage systems are rapidly gaining popularity in
+high power and high voltage applications due to their advanta-
+geous features, such as high ef ﬁciency and low environmental
+impact when compared to fossil fuels. Among different battery
+types, Li ion batteries are typically the preferred power source to
+provide high power and energy density and long service life [1,2].I n
+order to maximize the battery performance, the key to success is an
+efﬁcient battery model to support the system design, analysis and
+management strategies. Among existing battery model types,
+known as electrochemical models, reduced order models, and data-
+driven black-box models [3], equivalent circuit models (ECMs) of-
+fering acceptable modelling accuracy with ease of parametrization
+and implementation have been widely used for real-time battery
+management applications, including battery power prediction [4],
+state of charge (SOC) and state of health (SOH) estimation [5,6],
+balancing [7,8], charging control and optimization [9e11 ].
+One of the challenges in utilizing an ECM is that the model
+parameters depend on the batteries' operating conditions, such as
+battery SOC, SOH and environmental temperature [12e16].F o r
+example, the internal Ohmic resistance of a LiFePO4 cell and a Li ion
+NCA cell is almost doubled when the temperature decreases from
+25/C14 Cto0/C14 C [13,14]. The dependency of the model parameters on the
+operating conditions can be captured using a look-up table, which
+is a widely employed technique for ECM parametrization
+[12e14,17]. However, it usually requires running a large number of
+experiments in order to collect suf ﬁcient test data to cover the
+entire range of the operating conditions to build the look-up tables.
+Another drawback is that the battery model parameters will change
+with ageing, making the previous characterization obsolete.
+Therefore, online recursive model parameter estimation algorithms
+are needed to solve this problem.
+There are various methods within the literature for online
+recursive estimation of battery ECM parameters, such as recursive
+least squares (RLS) [18e20] and adaptive ﬁlter approaches
+[4,21e23]. Verbrugge et al. proposed using the weighted RLS
+(WRLS) method for online estimation of battery ECM parameters
+and SOC [18]. The authors then presented a new method in Ref. [19]
+to further improve the estimation performance by assigning each* Corresponding author.
+E-mail address: c.zhang.1 1@warwick.ac.uk(C. Zhang).
+Contents lists available at ScienceDirect
+Energy
+journal homepage: www.elsevier.com/locate/energy
+https://doi.org/10.1016/j.energy.2017.10.043
+0360-5442/© 2017 The Authors. Published by Elsevier Ltd. This is an open access article under the CC BY license ( http://creativecommons.org/licenses/by/4.0/).
+Energy 142 (2018) 678 e688
+time-varying model parameter with one individual forgetting fac-
+tor. These forgetting factors are optimized using the Newton's
+method. Guo et al. [20] used RLS for ECM parameter estimation and
+a Kalman ﬁlter (KF) for SOC estimation. Plett suggested a joint
+extended Kalman ﬁlter (EKF) [5] and a joint Unscented Kalman
+ﬁlter (UKF) [4] for the simultaneous estimation of the battery SOC
+and time-varying model parameters. A dual ﬁlter technique
+combining EKF and UKF was proposed in Ref. [23] to estimate
+together the ECM parameters and SOC. The performance of ﬁlter-
+based methods for SOC estimation depends on the availability of
+an accurate model and careful ﬁlter parameter tuning, e.g., to deﬁne
+the noise covariance. When using KF methods for joint estimation
+of parameters and states, the system order is usually high and the
+algorithm tuning can be dif ﬁcult. In order to decouple the param-
+eter identi ﬁcation and state estimation processes to suppress the
+cross interferences between these two parts, Wei et al. [24] pro-
+posed using the RLS method for recursive ECM parameter identi-
+ﬁcation and the EKF method for SOC and SOH estimation.
+Another dif ﬁculty for ECM parameter estimation is that the
+battery terminal voltage-current behaviours include both fast dy-
+namics (FD), i.e., resistance and charge transfer effect, and very
+slow dynamics (SD), i.e., the diffusion effect. Consequently, the
+widely used LS methods, (e.g., RLS and WRLS) which estimate
+together all the model parameters suffer from numerical problems
+due to the high system stiffness, low data storage resolution and
+fast sampling [25,26]. Those effects were illustrated experimentally
+in Refs. [27e30]. In order to address this problem, Hu et al. [29]
+proposed a two-timescale scheme that estimates separately the
+battery FD and SD parameters. Here, the battery FD and SD were
+assumed to lie in different frequency ranges, and therefore they
+could be separated using linear high-pass and low-pass ﬁlters. The
+experimental results demonstrated modelling accuracy improve-
+ment of this two-timescale technique over the conventional WRLS
+method. However, this linear ﬁlter-based separation method is not
+a proper solution to deal with systems containing large non-
+linearities and uncertainties that are common within battery
+models. Further, the SOC estimation logic was implemented in an
+open-loop manner and thus it could be sensitive to disturbances.
+Wei et al. [31] proposed a multi-timescale estimator to identify the
+ECM parameters and the battery open-circuit voltage (OCV) in real
+time. The parameters and OCV estimation processes were decou-
+pled and implemented on different timescales to reduce the cross-
+interference between them. This leads to improved convergence
+and robustness. However, only ﬁrst-order ECM was considered in
+Ref. [31], and the applicability of the proposed method for higher-
+order ECMs was not presented. Dai et al. [30] suggested a
+different method to estimate the battery FD and SD on separated
+time scales. In this study, the FD parameters were estimated using
+the RLS algorithm while the SD parameters were estimated using
+the EKF method. Although the modelling accuracy and parameter
+estimation consistency were illustrated through the experimental
+validation, the battery OCV and SOC were assumed to be known,
+which decreases the online applicability of this technique.
+In order to address these problems, this paper presents a novel
+decoupled WRLS (DWRLS) method for online estimation of both
+the ECM parameters and battery SOC. The contributions of this
+paper are summarized as follows. First, based on a priori knowledge
+that the battery FD and SD occur on different timescales, the sep-
+aration of them are implemented in time-domain in order to
+obviate the incorrect assumption of linear battery dynamics in the
+frequency domain. Second, the battery FD and SD parameters are
+estimated separately. When estimating the SD (or FD) part, the
+voltage response from the estimated FD (or SD) part is removed
+from the total model output voltage. By this way, the coupling
+between battery SD and FD can be effectively suppressed to
+improve the estimation performance. Third, the proposed algo-
+rithm can be implemented for batch data processing for of ﬂine
+model training, or operated recursively to estimate the ECM pa-
+rameters in real time. Furthermore, this DWRLS approach can also
+be used for battery SOC estimation, which circumvents a full-order
+state observer to reduce the complexity. The SOC estimator is a
+closed-loop mechanism and is thus more robust against noises and
+external disturbances. Finally, test data are collected using a Li ion
+NCA cylindrical cell and comparative results are analysed to verify
+the algorithm's effectiveness.
+The reminder of this paper is organized as follows. Section 2
+presents the battery mathematical description, the LS algorithm
+and the proposed DWRLS scheme for online parameter estimation.
+Section 3 presents a simulation study to validate the performance
+of the proposed DWRLS method for parameter identi ﬁcation of a
+system that consists of both the FD and SD. Then the experimental
+test setup, the data acquisition and the of ﬂine model training re-
+sults are introduced in Section 4. The recursive implementation of
+the DWRLS method for realtime parameter and SOC estimation, in
+comparison with the LS-based method, is demonstrated in Section
+5. Concluding remarks and further work are given in Section 6.
+2. Battery ECM formulation
+2.1. ECM
+The battery ECM is given in Fig. 1, wherev; i are the battery ter-
+minal voltage and current, respectively. vj; j ¼ 0; 1; 2 is the over-
+potential voltage across Rj. The battery OCV depends on the SOC,
+i.e., OCV ¼ f ðSOCÞ. The OCV hysteresis is low and therefore negli-
+gible [28,32]. The resistors and capacitors R0; Rj; Cj; j ¼ 1; 2 are the
+time-varying model parameters that need to be identiﬁed. The total
+number of RC networks is regarded as the model order, which is a
+trade-off between model accuracy and complexity. For Li ion bat-
+teries, an ECM with two RC networks is commonly employed
+[13,14,27,29,30,33]. Let t1; t2 be the time constants of the two RC
+networks, and assume that t1 < t2. Herein, R0; R1; C1describe the
+battery resistance, charger transfer and double layer effect, which
+occur on a time scale of less than 10 s, and can be considered as the
+FD part. Meanwhile, R2; C2are used to capture the battery diffusion
+effect occurring at a much larger time scale, typically around tens or
+hundreds of seconds, and therefore considered as the SD part
+[29,30]. The battery OCV also belongs to the battery SD since the
+battery SOC usually changes slowly within a standard drive cycle,
+that for example, represents urban vehicle driving [13,28,33].
+Fig. 1. Battery equivalent circuit model.
+C. Zhang et al. / Energy 142 (2018) 678 e688 679
+2.2. Problem formulation
+It is assumed that the current between samples is constant. The
+dynamics of one RC network can be then given as follows:
+vjðk þ 1Þ¼ ajvjðkÞþ bjIðkÞ; j ¼ 1; 2 (1)
+where
+aj ¼ exp
+/C0
+/C0 Ts
+/C14
+tj
+/C1
+bj ¼ Rj
+/C0
+1 /C0 aj
+/C1
+vjðkÞ stands for vj at the k-th sampling time, and Ts is the sampling
+interval in seconds (s).
+Let z be the time shift operator, i.e., zxðkÞ¼ xðk þ 1Þ. The z-
+transfer function from current i to vj can then be expressed as
+vjðkÞ¼ bj
+z /C0 aj
+iðkÞ
+The battery SOC is obtained using the widely employed coulomb
+counting method [5,33,34],
+SOCðk þ 1Þ¼ SOCðkÞþ Ts
+Cn
+IðkÞ (2)
+where Cnis the battery nominal capacity in Ampere-second (As).
+Next, the model terminal voltage can be expressed as,
+vðkÞ¼ OCVðkÞþ v0ðkÞþ v1ðkÞþ v2ðkÞ (3)
+Let vs be the sum of the over-potentials across the resistors, one
+has:vs ¼ v0 þ v1 þ v2 ¼ v /C0 OCV. If the battery SOC (and thus the
+OCV) is unknown, an estimated OCV value can be used instead, as
+follows,
+vs ¼ v /C0 OCV ¼ v /C0 f
+/C16
+SOC
+/C17
+(4)
+where OCV and SOC are the estimated battery OCV and SOC,
+respectively.
+Combining Eq (3) and Eq (4) leads to,
+1
+nC + SOC 
+Correct OCV vs SOC +
++
++
+2
+2
+1 a
+za
+1
+1
+1 a
+za
+DS WR
+LS
+WR
+LS
+0
+1
+2
+1
+2
+0
+R
+R
+R
+C
+C
+c
+i
+i
+v
+0v
+1v
+2v
+sv
+OCVSOC 0c
+2y
+1y
+2, fy
+2, fi
+1, fi
+1, fy
+2
+1
+Parameter update
++
+-
++
+-
+-
++
+-
++
++
+0
+11
+22
+R
+RC
+RC
+Fig. 2. Recursive implementation of the DWRLS method. The ‘SOC correct ’ block stands for the SOC estimation algorithm given in Section 2.5. The ‘DS’ block stands for ‘down-
+sample’.
+Fig. 3. Circuit model for the simulation study.
+0 1000 2000 3000 4000 5000
+time / s
+-10
+0
+10
+current / A
+-0.5
+0
+0.5
+voltage / V
+200 300 400 500 600 700 800
+time / s
+-10
+0
+10
+current / A
+-0.5
+0
+0.5
+voltage/V
+(a)                                                                                (b) 
+Fig. 4. The test data for the simulation study: (a) voltage vs and current i; (b) a zoomed in segment.
+C. Zhang et al. / Energy 142 (2018) 678 e688680
+vs ¼ v0 þ v1 þ v2 þ
+/C16
+OCV /C0 OCV
+/C17
+(5)
+Let c0 ¼ OCV /C0 OCV ¼ f ðSOCÞ/C0 f ðSOCÞ as the OCV estimation
+error, which depends on the SOC estimation error and the slope of
+the OCV-SOC curve. If the battery SOC and SOC are both updated
+using Eq (2), the SOC estimation error will keep constant as the
+initial error, therefore c0 depends on the slope of the OCV vs SOC
+curve alone and is slowly varying, as shown in Fig. 9 . From Eq (5),
+we therefore get:
+vsðkÞ ¼ v1ðkÞ þ v2ðkÞ þ R0iðkÞ þ c0
+¼
+/C18
+R0 þ b1
+z /C0 a1
+þ b2
+z /C0 a2
+/C19
+iðkÞþ c0
+¼ qn;2z2 þ qn;1z þ qn;0
+z2 /C0 qd;1z /C0 qd;0
+iðkÞþ c0
+(6)
+where
+qd;1 ¼ a1 þ a2
+qd;2 ¼ a1a2
+qn;2 ¼ R0
+qn;1 ¼ b1 þ b2 /C0 R0ða1 þ a2Þ
+qn;0 ¼ R0a1a2 /C0 a2b1 /C0 a1b2
+2.3. LS and RLS formulation
+This section presents the established LS and RLS mechanisms for
+battery ECM parameter estimation. The regression form of Eq (6)
+can be expressed as:
+z2vsðkÞ¼ qd;1zvsðkÞþqd;0vsðkÞþqn;2z2iðkÞþqn;1ziðkÞþqn;0iðkÞ
+þ
+/C0
+1/C0 qd;1 /C0 qd;0
+/C1
+c0
+(7)
+0 500 1000 1500 2000 2500 3000 3500 4000 4500 500 0
+time /s
+-0.03
+-0.02
+-0.01
+0
+0.01
+0.02
+modelling error / V LS
+DWRLS
+Fig. 5. Simulated modelling error using the LS method and the DWRLS method.
+-35
+-30
+-25
+-20Magnitude (dB)
+10-4 10-3 10-2 10-1 100
+-30
+-20
+-10
+0
+Phase (deg)
+true
+LS
+SWRLS
+g
+Fig. 6. Bode plots of the estimated models using the LS and DWRLS method (x-axis unit: rad/s).
+0 100 200 300 400 500 600 700 80 0
+-5
+0
+5
+current / A
+0 100 200 300 400 500 600 700 80 0time /s
+3.5
+3.6
+3.7
+3.8
+3.9voltage / V
+Fig. 7. Battery motorway drive cycle test starting from 75% to 60% SOC at 25. /C14 C.
+C. Zhang et al. / Energy 142 (2018) 678 e688 681
+Let
+yðkÞ¼ z2vsðkÞ;
+q ¼
+/C2
+qd;1; qd;0; qn;2; qn;1; qn;0;
+/C0
+1 /C0 qd;1 /C0 qd;0
+/C1
+c0
+/C3 T ;
+fðkÞ¼
+h
+zvsðkÞ; vsðkÞ; z2iðkÞ; ziðkÞ; iðkÞ; 1
+iT
+Eq. (7) can be re-expressed as
+yðkÞ¼ qT fðkÞ (8)
+The model parameters are obtained by minimizing a cost
+function of
+JLS ¼
+Xh
+yðkÞ /C0 qT fðkÞ
+i2
+(9)
+Eq (8) is the linear-in-the-parameter formulation, and therefore
+after obtaining i; vs (and thus yðkÞ; fðkÞ), the unknown parameter q
+can be obtained using LS algorithm in Eq (10), or recursively using
+RLS or WRLS algorithm in Eq (1 1).
+q ¼
+/C16
+FT F
+/C17 /C0 1
+FT Y
+F ¼½ fð1Þ; fð2Þ; …; fðNÞ/C138 T ;
+Y ¼½ yð1Þ; yð2Þ; …; yðNÞ/C138 T
+(10)
+whereN is the total number of data samples.
+eðk þ 1Þ¼ yðk þ 1Þ/C0 fT ðk þ 1ÞqðtÞ
+qðk þ 1Þ¼ qðkÞþ Pðk þ 1Þfðk þ 1Þeðk þ 1Þ
+Pðk þ 1Þ¼ PðkÞ/C0 PðkÞfðk þ 1ÞfT ðk þ 1ÞPðkÞ
+1 þ fT ðk þ 1ÞPðkÞfðk þ 1Þ
+þ Q0
+(11)
+Q0 is a small positive-de ﬁnite matrix introduced to prevent the
+covariance matrix Pfrom keeping decreasing and eventually losing
+the parameter tracking capability. The initial parameters qð0Þ; Pð0Þ
+can be obtained using priori knowledge, or by performing a block-
+wise LS estimation as discussed within [35,36].
+The implementation procedure of the LS method in Eq (10) is
+summarized in Table 1 for completeness.
+The implementation procedure of the RLS method in Eq (1 1)is
+well documented in a number of research publications and
+educational texts, such as [35,36], and is therefore not discussed in
+detail here.
+2.4. DWRLS method
+The previous section presents the classical LS-based method for
+battery ECM parameter estimation. The challenge is that the algo-
+rithm's numerical stability and parameter convergence depend on
+the selection of the sampling interval [25,27,37]. Since the battery
+system consists of both FD and SD, if the sampling rate is high, the
+pole of the SD part lies closely to the unit circle, and its estimation
+may even become unstable in the presence of system uncertainties
+and noises. On the other hand, if the sampling rate is too slow, the
+FD part can be lost due to aliasing. For example, suppose t1 ¼ 10s
+and t2 ¼ 400s in the ECM in Fig. 1. As a rule of thumb Ts=t1 < 0:5,
+0 2000 4000 6000 8000 10000 12000 14000
+time /s
+-5
+0
+5
+current / A
+0 2000 4000 6000 8000 10000 12000 14000
+2.5
+3
+3.5
+4
+voltage / V
+Fig. 8. Battery urban drive cycle test starting from 75% SOC at 25. /C14 C.
+0 1 02 03 04 05 06 07 08 09 0 1 0 0
+SOC /%
+3.2
+3.4
+3.6
+3.8
+4
+4.2OCV /V
+Fig. 9. Battery OCV versus SOC.
+C. Zhang et al. / Energy 142 (2018) 678 e688682
+such that Ts < 5s. Suppose Ts ¼ 2s, the SD pole is then located close
+to the unit circle, i.e., a2 ¼ expð/C0 Ts=t2Þ¼ 0:995. Further, when the
+FD and SD parameter are together estimated using the LS method,
+the estimation is normally biased towards the high frequency
+range. This leads to poor accuracy within the low frequency
+domain. The LS method is thus also sensitive to high frequency
+noise and disturbances [27e29]. As illustrated in Ref. [27], the
+modelling performance of the discrete time domain RLS method
+decreases with fast sampling data. The DWRLS method is proposed
+here to address these problems.
+Consider the objective function for the ECM model parameter
+optimization as
+J ¼
+X
+k
+e2ðkÞ (12)
+where eðkÞ¼ vs /C0 v0ðkÞ/C0 v1ðkÞ/C0 v2ðkÞ/C0 c0is the modelling error.
+Let
+y1ðkÞ¼ vsðkÞ/C0 v2ðkÞ
+y2ðkÞ¼ vsðkÞ/C0 v0ðkÞ/C0 v1ðkÞ (13)
+where y1corresponds to the battery FD voltage
+(i.e.y1 ¼ v0 þ v1 þ c0), because the SD voltage v2 is subtracted from
+the total model output vs. Similarly, y2represents the battery SD
+voltage. The cost function in Eq (12) is re-expressed as follows,
+J ¼
+X
+½y1ðkÞ/C0 v0 /C0 v1ðkÞ/C0 c0/C138 2bJ1;
+J ¼
+X
+½y2ðkÞ/C0 v2ðkÞ/C0 c0/C138 2bJ2
+(14)
+Here, J1 andJ2 are the sub-cost functions corresponding to the
+battery FD and SD, respectively. The minimization processes of J1
+and J2 can be iteratively implemented. The key concept is that
+whenR0; R1; C1 are estimated by minimizing J1, R2; C2 are assumed
+to be known to calculate v2 using Eq (1) and then subtract it fromvs.
+Similarly, when estimating R2; C2; c0 by minimizingJ2, keep R0; R1C1
+constant. The simulated over-potentials across the resistors, i.e.,
+v0; v1; v2, are used to link the two identi ﬁcation parts of the method
+together to form the complete model.
+For the SD identi ﬁcation, the objective function is:
+J2 ¼
+X
+½y2ðkÞ/C0 v2ðkÞ/C0 c0/C138 2 ¼
+X /C20
+y2ðkÞ/C0 b2
+z /C0 a2
+iðkÞ/C0 c0
+/C21 2
+(15)
+The LS algorithm presented in Section 2.3 can be used to ﬁnd the
+parameters a2; b2; c0 in Eq (15) by minimizing:
+J2 ¼
+X
+½zy2ðkÞ/C0 a2y2ðkÞ/C0 b2iðkÞ/C0ð 1 /C0 a2Þc0/C138 2
+¼
+X h
+p2ðkÞ/C0 qT
+2f2ðkÞ
+i2
+where p2ðkÞ¼ zy2ðkÞ,f2ðkÞ¼½ y2ðkÞ; iðkÞ; 1/C138 T and
+q2 ¼½ a2; b2; ð1 /C0 a2Þc0/C138 T
+However, note that
+J2 ¼
+X
+ðz /C0 a2Þ2
+/C20
+y2ðkÞ/C0 b2
+z /C0 a2
+iðkÞ/C0 c0
+/C21 2
+¼ð z /C0 a2Þ2J2 (16)
+Since ðz /C0 a2Þ2 is a high pass ﬁler, the parameter estimation by
+minimizing J2 will be biased towards the high frequency domain. To
+avoid this, the test data can be pre-processed using a low pass ﬁlter
+of the form 1/C0 a2
+z/C0 a2
+,
+y2;f ðkÞ¼ 1 /C0 a2
+z /C0 a2
+y2ðkÞ; i:e:; y2;f ðk þ 1Þ¼ a2y2;f ðkÞþð 1 /C0 a2Þy2ðkÞ
+i2;f ðkÞ¼ 1 /C0 a2
+z /C0 a2
+iðkÞ; i:e:; i2;f ðk þ 1Þ¼ a2i2;f ðkÞþð 1 /C0 a2ÞiðkÞ
+(17)
+A new objective function given below can be then minimized to
+obtain the SD parameters,
+J2;f ¼
+X h
+zy2;f ðkÞ/C0 a2y2;f ðkÞ/C0 b2i2;f ðkÞ/C0 c0
+i2
+¼
+X h
+p2;f ðkÞ/C0 qT
+2;f f2;f ðkÞ
+i2
+(18)
+wherep2;f ðkÞ¼ zy2;f ðkÞ, f2;f ðkÞ¼½ y2;f ðkÞ; i2;f ðkÞ; 1/C138 T and q2;f ¼
+½a2; b2; ð1 /C0 a2Þc0/C138 T
+The same method can be applied for the FD identiﬁcation, i.e., by
+minimizing J1 to obtaina1; b1; R0,
+y1;f ðkÞ¼ 1 /C0 a1
+z /C0 a1
+y1ðkÞ; i:e:; y1;f ðk þ 1Þ¼ a1y1;f ðkÞþð 1 /C0 a1Þy1ðkÞ
+i1;f ðkÞ¼ 1 /C0 a1
+z /C0 a1
+iðkÞ; i:e:; i1;f ðk þ 1Þ¼ a1i1;f ðkÞþð 1 /C0 a1ÞiðkÞ
+(19)
+J1;f ¼
+X h
+zy1;f ðkÞ/C0 a1y1;f ðkÞ/C0 R0ðz /C0 a1Þi1;f /C0 b1i1;f ðkÞ/C0 c0
+i2
+¼
+X h
+p1;f ðkÞ/C0 qT
+1;f f1;f ðkÞ
+i2
+(20)
+where p1;f ðkÞ¼ zy1;f ðkÞ, f1;f ðkÞ¼½ y1;f ðkÞ; zi1;f ðkÞ; i1;f ðkÞ; 1/C138 T
+andq1;f ¼½ a1; R0; b1 /C0 a1R0; ð1 /C0 a1Þc0/C138 T
+The ﬁlters designed in Eqs (17) and (19) are based on the
+approximate maximum likelihood principle detailed in
+Refs. [38,39], which is a simple and useful model identi ﬁcation
+technique. Another beneﬁt of using this kind of ﬁlters is to suppress
+the high frequency disturbances due to noises or un-modelled
+dynamics. Further, it can be shown that J2;f ¼ J2, and J1;f ¼ J1.
+Therefore, although the battery FD and SD parts are identi ﬁed
+separately, the original model training criteria, i.e., the cost function
+in Eq (12), is unmodi ﬁed, since J1 ¼ J2 ¼ J. The overall modelling
+accuracy can thus be secured when combining the SD and FD parts
+to form the complete model. Finally, since 1/C0 a2
+z/C0 a2
+is a low pass ﬁlter
+and J2;f corresponds to the battery SD, the ﬁltered data y2;f ; i2;f can
+be down-sampled to reduce the computational complexity and to
+improve the numerical stability without loss of information [29].
+Eventually, the decoupling between the battery FD and SD
+voltage responses is performed in a twofold manner, i.e., the sub-
+traction separation in Eq (13) and the low pass ﬁltering in Eq (17).
+Another useful technique to further reduce the interference be-
+tween the SD and FD parts is to use a short data length for the FD
+Table 1
+The implementation procedure of the LS method.
+Step 1: collect battery terminal voltage and current measurements
+vðkÞ; iðkÞ; k ¼ 0 : N
+Step 2: estimate initial SOC, i.e., SOCð0Þ
+Step 3: calculate SOCðkÞ; k ¼ 1 : N using Eq (2)
+Step 4: obtain OCVðkÞ using SOCðkÞ.
+Step 5: calculate vsðkÞ in Eq (4), and thus obtain yðkÞ; fðkÞ
+Step 6: calculate q (and thus the model parameters aj ; bj; R0 ; c0 ) using Eq (10)
+C. Zhang et al. / Energy 142 (2018) 678 e688 683
+estimation, since a short data length can still consist of suf ﬁcient
+information about the FD part, while the SD part is not fully excited.
+However, there is an implementation issue with this ﬁlter
+design, since a1; a2 are unknown before the identiﬁcation process is
+conducted. To overcome this problem, the algorithm can be
+executed in an iterative manner [38]. For each iteration, the a1; a2
+obtained from the previous iteration can be used to construct the
+ﬁlters. The parameter initialization can be realized using prior
+knowledge, or a look-up table trained of ﬂine.
+The implementation procedure of the DWRLS method for ofﬂine
+model training by processing batch data is given in Table 2.
+2.5. SOC estimation
+Note that c0ðkÞ¼ OCVðkÞ/C0 OCVðkÞ. Therefore, when c0 is esti-
+mated, the battery OCV and SOC estimation can be compensated as
+follows
+OCVcorrection ¼ OCVðkÞþ ccorrection
+SOCcorrection ¼ f /C0 1
+/C16
+OCVcorrection
+/C17 (21)
+where f /C0 1 stands for the inverse of f ðSOCÞ in (4) and obtained from
+the battery OCV vs SOC relationship, and
+ccorrection ¼ 1
+N1
+XN1
+L¼1
+c0ðk /C0 L þ 1Þ
+As discussed within [28], there is no need to correct the SOC
+estimation at every sample, since it generally takes some time for
+the estimates to converge to stable values. Therefore, this SOC
+correction approach is executed every N1 samples to avoid esti-
+mation ﬂuctuations. Note that this SOC estimation only affects the
+c0in the parameter estimation process. Therefore, reset c0ðkÞ to
+c0ðkÞ/C0 ccorrection in the estimated qT
+1;f ; qT
+2;f after each SOC correction,
+and the rest model parameters R0; aj; bj will then remain unaffected
+[28].
+The DWRLS method for both parameter and SOC estimation can
+be implemented in a recursive manner for online applications, as
+illustrated in Fig. 2.
+3. Simulation study
+This section presents a simulation study to show the ef ﬁcacy of
+the proposed DWRLS method for the of ﬂine identiﬁcation of a 2nd
+order linear system which consists of both FD and SD.
+3.1. Simulation set up
+Consider only the RC networks and R0 in the ECM as the system
+to be identiﬁed, as shown in Fig. 3. The system parameters are given
+below in Eq (22),
+t1 ¼ 10s; t2 ¼ 400s; R1 ¼ 0:02U; R2 ¼ 0:03U; R0 ¼ 0:03U
+(22)
+The load current simulates the hybrid pulse power test, which is
+widely used for battery characterization [14,27]. The current i and
+the over-potential vsare shown in Fig. 4 (a). The current pro ﬁle
+consists of six pulse current tests, followed by a 360 s constant
+current (2 A) discharge and a rest period for approximately 1 h.
+Each pulse current test consists of 10-s charging and 10 s dis-
+charging, and the pulse current levels are 1, 2, 4, 6, 8 and 10 A, in
+sequence. The rest period between any two consecutive pulses is
+40 s. Fig. 4(b) shows a zoomed-in segment of the load current. The
+sampling time is 1 s.
+The current and voltage signals are corrupted with white
+Gaussian noise, and the root mean square (RMS) of the noise values
+are 10 mA and 2 mV, respectively, representing the low noise level.
+The two parameter identi ﬁcation methods, the LS and DWRLS
+represented in Tables 1 and 2 respectively, are selected for the
+comparative study. For the DWRLS approach, the total iteration
+number is set to 3, as it will be shown in the following section that
+the parameter estimation has converged at the second iteration.
+The initial model parameters are set as
+t1 ¼ 20s; t2 ¼ 200s; R1 ¼ 0:01U; R2 ¼ 0:01U; R0 ¼ 0:02U for
+the DWRLS method. Note that for the SD identi ﬁcation, all the 5000
+sample data set is used; while for the FD identi ﬁcation, a smaller
+data set, i.e., 400 data samples starting from the ﬁrst current pulse,
+is used to further decrease the interferences from the SD part, as
+explained in Section 2.4.
+3.2. Simulation results and discussion
+The parameters obtained using the LS method are
+t1 ¼ 16:6s; a2 ¼/C0 0:44; R1 ¼ 0:0298U; R2 ¼ 0:00022U; R0
+¼ 0:03U
+Because a2 ¼/C0 0:44and a2 ¼ expð/C0 Ts=t2Þ; the second RC
+network time constant t2 becomes an imaginable number. Further,
+because R2is much smaller than R0; R1, the voltage contribution
+from the second RC network is also negligible. The estimated pa-
+rameters using the LS algorithm diverge away from the true pa-
+rameters in Eq (22), and the 2nd RC network of the system (i.e., the
+SD part) is not captured.
+The parameter identiﬁcation results using the DWRLS approach
+at each iteration are given in Table 3. It can be seen that the esti-
+mated parameters using the DWRLS method converge toward the
+true parameters in Eq (22) and are signiﬁcantly better than those of
+the LS method. Table 3 also shows that the DWRLS algorithm can
+give the good estimation directly after the ﬁrst iteration from the
+incorrect initial estimates. This therefore can validate the conver-
+gence rate of the proposed technique.
+Next, the modelling errors ( eðkÞ deﬁned in Eq (12)) using the LS
+and DWRLS schemes are described in Fig. 5 . As it can be seen, the
+DWRLS mechanism achieves better modelling accuracy than the
+one obtained by using the LS approach. The RMS errors (RMSEs) areTable 2
+The implementation procedure of the DWRLS method for of ﬂine model training.
+Initializea1 ; b1 ; a2 ; b2 ; R0 ; SOCð0Þ
+For each iteration
+Step 1 calculate SOCðkÞ; OCVðkÞand then vs ðkÞ; k ¼ 1 : N
+Step 2 calculate v1 ðkÞ; v2 ðkÞ; k ¼ 1 : Nusing Eq (1)
+Step 3 calculate y1 ðkÞ; y2 ðkÞ; k ¼ 1 : Nusing Eq (13)
+Step 4 calculate y1;f ðkÞ; y2;f ðkÞ; i1;f ðkÞ; i2;f ðkÞ; k ¼ 1 : N using Eq (17) and Eq
+(19)
+Step 5 estimate qT
+2;f in Eq (18) and qT
+1;f in Eq (20), using the LS method
+Table 3
+The parameter identi ﬁcation results using the DWRLS method at each iteration.
+Iteration No. t1 t2 R1 R2 R0
+Initialization 20 200 0.01 0.01 0.02
+Iteration 1 10.55 425 0.0206 0.0301 0.030
+Iteration 2 10.20 406 0.0201 0.0300 0.030
+Iteration 3 10.16 404 0.0202 0.0300 0.030
+C. Zhang et al. / Energy 142 (2018) 678 e688684
+2 mV and 7.9 mV, respectively. The model identi ﬁed by the LS
+method causes the large transient errors as the current changes and
+the large bias error when the current keeps constant (i.e., low
+frequency excitation signal) due to the model discrepancy. A Bode
+plot of the two identi ﬁed models are shown in Fig. 6, which shows
+that both the LS and DWRLS methods can achieve high accuracy at
+high frequency range ( >0.5 rad/s). However, the LS estimation
+shows the noticeable bias error in the low frequency domain
+(<0.06 rad/s), while the DWRLS estimation still maintains the high
+accuracy.
+4. Of ﬂine ECM parameter identi ﬁcation
+This section presents a comparative study between the classical
+LS method and the DWRLS method for of ﬂine ECM parameter
+identiﬁcation using experimental test data.
+4.1. Experimental test setup
+Experimental data have been collected from a commercial cy-
+lindrical 3 A h 18650-type cell which comprises graphite negative
+electrode and a LiNiCoAlO 2 positive electrode. A Bitrode battery
+cycler is used with a thermal chamber for maintaining the ambient
+temperature constant at 25 /C14 C. First, the battery is fully charged by
+the constant-current, -constant-voltage (CC-CV) method, and then
+discharged at 1C rate to 75% SOC, followed by a rest period of 2 h.
+Finally, a drive cycle test that simulates a motorway driving sce-
+nario is applied until the battery reaches the cut-off voltage at 2.5 V.
+The test data from 75% to 60% SOC are used in this section as pre-
+sented in Fig. 7. The sampling time is 1 s.
+Another drive cycle test is implemented in the same way, which
+simulates an urban driving scenario starting from 75% SOC until
+end of discharge, as depicted in Fig. 8.
+The battery OCV versus SOC relationship is characterized
+experimentally [32], as given in Fig. 9 .
+4.2. Of ﬂine model training results and discussion
+The motorway-drive test data in Fig. 7 are used here for of ﬂine
+model estimation. Since SOC does not show a signi ﬁcant change
+and the temperature is kept constant, the model parameters are
+assumed to keep constant [13]. In this section, the battery SOC is
+assumed to be known. Therefore, the OCV can be obtained using
+the OCV-SOC relationship de ﬁned in Fig. 9 , and then subtracted
+from the battery terminal voltage response. Similar to Section 3.2,
+for the DWRLS method, all the data samples are used for the SD part
+identiﬁcation; while for the FD part identiﬁcation, only the ﬁrst 400
+data samples are used.
+The identi ﬁed model parameters by the LS method are given
+below.
+0 100 200 300 400 500 600 700 800
+time /s
+-0.02
+-0.01
+0
+0.01
+0.02
+modelling error / V DWRLS
+LS
+Fig. 10. Modelling error comparison between LS and DWRLS method for of ﬂine model estimation.
+0 5000 10000
+15
+20
+25
+30
+0 5000 10000
+-0.4
+-0.2
+0
+0.2
+0.4
+0 5000 1000 0
+0.01
+0.015
+0.02
+0.025
+0 5000 10000
+0
+0.5
+1
+1.5 10-3
+0 5000 10000
+0.035
+0.036
+0.037
+0.038
+0.039
+a2 R1
+R2 R0
+1
+(a)
+0 10000
+13
+14
+15
+16
+17
+0 10000
+490
+495
+500
+505
+0 10000
+0.005
+0.01
+0.015
+0.02
+0 10000
+0.035
+0.04
+0.045
+0.05
+0.055
+0 10000
+0.034
+0.036
+0.038
+0.04
+1 2
+R1
+R2
+R0
+(b)
+Fig. 1 1. The parameter estimation results using the LS method (a) and the DWRLS
+method (b). The x-axis unit is time in seconds. For the LS results, a2 is given instead of
+t2 , since when a2 < 0, t2 becomes a complex number.
+C. Zhang et al. / Energy 142 (2018) 678 e688 685
+t1 ¼ 34:5s; a2 ¼/C0 0:023; R1 ¼ 0:0252U; R2 ¼ 0:00037U; R0
+¼ 0:0355U
+Note that the model has a negative pole a2, corresponding to an
+imaginary time constant of the 2nd RC networks. Once again
+similar to the LS results in Section 3.2, R2 is very small, and the
+voltage contributions of the 2nd RC networks v2 is negligible
+compared withv0; v1.
+The identiﬁed model parameters using the DWRLS method are
+t1 ¼ 19s; t2 ¼ 423s; R1 ¼ 0:0132U; R2 ¼ 0:0157U; R0
+¼ 0:0354U
+The modelling errors using the two schemes are compared in
+Fig. 10 . The results indicate that the LS method shows biased
+modelling error, and its performance is much less ef ﬁcient than the
+DWRLS method. The modelling RMSEs are in turn 9.4 mV and
+1.9 mV. Therefore, it can be concluded that the proposed technique
+can improve the modelling accuracy. Further, from the two iden-
+tiﬁed model parameter sets, it can also be observed that the DWRLS
+model covers a wider timescale (the larger RC time constant is
+423 s) than the LS one (the larger RC time constant is 34.5 s).
+This section gives similar parameter estimation results to the
+simulation study in Section 3.2. Therefore, we can reasonably assert
+that similar conclusions apply here, i.e., that the identi ﬁed model
+using the DWRLS method offers better modelling accuracy in the
+low frequency range than the LS method.
+5. Realtime parameter and SOC estimation
+This section presents a comparative study of the realtime
+parameter and SOC estimation results using the recursive imple-
+mentation of the LS and DWRLS schemes. The urban drive cycle test
+data in Fig. 8 from 75% to 25% SOC are used here. The test data
+below 25% SOC are discarded in order to circumvent the nonlinear
+battery dynamics in the low SOC range. The estimated initial SOC is
+assumed to be 65%, with a 10% error.
+The parameter estimation results using the LS and DWRLS
+methods are shown in Fig. 1 1. As it can be seen, both the two
+techniques show noticeable parameter variations as the SOC de-
+creases from 75% to 25% SOC. The ECM parameter evolution can
+affect the battery terminal voltage dynamics and the power ca-
+pacity (due to the perceived resistance changes), which needs to be
+taken into consideration for online battery management. Note also
+that the results of the two methods both indicate that the battery
+internal resistance is relatively lower at around 50% SOC. Moreover,
+since the twoR0estimations are similar, it can be concluded that the
+both LS and DWRLS methods can estimate accurately the series
+resistanceR0.
+0 1000 2000 3000 4000 5000 6000 7000 8000 900 0
+time /s
+-0.015
+-0.01
+-0.005
+0
+0.005
+0.01
+Modelling error / V
+LS
+DWRLS
+Fig. 12. Modelling error using the LS and DWRLS methods.
+0 5000 10000
+time /s
+10
+20
+30
+40
+50
+60
+70
+80SOC estimation
+LS
+DWRLS
+True
+0 5000 10000
+time /s
+-2
+-1
+0
+1
+2
+3
+4
+5
+6
+7
+8
+SOC estimation error
+LS
+DWRLS
+0 5000 1000 0
+time /s
+-0.05
+-0.04
+-0.03
+-0.02
+-0.01
+0
+0.01
+0.02
+Vsestimation error / V
+LS
+DWRLS
+(a)                                                     (b)                                                 (c)   
+Fig. 13. SOC estimation results.
+C. Zhang et al. / Energy 142 (2018) 678 e688686
+The two RC network time constants obtained using the DWRLS
+algorithm are widely separated in timescale, and the two resistors
+are both noticeable. On the other hand, the second RC network
+identiﬁed by the LS algorithm only corresponds to high frequency
+ﬂuctuations, and its voltage contribution to the total model output
+is negligible. Furthermore, the DWRLS model covers a wider
+timescale than the LS model. The parameter estimation results of
+the LS method, i.e., the two pole locations, are similar to those
+presented in Section 3.2 and Section 4.2.
+The modelling errors are analysed in Fig. 12. As it can be seen,
+the DWRLS model shows the better accuracy over the LS model. The
+modelling RMSEs are 2.8 mV and 4.4 mV, respectively. The low
+modelling errors come as no surprise because of the adaptive na-
+ture of the two algorithms, which can keep track of the model
+parameter evolutions as the SOC decreases to improve the
+modelling accuracy.
+Next, the SOC estimation using the comparative tools is carried
+out and the results are plotted in Fig. 13. As it can be seen, the SOC
+estimation accuracy of the DWRLS method is remarkably better
+than that of the LS method. The SOC RMSEs are 0.86% and 2.98%,
+respectively. This result can be explained by the difference of the-
+vsestimations error, i.e., vsðtrueÞ/C0 vsðestimationÞ, using the two
+methods, as shown in Fig. 13(c). vsðtrueÞ is calculated by subtracting
+the true OCV from the measured voltage, i.e., vsðtrueÞ¼ v /C0 OCV,
+and vsðestimationÞis a sum of the model's simulated over-potentials
+across the resistors, i.e., vsðestimationÞ¼ v0 þ v1 þ v2. During the
+charging/discharging operation, the battery OCV is not measurable,
+and can only be estimated by subtracting the over-potential vs
+(which depends on the model parameter identi ﬁcation) from the
+measured battery terminal voltage, i.e., OCV ¼ v /C0 vs. Therefore, the
+better parameter identiﬁcation scheme can improve the estimation
+accuracy of the over-potential vs, and subsequently improve the
+OCV and SOC prediction performances. As depicted in Fig. 13(c), the
+vs estimation error using the LS algorithm is higher than that of the
+DWRLS algorithm. Subsequently, the OCV estimation error of the LS
+model is also higher, leading to the larger SOC bias error as depicted
+in Fig. 13(b). Based on the conclusions from Section 3 and Section 4,
+we can reasonably assert that this poor SOC estimation perfor-
+mance of the LS algorithm is caused by the model discrepancy in
+the low frequency domain, and this problem can be overcome by
+the proposed DWRLS technique.
+6. Conclusion
+6.1. Discussion and future work
+Previous work in the literature has already established the ne-
+cessity of realtime estimation of the time-varying ECM parameters
+in order to improve the SOC prediction accuracy [18,20,24,40]. The
+results and analysis presented in the previous sections in this paper
+have already demonstrated the superiority of the proposed method
+over the conventional LS based approaches as the benchmark.
+Another advantage of this DWRLS method, compared against the
+methods combining RLS and KF as in Refs. [20,24], is that the
+proposed algorithm does not require an additional full-order
+observer (i.e., KF) for SOC estimation. The SOC estimation accu-
+racy of the DWRLS method is about 1%, which is comparable with
+the previously reported results in Refs. [20,24,33].
+The proposed DWRLS method for adaptive ECM parameter
+identiﬁcation considers only the estimation of the resistance and
+capacitance values, and depends on the knowledge of the battery
+OCV vs SOC relationship, which can be characterized of ﬂine
+experimentally [32]. However, the OCV-SOC relationship also
+changes with temperature and ageing [41,42]. The temperature
+effect on battery OCV is negligible for the Li ion NCA cell used in this
+paper (the OCV varies less than 5 mV when the temperature de-
+creases from 25 /C14 C to 0/C14 C according to our test results). Ageing can
+also cause OCV variations, which need to be taken into consider-
+ation in order to further improve SOC estimation accuracy. A
+scheme to update the OCV-SOC relationship as the battery ages is
+needed, and will be investigated in future work.
+6.2. Concluding remarks
+ECMs are widely used in battery management system applica-
+tions, and the model parameters depend on the operation condi-
+tions. Adaptive parameter estimation techniques can be used to
+track the parameter evolution and to improve the modelling ac-
+curacy. In addition, the battery system consisting of both fast and
+slow dynamics causes numerical problems to the traditional LS-
+based method for model parameter estimation. In order to over-
+come these problems, this paper proposes the novel DWRLS
+method which estimates separately the model fast and slow dy-
+namics. SOC estimation is also achieved based on the ECM
+parameter estimation results, without the use of an additional full-
+order observer. Both the simulation and experimental studies have
+been conducted to validate the superiority of the proposed DWRLS
+method over the traditional LS algorithms in terms of modelling
+and state estimation accuracy. The results con ﬁrm convincingly
+that the proposed approach possesses enough capability for both
+ofﬂine model training, and online parameter and battery SOC
+estimation with high accuracy. This designed technique therefore
+has the high potential for realtime battery management applica-
+tions in electric vehicles and other battery energy storage systems.
+Acknowledgements
+The research presented within this paper was undertaken as
+part of the ELEVATE project (EP/M009394/1) funded by the Engi-
+neering and Physical Sciences Research Council (EPSRC), in part-
+nership with the WMG High Value Manufacturing (HVM) Catapult,
+funded by Innovate UK.
+References
+[1] Thackeray MM, Wolverton C, Isaacs ED. Electrical energy storage for trans-
+portationdapproaching the limits of, and going beyond, lithium-ion batteries.
+Energy & Environ Sci 2012;5(7):7854 e63.
+[2] Divya K, Østergaard J. Battery energy storage technology for power system-
+sdan overview. Electr Power Syst Res 2009;79(4):511 e20.
+[3] Zhang C, Li K, McLoone S, Yang Z. Battery modelling methods for electric
+vehicles-A review. In: European control conference (ECC). IEEE; 2014.
+p. 2673 e8.
+[4] Plett GL. Sigma-point Kalman ﬁltering for battery management systems of
+LiPB-based HEV battery packs: Part 2: simultaneous state and parameter
+estimation. J power sources 2006;161(2):1369 e84.
+[5] Plett GL. Extended Kalman ﬁltering for battery management systems of LiPB-
+based HEV battery packs: Part 3. State and parameter estimation. J Power
+sources 2004;134(2):277 e92.
+[6] Xia B, Chen C, Tian Y, Wang M, Sun W, Xu Z. State of charge estimation of
+lithium-ion batteries based on an improved parameter identi ﬁcation method.
+Energy 2015;90:1426 e34.
+[7] Bruen T, Marco J. Modelling and experimental evaluation of parallel connected
+lithium ion cells for an electric vehicle battery system. J Power Sources
+2016;310:91e101.
+[8] Pastor-Fernandez C, Bruen T, Widanage WD, Gama-Valdez M-A, Marco J.
+A study of cell-to-cell interactions and degradation in parallel strings: impli-
+cations for the battery management system. J Power Sources 2016;329:
+574e85.
+[9] Liu K, Li K, Yang Z, Zhang C, Deng J. An advanced Lithium-ion battery optimal
+charging strategy based on a coupled thermoelectric model. Electrochimica
+Acta 2017;225:330 e44.
+[10] Liu K, Li K, Zhang C. Constrained generalized predictive control of battery
+charging process based on a coupled thermoelectric model. J Power Sources
+2017;347:145e58.
+[11] Li Y, Wang C, Gong J. A combination Kalman ﬁlter approach for State of Charge
+C. Zhang et al. / Energy 142 (2018) 678 e688 687
+estimation of lithium-ion battery considering model uncertainty. Energy
+2016;109:933e46.
+[12] Widanage W, Barai A, Chouchelamane G, Uddin K, McGordon A, Marco J, et al.
+Design and use of multisine signals for Li-ion battery equivalent circuit
+modelling. Part 1: signal design. J Power Sources 2016;324:70 e8.
+[13] Widanage WD, Barai A, Chouchelamane GH, Uddin K, McGordon A, Marco J,
+et al. Design and use of multisine signals for Li-ion battery equivalent circuit
+modelling. Part 2: model estimation. J Power Sources 2016;324:61 e9.
+[14] Zhang C, Li K, Deng J, Song S. Improved realtime state-of-charge estimation of
+LiFePO4 battery based on a novel thermoelectric model. IEEE Trans Industrial
+Electron 2017;64(1):654 e63.
+[15] Zhao X, Cai Y, Yang L, Deng Z, Qiang J. State of charge estimation based on a
+new dual-polarization-resistance model for electric vehicles. Energy
+2017;135:40e52. https://doi.org/10.1016/j.energy.2017.06.094. ISSN 0360-
+5442.
+[16] Zheng F, Jiang J, Sun B, Zhang W, Pecht M. Temperature dependent power
+capability estimation of lithium-ion batteries for hybrid electric vehicles.
+Energy 2016;113:64 e75.
+[17] Chen M, Rincon-Mora GA. Accurate electrical battery model capable of pre-
+dicting runtime and IV performance. IEEE Trans energy Convers 2006;21(2):
+504e11.
+[18] Verbrugge M, Tate E. Adaptive state of charge algorithm for nickel metal
+hydride batteries including hysteresis phenomena. J Power Sources
+2004;126(1):236e49.
+[19] Verbrugge M. Adaptive, multi-parameter battery state estimator with opti-
+mized time-weighting factors. J Appl Electrochem 2007;37(5):605 e16.
+[20] Guo X, Kang L, Yao Y, Huang Z, Li W. Joint estimation of the electric vehicle
+power battery state of charge based on the least squares method and the
+kalman ﬁlter algorithm. Energies 2016;9(2):100 .
+[21] Rahimi-Eichi H, Baronti F, Chow M-Y. Online adaptive parameter identi ﬁca-
+tion and state-of-charge coestimation for lithium-polymer battery cells. IEEE
+Trans Industrial Electron 2014;61(4):2053 e61.
+[22] Xiong R, Sun F, Gong X, Gao C. A data-driven based adaptive state of charge
+estimator of lithium-ion polymer battery used in electric vehicles. Appl En-
+ergy 2014;113:1421 e33.
+[23] Zhang X, Wang Y, Yang D, Chen Z. An on-line estimation of battery pack
+parameters and state-of-charge using dual ﬁlters based on pack model. En-
+ergy 2016;115:219 e29.
+[24] Wei Z, Tseng KJ, Wai N, Lim TM, Skyllas-Kazacos M. Adaptive estimation of
+state of charge and capacity with online identi ﬁed battery model for vana-
+dium redox ﬂow battery. J Power Sources 2016;332:389 e98.
+[25] Garnier H, Wang L, Young PC. Direct identi ﬁcation of continuous-time models
+from sampled data: issues, basic solutions and relevance. Identi ﬁcation of
+continuous-time models from sampled data. Springer; 2008. p. 1 e29.
+[26] Alaoui K, Chaplais F. Two time scale system identi ﬁcation: some asymptotic
+results. Proc European Control Conference, Netherlands. p. 1856 e1861.
+[27] Xia B, Zhao X, De Callafon R, Garnier H, Nguyen T, Mi C. Accurate Lithium-ion
+battery parameter estimation with continuous-time system identi ﬁcation
+methods. Appl Energy 2016;179:426 e36.
+[28] Zhang C, Marco J, Alla ﬁ W, Dinh T, Widanage WD. Online battery electric
+circuit model estimation on continuous-time domain using linear integral
+ﬁlter method. Proc World Acad Sci Eng Technol 2017;4(3):823 .
+[29] Hu Y, Wang YY. Two time-scaled battery model identi ﬁcation with application
+to battery state estimation. IEEE Trans Control Syst Technol 2015;23(3):
+1180e8.
+[30] Dai H, Xu T, Zhu L, Wei X, Sun Z. Adaptive model parameter identi ﬁcation for
+large capacity Li-ion batteries on separated time scales. Appl Energy
+2016;184:119e31.
+[31] Wei Z, Lim TM, Skyllas-Kazacos M, Wai N, Tseng KJ. Online state of charge and
+model parameter co-estimation based on a novel multi-timescale estimator
+for vanadium redox ﬂow battery. Appl Energy 2016;172:169 e79.
+[32] Barai A, Widanage WD, Marco J, McGordon A, Jennings P. A study of the open
+circuit voltage characterization technique and hysteresis assessment of
+lithium-ion cells. J Power Sources 2015;295:99 e107.
+[33] Zhang C, Li K, Pei L, Zhu C. An integrated approach for real-time model-based
+state-of-charge estimation of lithium-ion batteries. J Power Sources 2015;283:
+24e36.
+[34] Chang M-H, Huang H-P, Chang S-W. A new state of charge estimation method
+for LiFePO4 battery packs used in robots. Energies 2013;6(4):2007 e30.
+[35] Ljung L. System identi ﬁcation (2nd ed.): theory for the user. Prentice-Hall, Inc;
+1999.
+[36] Ljung L, S €oderstr€om T. Theory Pract recursive Identif JSTOR. 1983 .
+[37] Garnier H, Mensler M, Richard A. Continuous-time model identi ﬁcation from
+sampled data: implementation issues and performance evaluation. Int J
+Control 2003;76(13):1337 e57.
+[38] Young P. Some observations on instrumental variable methods of time-series
+analysis. Int J Control 1976;23(5):593 e612.
+[39] Young P, Jakeman A. Re ﬁned instrumental variable methods of recursive
+time-series analysis Part I. Single input, single output systems. Int J Control
+1979;29(1):1e30.
+[40] Duong V-H, Bastawrous HA, Lim K, See KW, Zhang P, Dou SX. Online state of
+charge and model parameters estimation of the LiFePO4 battery in electric
+vehicles using multiple adaptive forgetting factors recursive least-squares.
+J Power Sources 2015;296:215 e24.
+[41] Wang T, Pei L, Wang T, Lu R, Zhu C. Capacity-loss diagnostic and life-time
+prediction in lithium-ion batteries: Part 1. Development of a capacity-loss
+diagnostic method based on open-circuit voltage analysis. J Power Sources
+2016;301:187e93.
+[42] Dubarry M, Truchot C, Liaw BY. Synthesize battery degradation modes via a
+diagnostic and prognostic model. J power sources 2012;219:204 e16.
+C. Zhang et al. / Energy 142 (2018) 678 e688688

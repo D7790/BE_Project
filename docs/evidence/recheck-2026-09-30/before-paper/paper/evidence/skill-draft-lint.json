@@ -1,0 +1,32 @@
+{
+  "issues": [
+    {
+      "code": "CONFIDENTIALITY_REVIEW_INCOMPLETE",
+      "location": "manifest",
+      "severity": "error"
+    },
+    {
+      "code": "POLICY_REVIEW_INCOMPLETE",
+      "location": "manifest",
+      "severity": "error"
+    },
+    {
+      "code": "POTENTIAL_OVERSTATEMENT",
+      "location": "line:157",
+      "severity": "warning"
+    },
+    {
+      "code": "POTENTIAL_OVERSTATEMENT",
+      "location": "line:53",
+      "severity": "warning"
+    }
+  ],
+  "status": "fail",
+  "summary": {
+    "errors": 2,
+    "lines_checked": 205,
+    "raw_text_echoed": false,
+    "warnings": 2
+  },
+  "tool": "lint_manuscript"
+}

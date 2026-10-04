@@ -1,0 +1,1778 @@
+energies
+Article
+A Critical Look at Coulomb Counting Approach for State of
+Charge Estimation in Batteries
+Kiarash Movassagh 1, Arif Raihan 1, Balakumar Balasingam 1,*
+ and Krishna Pattipati 2
+/gid00030/gid00035/gid00032/gid00030/gid00038/gid00001/gid00033/gid00042/gid00045/gid00001
+/gid00048/gid00043/gid00031/gid00028/gid00047/gid00032/gid00046
+Citation: Movassagh, K.; Raihan, A.;
+Balasingam, B.; Pattipati, K. A Critical
+Look at Coulomb Counting Approach
+for State of Charge Estimation in
+Batteries. Energies 2021, 14, 4074.
+https://doi.org/10.3390/en14144074
+Academic Editor: Woojin Choi
+Received: 4 June 2021
+Accepted: 29 June 2021
+Published: 6 July 2021
+Publisher’s Note:MDPI stays neutral
+with regard to jurisdictional claims in
+published maps and institutional afﬁl-
+iations.
+Copyright: © 2021 by the authors.
+Licensee MDPI, Basel, Switzerland.
+This article is an open access article
+distributed under the terms and
+conditions of the Creative Commons
+Attribution (CC BY) license (https://
+creativecommons.org/licenses/by/
+4.0/).
+1 Department of Electrical and Computer Engineering, University of Windsor, Windsor, ON N9B 3P4, Canada;
+movassa@uwindsor.ca (K.M.); raihans@uwindsor.ca (A.R.)
+2 Department of Electrical and Computer Engineering, University of Connecticut, Storrs, CT 06269, USA;
+krishna.pattipati@uconn.edu
+* Correspondence: singam@uwindsor.ca; Tel.: +1-(519)-253-3000 (ext. 5431)
+Abstract: In this paper, we consider the problem of state-of-charge estimation for rechargeable
+batteries. Coulomb counting is a well-known method for estimating the state of charge, and it is
+regarded as accurate as long as the battery capacity and the beginning state of charge are known. The
+Coulomb counting approach, on the other hand, is prone to inaccuracies from a variety of sources,
+and the magnitude of these errors has not been explored in the literature. We formally construct
+and quantify the state-of-charge estimate error during Coulomb counting due to four types of error
+sources: (1) current measurement error; (2) current integration approximation error; (3) battery
+capacity uncertainty; and (4) timing oscillator error/drift. It is demonstrated that the state-of-charge
+error produced can be either time-cumulative or state-of-charge-proportional. Time-cumulative errors
+accumulate over time and have the potential to render the state-of-charge estimation utterly invalid
+in the long term.The proportional errors of the state of charge rise with the accumulated state of
+charge and reach their worst value within one charge/discharge cycle. The study presents methods
+for reducing time-cumulative and state-of-charge-proportional mistakes through simulation analysis.
+Keywords: battery management system; state of charge; Coulomb counting; battery capacity; mea-
+surement errors; battery impedance; equivalent circuit model
+1. Introduction
+Rechargeable batteries are becoming an integral part of the future energy strategy
+of the globe. The use of rechargeable batteries is steadily on the rise in wide-ranging
+applications, such as electric vehicles, household equipment, robotics, power equipment,
+consumer electronics, aerospace, and renewable energy storage systems. Accurate esti-
+mation of a battery’s state of charge (SOC) is crucial for battery management that is safe,
+efﬁcient, and reliable [1–4].
+It was found that there are three different methods for the SOC estimation of the
+lithium–ion battery [5]: (i) The current-based method. (ii) The voltage-based method. (iii)
+The fusion of voltage/current-based approaches. The fusion-based approaches seek to
+retain the beneﬁts of both voltage-based and current-based approaches by employing
+non-linear ﬁlters, such as the extended Kalman ﬁlter, in order to fuse the information
+obtained through the voltage and current measurements.
+The voltage-based SOC estimation approach is basically a table look-up method. Bat-
+tery terminals’ voltage is matched with the SOC according to the OCV-SOC characterization
+curve [6]. In more generic terms, we have the following:
+voltage-measurement = f (SOC)| {z }
+OCV-SOC model
++ g(parameters, current)| {z }
+voltage drop
+(1)
+Energies 2021, 14, 4074. https://doi.org/10.3390/en14144074 https://www.mdpi.com/journal/energies
+Energies 2021, 14, 4074 2 of 33
+where the function f (·) refers to the open circuit voltage model that relates the OCV of the
+battery to SOC and g(·) accounts for the voltage-drop within the battery cell, due to hys-
+teresis and relaxation effects. Challenges in voltage-based SOC estimation arise due to the
+fact that the functions f (·) and g(·) are usually non-linear and that there is a great amount
+of uncertainty as to what those functions might be [6,7]. For instance, the parameters can
+be modeled through electrical equivalent circuit models (ECM) [ 8,9] or electrochemical
+models [10], each of which can result in numerous reduced-order approximations. The
+voltage based approach suffers from the following three types of errors:
+(i) OCV-SOC modeling error. The OCV-SOC relationship of a battery can be approxi-
+mated through various models [6]: linear model, polynomial model and combined
+models are a few examples. Reducing the OCV-SOC modeling error is an ongoing
+research problem—in [ 11], a new modeling approach was reported that resulted in
+the “worst case modeling error” of about 10 mV . It must be mentioned that the OCV
+modeling error is not identical in all voltage regions of the battery.
+(ii) Voltage-drop modeling error. Voltage-drop models account for the hysteresis and re-
+laxation effects in the battery. Various approximations were proposed in the literature
+in order to represent these effects [7,12].
+(iii) Voltage measurement error. Every voltage measurement system comes with errors;
+this translates into a SOC estimation error.
+In order to reduce the effect of uncertainties in voltage-based SOC estimation, it
+is often suggested to rest the battery before taking the voltage measurement for SOC
+lookup [9]—when the current is zero for sufﬁcient time the voltage-drop also approaches
+zero. However, all the other sources of errors mentioned above (OCV-SOC modeling error,
+hysteresis, and voltage measurement error) cannot be eliminated by resting the battery.
+Coulomb counting method is the well-known term that is used for the current-based
+method [9]. In this method, SOC can be calculated as the ratio between the remaining
+Coulombs and the battery capacity that is assumed to be known. The Coulomb counting
+approach to SOC estimation can be approximated as follows (see Section 2 for details):
+SOC(k) = SOC(k− 1) + ∆ki(k)
+3600Cbatt
+(2)
+where SOC(k) indicates the SOC at time k, ∆k is the sampling time, i(k) is the current
+through the battery at the at time k, and Cbatt is the battery capacity in ampere hours (Ah).
+The Coulomb counting method does not require ofﬂine OCV-SOC characterization [6];
+however, it is susceptible to the following sources of errors:
+1. Initial SOC: This methods requires initial SOC to start with.
+2. Current measurement error: The measurement error will affect the computed SOC.
+3. Current integration error: The Coulomb counting method uses a very simpliﬁed
+approximation to integration, which will result in errors.
+4. Uncertainty in the knowledge of battery capacity [13]: Battery capacity changes due
+to temperature, age, etc. [14,15]. The uncertainty in battery capacity will affect the
+SOC computed by the Coulomb counting method.
+5. Timing oscillator error: Any error in the timing oscillator will affect the computed SOC.
+The fusion-based approach seeks to retain the best features of both voltage and current-
+based approaches. This is achieved by creating the following state-space model:
+SOC(k) = SOC(k− 1) + ∆ki(k)
+3600Cbatt
++ ns(k) (3)
+zv(k) = f (SOC(k))| {z }
+OCV-SOC model
++ g(parameters, i(k))| {z }
+voltage drop
++nz(k) (4)
+where (3) is the process model that is derived from the Coulomb counting Equations(2), (4)
+is the measurement model that is is derived from the voltage measurement Equation (1),
+Energies 2021, 14, 4074 3 of 33
+ns(k) is the process noise, zv(k) is the measured voltage across the battery terminals,
+f (SOC(k)) is the OCV characterization function [6] that represents the battery voltage as a
+function of SOC, g(parameters, i(k)) is the voltage drop due to impedance and hysteresis
+within the battery, and nz(k) is the measurement noise corresponding to the model (4). The
+goal from the above state-space model is to recursively estimate the SOC, given the voltage
+and current measurements.
+The state-space model described in (3) and (4) is non-linear, due to the OCV-SOC
+model and the different approximate representations for voltage-drop models [7]. If the
+models are known, a non-linear ﬁlter, such as the extended Kalman ﬁlter [16], can yield a
+near-accurate estimate of SOC in real time. The ﬁlter selection is based on the following
+model assumptions:
+(I) Kalman ﬁlter. Here, the following assumptions need to be met. The state-space model
+is known and linear, i.e., the functions f (·) and g(·) in (4) are linear in terms of SOC,
+and the ‘parameter’ and the currenti(k) in (4) are known with negligible uncertainty
+in them. The process and measurement noises, ns(k) and nv(k), respectively, are i.i.d.
+Gaussian with known mean and variance.
+(II) Extended/unscented Kalman ﬁlter. Here, only the linearity assumption is relaxed,
+i.e., the functions f (·) and g(·) in (4) can be non-linear in terms of SOC. All other
+assumptions for the Kalman ﬁlter need to be met, i.e., the model parameters and the
+noise statistics need to be perfectly known and the process and measurement noises
+need to be i.i.d. Gaussian with known mean and variance.
+(III) Particle ﬁlter. Compared to the Kalman ﬁlter assumptions, the particle ﬁlter allows to
+relax both linear and Gaussian assumptions. Here, the f (·) and g(·) can be non-linear,
+and both process and measurement noise statistics can be non-Gaussian. It needs to
+be re-emphasized that, similar to the cases in (I) and (II) above, the models f (·) and
+g(·) and the parameters of the noise statistics need to be perfectly known.
+It is important to note that the recursive ﬁlters discussed above all assume that the
+model, which consists of the functions f (·), g(·) and the parameters of the noise statistics,
+is perfectly known. However, we discussed several ways earlier in this section in which
+the known-model assumptions can be violated. Indeed, the “known model” assumptions
+can be violated through any of the following ten ways:
+(a) Five sources of error in deﬁning the process model (3), namely, the initial SOC error,
+current measurement error, current integration error, battery capacity error, and timing
+oscillator error.
+(b) Three sources of error in deﬁning the measurement model (4), namely, the OCV-SOC
+modeling error, voltage-drop modeling and its parameter estimation error, and voltage
+measurement error.
+(c) The process noise ns(k): The statistical parameters of the process noise should be
+computed based on the knowledge about the statistics of the ﬁve error sources in
+(a) above.
+(d) The measurement noise nv(k): The statistical parameters of the measurement noise
+should be computed based on the knowledge about the statistics of the three error
+sources in (b) above.
+The focus of the present paper is to develop detailed insights about the error sources
+(a) and (c), above. In a separate work [17], we discuss the noise sources (b) and (d) in detail.
+1.1. Background
+The classical estimation theory [16] states that when the linear–Gaussian conditions
+and the known model assumptions (stated under (I) in Section 1) are met, the SOC estimate
+will be efﬁcient, i.e., the variance of the SOC estimation error will be equal to that of the
+posterior Cramér–Rao lower bound (PCRLB ), which is proved to be the theoretical bound;
+under non-Bayesian conditions, this limit is known just as the Cramér–Rao lower bound
+(CRLB), that is, the PCRLB or CRLB can be used as a gold standard on performance. In this
+Energies 2021, 14, 4074 4 of 33
+regard, some prior works in the literature [18–20] derived the CRLB as a measure of perfor-
+mance evaluation. These approaches were developed to estimate the ECM parameters of
+the battery; the ECM parameters are involved in the measurement model for the SOC in(1).
+In addition to the use in SOC estimation, ECM parameter estimation has other important
+applications in a battery management system. The literature review suggests that there are
+several model-based SOC estimation methods that exist, which are already explored by
+different researchers [21–23].
+Several other approaches attempted to theoretically derive the error bound on SOC
+estimation separately and jointly with ECM parameter identiﬁcation. In [ 24], a RLS-
+based parameter identiﬁcation technique with forgetting factor was presented in which a
+sinusoidal current excitation made of two sinusoid component was used. According to the
+results, the CRLB of resistance decrease with the increase of frequencies and thus the large
+frequency components are preferable for higher accuracy in parameter estimation; similar
+observations were reported in [25]. The inﬂuence of voltage noise, current amplitude and
+frequency on parameter identiﬁcation was illustrated in [26], where a sinusoidal excitation
+current was used. Here, the CRLB of the battery equivalent circuit model was derived using
+Laplace transform; the authors found no inﬂuence of the frequency of the excitation signal
+on the single-parameter identiﬁcation of ohmic resistance and reported that reducing the
+voltage measurement noise and increasing current amplitude improves the identiﬁcation
+accuracy. A posterior CRLB was developed to quantify the accuracy for EKF-based ECM
+parameter identiﬁcation in which a second order battery ECM was adopted in [27]. The
+CRLB was determined numerically with the help of sinusoidal current excitation. It showed
+that the CRLB of the ohmic resistance estimation decreases with the increase of current
+amplitude and frequency as well. Unlike [27], the CRLB was derived in analytic expression
+in discrete time and Laplace transform in [ 28] in which a (known) sinusoidal current
+input was considered. A non-linear least-square based electrode parameter (e.g., electrode
+capacity) identiﬁcation method was presented in [18] in which only the terminal voltage
+was considered to contain the measurement noise. This CRLB was derived and used to
+quantify the error bound of the estimator to determine the uncertainty of the parameter
+estimation. The parameter estimates were interpreted with the help of analytically derived
+conﬁdence levels. Here, the noise was assumed to be Gaussian white noise with standard
+deviation 10 mV in the demonstrations. In [ 19], the battery SOC estimation error was
+derived theoretically as a function of sensor noises; the proposed approach considers
+measurement noise in both the current and voltage. The effect of different components
+involved in SOC estimation were demonstrated, using a parameter sensitivity analysis
+in [29], and the effect of bias and noise were reported in [30] as well.
+The ﬁve sources of error in Coulomb counting have been recognized in the literature
+and some remedies were proposed. In [31], the initial SOC was modeled as a function of
+the terminal voltage, temperature and the relaxation time. The authors in [32] proposed
+the use of neural networks to gain a better estimate of the initial SOC. In [33], a data fusion
+approach was proposed, where a H-inﬁnity ﬁlter was used to minimize the error in the
+initial SOC estimate. In the battery fuel gauge evaluation approach proposed in [15], the
+uncertainty in initial SOC error was taken into account and the OCV lookup method [6,34]
+was introduced as a performance metric. It was pointed out in [35] that the accuracy of the
+OCV lookup method might be affected with battery age. The effect of current integration
+error was also recognized in the literature and remedies were proposed: in [ 32,36], a
+model-based approach was proposed to reduce current integration error; in [37], it was
+proposed to reset Coulomb counting when the present SOC is known when the battery
+is fully charged/discharged, where the “fully-charged” and “fully-empty” conditions
+were declared, based on the measured voltage across battery terminals; here, the authors
+propose a way to minimize the error due to the voltage-only-based declaration of these two
+conditions. Many articles recognize the imperfect knowledge of battery capacity and ways
+to estimate them: a neural-network-based approach to battery capacity estimation was
+proposed in [32]; an approach based on the charge/discharge currents and the estimated
+Energies 2021, 14, 4074 5 of 33
+SOC for battery capacity estimation was proposed in [38]; the authors in [37] presented
+an idea of battery capacity estimation when SOC of battery is 100% or 0%, which can
+be known easily when the terminal voltage reaches the max./min. voltage, respectively;
+in [13], a state-space model was introduced to track battery capacity where measurements
+can be incorporated using multiple means, including when the battery is at rest. None of
+the existing works explored the effect of timing oscillator error in the estimated SOC.
+In summary, the importance of theoretical performance derivation and analysis is
+recognized in the literature, particularly in the above-detailed publications. Considering
+the nature of the complexity of the real-world measurement model, the existing literature
+represents only a small fraction of what needs to be done for a complete understanding of
+the battery SOC estimation problem. For example, even though the effect of some of the
+ﬁve sources of Coulomb counting error (summarized earlier in this section) were noted in
+the literature, it was not fully incorporated into the fusion-based SOC tracking approaches.
+In other word, the process noise ns(k) in (3) was not accurately deﬁned in the literature.
+Table 1 summarizes how the process noise is deﬁned in some notable works in the literature.
+Setting arbitrary values to the process noise will have the following adverse effect on the
+ﬁlter outcome:
+• Too-small process noise: When the process noise is smaller than the reality, the ﬁlter will
+compute the weights such that the measurements are ignored.
+• Too-large process noise: When the process noise is larger than the reality, the variance
+of the ﬁltered estimates will be high.Consequently, the beneﬁts of using a ﬁlter will
+be lost.
+Based on Table 1, it is clear that there is a knowledge gap about the process noise
+in the recursive-ﬁltering approach to SOC tracking. The focus of this paper is to derive
+accurate models for SOC tracking; in particular, we focus on the process model only. Similar
+discussions about one of the possible measurement models can be found in [17]. Model
+validation strategies and analyses using practical data are left for future discussion.
+Table 1. Process noise in SOC tracking.
+Publication Filtering Method Deﬁnition of Process Noise
+[39] (page 279) Extended Kalman ﬁlter “small”
+[40] (page 1370) Unscented Kalman ﬁlter “stochastic process noise or disturbance that models some
+unmeasured input which affects the state of the system”
+[41] (page 7) Kalman ﬁlter “process noise”
+[42] (page 334)
+Frisch scheme based bias
+compensating recursive
+least squares
+“zero-mean white noise with variance σi”
+[43] (page 8954) Extended Kalman ﬁlter “zero-mean white Gaussian process noise”
+[44] (pages 13,205,
+13,206)
+Adaptive unscented
+Kalman ﬁlter
+“zero-mean Gaussian white sequence”; “in practice, the mean and
+covariance of process noise is frequently unknown or incorrect”
+[45] (page 4610) Extended Kalman ﬁlter
+“The EKF assumes knowledge of the measurement noise statistics.
+Moreover, any uncertainty in the system’s model will degrade the
+estimator’s performance”
+[46] (page 10) Correntropy unscented
+Kalman ﬁlter
+“CUKF assumes that the process noise covariance and
+measurement noise are known. They are, however, in real time in
+nature and may not be obtained in advance in practice. As a result,
+they should be kept up to date with changes in time based on
+prior information.”
+Energies 2021, 14, 4074 6 of 33
+Table 1. Cont.
+Publication Filtering Method Deﬁnition of Process Noise
+[47] (page 166,660) Adaptive weighting Cubature
+particle ﬁlter
+“wk∼N (0, Qk)” where Qk is the covariance matrix.
+“In the process of practical application, the statistical characteristics
+of the process noise and measurement noise of the system are
+highly random and vulnerable to external environmental factors.”
+[48] (page 8614) Extended Kalman ﬁlter
+“Model bias is one of the existing inefﬁciency of the model in
+representation of real physical systems because of the supposition
+and simpliﬁcations.”
+[49] (pages 5, 8) Adaptive square-root
+sigma-point Kalman ﬁlter
+“wk refers to process noise, which represents unknown
+disturbances that affect the state of the system”; “usually,
+covariance matrices are constant parameters determined ofﬂine
+before the estimation process begins. In practice, the characteristics
+of noises vary depending on the choice of sensors and the
+operating conditions.”
+1.2. Summary of Contributions
+A large portion of the existing work related to battery SOC estimation in the literature
+lack theoretical validation. Almost all the work that employ some form of theoretical vali-
+dation are summarized in Section 1.1—the number of papers in this section is insigniﬁcant
+compared to the number of publication in SOC estimation in the past year alone. This
+indicates the need to focus more on theoretical performance analyses and to understand
+where the remaining challenges lie in battery SOC estimation.
+In this paper, we developed a mathematical model to theoretically compute the
+accumulated SOC error as a result of current measurement error, current integration ap-
+proximation, battery capacity uncertainty, and timing oscillator error. These four sources of
+error are identiﬁed in [50]. In this paper, we provided the formulas for exact statistical error
+parameters (mean and standard deviation) that can be used to improve all existing SOC
+estimation methods. As such, the contributions of this paper are summarized as follows:
+• Exact computation of Coulomb counting error. With realistic numerical examples, we
+demonstrate the errors and their severity during Coulomb counting. Further, we
+derive mathematical formulas to determine these errors such that the statistical conﬁ-
+dence in the SOC estimates can be explicitly stated.
+• Five different error sources in Coulomb counting are analyzed.We derive the exact standard
+deviation and mean error (with time), due to all ﬁve possible sources of errors during
+Coulomb counting: current measurement error, current integration error, battery
+capacity uncertainty, charge/discharge efﬁciency uncertainty, and timing oscillator
+error. It is demonstrated that the resulting error will fall into one of the following two
+categories: time-proportional errors and SOC-proportional errors.
+• Time proportional errors increase indeﬁnitely. We demonstrate that the standard devi-
+ation of the time-proportional error approaches inﬁnity as the number of samples
+reaches inﬁnity.
+• State of charge proportional errors reach worst case within one cycle. It is shown that the
+errors due to battery capacity uncertainty and timing oscillator drifts reach their peak
+values within one discharge/charge cycle. In addition, the standard deviation of
+these errors vary with the accumulated SOC. The proposed exact model can be used
+to improve the SOC estimation by incorporating them in state-space models, e.g.,
+the proposed model can be used to improve the extended Kalman ﬁlter-based SOC
+estimation techniques [3].
+Energies 2021, 14, 4074 7 of 33
+• Accurate state-space models for real-time state-of-charge estimation. The models were
+presented in a way that their applicability in state-space models is explicit. The
+proposed models can be used to improve the accuracy of virtually all online ﬁltering
+approaches, i.e., those based on extended Kalman ﬁlter, unscented Kalman ﬁlter,
+particle ﬁlter, etc., that were employed for real-time SOC estimation.
+The effect of the initial SOC error will remain as a bias in the Coulomb counting
+process and as such, it does not require any further analysis in this paper. Some initial
+versions of the derivations presented in this paper were reported in [51]; the present paper
+expands all derivations presented [50] toward a generalized state-space model.
+It must be noted that all the contributions listed above will translate into an accu-
+rate process noise model in the state-space model for recursive SOC tracking. It will be
+shown later in this paper that the process noise variance is a signiﬁcantly time-varying
+quantity—something never considered in the literature before. Further, even though
+Coulomb counting is considered an outdated approach to SOC estimation, it is still widely
+used in practical implementations [ 14,15,52]. For example, whenever the fusion based
+approaches encounter failures, due to unexpected measurements and errors, etc., the bat-
+tery management systems are usually programmed to fall back to the Coulomb counting
+method as an alternative. Hence, the paper is written in a way that quantiﬁes the error in
+computed SOC from Coulomb counting. Later, we discuss how the ﬁndings in this paper
+will be used to derive an accurate model for voltage-current fusion-based SOC tracking,
+using recursive ﬁlters.
+1.3. Organization of the Paper
+The remainder of this paper is organized as follows: Section 2 formally introduces
+Coulomb counting and identiﬁes the four different error sources. The accumulated error in
+SOC due to current measurement error, current integration approximation, battery capacity un-
+certainty , and timing oscillator drift, are derived and analyzed inSections 3.1, 3.2, 3.3 and 3.5,
+respectively. A summary of individual uncertainties and their effect on the counted
+Coulombs is presented in Section 4. In Section 5, some practical ways are discussed as to
+how individual effects can be combined in the process model of recursive ﬁlter implemen-
+tation for SOC tracking. Section 6 deals with the numerical analysis of the effect of current
+measurement error, current integration error and battery capacity uncertainty. Finally, the
+paper is concluded in Section 7.
+2. Problem Deﬁnition
+The Coulomb counting Equation is [8]
+s(t) = s(0) + η
+3600Cbatt
+∫ t
+0
+i(t)dt (5)
+where η is the Coulomb counting efﬁciency deﬁned as follows:
+η =
+{ ηc i(t) > 0
+ηd i(t) < 0, (6)
+t denotes the unit of time in seconds, i(t) is the current in amperes (A) through the battery
+at time t, s(0) denotes SOC at time instant t = 0, s(t) shows the SOC at time interval t, and
+Cbatt denotes the battery capacity in ampere hours (Ah).
+A discretized version of the Coulomb counting equation is given as follows:
+s(k) = s(k− 1) + η
+3600Cbatt
+∫ t(k)
+t(k−1)
+i(τ)dτ (7)
+Energies 2021, 14, 4074 8 of 33
+where s(k) denotes the SOC at time instant t(k), and i(τ) shows the measured current at
+time instant τ. Approximation is done using the rectangular (backward difference) method
+for the integration in (7) as follows:
+∫ t(k)
+t(k−1)
+i(τ)dτ≈ ∆ki(t(k)) = ∆ki(k) (8)
+where ∆k = t(k)− t(k− 1), the Coulomb counting equation, is further simpliﬁed as
+follows: [8,9]
+s(k) = s(k− 1) + η∆ki(k)
+3600Cbatt
+(9)
+The Coulomb counting Equation (9) suffers from the following sources of errors:
+1. Measurement error in the current i(k).
+2. Error because of the approximation used for the integration in (8).
+3. Unreliability in the battery capacity knowledge C batt.
+4. Uncertainty in the knowledge of the Coulomb counting efﬁciency η.
+5. Measurement error in sampling time ∆.
+In the next four sections of this paper, we provide detailed mathematical discussions
+about these four types of errors.
+3. Individual Uncertainty Analysis
+3.1. Effect of Current Measurement Error
+The error in measured current zi(k) can is modeled as follows:
+zi(k) = i(k) + ni(k) (10)
+where i(k) shows the exact current in battery and ni(k) denotes the measurement error
+in the current, which is supposed to be zero mean with standard deviation as σi, i.e.,
+the following:
+E{ni(k)} = 0, E{ni(k)2} = σ2
+i (11)
+By substituting the measured current (10) in (9) the Coulomb counting equation is
+rewritten as follows:
+s(k + 1) = s(k) + η∆kzi(k)
+3600Cbatt
+(12)
+= s(k) + η∆ki(k)
+3600Cbatt
++ η∆kni(k)
+3600Cbatt| {z }
+SOC error
+(13)
+Let us assume the following:
+∆ ≜ ∆k (14)
+Now, the SOC at time instant k = 1, 2, . . . can be presents as follows:
+s(0) = SOC estimation at t = 0
+s(1) = s(0) + η∆i(1)
+3600Cbatt
++ η∆ni(1)
+3600Cbatt
+s(2) = s(1) + η∆i(2)
+3600Cbatt
++ η∆ni(2)
+3600Cbatt
+= s(0) + η∆[i(1) + i(2)]
+3600Cbatt
++ η∆[ni(1) + ni(2)]
+3600Cbatt
+(15)
+Energies 2021, 14, 4074 9 of 33
+Considering n consecutive samples, the SOC at time k = n is as follows:
+s(n) = s(0) + η∆
+3600Cbatt
+n
+∑
+k=1
+i(k)
+| {z }
+sCC(n)
++ η∆
+3600Cbatt
+n
+∑
+k=1
+ni(k)
+| {z }
+wi(n)
+= s(0) + sCC(n) + wi(n) (16)
+It can be noticed that the change in SOC can be decomposed into charging Coulombs
+and discharging SOC as follows:
+sCC(n) = sCCc(n) + sCCd(n) (17)
+where
+sCCc(n) = ηc∆
+3600Cbatt
+n
+∑
+k=1
+i(k)× [i(k) > 0] (18)
+sCCd(n) = ηd∆
+3600Cbatt
+n
+∑
+k=1
+i(k)× [i(k) < 0] (19)
+where the logical quantity [i(k) > 0] is deﬁned as follows:
+[i(k) > 0] =
+{ 1 i(k) > 0
+0 i(k) < 0 (20)
+and the logical quantity [i(k) > 0] is deﬁned as follows:
+[i(k) < 0] =
+{ 1 i(k) < 0
+0 i(k) > 0 (21)
+Similarly, the error in the computed computed SOC can be split into two terms
+corresponding to charging and discharging, i.e., as follows:
+wi(n) = wic(n) + wid(n) (22)
+where
+wic(n) = ηc∆
+3600Cbatt
+n
+∑
+k=1
+ni(k)× [i(k) > 0] (23)
+wid(n) = ηd∆
+3600Cbatt
+n
+∑
+k=1
+ni(k)× [i(k) < 0] (24)
+It must be noted that the current measurement noise ni(k)∼N (0, σ2
+i ) has the same
+characteristics during charging and discharging.
+Now, it is justified that the SOC estimation errorwi(n) has the following characteristics:
+E{wi(n)} = 0
+E{wi(n)2} = σs,i(n)2 = ∆2σ2
+i
+36002C2
+batt
+(ηcnc + ηdnd)
+(25)
+where nc is the number of present charging current samples andnd is the number of present
+discharging current samples that satisfy the following:
+nc + nd = n (26)
+Energies 2021, 14, 4074 10 of 33
+It is seen that as n→ ∞, the noise variance of the estimated SOC error also tends
+toward inﬁnity. Let us write the SOC noise due to current measurement error in a simpliﬁed
+form as follows:
+σs,i(n) =
+( ∆ρi
+3600
+)√
+ηcnc + ηdnd (27)
+where the ratio between the measurement noise standard deviation and battery capacity
+(in Ah), denoted in this paper as the current measurement noise coefﬁcient (which has a unit
+of h−1), is deﬁned as follows:
+ρi = σi
+Cbatt
+(28)
+It must be noted that although the SOC s(n) is deﬁned within [0, 1], SOC is usually
+displayed in percentage. As such, the standard deviation of the SOC error in (27) is given
+as a percentage as follows:
+σs,i(n) in % =
+( ∆ρi
+36
+)√
+ηcnc + ηdnd % (29)
+Table 2 presents the standard deviation (s.d.) in SOC error because of the measure-
+ment error in the current at different sampling intervals. Here, it is assumed that the
+battery capacity is Cbatt = 1.5 Ah and the current measurement error standard deviation is
+σi = 10 mA.
+Table 2. SOC error s.d. (%) due to current measurement error.
+1 h 24 h 1 Year
+∆ = 0.1 s 0.0035 0.0172 0.3289
+∆ = 1 s 0.0111 0.0544 1.0399
+∆ = 10 s 0.0351 0.1721 3.2886
+The SOC error presented in Table 2 is computed assuming zero uncertainties in all the
+other sources of error (integration, capacity, and timing oscillator) and the initial SOC s(0).
+The variance of the SOC error (29) because of the current measurement error keeps in-
+creasing with time. As such, we denote this as a time-cumulative error. For time-cumulative
+errors, the standard deviation of the error keeps increasing with time—if it is not reset,
+it will completely corrupt the estimated SOC. A possible approach that can be used for
+reducing the time-cumulative error is to reset the Coulomb count to zero once during a
+process. Considering that the reset value of SOC also comes with errors (which is not
+considered in this paper) it is important to select an instant where the uncertainty in the
+reset SOC is smaller than the uncertainty derived in (29).
+3.2. Effect of Approximating Current Integration
+The Coulomb counting method, as described in the preceding section, uses a basic
+ﬁrst-order (rectangular) approximation to approximate the integration of current over
+time (see (8)). Figure 1 shows a generic rectangular approximation to integration. For this
+method of approximation, the integration error δI(k) can be represented mathematically
+as follows:
+∫ τ(k)
+τ(k−1)
+i(τ)dτ
+| {z }
+true integration
+= ∆i(k)|{z}
+approximation
++ δI(k)|{z}
+integration error
+(30)
+Energies 2021, 14, 4074 11 of 33
+Figure 1. A representation of the current integration error. The positive integration error is shown by
+dark shade and negative error by light shade.
+The behavior of integration error δI(k) is a more important area of interest. It can be
+observed that, for rectangular approximation, the error is proportional to the sampling
+duration ∆ [53], i.e., the following:
+δI(k) ∝ ∆ (31)
+Further, the integration error is proportional to the difference in the adjacent samples
+of measured current, i.e., the following:
+δI(k) ∝ [i(k)− i(k− 1)] (32)
+Since, [i(k)− i(k− 1)] in (32) is a time varying quantity, we can approximately write
+the following:
+δI(k) ∝ σL (33)
+where σL is the standard deviation of the load (or charging) current (e.g., if the current is
+constant, then σL = 0 and so is the integration error). Furthermore, when the amplitude of
+the current i(k) varies, the sign of the error can be positive and negative—see Figure 1 for
+an illustration of this. Using this observation, we can write the following:
+E{δI(k)}≈ 0 (34)
+This means that we can assume integration error to be due to rectangular approxima-
+tion as the zero mean, considering the large number of samples.
+Based on the discussion so far, the integration error has the following (approximate)
+properties:
+E{δI(k)} = 0
+E{δI(k)2} = σ2
+I
+(35)
+where σ2
+I denotes the variance of current integration error From (31) and (33), we can write
+the following:
+Energies 2021, 14, 4074 12 of 33
+σI ∝ ∆ σL
+= κ∆σL
+(36)
+where κ is a constant, ∆ is the sampling time, and σL is the standard deviation of the
+load current.
+Figure 2 shows two different load current proﬁles from practical applications. It sup-
+ports the assumption made in (32) that the current difference [i(k)− i(k− 1)] indeed is the
+zero mean.
+0 5 10 15
+Time (min)
+-1
+-0.5
+0
+0.5
+1
+Current (A)
+-0.8 -0.6 -0.4 -0.2 0 0.2 0.4 0.6 0.8
+Current (A)
+0
+200
+400
+600
+800Frequency
+(a)
+0 100 200 300 400 500 600
+Time (k)
+-20
+0
+20
+40
+Current (A)
+-30 -20 -10 0 10 20 30 40 50
+Current (A)
+0
+50
+100Histogram
+(b)
+Figure 2. Current difference in realistic loads. (a) Smart Phone [15], σL = 0.1673 A, Cbatt = 1.5 Ah
+and (b) Electric Vehicle [9], σL = 8.6917 A, Cbatt≈ 250 Ah.
+On following the similar approach of Section 3.1, the computed SOC can be written in
+recursive form as follows:
+Energies 2021, 14, 4074 13 of 33
+s(k + 1) = s(k) + η(∆i(k) + δI(k))
+3600Cbatt
+= s(k) + η∆i(k)
+3600Cbatt
++ ηδI(k)
+3600Cbatt| {z }
+Integ.Error
+(37)
+where the integration error is incorporated based on (30). SOC at time instant k = 0, 1, 2. . .
+can be written as follows:
+s(0) = initial SOC estimation
+s(1) = s(0) + η∆i(1)
+3600Cbatt
++ ηδI(1)
+3600Cbatt
+s(2) = s(1) + η∆i(2)
+3600Cbatt
++ ηδI(2)
+3600Cbatt
+= s(0) + η∆[i(1) + i(2)]
+3600Cbatt
++ η(δI(1) + δI(2))
+3600Cbatt
+(38)
+The computed SOC at time instant k = n can be written as follows:
+s(n) = s(0) + η∆
+3600Cbatt
+n
+∑
+k=1
+i(k)
+| {z }
+sCC(n)
++ η
+3600Cbatt
+n
+∑
+k=1
+δI(k)
+| {z }
+wI(n)
+= s(0) + sCC(n) + wI(n) (39)
+where wI(n) represents the SOC computation error due to approximation in integration.
+Similar to (55)–(57), the SOC error wI(n) can be decomposed, corresponding to charg-
+ing and discharging, as follows:
+wI(n) = wIc(n) + wId(n) (40)
+where
+wIc(n) = ηc
+3600Cbatt
+n
+∑
+k=1
+δI(k)× [i(k) > 0] (41)
+wId(n) = ηd
+3600Cbatt
+n
+∑
+k=1
+δI(k)× [i(k) < 0] (42)
+The SOC error possesses the following characteristics:
+E{wI(n)} = 0
+E{wI(n)2} = σs,I(n)2 = κ2∆2σ2
+L
+36002C2
+batt
+(ηcnc + ηdnd)
+(43)
+Then, the standard deviation can be written as follows:
+σs,I(n) = κ∆ρI
+3600
+√
+ηcnc + ηdnd (44)
+where the integration error coefﬁcient is deﬁned as follows:
+ρI = σL
+Cbatt
+(45)
+Considering that the SOC s(n) is deﬁned within [0, 1], the standard deviation of the
+SOC in (43) ranges between σs,I(n)∈ [0, 1]. Usually, SOC is displayed in percentage.
+Energies 2021, 14, 4074 14 of 33
+As such, the standard deviation of the SOC error in (44) can be displayed in percentage
+as follows:
+σs,I(n)/year (in %) = κ∆ρI
+36
+√
+ηcnc + ηdnd % (46)
+Now, to simplify the above expression, some realistic assumptions need to be made
+for further processes. Based on the data shown in Figure 2, we have the following:
+ρI =
+{ 0.1115 Smart Phone
+0.0348 Electric Vehicle (47)
+Tables 3 and 4 show the standard deviation of the computed SOC error due to the
+current integration error at different sampling intervals for longer periods. These two tables
+are made based on the values shown in (47) and by assuming κ = 1.
+Table 3. S.D. of SOC error (%) for smart phone data.
+1 h 24 h 1 Year
+∆ = 0.1 s 0.0588 0.2879 5.5002
+∆ = 1 s 0.1858 0.9104 17.3930
+∆ = 10 s 0.5877 2.8789 55.0016
+Table 4. S.D. of SOC error (%) for EV data.
+1 h 24 h 1 Year
+∆ = 0.1 s 0.0183 0.0899 1.7166
+∆ = 1 s 0.0580 0.2841 5.4285
+∆ = 10 s 0.1834 0.8985 17.1664
+3.3. Effect of the Uncertainty in Battery Capacity
+The capacity of a battery refers to the number of Coulombs that can be charged into
+(or discharged from) it. The capacity of a battery degrades with time [ 54], and the rate
+at which it degrades is determined by the battery’s calendar life as well as the battery’s
+environmental and usage trends over a lengthy period of time [55]. As a result, the true
+value of the battery capacity Cbatt is unknown. To estimate the battery SOC, usually a
+measure of the battery capacity, denoted asCbatt, is employed. Such a capacity measurement
+is not exact, and it has the following relationship to the genuine battery capacity:
+Cbatt = Ctrue + C∆ (48)
+where C∆ shows the uncertainty in the prior knowledge of the true capacity of the battery
+Ctrue. It was shown in [ 13] that uncertainty in battery capacity can be considered as the
+zero-mean Gaussian distribution, which can be represented as follows:
+C∆∼N (0, σ2
+batt) (49)
+where σbatt is the standard deviation of the capacity estimation error.
+The ﬁrst order Taylor series approximation of a function f (x) around a point x0 is
+given by the following:
+f (x) = f (x0) + (x− x0)∆ f′(x0) (50)
+using the above Taylor series approximation and the relationship (48), the inverse capacity
+can be approximated as follows:
+Energies 2021, 14, 4074 15 of 33
+1
+Cbatt
+≈ 1
+Ctrue
+− C∆
+C2
+true
+(51)
+With the above approximation to the inverse capacity, let us re-write the Coulomb
+counting equation as follows:
+s(k + 1) = s(k) + η∆i(k)
+3600Cbatt
+= s(k) +
+( η∆i(k)
+3600
+)
+×
+( 1
+Ctrue
+− C∆
+C2
+true
+)
+(52)
+= s(k) + η∆i(k)
+3600Ctrue
+− η∆i(k)C∆
+3600C2
+true
+Now, SOC can be written for time instant k = 0, 1, 2, . . . as follows:
+s(0) = SOC at time step t= 0
+s(1) = s(0) + η∆i(1)
+3600Ctrue
+− η∆i(1)C∆
+3600C2
+true
+s(2) = s(1) + η∆i(2)
+3600Ctrue
+− η∆i(2)C∆
+3600C2
+true
+= s(0) + η∆[i(1) + i(2)]
+3600Ctrue
+− C∆η∆[i(1) + i(2)]
+3600C2
+true
+(53)
+The computed SOC at time instant k = n can be written as follows:
+s(n) = s(0) + η∆
+3600Ctrue
+n
+∑
+k=1
+i(k)
+| {z }
+sCC(n)
+− η∆C∆
+3600C2
+true
+n
+∑
+k=1
+i(k)
+| {z }
+wC(n)
+= s(0) + sCC(n) + wC(n) (54)
+where wC(n) represents SOC error due to the uncertainty in battery capacity. Similar
+to (55)–(57), wC(n) above can be decomposed into the following two terms:
+wC(n) = wCc(n) + wCd(n) (55)
+where
+wCc(n) = ηc∆C∆
+3600C2
+true
+n
+∑
+k=1
+i(k)× [i(k) > 0] (56)
+wCd(n) = ηd∆C∆
+3600C2
+true
+n
+∑
+k=1
+i(k)× [i(k) < 0] (57)
+Now, wC(n) becomes the following:
+wC(n) =
+( C∆
+Ctrue
+)
+(sCCc(n) + sCCd(n))
+=
+( C∆
+Ctrue
+)
+sCC(n) (58)
+Now, due to the uncertainty in prior knowledge of the battery capacity, the SOC error
+can be written as follows:
+Energies 2021, 14, 4074 16 of 33
+E{wC(n)} = 0
+E{wC(n)2} = σs,C(n)2 = E{C2
+∆}
+C2
+true
+sCC(n)2 (59)
+= σ2
+batt
+C2
+true
+sCC(n)2 = ρ2
+CsCC(n)2
+where the dimensionless capacity uncertainty coefﬁcient is deﬁned as follows:
+ρC = σbatt
+Ctrue
+(60)
+3.4. Effect of the Uncertainty in Charging Efﬁciency
+Let us assume the uncertainty in charging efﬁciency as follows:
+ηc = ηct + ηc∆ (61)
+ηd = ηdt + ηd∆ (62)
+In summary, we may write the following:
+η = ηt + η∆ (63)
+where
+ηt =
+{ ηct if i(k) > 0
+ηdt if i(k) < 0 η∆ =
+{ ηc∆ if i(k) > 0
+ηd∆ if i(k) < 0 (64)
+Now, the measured current (10) needs to substitute in (9) and revise the Coulomb
+counting equation as follows:
+s(k + 1) = s(k) + ηt∆i(k)
+3600Cbatt
++ η∆∆i(k)
+3600Cbatt
+(65)
+The computed SOC at time instant k = n can be written as follows:
+s(n) = s(0) + ηt∆
+3600Cbatt
+n
+∑
+k=1
+i(k)
+| {z }
+sCC(n)
++ η∆∆
+3600Cbatt
+n
+∑
+k=1
+i(k)
+| {z }
+wη (n)
+= s(0) + sCC(n) + wη(n)
+(66)
+where the SOC error wη(n) can be expressed as the following:
+wη(n) = ηc∆
+ηct
+(
+ηct∆
+3600Cbatt
+n
+∑
+k=1
+i(k)× [i(k) > 0]
+)
++ ηd∆
+ηdt
+(
+ηdt∆
+3600Cbatt
+n
+∑
+k=1
+i(k)× [i(k) < 0]
+)
+= ηc∆
+ηct
+sCCc(n) + ηd∆
+ηdt
+sCCd(n)
+=ρηcsCCc(n) + ρηdsCCd(n)
+(67)
+where
+ρηc = ηc∆
+ηct
+and ρηd = ηd∆
+ηdt
+(68)
+Energies 2021, 14, 4074 17 of 33
+are deﬁned as the charging uncertainty coefﬁcient and the discharging uncertainty coefﬁcient,
+respectively. Let us model these two coefﬁcients as ρηc∼N (0, σ2
+ηc ) and ρηd∼N (0, σ2
+ηd ).
+With this assumption, the SOC error wη(n) will possess the following characteristics:
+E{wη(n)} = 0 (69)
+E{wη(n)2} = σs,η(n)2 = σ2
+ηcsCCc(n)2 + σ2
+ηdsCCd(n)2 (70)
+3.5. Effect of the Uncertainty in Timing Oscillator
+In this method, we have the following:
+∆ = ∆true + ∆ϵ (71)
+where ∆ϵ represents a random parameter for timing oscillator error. It can behave like bias,
+which can be considered constant for a longer period of time. The timing error coefﬁcient can
+be deﬁned as follows:
+ρ∆ = ∆ϵ
+∆true
+(72)
+Considering the assumption that the timing oscillator is off by 3 minutes in one month,
+then, for such a scenario, the constant ρ∆ can be written as follows:
+ρ∆ = 3
+30× 24× 60 = 6.9444× 10−5≈ 69× 10−6 (73)
+Considering (71), the Coulomb counting Equation (9) can be re-written as follows:
+s(k + 1) = s(k) + η∆
+3600Cbatt
+n
+∑
+k=1
+i(k)
+= s(k) + η∆true
+3600Cbatt
+n
+∑
+k=1
+i(k) + η∆ϵ
+3600Cbatt
+n
+∑
+k=1
+i(k) (74)
+= s(0) + sCC(n) + w∆(n)
+The simpliﬁcation of SOC estimation error can be performed as follows:
+w∆(n) =
+(
+η
+3600Cbatt
+n
+∑
+k=1
+i(k)∆ϵ
+)
+= ρ∆
+(
+η
+3600Cbatt
+n
+∑
+k=1
+i(k)∆true
+)
+(75)
+= ρ∆sCC(n)
+According to the following assumption that SOC at time step t = 0, it can state the
+following:
+0≤ sCC(n)≤ 1 (76)
+Therefore, the SOC variation can be shown as follows:
+0≤ w∆(n)≤ ρ∆ (77)
+The SOC error w∆ is a deterministic quantity for a given battery, provided that ρ∆ is
+known. However, a realistic assumption is that the knowledge of ρ∆ is only probabilistic.
+Let us assume that ρ∆ ∼ N(0, σ2
+∆). In the following circumstance, the characteristics
+exhibited by the SOC error w∆ can be shown as follows:
+Energies 2021, 14, 4074 18 of 33
+E{w∆(n)} = 0 (78)
+E{w∆(n)2} = σs,∆(n)2 = σ2
+∆sCC(n)2 (79)
+with the assumption that ρ∆ is a too-small number; see (73). Due to the time oscillator error,
+the error in SOC can be assumed to be negligible.
+4. Summary of Individual Errors
+This study presents a critical look at the Coulomb counting method that is employed
+to estimate the state of charge of a battery. The Coulomb counting approach computes the
+present SOC as follows:
+s(t) = s(0)|{z}
+initial SOC
++
+∫ t
+0
+i(τ)
+3600Cbatt
+dτ
+| {z }
+change in SOC
+where i(t) is the instantaneous current through the battery and Cbatt is the battery capacity
+in ampere hours, that is, the present SOC is the summation of the initial SOC and the
+change in SOC, computed through the above integration. The SOC can be approximately
+computed in a recursive manner as follows:
+s(n) = s(0) + ∆
+3600Cbatt
+n
+∑
+k=1
+i(k)
+= s(0)|{z}
+initial SOC
++ sCC(n)| {z }
+change in SOC
+where at time step k, SOC can be represented by s(k), i(k) denotes the measured current
+at time step k, and ∆ represents the sampling time in seconds. The SOC at time n is the
+summation of the initial SOC s(0) and the accumulated SOC sCC from time n = 0 until n.
+In this paper, we showed that the above (discrete) recursive approximation to comput-
+ing SOC suffers from four sources of error: current measurement error, current integration
+error, battery capacity uncertainty and the timing oscillator error. Particularly, we com-
+puted the exact amount of the resulting SOC uncertainty as a result of the above four types
+of errors. Those results are as follows:
+1. Current measurement error: At time instant n, the computed SOC can be stated as if the
+current measurement error is zero-mean with standard deviation σi.
+s(n) = s(0) + sCC(n) + wi(n)
+where s(0) is the initial SOC and sCC(n) is the accumulated SOC from the start at
+n = 0. The SOC error wi(n) is shown to be zero mean with standard deviation
+(see (25))
+σs,i(n) =
+( ∆ρi
+36
+)√
+n % (80)
+It should be noted that, due to the current measurement noise, the variance of the
+Coulomb counting error is accumulative with time. As the time increases, i.e., n→ ∞,
+the standard deviation of SOC error also increases.
+2. Current integration error: With the consideration that approximation is done for the
+integration of current using the rectangular method, it can be shown that resulting
+approximation error is zero mean with standard deviation σI. As a result, at time
+instant n the computed SOC can be written as follows:
+s(n) = s(0) + sCC(n) + wI(n)
+Energies 2021, 14, 4074 19 of 33
+where it can be shown that SOC error wI(n) has zero mean and standard deviation
+as follows:
+σs,I(n) = κ∆ρI
+36
+√
+n % (81)
+Again, it must be noted that, due to the current measurement noise, the variance of
+the Coulomb counting error is accumulative with time.
+3. Uncertainty in the knowledge of battery capacity: With the consideration that uncertainty
+in the battery capacity has zero mean with standard deviation σ2
+batt, the SOC at time
+instant n can be derived as follows:
+s(n) = s(0) + sCC(n) + wC(n)
+where wC(n) represents SOC error as follows:
+σs,C(n)2 = ρ2
+CsCC(n)2
+where ρC is deﬁned as the capacity uncertainty coefﬁcient. It should be noted that error
+in capacity due to uncertainty is not accumulative with time; rather, it is proportional
+to the accumulated SOC sCC(n)∈ [0, 1].
+4. Charging efﬁciency error: The charging and discharging efﬁciencies are denoted as ηc
+and ηd, respectively. The uncertainties in charging and discharging efﬁciencies are
+denoted as ηc∆ and ηd∆, respectively. At time step n, the SOC error can be written
+as follows:
+s(n) = s(0) + sCC(n) + wη(n)
+where
+wη(n) = ρηcsCCc(n) + ρηdsCCd(n) (82)
+Similar to wC, wη(n) does not accumulate with time; rather, it accumulates with the
+accumulated Coulombs.
+5. Timing oscillator error: In the timing oscillator, considering the error of ρ∆ (ratio of
+clocked time vs. true time), the SOC at time instant n can be shown as follows:
+s(n) = s(0) + sCC(n) + w∆(n)
+where w∆(n) denotes the SOC error, which is the deterministic value as follows:
+w∆(n) = ρ∆sCC(n)
+Similar to the error due to capacity uncertainty, w∆(n) is not accumulative with time
+and it is proportional to the accumulated SOC. It can be shown that the realistic
+value of η is a too-small number. For example, a timing oscillator which is leading or
+lagging by three minutes in a month has η = 69× 10−6. Therefore, the weightage of
+the timing oscillator error in the SOC estimation is very minimal.
+In summary, the resulting four types of errors can be grouped into two categories:
+time-accumulative and SOC-proportional. The SOC errors due to current measurement error
+and integration approximation fall under the category of time-accumulative errors. The
+SOC errors due to the uncertainty in battery capacity and timing oscillator error fall under
+the category of SOC-proportional errors. Next, we brieﬂy discuss the nature of these errors
+and possible ways to mitigate them.
+Energies 2021, 14, 4074 20 of 33
+4.1. Mitigating Time-Accumulative Errors
+It must be stressed that the best way to mitigate Coulomb counting errors is to employ
+a state-space ﬁlter, such as the Kalman ﬁlter, with correctly derived model parameters as
+brieﬂy discussed in Section 5. However, practical battery management systems are imple-
+mented through complex state diagrams [15], where at some stages, Coulomb counting is
+the best way to compute the SOC. Some strategies discussed below can be useful when the
+SOC is computed, based on Coulomb counting only.
+The following strategies can be looked at to reduce time-accumulative errors.
+• Over sampling. It can be noted that bothσs,i(n) and σs,I(n), in (80) and (81), respectively,
+are proportional to ∆√n, where ∆ and n are related as follows:
+n = T
+∆ (83)
+where T is the total time duration. Now, both σs,i(n) and σs,I(n) can be written
+as follows:
+σs,i(n) = ρi
+36
+√
+∆T % (84)
+σs,I(n) = κρI
+36
+√
+∆T % (85)
+Now, one must realize that the integration error coefﬁcient ρI reduces with over-
+sampling, i.e., as ∆ decreases so does ρI. However, the current measurement noise
+coefﬁcient is unaffected by the sampling time. The conclusion is that both σs,i(n) and
+σs,I(n) reduce with higher sampling rate—however, σs,I(n) reduces at a higher rate
+compared to σs,i(n) with oversampling.
+• Reinitialization. Time-accumulative errors increase with time. The growth of error can
+be reduced down by re-initializing the SOC.
+4.2. Mitigating SOC-Proportional Errors
+Intermittent re-initialization—within a single charge–discharge cycle—will help to
+minimize this error. However, in most practical cases, there may not be many opportunities
+(a rested battery) for frequent resetting within a single cycle. The knowledge of uncertainty
+in the battery capacity σbatt will be very useful in SOC error management. For example, if
+it is known that σbatt is signiﬁcantly high, then the SOC can be computed solely based on
+the voltage approach.
+Finally, it must be emphasized that the focus of this paper is exclusively on the
+Coulomb counting approach. As such, we did not delve into other types of approaches
+that are shown to be useful in improving SOC estimates, such as voltage/current based
+approaches through the use of nonlinear ﬁlters [3,40]. The results reported in this paper,
+such as the standard deviation of the Coulomb counting error for various scenarios, will
+help to improve the voltage/current based SOC estimations as well.
+5. Combined Effect and the State-Space Model Derivation
+So far, the Coulomb counting uncertainty is computed only based on individual
+sources of errors. In this section, we discuss how the combined effect due to all sources of
+error can be approximated, using a naive combination approach. Exact derivation of the
+combined effect can be quite lengthy, due to the non-linear relationships involved—this is
+left for future works.
+Under the naive combination approach, at time instantn SOC can be written as follows:
+s(n) = s(0) + sCC(n) + w(n) (86)
+where
+Energies 2021, 14, 4074 21 of 33
+w(n) = wi(n) + wI(n) + wC(n) + wη(n) + w∆(n) (87)
+Under the above naive assumption, the following can be shown:
+E{w(n)} = 0 (88)
+E{w(n)2} = σs(n)2 = ∆2σ2
+i
+36002C2
+batt
+(ηcnc + ηdnd)
++ κ2∆2σ2
+L
+36002C2
+batt
+(ηcnc + ηdnd)
++ ρ2
+CsCC(n)2 (89)
++ σ2
+ηcsCCc(n)2 + σ2
+ηdsCCd(n)2
++ σ2
+∆sCC(n)2
+With the combined noise derived above, now we are ready to redeﬁne the state-space
+model (3) and (4).
+Based on the detailed derived about the Coulomb counting error, the process model(3)
+can be written as follows:
+s(k) = s(k− 1) + ∆zi(k)
+3600Cbatt
++ ns(k) (90)
+where ns(k) is the process noise that has zero-mean and variance, given by (90) when n is
+set to 1.
+Based on the notations introduced in [ 7], the measurement Equation in (4) can be
+written in detail as follows:
+zv(k) = V◦(s(k)) + a(k)Tb + nz(k) (91)
+where V◦(s(k)) is the open circuit voltage model, a(k)Tb approximates the voltage drop in
+the relaxation elements of the battery, b is the parameter vector of the relaxation elements,
+and nz(k) is the measurement noise.
+6. Numerical Analysis
+6.1. Effect of Current Measurement Error
+The objective in this section is to validate—using the Monte Carlo simulation approach—
+the standard deviation of the SOC error, due to the measurement error in the current that
+was derived in (29). For this experiment, errors from all the other possible sources of
+uncertainties (current integration error, battery capacity uncertainty, and timing oscillator
+error as well as initial SOC error) are assumed to be zero. In order to do this, a special
+current proﬁle, shown in Figure 3, is created. For this proﬁle, the amount of Coulombs can
+be perfectly computed, using geometry. Once the Coulombs are computed, the true SOC
+can be computed by making use of the knowledge of the true battery capacity and other
+noise-free quantities. The following procedure details the Monte Carlo experiment:
+1. Generate a perfectly integrable current proﬁle, similar to the one shown in Figure 3.
+The generated current proﬁle denotes i(k) in (10).
+• First 40 s of the true current proﬁle generated for the experiment is shown in
+Figure 4.
+2. Compute the true SOC at time k, strue(k), using the geometric approach, illustrated in
+Figure 3, for the entire duration of the proﬁle, i.e., for k = 1, . . ., n where n denotes
+the number of samples in the entire current proﬁle.
+3. Set m = 1, where m denotes the index of the Monte Carlo run.
+Energies 2021, 14, 4074 22 of 33
+4. Generate current measurement noise ni(k) as zero-mean Gaussian noise with stan-
+dard deviation σi = 10 mA. Using this, generate the measured current proﬁle
+zi(k) = i(k) + ni(k).
+• Figure 4 shows the true current proﬁle i(k) along with the measured current
+proﬁle zi(k) for a duration of 40 s.
+5. Compute the (noisy) SOC, sm(k) using the traditional Coulomb counting equation
+given in (65), i.e., the following:
+sm(k) = sm(k− 1) + ∆kzi(k)
+3600Cbatt
+where the subscript m denotes the mth Monte Carlo run.
+• Figure 5 shows the true SOC strue(k) and the computed noisy SOC sm(k). The
+top plot (a) shows the SOC at the start of the current proﬁle, and the bottom plot
+(b) shows the SOC toward the end of applying 3.5 h of the load proﬁle.
+6. If m = M, where M denotes the maximum number of Monte Carlo runs, go to step
+(g); otherwise, set m← m + 1 and go to step (d).
+7. End of simulation (all the data generated during the above steps need to be stored
+for analysis).
+After M = 1000 Monte Carlo runs, the standard deviation of the SOC error due to
+current measurement error is computed as follows:
+ˆσs,i(k) =
+vuu√ 1
+M
+M
+∑
+m=1
+(strue(k)− sm(k))2 (92)
+Figure 6 shows the standard deviation of the SOC error computed using the theoretical
+Formula (29) and the standard deviation of the SOC error computed using the Monte Carlo
+method detailed in (92). As expected, the theoretical derivation matches the SOC error
+standard deviation obtained through 1000 Monte Carlo simulations.
+Figure 3. Generic illustration to computing the true amount of Coulombs. Computing true Coulombs
+is challenging. Here, we assume the true current to take the above pattern; under this assumption,
+Total Coulombs = A1 + A2 + A3 + A4 + A5.
+Energies 2021, 14, 4074 23 of 33
+5 10 15 20 25 30 35 40
+Time (Sec)
+-1.5
+-1
+-0.5
+0
+Current (A)
+True
+Measured
+Figure 4. Current measurement error. True vs. measured current that was simulated by assuming a
+current measurement error standard deviation of σi = 10 mA.
+2 4 6 8 10 12 14 16 18 20
+Time (Sec)
+99.84
+99.86
+99.88
+99.9
+99.92
+99.94
+99.96
+99.98
+100
+SOC(%)
+True
+Coulomb Count
+(a) Start of load proﬁle
+3.495 3.496 3.497 3.498 3.499 3.5
+Time (Hr)
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16SOC(%)
+True
+Coulomb Count
+(b) End of the load proﬁle in 3.5 h
+Figure 5. Effect of current measurement error in SOC. (a) At the start of the experiment, the true SOC
+and the computed SOC through Coulomb counting are nearly identical. (b) Within 3.5 h, the true
+SOC and the computed SOC are slightly different. Simulation Parameters: current measurement error
+s.d. σi = 10 mA and sampling time ∆ = 200 ms.
+Energies 2021, 14, 4074 24 of 33
+0.5 1 1.5 2 2.5 3 3.5
+Time (Hr)
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9SOC Error S.D. (%)
+10-3
+Simulation
+Formula
+Figure 6. Standard deviation of the SOC error due to measurement error in current. Simulated
+value is plotted in comparison with the theoretical value derived in (29) shown against time that
+corresponds to n.
+6.2. Effect of Current Integration Error
+The objective in this section is to validate the standard deviation of the SOC error due
+to integration that we derived in (44). For this experiment, errors from all the other possible
+sources of uncertainties (current measurement error, battery capacity error, timing oscillator
+error as well as initial SOC error) are assumed to be zero. In order to do this, similar to
+the previous analysis, a special current proﬁle shown in Figure 7 is made up of constant
+current signals of different amplitudes. For this proﬁle, the amount of Coulombs can be
+perfectly computed using geometry similar to the example illustrated in Figure 3. Once the
+Coulombs are computed, the true SOC can be computed by making use of the knowledge
+of the true battery capacity. The following procedure details the Monte Carlo experiment
+to validate the standard deviation of the SOC error due to current integration error:
+1. Generate a perfectly integrable current, where the generated current allows one to
+perfectly compute
+∫ k+1
+k i(k)dk shown in (30).
+– First 18 s of the noiseless current proﬁle i(k) is shown in red in Figure 7. Note that
+the true current proﬁle is the downsampled version—this emulates the fact that the
+discretely measured current is always a downsampled version, and it will never be
+the same as the real current (shown in blue). First four minutes of the current proﬁle
+along with the true SOC (assuming initial SOC =1) is shown in Figure 8.
+2. Let the true battery capacity be C true = 1.5 Ah.
+3. Assuming the knowledge of the true capacity, compute the true SOC at timek, strue(k),
+using the geometric approach illustrated in Figure 3 for the entire duration of the
+proﬁle, i.e., for k = 1, . . ., n where n denotes the number of samples in the entire
+current proﬁle.
+– The second plot in Figure 8 shows the true SOC.
+4. Set m = 1, where m denotes the index of the Monte Carlo run.
+Energies 2021, 14, 4074 25 of 33
+5. Compute the (noisy) SOC sm(k), using the traditional Coulomb counting equation
+given in (65), i.e., the following:
+sm(k) = sm(k− 1) + ∆ki(k)
+3600Cbatt
+where i(k) is the ‘measured current’ indicated by red lines in Figure 7, and the
+subscript m denotes the mth Monte Carlo run.
+6. If m = M, where M denotes the maximum number of Monte Carlo runs, go to step
+(g); otherwise, set m← m + 1 and go to step (e).
+7. End of simulation (all the data generated during the above steps need to be stored
+for analysis).
+After M = 1000 Monte Carlo runs, the standard deviation of the SOC error due to
+current measurement error is computed as follows:
+ˆσs,I(k) =
+vuu√ 1
+M
+M
+∑
+m=1
+(strue(k)− sm(k))2 (93)
+Figure 9 shows the standard deviations of error computed through the theoretical
+approach, σs,I(n) in (46), and through the Monte Carlo simulation approach, ˆσs,I(k) (93).
+The constant κ for the theoretical approach in(46) is found to be κ = 0.88 through empirical
+means (i.e., different values for κ were used until the theoretical curve in red aligned well
+with the simulation curve in blue). It must be noted that κ will be different for different
+current proﬁles.
+0 2 4 6 8 10 12 14 16 18
+Time (Sec)
+-0.9
+-0.8
+-0.7
+-0.6
+-0.5
+-0.4
+-0.3
+-0.2
+-0.1
+0
+Current (A)
+True Curret
+Measured Current
+Figure 7. Perfectly integrable current proﬁle. The blue curve shows a perfectly integrable current
+that is made of rectangular pulses of different amplitude; it can be integrated using the geometric
+approach detailed in Figure 3. The measured current, shown in red, is a downsampled version of
+the true current proﬁle—this emulates the way in which discrete measurement systems measure the
+voltage/current in BMS.
+Energies 2021, 14, 4074 26 of 33
+0 0.5 1 1.5 2 2.5 3 3.5 4
+Time (Min.)
+-1.5
+-1
+-0.5
+0
+Current (A)
+0 0.5 1 1.5 2 2.5 3 3.5 4
+Time (Min.)
+98
+98.5
+99
+99.5
+100SOC (%)
+Figure 8. Current proﬁle and corresponding SOC. First four minutes of the true current proﬁle and
+the corresponding true SOC that is computed using the geometric approach detailed in Figure 3.
+Only 4 min of proﬁles are shown; the true proﬁle lasted for 4 h (see Figure 9).
+0 0.5 1 1.5 2 2.5 3 3.5
+Time (Hr)
+0
+0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+0.07
+0.08
+0.09
+0.1
+SOC Error S.D. (%)
+Simulation
+Formula
+Figure 9. The standard deviation of SOC error because of the current integration error. The red
+curve is the theoretical value of the s.d. σs,I(k) derived in (46); the blue curve shows ˆσs,I(k), the s.d.
+obtained through Monte Carlo simulation as shown in (93). The constant κ is computed through
+empirical methods to be κ = 0.88. It must be noted that κ varies for different types of current proﬁles.
+6.3. Effect of Battery Capacity Uncertainty
+The objective in this section is to validate the standard deviation of the SOC error due
+to the battery capacity uncertainty that we derived in(59) using the Monte Carlo simulation
+approach. For this experiment, errors from all the other possible sources of uncertainties
+(current measurement error, current integration error, timing oscillator error as well as
+initial SOC error) are assumed to be zero. In order to do this, similar to the previous
+Energies 2021, 14, 4074 27 of 33
+analysis, a special current proﬁle that is shown in Figure 10 is created. The current proﬁle in
+Figure 10 is made of low frequency (constant current) signals of different amplitudes. For
+this proﬁle, the amount of Coulombs can be perfectly computed using geometry similar to
+the example illustrated in Figure 3. Once the Coulombs are computed, the true SOC can
+be computed by making use of the knowledge of the true battery capacity. The following
+procedure is followed to perform the Monte Carlo experiment to validate the standard
+deviation of the SOC error, due to uncertainty in battery capacity:
+1. Generate a perfectly integrable current where the generated current proﬁle denotes
+i(k) in (10).
+– The entire true current proﬁle generated for the experiment is shown at the top plot
+Figure 10.
+2. Let the true battery capacity be C true = 1.5 Ah.
+3. Assuming the knowledge of the true capacity, compute the true SOC at time k,
+strue(k), using the geometric approach illustrated Figure 3 for the entire duration of
+the proﬁle, i.e., for k = 1, . . ., n where n denotes the number of samples in the entire
+current proﬁle.
+– The second plot in Figure 10 shows the accumulated Coulombs sCC(n). From this,
+the true SOC can be computed as strue(n) = s(0) + sCC(n).
+4. Set m = 1, where m denotes the index of the Monte Carlo run.
+5. Assuming a capacity estimation error s.d. of σbatt = 0.1 Ah, use the capacity uncer-
+tainty model of (48) to compute the estimated battery capacity Cbatt = Ctrue + C∆
+where it is a zero mean random number with standard deviation σbatt.
+– Figure 11 shows all the Cbatt values generated for m = 1, . . ., M in the form of
+a histogram.
+6. Compute the (noisy) SOC sm(k), using the traditional Coulomb counting equation
+given in (65), i.e., the following:
+sm(k) = sm(k− 1) + ∆ki(k)
+3600Cbatt
+where the subscript m denotes the mth Monte-Carlo run.
+– Figure 12 shows the true SOCstrue(k) and the computed noisy SOC sm(k) for different
+Monte Carlo runs.
+7. If m = M, where M denotes the maximum number of Monte Carlo runs, go to step
+(h); otherwise, set m← m + 1 and go to step (e).
+8. End of simulation (all the data generated during the above steps need to be stored for
+analysis).
+After M = 1000 Monte Carlo runs, the standard deviation of the SOC error due to
+current measurement error is computed as follows:
+ˆσs,C(k) =
+vuu√ 1
+M
+M
+∑
+m=1
+(strue(k)− sm(k))2 (94)
+Figure 13 shows the SOC error standard deviation obtained through the theoretical
+Equation (59) as well as the Monte Carlo simulation approach summarized through (94). It
+can be noticed that the theoretical value and the simulated values slightly differ—this can
+be attributed to the approximation made in (51) in order to derive the theoretical value.
+Energies 2021, 14, 4074 28 of 33
+0 2 4 6 8 10 12 14 16
+Time (Hour)
+-0.4
+-0.2
+0
+0.2
+0.4
+Current (A)
+0 2 4 6 8 10 12 14 16
+Time (Hour)
+-1.5
+-1
+-0.5
+0
+CAccumulated oulombs (Ah)
+Figure 10. Simulated current proﬁle and corresponding true SOC. This ﬁgure shows the difference
+between the true SOC and the SOC with battery capacity uncertainty after 100 runs of the Monte
+Carlo simulation.
+1.2 1.3 1.4 1.5 1.6 1.7 1.8
+Assumed capacity, C batt(Ah)
+0
+20
+40
+60
+80
+100
+120
+140
+160
+180
+200PMF
+Battery Capacity Uncertainty (Ctrue = 1.5 Ah)
+Figure 11. The histogram of Cbatt generated during 1000 Monte Carlo simulations. This graph shows
+that the battery capacity error that we use in our Monte Carlo runs is reasonable.
+Energies 2021, 14, 4074 29 of 33
+Figure 12. SOC error due to battery capacity uncertainty. This ﬁgure shows the difference between
+the true SOC and the SOC with battery capacity uncertainty for different simulations. The true SOC is
+computed using the true battery capacity ofCtrue = 1.5 Ah; each Monte Carlo run assumes a different
+battery Cbatt that is distributed N(Ctrue, σ2
+batt). Figure 11 shows all the Cbatt during different runs.
+0 2 4 6 8 10 12 14 16
+Time (Hour)
+0
+1
+2
+3
+4
+5
+6Std. deviaiton of SOC error (%)
+Simulation
+Theory
+Figure 13. The standard deviation of SOC error due to uncertainty in battery capacity. The red
+curve is the theoretical value of the s.d. σs,C(k) derived in (59); the blue curve shows ˆσs,C(k), the s.d.
+obtained through the Monte Carlo simulation as shown in (94). Due to the approximation made
+in (51), the theoretical and simulated values slightly differ.
+7. Conclusions and Discussion
+In this paper, we developed an in-depth mathematical analysis of the Coulomb count-
+ing method for state-of-charge estimation in rechargeable batteries. In particular, we
+derived the exact statistical values of the state-of-charge error as a result of the following:
+(i) current measurement error, (ii) current integration error, (iii) battery capacity uncertainty,
+Energies 2021, 14, 4074 30 of 33
+and (iv) timing oscillator error. The results revealed that the SOC error because of the cur-
+rent measurement and current integration error grows with time (time-proportional errors),
+whereas the SOC error due to the uncertainty in the capacity of the battery and timing os-
+cillator error are proportional to the accumulated state of charge (SOC-proportional errors).
+The time proportional errors increase indeﬁnitely with time and may result in signiﬁcant
+errors in the long run, e.g., satellites that operate for decades. The SOC-proportional
+errors reach their peak within one cycle; hence, the SOC estimates should be accompanied
+with standard deviation of the estimation error. The models presented in this paper will
+be useful to improve the overall state-of-charge estimations in the majority of existing
+approaches; in particular, the statistics developed in this paper deﬁne the process model
+for Kalman ﬁlter-based approaches to SOC estimation.
+Author Contributions: Conceptualization, B.B.; methodology, B.B., K.M., and A.R.; software, A.R.
+and B.B.; validation, B.B., and K.P .; formal analysis, B.B.; investigation, K.M.; resources, B.B.; data
+curation, K.M.; writing—original draft preparation, K.M., A.R., B.B.; writing—review and editing,
+B.B. and K.P; visualization, K.M.; supervision, B.B.; project administration, B.B.; funding acquisition,
+B.B. All authors have read and agreed to the published version of the manuscript.
+Funding: B. Balasingam acknowledges the support of the Natural Sciences and Engineering Research
+Council of Canada (NSERC) for ﬁnancial support under the Discovery Grants (DG) program (funding
+reference number RGPIN-2018-04557). Research of K. Pattipati was supported in part by the U.S.
+Ofﬁce of Naval Research and U.S. Naval Research Laboratory under Grants #N00014-18-1-1238,
+#N00173-16-1-G905, #HPCM034125HQU and by the Space Technology Research Institute grant
+(#80NSSC19K1076) from NASA’s Space Technology Research Grants Program.
+Institutional Review Board Statement: Not applicable.
+Informed Consent Statement: Not applicable.
+Acknowledgments: B. Balasingam acknowledges the help of Mostafa Ahmed for literature review
+in Section 1 of this manuscript.
+Conﬂicts of Interest: The authors declare no conﬂict of interes.
+Abbreviations
+The following abbreviations are used in this manuscript:
+CRLB Cramer–Rao lower bound
+ECM Equivalent circuit model
+EKF Extended Kalman ﬁlter
+OCV Open circuit voltage
+PCRLB Posterior Cramer–Rao lower bound
+RLS Recursive least squares
+SOC State of charge
+List of Notations
+A list of the notations used in this paper is summarized below:
+Ctrue True battery capacity (see (48))
+Cbatt Assumed battery capacity (5)
+C∆ Battery capacity uncertainty (48)
+δI(k) Current integration error at time k (30)
+∆k Sampling duration at time k (8)
+∆ Sampling time that is assumed constant (14)
+∆true True sampling time (71)
+∆ϵ Timing oscillator error (71)
+η Coulomb counting efﬁciency (5)
+ηc Charging efﬁciency (6)
+ηd Discharging efﬁciency (6)
+Energies 2021, 14, 4074 31 of 33
+i(t) Current through battery at time t (5)
+i(k) Sampled current through battery at time instant k (7)
+ni(k) Current measurement noise (10)
+ns(k) Process noise (3)
+nz(k) Measurement noise (4)
+κ Integration error constant (36)
+ρi Current measurement noise coefﬁcient (28)
+ρI Current integration noise coefﬁcient (45)
+ρC Capacity uncertainty coefﬁcient (60)
+ρηc Charging uncertainty coefﬁcient (68)
+ρηd Discharging uncertainty coefﬁcient (68)
+ρ∆ Timing error coefﬁcient (72)
+s(t) SOC at time t (5)
+s(0) Initial SOC (5)
+s(k) SOC at discretized time instance k (7)
+sCC(n) Change in SOC over n samples (16)
+σi Std. deviation of current measurement error (11)
+σL Std. deviation of load current changes (33)
+σbatt Std. deviation of battery capacity uncertainty (49)
+σηc Std. deviation of charging uncertainty (70)
+σηd Std. deviation of discharging uncertainty (70)
+σ∆ Std. deviation of timing uncertainty (90)
+σs,i(n) Std. deviation of wi(n) (25)
+σs,I(n) Std. deviation of wI(n) (43)
+σs,C(n) Std. deviation of wC(n) (59)
+σs,η(n) Std. deviation of wη(n) (70)
+σs,∆(n) Std. deviation of w∆(n) (79)
+σs(n) Std. deviation of w(n) (90)
+wi(n) SOC error due to current measurement error (16)
+wI(n) SOC error due to current integration error (39)
+wC(n) SOC error due to battery capacity uncertainty(54)
+wη(n) SOC error due to the uncertainty in c/d efﬁciency (66)
+w∆(n) SOC error due to timing oscillator uncertainty (75)
+w(n) SOC error due combined uncertainties (87)
+zi(k) Measured current at time k (10)
+zv(k) Measured voltage at time k (91)
+References
+1. Balasingam, B.; Pattipati, K. Elements of a Robust Battery-Management System: From Fast Characterization to Universality and
+More. IEEE Electrif. Mag. 2018, 6, 34–37. [CrossRef]
+2. Waag, W.; Fleischer, C.; Sauer, D.U. On-line estimation of lithium-ion battery impedance parameters using a novel varied-
+parameters approach. J. Power Sources 2013, 237, 260–269. [CrossRef]
+3. Plett, G.L. Extended Kalman ﬁltering for battery management systems of LiPB-based HEV battery packs: Part 2. Modeling and
+identiﬁcation. J. Power Sources 2004, 134, 262–276. [CrossRef]
+4. Yuan, S.; Wu, H.; Yin, C. State of charge estimation using the extended Kalman ﬁlter for battery management systems based on
+the ARX battery model. Energies 2013, 6, 444–470. [CrossRef]
+5. Balasingam, B.; Ahmed, M.; Pattipati, K. Battery Management Systems—Challenges and Some Solutions. Energies 2020, 13, 2825.
+[CrossRef]
+6. Pattipati, B.; Balasingam, B.; Avvari, G.; Pattipati, K.R.; Bar-Shalom, Y. Open circuit voltage characterization of lithium-ion
+batteries. J. Power Sources 2014, 269, 317–333. [CrossRef]
+7. Balasingam, B.; Avvari, G.; Pattipati, B.; Pattipati, K.; Bar-Shalom, Y. A robust approach to battery fuel gauging, part I: Real time
+model identiﬁcation. J. Power Sources 2014, 272, 1142–1153. [CrossRef]
+8. Plett, G.L. Battery Management Systems, Volume I: Battery Modeling; Artech House Publishers: Boston, MA, USA, 2015.
+9. Plett, G.L. Battery Management Systems, Volume II: Equivalent-Circuit Methods; Artech House Publishers: Boston, MA, USA, 2015.
+10. Hariharan, K.S.; Tagade, P .; Ramachandran, S.Mathematical Modeling of Lithium Batteries: From Electrochemical Models to State
+Estimator Algorithms; Springer: Berlin/Heidelberg, Germany, 2017.
+11. Ahmed, M.S.; Raihan, S.A.; Balasingam, B. A scaling approach for improved state of charge representation in rechargeable
+batteries. Appl. Energy 2020, 267, 114880. [CrossRef]
+Energies 2021, 14, 4074 32 of 33
+12. Nikdel, M.; Nikdel, M. Various battery models for various simulation studies and applications. Renew. Sustain. Energy Rev. 2014,
+32, 477–485.
+13. Balasingam, B.; Avvari, G.; Pattipati, B.; Pattipati, K.; Bar-Shalom, Y. A robust approach to battery fuel gauging, part II: Real time
+capacity estimation. J. Power Sources 2014, 269, 949–961. [CrossRef]
+14. Balasingam, B.; Avvari, G.; Pattipati, K.; Bar-Shalom, Y. Performance analysis results of a battery fuel gauge algorithm at multiple
+temperatures. J. Power Sources 2015, 273, 742–753. [CrossRef]
+15. Avvari, G.; Pattipati, B.; Balasingam, B.; Pattipati, K.; Bar-Shalom, Y. Experimental set-up and procedures to test and validate
+battery fuel gauge algorithms. Appl. Energy 2015, 160, 404–418. [CrossRef]
+16. Bar-Shalom, Y.; Li, X.R.; Kirubarajan, T. Estimation with Applications to Tracking and Navigation: Theory Algorithms and Software;
+John Wiley & Sons: New York, NY, USA, 2004.
+17. Balasingam, B.; Pattipati, K. On the Identiﬁcation of Electrical Equivalent Circuit Models Based on Noisy Measurements.
+IEEE Trans. Instrum. Meas. 2021, 70, 1–16. [CrossRef]
+18. Lee, S.; Mohtat, P .; Siegel, J.B.; Stefanopoulou, A.G.; Lee, J.W.; Lee, T.K. Estimation Error Bound of Battery Electrode Parameters
+With Limited Data Window. IEEE Trans. Ind. Inform. 2019, 16, 3376–3386. [CrossRef]
+19. Lin, X. Theoretical analysis of battery soc estimation errors under sensor bias and variance. IEEE Trans. Ind. Electron. 2018,
+65, 7138–7148. [CrossRef]
+20. Bizeray, A.M.; Kim, J.H.; Duncan, S.R.; Howey, D.A. Identiﬁability and parameter estimation of the single particle lithium-ion
+battery model. IEEE Trans. Control. Syst. Technol. 2018, 27, 1862–1877. [CrossRef]
+21. Wei, Z.G.; Hu, J.; He, H.; Li, Y.; Xiong, B. Load Current and State of Charge Co-Estimation for Current Sensor-Free Lithium-ion
+Battery. IEEE Trans. Power Electron. 2021. [CrossRef]
+22. Hu, J.; He, H.; Wei, Z.; Li, Y. Disturbance-immune and aging-robust internal short circuit diagnostic for lithium-ion battery.
+IEEE Trans. Ind. Electron. 2021. [CrossRef]
+23. Wei, Z.; Zhao, J.; Ji, D.; Tseng, K.J. A multi-timescale estimator for battery state of charge and capacity dual estimation based on
+an online identiﬁed model. Appl. Energy 2017, 204, 1264–1274. [CrossRef]
+24. Song, Z.; Hou, J.; Hofmann, H.F.; Lin, X.; Sun, J. Parameter Identiﬁcation and Maximum Power Estimation of Bat-
+tery/Supercapacitor Hybrid Energy Storage System Based on Cramer–Rao Bound Analysis. IEEE Trans. Power Electron. 2018,
+34, 4831–4843. [CrossRef]
+25. Song, Z.; Wang, H.; Hou, J.; Hofmann, H.; Sun, J. Combined State and Parameter Estimation of Lithium-Ion Battery with Active
+Current Injection. IEEE Trans. Power Electron. 2019, 35, 4439–4447. [CrossRef]
+26. Song, Z.; Hofmann, H.; Lin, X.; Han, X.; Hou, J. Parameter identiﬁcation of lithium-ion battery pack for different applications
+based on Cramer-Rao bound analysis and experimental study. Appl. Energy 2018, 231, 1307–1318. [CrossRef]
+27. Klintberg, A.; Wik, T.; Fridholm, B. Theoretical bounds on the accuracy of state and parameter estimation for batteries. In
+Proceedings of the 2017 American Control Conference (ACC), Seattle, WA, USA, 24–26 May 2017; pp. 4035–4041.
+28. Lin, X. Analytic analysis of the data-dependent estimation accuracy of battery equivalent circuit dynamics. IEEE Control.
+Syst. Lett. 2017, 1, 304–309. [CrossRef]
+29. Zhang, L.; Lyu, C.; Hinds, G.; Wang, L.; Luo, W.; Zheng, J.; Ma, K. Parameter sensitivity analysis of cylindrical LiFePO4 battery
+performance using multi-physics modeling. J. Electrochem. Soc. 2014, 161, A762–A776. [CrossRef]
+30. Mendoza, S.; Liu, J.; Mishra, P .; Fathy, H. On the relative contributions of bias and noise to lithium-ion battery state of charge
+estimation errors. J. Energy Storage 2017, 11, 86–92. [CrossRef]
+31. Zhang, Y.; Song, W.; Lin, S.; Feng, Z. A novel model of the initial state of charge estimation for LiFePO4 batteries. J. Power Sources
+2014, 248, 1028–1033. [CrossRef]
+32. Yang, Y.; Wang, J.; Weng, H.; Hou, J.; Gao, T. Research on Online Correction of SOC estimation for Power Battery Based on Neural
+Network. In Proceedings of the Advanced Information Technology, Electronic and Automation Control Conference, Chongqing,
+China, 12–14 October 2018; pp. 2128–2132.
+33. Yan, J.; Xu, G.; Qian, H.; Xu, Y. Robust State of Charge Estimation for Hybrid Electric Vehicles: Framework and Algorithms.
+Energies 2010, 3, 1654–1672. [CrossRef]
+34. Xiong, R.; Yu, Q.; Lin, C. A novel method to obtain the open circuit voltage for the state of charge of lithium ion batteries in
+electric vehicles by using H inﬁnity ﬁlter. Appl. Energy 2017, 207, 346–353. [CrossRef]
+35. Dong, G.; Wei, J.; Zhang, C.; Chen, Z. Online state of charge estimation and open circuit voltage hysteresis modeling of LiFePO4
+battery using invariant imbedding method. Appl. Energy 2016, 162, 163–171. [CrossRef]
+36. Cho, Y.; Jeong, Y.; Ahn, J.; Ryu, S.; Lee, B. A new SOC estimation algorithm without integrated error using DCIR repetitive
+calculation. In Proceedings of the International Conference on Electrical Machines and Systems, Hangzhou, China, 22–25 October
+2014; pp. 865–870.
+37. Wu, T.H.; Moo, C.S. State-of-Charge Estimation with State-of-Health Calibration for Lithium-Ion Batteries. Energies 2017, 10, 987.
+38. Sepasi, S.; Ghorbani, R.; Liaw, B.Y. Inline state of health estimation of lithium-ion batteries using state of charge calculation.
+J. Power Sources 2015, 299, 246–254. [CrossRef]
+39. Plett, G.L. Extended Kalman ﬁltering for battery management systems of LiPB-based HEV battery packs: Part 3. State and
+parameter estimation. J. Power Sources 2004, 134, 277–292. [CrossRef]
+Energies 2021, 14, 4074 33 of 33
+40. Plett, G.L. Sigma-point Kalman ﬁltering for battery management systems of LiPB-based HEV battery packs: Part 2. Simultaneous
+state and parameter estimation. J. Power Sources 2006, 161, 1369–1384. [CrossRef]
+41. Linghu, J.; Kang, L.; Liu, M.; Hu, B.; Wang, Z. An Improved Model Equation Based on a Gaussian Function Trinomial for State of
+Charge Estimation of Lithium-ion Batteries. Energies 2019, 12, 1366. [CrossRef]
+42. Wei, Z.; Meng, S.; Xiong, B.; Ji, D.; Tseng, K.J. Enhanced online model identiﬁcation and state of charge estimation for lithium-ion
+battery with a FBCRLS based observer. Appl. Energy 2016, 181, 332–341. [CrossRef]
+43. Wadi, A.; Abdel-Hafez, M.F.; Hussein, A.A. Mitigating the Effect of Noise Uncertainty on the Online State-of-Charge Estimation
+of Li-Ion Battery Cells. IEEE Trans. Veh. Technol.2019, 68, 8593–8600. [CrossRef]
+44. Peng, S.; Chen, C.; Shi, H.; Yao, Z. State of charge estimation of battery energy storage systems based on adaptive unscented
+Kalman ﬁlter with a noise statistics estimator. IEEE Access 2017, 5, 13202–13212. [CrossRef]
+45. El Din, M.S.; Abdel-Hafez, M.F.; Hussein, A.A. Enhancement in Li-ion battery cell state-of-charge estimation under uncertain
+model statistics. IEEE Trans. Veh. Technol.2015, 65, 4608–4618. [CrossRef]
+46. Sun, Q.; Zhang, H.; Zhang, J.; Ma, W. Adaptive unscented kalman ﬁlter with correntropy loss for robust state of charge estimation
+of lithium-ion battery. Energies 2018, 11, 3123. [CrossRef]
+47. Zhang, K.; Ma, J.; Zhao, X.; Zhang, D.; He, Y. State of Charge Estimation for Lithium Battery Based on Adaptively Weighting
+Cubature Particle Filter. IEEE Access 2019, 7, 166657–166666. [CrossRef]
+48. Xi, Z.; Dahmardeh, M.; Xia, B.; Fu, Y.; Mi, C. Learning of battery model bias for effective state of charge estimation of lithium-ion
+batteries. IEEE Trans. Veh. Technol.2019, 68, 8613–8628. [CrossRef]
+49. Bi, Y.; Choe, S.Y. An adaptive sigma-point Kalman ﬁlter with state equality constraints for online state-of-charge estimation of a
+Li (NiMnCo) O2/Carbon battery using a reduced-order electrochemical model. Appl. Energy 2020, 258, 113925. [CrossRef]
+50. Movassagh, K.; Raihan, S.A.; Balasingam, B. Performance Analysis of Coulomb Counting Approach for State of Charge Estimation.
+In Proceedings of the IEEE Electrical Power and Energy Conference, Montreal, QC, Canada, 16–18 October 2019.
+51. Movassagh, K. Performance Analysis of Coulomb Counting Approach for State of Charge Estimation in Li-Ion Batteries. 2020.
+Available online: https://scholar.uwindsor.ca/etd/8384/ (accessed on 12 February 2021).
+52. Balasingam, B.; French, B.; Yaakov, B.S.; Pattipati, B.; Pattipati, K.; Meacham, J.; Williams, T.; Avvari, G.V .; Hwang, T.S. Battery
+State of Charge Tracking, Equivalent Circuit Selection and Benchmarking. U.S. Patent 10664562, 26 May 2020.
+53. Chapra, S.C.; Canale, R.P . Numerical Methods for Engineers; Mcgraw-Hill: New York, NY, USA, 1998; Volume 2.
+54. Barré, A.; Deguilhem, B.; Grolleau, S.; Gérard, M.; Suard, F.; Riu, D. A review on lithium-ion battery ageing mechanisms and
+estimations for automotive applications. J. Power Sources 2013, 241, 680–689. [CrossRef]
+55. Spotnitz, R. Simulation of capacity fade in lithium-ion batteries. J. Power Sources 2003, 113, 72–80. [CrossRef]

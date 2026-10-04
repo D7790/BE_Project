@@ -1,0 +1,15 @@
+{
+  "id": "movassagh2021",
+  "format": "pdf",
+  "coverage": "full article plus references",
+  "url": "https://ntrs.nasa.gov/api/citations/20220008848/downloads/2021.07%20-%20Energies%20-%20A%20Critical%20Look%20at%20Coulomb%20Counting%20Approach%20for%20State%20of%20Charge%20Estimation.pdf",
+  "doi": "10.3390/en14144074",
+  "retrieved_date": "2026-09-30",
+  "status": "available",
+  "raw_path": "paper/evidence/originality-corpus/movassagh2021.pdf",
+  "raw_sha256": "fbdbba03c18a539a412af7283d9ad67412ce8ba96f70b4dab00ea4a9fa9471c2",
+  "pages": 33,
+  "text_path": "paper/evidence/originality-corpus/movassagh2021.txt",
+  "text_sha256": "f1734752c52e7265af729a277f8fd6b777e6dff014203f92dfaf380f89ef2028",
+  "normalized_words": 11461
+}

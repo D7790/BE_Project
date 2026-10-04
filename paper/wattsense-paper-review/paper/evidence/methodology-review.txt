@@ -1,0 +1,98 @@
+INDEPENDENT METHODOLOGY REVIEW — WATTSENSE
+Reviewed 30 September 2026. Read-only review of existing source and recorded results.
+No new simulation, physical measurement, literature search, or core edit performed.
+Reviewer-owned output: paper/evidence/methodology-review.txt
+
+VERDICT AND CLAIM BOUNDARY
+A defensible manuscript is an engineering design and reproducible simulation case study. It can report a proposed low-power priority-load controller, traceable PCB/software artifacts, deterministic checks, and explicitly assumed lumped-model scenarios. Present evidence supports neither experimental validation nor commercial safety/reliability nor a guaranteed three-hour backup. The paper could suit an appropriate undergraduate/design venue after venue-specific review, but acceptance cannot be predicted. Novelty is modest: coulomb counting, priority shedding, ESP32 telemetry, current shunts, and multilayer layout are established techniques. Do not claim a novel algorithm or best-in-class performance without appropriate literature/comparative evidence.
+
+SUGGESTED TITLE
+“Wattsense: Design and Reproducible Simulation of a Runtime-Triggered Priority-Load Controller for a Low-Power Battery System”
+Do not put “solar performance,” “BMS,” “AI,” “experimental validation,” “optimized,” or “high efficiency” in the title. Solar/charger monitoring can be described as an untested interface or future extension. There is no solar generation profile in the principal runtime comparison.
+
+PLAUSIBLE LIMITED CONTRIBUTIONS
+1. An inspectable implementation linking four-layer PCB power-path geometry, small-signal/reduced SPICE checks, host-tested policy code, and a documented startup screening workflow.
+2. A transparent service-allocation comparison that reports both essential-load extension and optional-load service sacrificed at the same modeled stopping criterion.
+3. A practical counterexample: more output capacitance alone does not resolve a sustained assumed startup current deficit, and source current headroom alone does not remove series-path drop.
+4. Explicit accounting of model limitations and an executable path from modeled constraints to supervised prototype qualification.
+The third finding illustrates established circuit behavior; its contribution is application-specific design screening, not a new physical principle.
+
+MAIN REPRODUCIBILITY FILES INSPECTED
+- simulations/hardware-assumptions.json
+- simulations/hardware_model.py
+- simulations/run_hardware.py
+- simulations/extract_copper.py
+- simulations/run_system.py
+- simulations/results/hardware-summary.json
+- simulations/results/hardware-runtime-priority.csv
+- wattsense/model.py
+- firmware/include/controller.h
+- docs/HARDWARE_PERFORMANCE.md, docs/FINAL_AUDIT.md, docs/PROTOCOL.md
+Existing records inspected in this review were timestamped 28 September 2026; any fresh root-agent rerun should supply the manuscript's actual final provenance. Test counts are software verification metrics, not statistical samples or hardware trial counts.
+
+EQUATIONS THAT MUST MATCH THE IMPLEMENTATION
+Use SOC s in percent and time increment dt in seconds; capacity C is Ah before reserve.
+Effective signed current: Ieff=I for I>=0, eta_charge*I for I<0.
+s[k+1]=clip(s[k] - 100*Ieff*dt/(3600*C), 0, 100).
+Estimated usable energy: Ehat=max(s-s_res,0)*C*V_nom/100 (Wh).
+Policy runtime: That_load=Ehat/P_U2 for P_U2>0.2 W.
+Telemetry net-discharge runtime uses exponentially smoothed battery terminal power, with alpha=1-exp(-dt/3 s). The shedding denominator P_U2 itself is NOT that smoothed power.
+Three consecutive seconds with That_load<T_min=3 h trigger optional OFF. The 3 s rule is a persistence delay, not a demonstrated stability guarantee.
+Restore requires explicit request and Ehat/P_prospective >= T_min+0.25 h, subject to valid readings, operating limits, and armed hardware. The production optional-power increment is provisional 3.5 W. The principal discharge model starts with optional ON and does not exercise the restore path.
+Constant-power branch solution: I=2P/[V+sqrt(V^2-4RP)] on the stable high-voltage/low-current branch, with the ideal R=0 limit handled by the same expression. Model rejects absent positive discriminant.
+R_trace=sum(rho*L/(w*t)); temperature variation is a prescribed parameter, not a solved thermal state.
+Battery-current equation uses the OCV(s), series-resistance, and efficiency assumptions; chemical power is OCV*I, not nominal_voltage*I.
+Circuit power balance: chemical power = load-delivered power + converter loss + output-path loss + upstream resistive loss.
+
+CRITICAL RUNTIME-MODEL MISMATCH
+The estimator approximates energy using 12.8 V*C*(s-s_res), whereas the plant integrates OCV(s)*I. P_U2 includes the downstream converter and output losses and R2 loss but excludes battery internal/BMS resistance, upstream wiring, R1 and part of copper losses. Accordingly, Ehat/P_U2 is an interpretable no-future-charge heuristic but not a lower bound on true remaining runtime. Ignoring future solar can reduce optimism from future generation; it does not correct these other terms or sensor/capacity errors. docs/PROTOCOL.md currently calls it “Conservative”; manuscript should avoid that unqualified term.
+In the stored nominal scenario, shedding occurs at 8977 s (2.493611 h), true/estimated SOC 46.309297%, with That_load=2.999261 h. The baseline common endpoint is 5.476389 h, so retaining both loads from that instant would provide only 2.982778 h. The difference is approximately 59 s. This is a useful bounded demonstration of the approximation, not a generic accuracy statistic; one-second sampling and three-second persistence also affect the trigger timing.
+After shedding, remaining lamp operation is 5.39 h in this scenario. The 3 h setting therefore is a trigger under then-current all-load consumption, not a promise of exactly three more lamp hours and not an optimal-allocation objective.
+
+FAIRNESS AND QUANTIFIED TRADEOFF
+Both main runs use identical 6 Ah, initial 68% SOC, 20% true-SOC endpoint, assumed OCV table, 90% efficiency, 2.5 W lamp, 2.5 W fan, and 0.8 W controller/sensors. The comparison isolates the one fan switch. Both are battery-fed controller scenarios; do not compare USB-powered controller tests against these without correcting energy accounting.
+Recorded baseline: lamp/fan each 5.476389 h.
+Recorded priority: lamp 7.883611 h, fan 2.493611 h.
+Lamp gain: 2.407222 h or 43.9564%.
+Fan service lost: 2.982778 h or 54.4661%.
+Lamp+fan delivered energy excluding controller: 27.381944 Wh baseline versus 25.943056 Wh priority.
+Total delivered energy including controller: 31.763056 Wh versus 32.249944 Wh.
+Modeled chemical energy is approximately 37.4087 versus 37.4084 Wh, with the small mismatch due to endpoint discretization. Extra lamp hours result predominantly from redistribution of service and lower total power, not 44% extra battery capacity or 44% energy-efficiency improvement.
+Main baseline is retained-load operation with the same emergency/reserve logic. It is not an optimized competitor and does not establish superiority to other priority controllers. A fixed SOC-trigger baseline and a policy-threshold/service tradeoff sweep would strengthen a future paper, but no such result should be invented. An essential-only run would also make the attainable service bound clearer.
+
+UNCERTAINTY AND ASSUMPTIONS
+The 18 cases are a deterministic full factorial of two true capacities (4.8,6 Ah), three efficiencies (0.8,0.9,0.95), and three battery/BMS resistances (0.05,0.10,0.20 ohm). In every case the estimator is given that same true capacity, initial SOC is exact, and measurements have no error. Thus reported spans are scenario ranges, not confidence intervals, statistical uncertainty bounds, robustness to unknown capacity, or an exhaustive worst case.
+The OCV curve is explicitly invented for teaching. It is not chemistry validation or a fit to a pack. Discharge may include a generic illustrative LiFePO4-like voltage range, but avoid presenting “battery model validated for LiFePO4” or calling the curve manufacturer's data.
+The separate old estimation-error case jointly changes true capacity (4.8 Ah vs configured 6 Ah) and current (.5 A actual vs .52 A reported) over four hours, producing about seven percentage points error. It demonstrates drift vulnerability; it does not isolate each error or validate an uncertainty model. A fixed additive current offset also affects later decisions, which the principal 18 cases omit.
+Other unmodeled uncertainties: initial charge reference, load power variation, fan electronics, exact converter efficiency/current limit/regulation, hot fuse resistance, MOSFET temperature dependence, ground/reference errors, ADC quantization/timing, communication outages, aging, protection cutoffs, and environmental effects.
+Numerical timestep agreement below one second and algebraic/KCL/power checks establish implementation consistency of the selected equations, not physical accuracy.
+
+STARTUP MODEL CAUTIONS
+Six SPICE cases use an instantaneous behavioural current-limited source with a 40 mOhm equivalent resistance, assumed capacitance/ESR, and 100 ms voltage-dependent resistive fan demand. They are not LM2596 switching/control-loop or BLDC startup models, and are separate from the constant-power discharge loads. State this split explicitly in methods and figure captions.
+The 4.75 V common-rail threshold is a provisional project screen, not the ESP32 brownout threshold or fan's specified minimum voltage. Fan terminal voltage is lower; for the smaller starter case, common rail is ~4.791 V while fan minimum is ~4.551 V. A common-rail pass does not prove fan start, processor immunity, or fuse pulse survival.
+The capacitor example demonstrates a sustained deficit with these assumptions, not that increasing capacitance never helps. The 3 A source case remaining below the screen demonstrates series resistance under assumed load, not that a 3 A converter should be bought or that PCB limits rise to 3 A.
+No model predicts real junction or board temperature. Report dissipated power, never “thermally safe” from those numbers alone.
+
+PCB/CONTROL BOUNDARIES
+Four copper layers and two connected inner ground planes are implementation choices; no comparative two-layer EMI/thermal/electrical improvement was measured or simulated. Avoid claiming extra layers increased current rating or handling.
+Extracted resistance follows selected explicit front-layer paths and omits parallel plane/pour conduction, pad spreading, contacts, and the actual module wiring. Those path values are not an exact board equivalent or field solution.
+Only the optional fan can be disconnected. The essential load remains powered. The simulation terminates using true SOC available only to the plant; physical experiments need independently tracked stop criteria and operator disconnection. This cannot be called automated whole-battery reserve protection.
+The purchased BMS/charger remain separate. There is no custom cell protection, reverse-polarity block, charge algorithm, MPPT, cell balancing, wireless optimization, or experimentally characterized solar input.
+HARDWARE_CONFIRMED=false in supplied production source. Describing the physical fan as already controlled would be false; host/reference models illustrate expected armed policy. Software tests are not ESP32 instruction-level or peripheral timing simulation.
+SOC starts unknown after reboot and is manually synchronized through a verified procedure. Invalid/gapped data invalidate its reference. “Always available SOC” or “automatic SOC initialization” would misrepresent the implementation.
+optional_on is a command, not measured switch contact/current confirmation.
+
+SUGGESTED PAPER STRUCTURE AND FIGURES
+1. Abstract: design/simulation scope first, main numerical assumptions and both service outcomes, no experimental wording.
+2. Introduction/related work: narrow research question and modest integration contribution; distinguish prior established methods.
+3. System architecture: signed current paths, protected pack and external charger/converter boundaries, three sensors and one switch; dashed untested charging/solar extension.
+4. Controller and plant methodology: equation set, state flow, test matrix and assumption provenance.
+5. Results: principal paired service timeline/SOC, loss budget, all startup cases including failures, deterministic sensitivity ranges; numerical verification separate.
+6. Limitations and planned validation: actual parts, calibration, startup oscilloscope capture, temperatures, repeated paired trials and external endpoint.
+7. Conclusion: what was demonstrated in models and which research claims require hardware.
+Useful figures: architecture and power/sensing boundaries; policy state diagram; lamp/fan service tradeoff; steady loss breakdown; rail/fan startup traces with 4.75 V screen explicitly labelled; compact full-factorial sensitivity plot; actual PCB views only if legible and not implying physical assembly.
+Use standalone vector figures or high-resolution generated plots. Do not put a made-up rendered assembled prototype in an experimental-looking results panel. Every results caption should say “simulated” or “modeled,” and all numerical inputs need provenance.
+
+SUBMISSION AND ORIGINALITY LIMITS
+This review does not establish originality against the literature. Literature claim verification and citation accuracy are required. A local phrase match or public web search cannot certify a global plagiarism percentage or replace institutional similarity tools; do not claim “0% plagiarism” or “plagiarism free.” Original prose plus citations and original generated diagrams is the correct draft-level objective.
+The manuscript needs real author names, affiliations, contributions, venue-specific template, declaration of tool/AI use where required, and author approval before submission. These must not be invented. A simulation/design manuscript can be prepared now; an experimentally validated final-project paper requires the listed measurements.

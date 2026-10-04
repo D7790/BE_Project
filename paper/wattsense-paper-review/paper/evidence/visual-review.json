@@ -1,0 +1,46 @@
+{
+  "status": "PASS_ASSISTANT_VISUAL_QA",
+  "pdf_sha256": "bd3dbb31a6113b92730afadf65a902c1104e4f1662ecc6721d4e5585c80d1eee",
+  "reviewer": "Codex assistant",
+  "reviewed_at": "2026-09-30T07:55:57.603920+00:00",
+  "human_review_complete": false,
+  "method": "Poppler at 110 dpi; inspected all seven final page images after final header overlay repair",
+  "findings": "All final pages inspected. Body, equations, tables, captions and five figures are legible without observed clipping/overlap; working-draft banner now visible on every page. This is assistant layout review, not author approval.",
+  "pages": [
+    {
+      "page": 1,
+      "render_path": "tmp/pdfs/wattsense-recheck-page-1.png",
+      "sha256": "716d8587dcc9dabe9cf96fbf97a097691ce3547eb5a21d7ad3dfc70d349f28c0"
+    },
+    {
+      "page": 2,
+      "render_path": "tmp/pdfs/wattsense-recheck-page-2.png",
+      "sha256": "c07e7d8f5744388c069167229657a8b84ff094b6a1a69574a8a23e8643bfb67b"
+    },
+    {
+      "page": 3,
+      "render_path": "tmp/pdfs/wattsense-recheck-page-3.png",
+      "sha256": "b2f2b020b170696454840471dabc6151b88d6b83447ef502ecb307cd3f40123d"
+    },
+    {
+      "page": 4,
+      "render_path": "tmp/pdfs/wattsense-recheck-page-4.png",
+      "sha256": "9f4eb86a0c4220542617cb36e6301fa5eb580aed4d41cf8e64f7ba489663312d"
+    },
+    {
+      "page": 5,
+      "render_path": "tmp/pdfs/wattsense-recheck-page-5.png",
+      "sha256": "50f862e9879d8da2461242afc13710d8d7992f0c80d0e3c3a667d5d0e5dab17e"
+    },
+    {
+      "page": 6,
+      "render_path": "tmp/pdfs/wattsense-recheck-page-6.png",
+      "sha256": "f7869f6ec741b7ea5c5ef4c6de18deddd1453add0f57d4d5b69e7033839fec9d"
+    },
+    {
+      "page": 7,
+      "render_path": "tmp/pdfs/wattsense-recheck-page-7.png",
+      "sha256": "e53899dfdb167a24cc11d5ecb4dd65cb5ec3ae255b272e62631223f2e9aec6b1"
+    }
+  ]
+}

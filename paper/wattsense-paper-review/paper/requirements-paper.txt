@@ -1,0 +1,4 @@
+matplotlib==3.10.8
+reportlab==5.0.1
+svglib==2.2.0
+pypdf==6.19.0

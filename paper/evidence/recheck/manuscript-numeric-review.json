@@ -1,0 +1,136 @@
+{
+  "created_utc": "2026-09-30T06:45:27.470256+00:00",
+  "status": "PASS_NUMERIC_COMPARISONS",
+  "manuscript_sha256": "855dd7649a23905b1f2b37293259e747d4b04f6ca209236efe16b9d7b498a82f",
+  "checks": [
+    {
+      "check": "abstract_baseline",
+      "pass": true,
+      "value": 5.476388888888889
+    },
+    {
+      "check": "abstract_priority",
+      "pass": true,
+      "value": 7.883611111111111
+    },
+    {
+      "check": "abstract_priority_fan",
+      "pass": true,
+      "value": 2.493611111111111
+    },
+    {
+      "check": "abstract_lamp_gain",
+      "pass": true,
+      "value": 43.95637839208724
+    },
+    {
+      "check": "abstract_fan_loss",
+      "pass": true,
+      "value": 54.46614253106772
+    },
+    {
+      "check": "table_II_Lamp service (h)",
+      "pass": true,
+      "actual": [
+        "5.4764",
+        "7.8836"
+      ],
+      "expected": [
+        "5.4764",
+        "7.8836"
+      ]
+    },
+    {
+      "check": "table_II_Fan service (h)",
+      "pass": true,
+      "actual": [
+        "5.4764",
+        "2.4936"
+      ],
+      "expected": [
+        "5.4764",
+        "2.4936"
+      ]
+    },
+    {
+      "check": "table_II_Lamp + fan energy (Wh)",
+      "pass": true,
+      "actual": [
+        "27.3819",
+        "25.9431"
+      ],
+      "expected": [
+        "27.3819",
+        "25.9431"
+      ]
+    },
+    {
+      "check": "table_II_All loads incl. controller (Wh)",
+      "pass": true,
+      "actual": [
+        "31.7631",
+        "32.2499"
+      ],
+      "expected": [
+        "31.7631",
+        "32.2499"
+      ]
+    },
+    {
+      "check": "table_II_Chemical energy (Wh, approx.)",
+      "pass": true,
+      "actual": [
+        "37.41",
+        "37.41"
+      ],
+      "expected": [
+        "37.41",
+        "37.41"
+      ]
+    },
+    {
+      "check": "C027_heuristic",
+      "pass": true,
+      "value_h": 2.9992614597357212
+    },
+    {
+      "check": "C027_counterfactual",
+      "pass": true,
+      "value_h": 2.9827777777777778
+    },
+    {
+      "check": "C027_approximate_seconds",
+      "pass": true,
+      "difference_s": 59.34125504859651
+    },
+    {
+      "check": "C025_service_changes",
+      "pass": true
+    },
+    {
+      "check": "C028_DC_numbers",
+      "pass": true
+    },
+    {
+      "check": "C029_sensitivity_ranges",
+      "pass": true
+    },
+    {
+      "check": "C033_check_counts",
+      "pass": true,
+      "python_tests": 45,
+      "cpp_assertions": 67,
+      "saved_independent_checks": 38
+    },
+    {
+      "check": "C034_convergence",
+      "pass": true
+    }
+  ],
+  "scope": "Numeric roundoff consistency against current saved traces, summaries and test logs; not human source verification or physical validation.",
+  "counterfactual_details": {
+    "heuristic_h": 2.9992614597357212,
+    "same_load_remaining_h": 2.9827777777777778,
+    "overestimate_s": 59.34125504859651
+  }
+}

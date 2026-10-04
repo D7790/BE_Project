@@ -1,0 +1,427 @@
+{
+  "schema_version": "1.0",
+  "sources": [
+    {
+      "evidence_id": "E001",
+      "title": "A Critical Look at Coulomb Counting Approach for State of Charge Estimation in Batteries",
+      "authors": [
+        "Kiarash Movassagh",
+        "Arif Raihan",
+        "Balakumar Balasingam",
+        "Krishna Pattipati"
+      ],
+      "year": 2021,
+      "source_type": "journal_article",
+      "confidentiality": "public",
+      "identifiers": {
+        "doi": "10.3390/en14144074",
+        "url": "https://www.mdpi.com/1996-1073/14/14/4074",
+        "isbn": "",
+        "pmcid": "",
+        "pmid": ""
+      },
+      "locator": "Publisher citation record and NASA-hosted accepted manuscript, including abstract, inspected. NASA identifies the manuscript as externally peer reviewed and records publication on 6 July 2021. Later PDF section requests intermittently returned retrieval errors. Accountable human verification pending.",
+      "verification": {
+        "status": "unverified",
+        "source_opened": true,
+        "verified_by": "",
+        "verified_on": ""
+      }
+    },
+    {
+      "evidence_id": "E002",
+      "title": "Priority-based low voltage DC microgrid system for rural electrification",
+      "authors": [
+        "Anup Marahatta",
+        "Yaju Rajbhandari",
+        "Ashish Shrestha",
+        "Ajay Singh",
+        "Anand Gachhadar",
+        "Anup Thapa"
+      ],
+      "year": 2021,
+      "source_type": "journal_article",
+      "confidentiality": "public",
+      "identifiers": {
+        "doi": "10.1016/j.egyr.2020.11.030",
+        "url": "https://www.sciencedirect.com/science/article/pii/S2352484720314554",
+        "isbn": "",
+        "pmcid": "",
+        "pmid": ""
+      },
+      "locator": "Publisher abstract and citation metadata retrieved. Direct publisher open failed, so the author-uploaded full paper (Ashish Shrestha, uploaded 20 November 2020) was inspected, especially section 2.2.2 and Table 3. Author byline matches the article title page. Accountable human verification pending.",
+      "verification": {
+        "status": "unverified",
+        "source_opened": true,
+        "verified_by": "",
+        "verified_on": ""
+      }
+    },
+    {
+      "evidence_id": "E003",
+      "title": "Online estimation of battery equivalent circuit model parameters and state of charge using decoupled least squares technique",
+      "authors": [
+        "Cheng Zhang",
+        "Walid Allafi",
+        "Quang Dinh",
+        "Pedro Ascencio",
+        "James Marco"
+      ],
+      "year": 2018,
+      "source_type": "journal_article",
+      "confidentiality": "public",
+      "identifiers": {
+        "doi": "10.1016/j.energy.2017.10.043",
+        "url": "https://www.sciencedirect.com/science/article/pii/S0360544217317127",
+        "isbn": "",
+        "pmcid": "",
+        "pmid": ""
+      },
+      "locator": "University repository published-version PDF inspected: title page, abstract, introduction, experimental section 4.1 and discussion 6.1. Names follow the article byline; repository expands Dinh and Ascencio differently. Accountable human verification pending.",
+      "verification": {
+        "status": "unverified",
+        "source_opened": true,
+        "verified_by": "",
+        "verified_on": ""
+      }
+    },
+    {
+      "evidence_id": "E004",
+      "title": "Enhanced demand side management for solar-based isolated microgrid system: Load prioritisation and energy optimisation",
+      "authors": [
+        "Yaju Rajbhandari",
+        "Anup Marahatta",
+        "Ashish Shrestha",
+        "Anand Gachhadar",
+        "Anup Thapa",
+        "Francisco Gonzalez-Longatt",
+        "Petr Korba"
+      ],
+      "year": 2024,
+      "source_type": "journal_article",
+      "confidentiality": "public",
+      "identifiers": {
+        "doi": "10.1049/stg2.12151",
+        "url": "https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/stg2.12151",
+        "isbn": "",
+        "pmcid": "",
+        "pmid": ""
+      },
+      "locator": "Publisher full text inspected: abstract, sections 2.1-2.2, author metadata, and issue citation. First online 18 December 2023; cite the June 2024 volume/issue publication year. Accountable human verification pending.",
+      "verification": {
+        "status": "unverified",
+        "source_opened": true,
+        "verified_by": "",
+        "verified_on": ""
+      }
+    },
+    {
+      "evidence_id": "E006",
+      "title": "Texas Instruments, INA219 Zero-Drift, Bidirectional Current/Power Monitor With I2C Interface, SBOS448G, rev. G, Dec. 2015.",
+      "authors": [],
+      "year": null,
+      "source_type": "other",
+      "confidentiality": "public",
+      "identifiers": {
+        "doi": "",
+        "url": "https://www.ti.com/lit/ds/symlink/ina219.pdf",
+        "isbn": "",
+        "pmcid": "",
+        "pmid": ""
+      },
+      "locator": "Agent opened primary document 2026-09-30. Human verification pending. pp. 1, 3 and 5; description, pin functions and measurement scales.",
+      "verification": {
+        "status": "unverified",
+        "source_opened": true,
+        "verified_by": "",
+        "verified_on": ""
+      }
+    },
+    {
+      "evidence_id": "E007",
+      "title": "Alpha and Omega Semiconductor, AO3400A: 30 V N-Channel MOSFET, rev. 3.1, July 2023.",
+      "authors": [],
+      "year": null,
+      "source_type": "other",
+      "confidentiality": "public",
+      "identifiers": {
+        "doi": "",
+        "url": "https://www.aosmd.com/res/data_sheets/AO3400A.pdf",
+        "isbn": "",
+        "pmcid": "",
+        "pmid": ""
+      },
+      "locator": "Agent opened primary document 2026-09-30. Human verification pending. pp. 1-2, RDS(on) at VGS=2.5 V and 25 C.",
+      "verification": {
+        "status": "unverified",
+        "source_opened": true,
+        "verified_by": "",
+        "verified_on": ""
+      }
+    },
+    {
+      "evidence_id": "E008",
+      "title": "Littelfuse, 1206 Fast-Acting Fuse: 466 Series, data sheet, accessed Sep. 30, 2026.",
+      "authors": [],
+      "year": null,
+      "source_type": "other",
+      "confidentiality": "public",
+      "identifiers": {
+        "doi": "",
+        "url": "https://www.littelfuse.com/assetdocs/littelfuse_fuse_466_datasheet?assetguid=dbe9bcd7-6072-4adf-bf5b-d33e52a6b90f",
+        "isbn": "",
+        "pmcid": "",
+        "pmid": ""
+      },
+      "locator": "Agent opened primary document 2026-09-30. Human verification pending. p. 1 electrical characteristics, nominal cold resistances for 1 A/2 A.",
+      "verification": {
+        "status": "unverified",
+        "source_opened": true,
+        "verified_by": "",
+        "verified_on": ""
+      }
+    },
+    {
+      "evidence_id": "E009",
+      "title": "R. Arora, I2C Bus Pull-Up Resistor Calculation, Texas Instruments, SLVA689, Feb. 2015.",
+      "authors": [],
+      "year": null,
+      "source_type": "other",
+      "confidentiality": "public",
+      "identifiers": {
+        "doi": "",
+        "url": "https://www.ti.com/lit/an/slva689/slva689.pdf",
+        "isbn": "",
+        "pmcid": "",
+        "pmid": ""
+      },
+      "locator": "Agent opened primary document 2026-09-30. Human verification pending. pp. 1-3, RC rise-time derivation; equations 5-7.",
+      "verification": {
+        "status": "unverified",
+        "source_opened": true,
+        "verified_by": "",
+        "verified_on": ""
+      }
+    },
+    {
+      "evidence_id": "E005",
+      "title": "T. Kassis, V. Agarwal, Y. He, D. Patel, and A. M. Brueckner, Scientific Agent Skills: A Library of Procedural Knowledge for Research Agents, arXiv:2609.00065, 2026, doi: 10.48550/arXiv.2609.00065.",
+      "authors": [],
+      "year": 2026,
+      "source_type": "other",
+      "confidentiality": "public",
+      "identifiers": {
+        "doi": "",
+        "url": "https://arxiv.org/abs/2609.00065",
+        "isbn": "",
+        "pmcid": "",
+        "pmid": ""
+      },
+      "locator": "Agent opened primary document 2026-09-30. Human verification pending. arXiv metadata, latest v2 inspected; bibliographic attribution of skill.",
+      "verification": {
+        "status": "unverified",
+        "source_opened": true,
+        "verified_by": "",
+        "verified_on": ""
+      }
+    },
+    {
+      "evidence_id": "E101",
+      "title": "Hardware design and reference wiring",
+      "authors": [],
+      "year": 2026,
+      "source_type": "other",
+      "confidentiality": "restricted",
+      "identifiers": {
+        "doi": "",
+        "url": "",
+        "isbn": "",
+        "pmcid": "",
+        "pmid": ""
+      },
+      "locator": "Unpublished local project files: hardware/REFERENCE_WIRING.md, hardware/PCB_REQUIREMENTS.md, hardware/pcb/wattsense-main-revB-4layer/wattsense-main.kicad_pcb. See local-evidence-index.json for hashes. Agent checked; human verification pending.",
+      "verification": {
+        "status": "unverified",
+        "source_opened": true,
+        "verified_by": "",
+        "verified_on": ""
+      }
+    },
+    {
+      "evidence_id": "E102",
+      "title": "Implemented controller and acquisition",
+      "authors": [],
+      "year": 2026,
+      "source_type": "other",
+      "confidentiality": "restricted",
+      "identifiers": {
+        "doi": "",
+        "url": "",
+        "isbn": "",
+        "pmcid": "",
+        "pmid": ""
+      },
+      "locator": "Unpublished local project files: firmware/include/controller.h, firmware/include/config.h, firmware/src/main.cpp, wattsense/model.py. See local-evidence-index.json for hashes. Agent checked; human verification pending.",
+      "verification": {
+        "status": "unverified",
+        "source_opened": true,
+        "verified_by": "",
+        "verified_on": ""
+      }
+    },
+    {
+      "evidence_id": "E103",
+      "title": "Nonideal model, assumptions and numerical results",
+      "authors": [],
+      "year": 2026,
+      "source_type": "other",
+      "confidentiality": "restricted",
+      "identifiers": {
+        "doi": "",
+        "url": "",
+        "isbn": "",
+        "pmcid": "",
+        "pmid": ""
+      },
+      "locator": "Unpublished local project files: simulations/hardware-assumptions.json, simulations/hardware_model.py, simulations/run_hardware.py, simulations/results/hardware-summary.json, simulations/results/hardware-runtime-baseline.csv, simulations/results/hardware-runtime-priority.csv, simulations/results/system-summary.json. See local-evidence-index.json for hashes. Agent checked; human verification pending.",
+      "verification": {
+        "status": "unverified",
+        "source_opened": true,
+        "verified_by": "",
+        "verified_on": ""
+      }
+    },
+    {
+      "evidence_id": "E104",
+      "title": "Fresh reproducible software and simulation suite",
+      "authors": [],
+      "year": 2026,
+      "source_type": "other",
+      "confidentiality": "restricted",
+      "identifiers": {
+        "doi": "",
+        "url": "",
+        "isbn": "",
+        "pmcid": "",
+        "pmid": ""
+      },
+      "locator": "Unpublished local project files: simulations/results/suite-summary.json, simulations/results/python-tests.log, simulations/results/firmware-host-summary.json, simulations/run_all.py. See local-evidence-index.json for hashes. Agent checked; human verification pending.",
+      "verification": {
+        "status": "unverified",
+        "source_opened": true,
+        "verified_by": "",
+        "verified_on": ""
+      }
+    },
+    {
+      "evidence_id": "E105",
+      "title": "Reduced circuit simulations",
+      "authors": [],
+      "year": 2026,
+      "source_type": "other",
+      "confidentiality": "restricted",
+      "identifiers": {
+        "doi": "",
+        "url": "",
+        "isbn": "",
+        "pmcid": "",
+        "pmid": ""
+      },
+      "locator": "Unpublished local project files: simulations/run_spice.py, simulations/results/spice-summary.json, simulations/run_hardware.py. See local-evidence-index.json for hashes. Agent checked; human verification pending.",
+      "verification": {
+        "status": "unverified",
+        "source_opened": true,
+        "verified_by": "",
+        "verified_on": ""
+      }
+    },
+    {
+      "evidence_id": "E106",
+      "title": "Native CAD and fabrication audit",
+      "authors": [],
+      "year": 2026,
+      "source_type": "other",
+      "confidentiality": "restricted",
+      "identifiers": {
+        "doi": "",
+        "url": "",
+        "isbn": "",
+        "pmcid": "",
+        "pmid": ""
+      },
+      "locator": "Unpublished local project files: docs/evidence/recheck-2026-09-30/hardware/verification.json, docs/evidence/recheck-2026-09-30/hardware/erc.json, docs/evidence/recheck-2026-09-30/hardware/drc.json, docs/evidence/recheck-2026-09-30/hardware/all-rules-erc.json, docs/evidence/recheck-2026-09-30/hardware/all-rules-drc.json, paper/evidence/recheck/ignored-cad-checks.csv. See local-evidence-index.json for hashes. Agent checked; human verification pending.",
+      "verification": {
+        "status": "unverified",
+        "source_opened": true,
+        "verified_by": "",
+        "verified_on": ""
+      }
+    },
+    {
+      "evidence_id": "E109",
+      "title": "Independent numerical/publication recheck",
+      "authors": [],
+      "year": 2026,
+      "source_type": "other",
+      "confidentiality": "restricted",
+      "identifiers": {
+        "doi": "",
+        "url": "",
+        "isbn": "",
+        "pmcid": "",
+        "pmid": ""
+      },
+      "locator": "Unpublished local project files: paper/evidence/recheck/verify_evidence.py, paper/evidence/recheck/publication-evidence-check.json, paper/evidence/methodology-review.txt, paper/evidence/recheck/documentation-finalization.json. See local-evidence-index.json for hashes. Agent checked; human verification pending.",
+      "verification": {
+        "status": "unverified",
+        "source_opened": true,
+        "verified_by": "",
+        "verified_on": ""
+      }
+    },
+    {
+      "evidence_id": "E110",
+      "title": "Planned laboratory validation and local package",
+      "authors": [],
+      "year": 2026,
+      "source_type": "other",
+      "confidentiality": "restricted",
+      "identifiers": {
+        "doi": "",
+        "url": "",
+        "isbn": "",
+        "pmcid": "",
+        "pmid": ""
+      },
+      "locator": "Unpublished local project files: docs/TEST_PLAN.md, docs/LAB_START_GUIDE.md, paper/src/manuscript.json. See local-evidence-index.json for hashes. Agent checked; human verification pending.",
+      "verification": {
+        "status": "unverified",
+        "source_opened": true,
+        "verified_by": "",
+        "verified_on": ""
+      }
+    },
+    {
+      "evidence_id": "E111",
+      "title": "Skill and tool provenance",
+      "authors": [],
+      "year": 2026,
+      "source_type": "other",
+      "confidentiality": "restricted",
+      "identifiers": {
+        "doi": "",
+        "url": "",
+        "isbn": "",
+        "pmcid": "",
+        "pmid": ""
+      },
+      "locator": "Unpublished local project files: paper/evidence/skill-provenance.json. See local-evidence-index.json for hashes. Agent checked; human verification pending.",
+      "verification": {
+        "status": "unverified",
+        "source_opened": true,
+        "verified_by": "",
+        "verified_on": ""
+      }
+    }
+  ]
+}

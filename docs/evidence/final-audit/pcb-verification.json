@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "native_sources_unchanged": true,
+  "native_sha256": {
+    "wattsense-main.kicad_sch": "36ab6bbf821e43cff3f6d44e22e026264d79af908c6752d489ef2ab9a02a2146",
+    "wattsense-main.kicad_pcb": "9de46d183a071fccd4326460e73dcab40f95a9aa8d4e6c271abb26a6925283f1",
+    "wattsense-main.kicad_pro": "0fb2c184b8a00d4234887b7cde1f03a0b099921adde5f9513f65b6b8b635802f",
+    "BOM.csv": "00802af26c2f057d605f6048d05aa86c459c6810d5baac71f42886952afa6e1b",
+    "design.json": "d8602664f8dd28386e927c9920a31ea64236964f6e1745d31aefff2c13821308",
+    "tools/audit_design.py": "3ca8952cf8b1fffe9a7a453d6ce899d5f432e0e054addddfe69c58177eb6e547"
+  },
+  "fresh_native_checks": {
+    "erc": 0,
+    "drc": 0,
+    "unconnected": 0,
+    "schematic_parity": 0
+  },
+  "archive_entries": 15,
+  "archive_sha256": "67104e14f3a16d4c21f371d1b55bd28e5f06980c7c53ddc32208ecef1b4bc20a",
+  "fresh_fabrication_comparison": "All 12 files match packaged exports excluding timestamp metadata only",
+  "compared_fabrication_files": [
+    "wattsense-main-B_Cu.gbl",
+    "wattsense-main-B_Mask.gbs",
+    "wattsense-main-B_Silkscreen.gbo",
+    "wattsense-main-Edge_Cuts.gm1",
+    "wattsense-main-F_Cu.gtl",
+    "wattsense-main-F_Mask.gts",
+    "wattsense-main-F_Silkscreen.gto",
+    "wattsense-main-In1_Cu.g1",
+    "wattsense-main-In2_Cu.g2",
+    "wattsense-main-job.gbrjob",
+    "wattsense-main-NPTH.drl",
+    "wattsense-main-PTH.drl"
+  ],
+  "hardware_validation": "NOT PERFORMED"
+}

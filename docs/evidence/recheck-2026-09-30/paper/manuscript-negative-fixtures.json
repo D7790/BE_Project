@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "checks": {
+    "table_value_mutation_rejected": true,
+    "abstract_percentage_mutation_rejected": true,
+    "stale_PDF_prose_rejected": true,
+    "live_source_unchanged": true
+  }
+}

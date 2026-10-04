@@ -1,0 +1,1 @@
+The system's main goal is to maximise energy supply to essential loads while effectively managing available resources.

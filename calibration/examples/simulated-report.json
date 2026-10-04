@@ -1,0 +1,263 @@
+{
+  "source_mode": "simulated",
+  "method": "independent fit and holdout validation",
+  "channels": {
+    "battery_current": {
+      "status": "CANDIDATE_PASS",
+      "unit": "A",
+      "gain": 1.0200000005088792,
+      "offset": 0.007999999867287937,
+      "fit_reference_range": [
+        -0.5,
+        0.6
+      ],
+      "constants": {
+        "BATTERY_CURRENT_GAIN": 1.0200000005088792,
+        "BATTERY_CURRENT_OFFSET_A": 0.007999999867287937
+      },
+      "warnings": [],
+      "readings": [
+        {
+          "raw": -0.482352941,
+          "reference": -0.5,
+          "role": "fit",
+          "corrected": -0.4999999999327473,
+          "error": 6.725270340623979e-11,
+          "allowed_error": 0.025,
+          "within_target": true
+        },
+        {
+          "raw": 0.007843137,
+          "reference": 0.0,
+          "role": "fit",
+          "corrected": -1.2329672699484817e-10,
+          "error": -1.2329672699484817e-10,
+          "allowed_error": 0.01,
+          "within_target": true
+        },
+        {
+          "raw": 0.596078431,
+          "reference": 0.6,
+          "role": "fit",
+          "corrected": 0.6000000000560439,
+          "error": 5.604394726077544e-11,
+          "allowed_error": 0.027999999999999997,
+          "within_target": true
+        },
+        {
+          "raw": -0.28627451,
+          "reference": -0.3,
+          "role": "validation",
+          "corrected": -0.3000000002129671,
+          "error": -2.1296708840878864e-10,
+          "allowed_error": 0.019,
+          "within_target": true
+        },
+        {
+          "raw": 0.301960784,
+          "reference": 0.3,
+          "role": "validation",
+          "corrected": 0.2999999999663736,
+          "error": -3.362637945869551e-11,
+          "allowed_error": 0.019,
+          "within_target": true
+        }
+      ],
+      "validation_max_abs_error": 2.1296708840878864e-10
+    },
+    "load_current": {
+      "status": "CANDIDATE_PASS",
+      "unit": "A",
+      "gain": 1.019999999629828,
+      "offset": 0.007999999615507292,
+      "fit_reference_range": [
+        0.0,
+        0.7
+      ],
+      "constants": {
+        "LOAD_CURRENT_GAIN": 1.019999999629828,
+        "LOAD_CURRENT_OFFSET_A": 0.007999999615507292
+      },
+      "warnings": [],
+      "readings": [
+        {
+          "raw": 0.007843137,
+          "reference": 0.0,
+          "role": "fit",
+          "corrected": 1.21589398272004e-10,
+          "error": 1.21589398272004e-10,
+          "allowed_error": 0.01,
+          "within_target": true
+        },
+        {
+          "raw": 0.252941176,
+          "reference": 0.25,
+          "role": "fit",
+          "corrected": 0.2499999998108609,
+          "error": -1.891390932762249e-10,
+          "allowed_error": 0.0175,
+          "within_target": true
+        },
+        {
+          "raw": 0.694117647,
+          "reference": 0.7,
+          "role": "fit",
+          "corrected": 0.7000000000675497,
+          "error": 6.754974357647825e-11,
+          "allowed_error": 0.031,
+          "within_target": true
+        },
+        {
+          "raw": 0.105882353,
+          "reference": 0.1,
+          "role": "validation",
+          "corrected": 0.10000000040529801,
+          "error": 4.0529800349187184e-10,
+          "allowed_error": 0.013000000000000001,
+          "within_target": true
+        },
+        {
+          "raw": 0.498039216,
+          "reference": 0.5,
+          "role": "validation",
+          "corrected": 0.5000000005201326,
+          "error": 5.201326036541332e-10,
+          "allowed_error": 0.025,
+          "within_target": true
+        }
+      ],
+      "validation_max_abs_error": 5.201326036541332e-10
+    },
+    "solar_current": {
+      "status": "CANDIDATE_PASS",
+      "unit": "A",
+      "gain": 1.019999999629828,
+      "offset": 0.007999999615507292,
+      "fit_reference_range": [
+        0.0,
+        0.7
+      ],
+      "constants": {
+        "SOLAR_CURRENT_GAIN": 1.019999999629828,
+        "SOLAR_CURRENT_OFFSET_A": 0.007999999615507292
+      },
+      "warnings": [],
+      "readings": [
+        {
+          "raw": 0.007843137,
+          "reference": 0.0,
+          "role": "fit",
+          "corrected": 1.21589398272004e-10,
+          "error": 1.21589398272004e-10,
+          "allowed_error": 0.01,
+          "within_target": true
+        },
+        {
+          "raw": 0.252941176,
+          "reference": 0.25,
+          "role": "fit",
+          "corrected": 0.2499999998108609,
+          "error": -1.891390932762249e-10,
+          "allowed_error": 0.0175,
+          "within_target": true
+        },
+        {
+          "raw": 0.694117647,
+          "reference": 0.7,
+          "role": "fit",
+          "corrected": 0.7000000000675497,
+          "error": 6.754974357647825e-11,
+          "allowed_error": 0.031,
+          "within_target": true
+        },
+        {
+          "raw": 0.105882353,
+          "reference": 0.1,
+          "role": "validation",
+          "corrected": 0.10000000040529801,
+          "error": 4.0529800349187184e-10,
+          "allowed_error": 0.013000000000000001,
+          "within_target": true
+        },
+        {
+          "raw": 0.498039216,
+          "reference": 0.5,
+          "role": "validation",
+          "corrected": 0.5000000005201326,
+          "error": 5.201326036541332e-10,
+          "allowed_error": 0.025,
+          "within_target": true
+        }
+      ],
+      "validation_max_abs_error": 5.201326036541332e-10
+    },
+    "battery_voltage": {
+      "status": "CANDIDATE_PASS",
+      "unit": "V",
+      "gain": 1.0050000000147308,
+      "offset": 0.0,
+      "fit_reference_range": [
+        12.0,
+        14.4
+      ],
+      "constants": {
+        "BATTERY_VOLTAGE_GAIN": 1.0050000000147308
+      },
+      "warnings": [],
+      "readings": [
+        {
+          "raw": 11.940298507,
+          "reference": 12.0,
+          "role": "fit",
+          "corrected": 11.999999999710889,
+          "error": -2.8911095739658776e-10,
+          "allowed_error": 0.12,
+          "within_target": true
+        },
+        {
+          "raw": 13.134328358,
+          "reference": 13.2,
+          "role": "fit",
+          "corrected": 13.199999999983477,
+          "error": -1.652189496326173e-11,
+          "allowed_error": 0.132,
+          "within_target": true
+        },
+        {
+          "raw": 14.328358209,
+          "reference": 14.4,
+          "role": "fit",
+          "corrected": 14.400000000256068,
+          "error": 2.560671674700643e-10,
+          "allowed_error": 0.14400000000000002,
+          "within_target": true
+        },
+        {
+          "raw": 12.537313433,
+          "reference": 12.6,
+          "role": "validation",
+          "corrected": 12.600000000349684,
+          "error": 3.496847256201363e-10,
+          "allowed_error": 0.126,
+          "within_target": true
+        },
+        {
+          "raw": 13.731343284,
+          "reference": 13.8,
+          "role": "validation",
+          "corrected": 13.800000000622273,
+          "error": 6.222720116966229e-10,
+          "allowed_error": 0.138,
+          "within_target": true
+        }
+      ],
+      "validation_max_abs_error": 6.222720116966229e-10
+    }
+  },
+  "firmware_modified": false,
+  "physical_validation_claimed_by_tool": false,
+  "status": "CANDIDATE_PASS",
+  "notice": "SIMULATED EXAMPLE ONLY. Do not use these values to calibrate hardware.",
+  "input_file": "D:\\academics and projects\\BE_final_year_project\\calibration\\examples\\simulated-measurements.csv",
+  "input_sha256": "660f8e54e514a87473784a02c87c74766dccad56d6198a8014eb3199aa01c900"
+}

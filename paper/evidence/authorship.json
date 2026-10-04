@@ -1,0 +1,105 @@
+{
+  "accountability": {
+    "all_authors_approved": false,
+    "guarantor_author_ids": []
+  },
+  "ai_use": {
+    "disclosed_in": [
+      "other"
+    ],
+    "human_verification_complete": false,
+    "journal_policy_checked": false,
+    "tools": [
+      {
+        "name": "Codex",
+        "version": "GPT-6-based session; desktop build not recorded",
+        "provider": "OpenAI",
+        "purpose": "Project artifact assistance, literature retrieval, evidence checks, drafting and figure code",
+        "materials_sent": "source_documents",
+        "external_service": true,
+        "explicit_authorization": true,
+        "policy_reviewed": false
+      }
+    ],
+    "used": true
+  },
+  "authors": [
+    {
+      "author_id": "A001",
+      "authorship_criteria": {
+        "accountable_for_work": false,
+        "drafted_or_critically_revised": false,
+        "final_approval": false,
+        "substantial_contribution": false
+      },
+      "credit_roles": [],
+      "is_human": true,
+      "name": "Dhanesh Chaudhari"
+    },
+    {
+      "author_id": "A002",
+      "authorship_criteria": {
+        "accountable_for_work": false,
+        "drafted_or_critically_revised": false,
+        "final_approval": false,
+        "substantial_contribution": false
+      },
+      "credit_roles": [],
+      "is_human": true,
+      "name": "Ujjwal Kshirsagar"
+    },
+    {
+      "author_id": "A003",
+      "authorship_criteria": {
+        "accountable_for_work": false,
+        "drafted_or_critically_revised": false,
+        "final_approval": false,
+        "substantial_contribution": false
+      },
+      "credit_roles": [],
+      "is_human": true,
+      "name": "Mrudula Pagar"
+    },
+    {
+      "author_id": "A004",
+      "authorship_criteria": {
+        "accountable_for_work": false,
+        "drafted_or_critically_revised": false,
+        "final_approval": false,
+        "substantial_contribution": false
+      },
+      "credit_roles": [],
+      "is_human": true,
+      "name": "Yash Ahire"
+    }
+  ],
+  "contributors": [],
+  "corresponding_author_id": "",
+  "declarations": {
+    "ai_use": {
+      "content_sha256": "",
+      "status": "missing",
+      "verified_by": "",
+      "verified_on": ""
+    },
+    "author_contributions": {
+      "content_sha256": "",
+      "status": "missing",
+      "verified_by": "",
+      "verified_on": ""
+    },
+    "conflicts": {
+      "content_sha256": "",
+      "status": "missing",
+      "verified_by": "",
+      "verified_on": ""
+    },
+    "funding": {
+      "content_sha256": "",
+      "status": "missing",
+      "verified_by": "",
+      "verified_on": ""
+    }
+  },
+  "schema_version": "1.0"
+}

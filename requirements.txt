@@ -1,0 +1,4 @@
+# The simulator and dashboard use only the Python standard library.
+# Install this dependency for a physical ESP32 serial connection.
+pyserial==3.5
+

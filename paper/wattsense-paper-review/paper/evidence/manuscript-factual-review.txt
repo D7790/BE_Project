@@ -1,0 +1,189 @@
+WATTSENSE MANUSCRIPT FACTUAL REVIEW - 30 September 2026
+
+Reviewed manuscript: paper/src/manuscript.json
+Reviewed SHA-256: 855dd7649a23905b1f2b37293259e747d4b04f6ca209236efe16b9d7b498a82f
+Scope: all 41 paragraph claims, abstract, four equations, two numeric tables,
+and supporting figure captions/provenance, compared with local implementation,
+assumptions, raw traces, recorded test outputs and independent audit records.
+No manuscript edit, new experiment or whole-suite rerun performed by this review.
+Applied the Scientific Writing skill's factual/uncertainty/evidence guidance.
+This is an agent consistency check; accountable human source review remains pending.
+
+VERDICT
+No critical numerical contradiction or invented physical-result claim found.
+The principal service result, all Table II entries, DC values, sensitivity ranges,
+startup outcomes, test counts and convergence figures match their evidence.
+Four small precision/provenance clarifications are recommended below. They do not
+change the reported results. The draft appropriately presents a design-and-simulation
+case study and does not establish algorithmic novelty, publication acceptance,
+experimental validation or institutional similarity clearance.
+
+RECOMMENDED CLARIFICATIONS
+
+1. C019: replace "A negative discriminant rejects the operating point" with
+   "A non-positive discriminant rejects the operating point."
+   simulations/hardware_model.py rejects discriminant <= 0, including the marginal
+   zero-discriminant point. The equation itself and nominal results are correct.
+
+2. C014: clarify the sampling rates by measurement type.
+   Suggested wording: "Electrical acquisition and the policy update run nominally
+   at 10 Hz; temperature is refreshed nominally at 1 Hz and reused between updates,
+   and telemetry is emitted nominally at 1 Hz."
+   firmware/src/main.cpp measures INA219 readings in the >=100 ms branch but reads
+   DS18B20 temperature in the >=1000 ms branch. The current blanket statement that
+   firmware "samples nominally at 10 Hz" may imply temperature also refreshes at
+   that rate. Actual scheduling/peripheral timing has not been measured.
+
+3. C013: replace "deployed configuration" with "reference firmware configuration"
+   or "distributed configuration." No physical hardware has been deployed in this
+   study. The 3.5 W provisional restoration increment itself is correct.
+
+4. C033: identify the 38-check audit as the recorded pre-documentation-correction
+   checkpoint, rather than implying a fresh rerun of the unchanged script will
+   compare every current document byte-for-byte with September 28.
+   Suggested wording: "The saved publication recheck passed 38 checks before the
+   separately recorded documentation-only terminology corrections."
+   The corrections changed six Markdown documents deliberately; source, models,
+   firmware, CAD and fabrication archive still match the checked hashes.
+   Evidence: recheck/publication-evidence-check.json and
+   recheck/documentation-finalization.json. Historical audit records were preserved.
+
+OPTIONAL WORDING IMPROVEMENTS
+
+- C014 operating thresholds can be exact without calling them sensor acceptance
+  bounds: fan OFF for V <= 11.6 V, V > 14.7 V, or T >= 45 C; |I_battery| > 2 A
+  causes invalid-sample handling. The raw plausibility window is broader (8..16 V,
+  -10..70 C), and firmware also checks converter-branch current before constructing
+  a valid sample. The existing general wording is broadly right but omits these
+  boundary distinctions.
+- C024 could state explicitly that discharge experiments execute the Python
+  reference policy; separate host C++ tests exercise production policy/decoder
+  logic. Neither is execution of ESP32 peripherals or the compiled ESP32 binary.
+- C026 can make the causality clearer: modeled lower-power losses account for the
+  slightly larger total delivered energy; longer controller operation explains
+  why more of that delivered energy goes to the controller while lamp-plus-fan
+  energy declines. The numerical energy accounting is correct as written.
+
+CONTROL-LOGIC CHECK
+
+Charge sign/efficiency: PASS. Positive battery current discharges; negative current
+charges. Effective charging current is 0.98*I, still negative, so subtracting it
+in Eq. (1) raises SOC with a reduced charge-counting increment.
+
+Energy/runtime: PASS. Eq. (2) uses nominal 12.8 V, configured 6 Ah and 20% reserve.
+Eq. (3) uses unsmoothed load-branch power only when P_U2 > 0.2 W. The separate
+battery-power runtime uses alpha=1-exp(-dt/3 s). The manuscript correctly separates
+these denominators and notes omitted upstream/internal losses.
+
+Shedding: PASS. Nominal minimum is 3 h; a below-threshold condition must persist
+for 3 s. The comparison begins with optional_on=True and known 68% SOC, an explicit
+simulation precondition. It does not demonstrate physical synchronization or restore.
+
+Restoration: PASS. Explicit request; hardware must be enabled, sample valid, SOC
+known and >20%, temperature <45 C, and 11.6 < V <=14.7 V. Prospective input power
+adds provisional 3.5 W when the fan is off. E_hat/P_prospective must be >= minimum
++0.25 h. Firmware accepts serial MIN_H values 0..12 h; controller/model defensive
+validation allows 0..24 h. The manuscript does not claim a conflicting range.
+
+Timing/data guards: PASS with sampling clarification above. A non-finite, <=0 or
+>2 s integration interval is invalid. Invalid measurements clear charge reference
+and keep the optional output off. Unknown reference and build-time hardware lock
+also keep it off. Production HARDWARE_CONFIRMED and SOLAR_SENSOR_FITTED are false.
+
+Full-reference procedure: PASS. Reboot does not trust the diagnostic stored SOC.
+Operator confirmation additionally checks valid sample, 13.4 <= V <=14.7 V and
+|battery current| <=0.10 A. The dedicated button requires a five-second hold;
+the serial confirmation command is explicit rather than hold-timed. These checks
+do not prove full charge, exactly as the manuscript states.
+
+Python versus firmware: PASS for the reported discharge scope. Python baseline
+uses automatic=False; production's zero runtime threshold is the corresponding
+user setting. Operating limits remain active. Python accepts a supplied exact
+reference while production syncFull sets 100% only after the operator procedure.
+Host tests separately cover locked and armed copies; no hardware-armed source
+or compile setting was changed by the paper work.
+
+NUMERICAL CHECKS
+
+Eighteen manuscript-specific numerical comparisons pass; these are additional
+local consistency comparisons, not new Python unit tests or hardware trials.
+Machine record: recheck/manuscript-numeric-review.json
+Reproduction: recheck/review_manuscript_numbers.py
+
+Baseline lamp/fan: 5.4763888889 / 5.4763888889 h.
+Priority lamp/fan: 7.8836111111 / 2.4936111111 h.
+Lamp gain: 2.4072222222 h, 43.9563783921%.
+Fan loss: 2.9827777778 h, 54.4661425311%.
+Table II lamp+fan energy: 27.3819444444 / 25.9430555556 Wh.
+Table II all-load energy: 31.7630555555 / 32.2499444444 Wh.
+Chemical energy: about 37.41 Wh in both scenarios, to the stated precision.
+
+C027 independent recalculation from the shedding CSV row (t=8977 s):
+  E_hat/P_U2 = 2.9992614597 h.
+  Same-load time to the recorded baseline endpoint = 2.9827777778 h.
+  Difference = 59.3412550486 s.
+The paragraph's 2.9993 h, 2.9828 h and approximately 59 s are correct.
+
+Nominal DC: output 1.2076766 A; battery 0.5196362 A;
+rail/lamp/fan 4.8846830/4.8341778/4.7460993 V;
+converter/output-path/two-shunt losses 0.6709315/0.2383832/0.05400435 W.
+All C028 roundings are correct.
+
+Sensitivity ranges: baseline 3.8666667..5.7977778 h,
+priority 6.2836111..8.2030556 h. These are deterministic scenario ranges.
+The seven-percentage-point separate SOC-error example matches system-summary.json.
+
+Six startup scenarios: S1/S2/S6 pass only the common-rail screening criterion;
+S3/S4/S5 fail. Their minimum rail voltages and the S6 fan-terminal 4.5512 V value
+match the recorded raw traces. Figure 5 includes all six cases and labels its
+resistive-equivalent demand and current-limit/capacitance assumptions.
+
+Test/audit counts: current September 30 python-tests.log reports 45 tests and OK.
+firmware-host-summary.json has 16 locked + 27 armed + 24 decoder = 67 assertions.
+The saved independent recheck has 38 passing checks. ERC/DRC are zero with four
+ERC and five DRC ignored categories disclosed. The report properly avoids turning
+these counts into experimental sample sizes or product-qualification evidence.
+
+Step convergence: 0.50 s baseline / 0.75 s priority, correctly reported.
+Independent integral differences remain below one second, verifying model
+equations rather than pack predictive accuracy.
+
+PARAGRAPH / DISPLAY COVERAGE
+
+Abstract: agrees with reported scenario, main numbers and evidence limitations.
+C001: prior-work positioning agrees with the separate literature review record.
+C002-C003: system boundary, no charging in principal comparison and no physical
+  fabrication/performance claim agree with sources.
+C004-C006: literature/limitations agree with literature-review.txt; this reviewer
+  did not independently browse those sources or certify bibliographic metadata.
+C007-C009: topology, board specifications, provisional current ceilings, command
+  telemetry and assumed fuse/MOSFET values agree with CAD/config/assumptions.
+C010-C012 and Eqs. (1)-(3): sign, units, formulas, denominators and limits correct.
+C013-C015: policy and safety boundaries agree, with terminology/timing nuances above.
+C016-C017 and Table I: every listed parameter matches assumptions or native design;
+  OCV is correctly disclosed as invented; copper is not claimed as a thermal solution.
+C018-C019 and Eq. (4): correct stable-current equation; change non-positive wording.
+C020-C023: comparison, 18 scenario pairs, separate startup models and RC screening
+  reflect implementation. No confidence intervals or real-device startup claims.
+C024: reproduction description agrees; optional Python-versus-host clarification above.
+C025-C027 and Table II: service, energy and within-model heuristic counterexample
+  numerically correct; no additional battery capacity or equal-service gain asserted.
+C028-C032: DC, sensitivity, startup, shunt and I2C values agree with summary/raw data.
+C033-C034: counts and convergence agree, with audit chronology clarification above.
+C035-C036: limitations and unimplemented comparison suggestions are accurate.
+C037-C038: future physical procedure is clearly prospective; no invented trial count.
+C039: conclusion stays within simulation/design evidence.
+C040-C041: disclosure/declaration gaps are explicit. This review has not independently
+  confirmed author identity/order/consent, funding, affiliations, venue requirements
+  or the linked skill citation; root's source work and accountable author review
+  must handle these. No publication-readiness or plagiarism clearance is inferred.
+Figures 1-5: captions/provenance match conceptual topology, ordered firmware checks,
+  nominal traces, all 18 sensitivity pairs and all six startup cases. This is a
+  factual-caption review, not final rendered-page visual QA.
+
+OUTSTANDING BY DESIGN
+Reference list and E-source manifests were not yet populated at this review point;
+the parent workflow is adding them. Reconcile every numeric citation, DOI and
+evidence ID once completed. Authorship/declarations and final approval remain human
+responsibilities. Nothing in this factual review establishes sufficient novelty
+for a particular venue or guarantees acceptance.

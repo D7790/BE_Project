@@ -1,0 +1,41 @@
+{
+  "provenance": "ILLUSTRATIVE ASSUMPTIONS; no physical measurements or bought modules",
+  "initial_soc_pct": 68.0,
+  "reserve_pct": 20.0,
+  "capacity_ah": 6.0,
+  "ocv_points_soc_pct_v": [[0, 11.0], [10, 12.5], [20, 12.8], [50, 13.05], [80, 13.2], [100, 13.45]],
+  "battery_and_bms_resistance_ohm": 0.10,
+  "hv_wiring_contacts_external_fuse_ohm": 0.08,
+  "output_common_wiring_ohm": 0.04,
+  "each_output_branch_wiring_ohm": 0.02,
+  "converter_efficiency": 0.90,
+  "lamp_reference_w": 3.0,
+  "fan_reference_w": 3.0,
+  "starter_lamp_w": 2.5,
+  "starter_fan_w": 2.5,
+  "controller_and_sensors_5v_w": 0.8,
+  "main_fuse_cold_ohm": 0.030,
+  "branch_fuse_cold_ohm": 0.075,
+  "mosfet_room_on_ohm": 0.048,
+  "shunt_nominal_ohm": 0.1,
+  "shunt_tolerance_fraction": 0.01,
+  "startup_model_regulator_output_r_ohm": 0.04,
+  "startup_model_capacitor_esr_ohm": 0.05,
+  "startup_model_duration_s": 0.10,
+  "rail_screening_floor_v": 4.75,
+  "notes": [
+    "The OCV table is an invented smooth teaching curve, not a vendor pack curve or a way to estimate SOC from measured voltage.",
+    "6 Ah is before subtracting the 20% reserve. Runtime sweep assumes capacity has been correctly calibrated for each pack.",
+    "Efficiency includes all converter losses at the operating point; no additional quiescent term is added.",
+    "Copper path geometry comes from unchanged Rev B. Copper thickness and fixed temperature are assumed, not predicted.",
+    "Fuse resistances are manufacturer nominal cold values, not hot limits. AO3400A 48 milliohm is a room-condition data-sheet value at 2.5 V gate drive.",
+    "3 W constant-power loads are comparison references. Their input current can exceed 0.6 A after losses; start with smaller 2.5 W class loads and measure actual current.",
+    "The startup model uses voltage-dependent resistive fan demand and an instantaneous current-limited behavioural supply, not a purchased LM2596 loop/inductor or BLDC motor model.",
+    "The 4.75 V floor is a provisional project screening criterion, not a guaranteed ESP32 reset voltage or universal load specification."
+  ],
+  "sources": {
+    "fuses": "https://www.littelfuse.com/assetdocs/littelfuse_fuse_466_datasheet?assetguid=dbe9bcd7-6072-4adf-bf5b-d33e52a6b90f",
+    "mosfet": "https://www.aosmd.com/res/data_sheets/AO3400A.pdf",
+    "converter_model_limitations": "https://www.ti.com/lit/ds/symlink/lm2596.pdf"
+  }
+}

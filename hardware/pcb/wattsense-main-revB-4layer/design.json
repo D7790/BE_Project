@@ -1,0 +1,1167 @@
+{
+  "revision": "B",
+  "root_uuid": "95de1703-e9bd-5fc7-a6a6-ceb84e0699ff",
+  "parts": [
+    {
+      "ref": "J1",
+      "value": "BATTERY_AFTER_FUSE",
+      "lib": "Connector_Generic",
+      "sym": "Conn_01x02",
+      "foot": "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal",
+      "nets": {
+        "1": "BAT_P",
+        "2": "GND"
+      },
+      "xy": [
+        61,
+        59
+      ],
+      "sch": [
+        30.48,
+        38.1
+      ],
+      "rot": 0,
+      "mpn": "Phoenix Contact 1715721",
+      "note": "MKDS 1,5/2-5,08; 5.08 mm, 2-way; + is pin 1. Check exact purchased connector dimensions.",
+      "uuid": "a8125fe4-c1fe-5201-9298-7873ecb79577"
+    },
+    {
+      "ref": "J2",
+      "value": "CHARGER_BAT_PORT",
+      "lib": "Connector_Generic",
+      "sym": "Conn_01x02",
+      "foot": "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal",
+      "nets": {
+        "1": "CHG_P",
+        "2": "GND"
+      },
+      "xy": [
+        96,
+        59
+      ],
+      "sch": [
+        157.48,
+        38.1
+      ],
+      "rot": 0,
+      "mpn": "Phoenix Contact 1715721",
+      "note": "MKDS 1,5/2-5,08; 5.08 mm, 2-way; + is pin 1. Check exact purchased connector dimensions.",
+      "uuid": "9b6294b4-82a3-5ed0-9acc-97ceba1c393c"
+    },
+    {
+      "ref": "J3",
+      "value": "TO_BUCK_INPUT",
+      "lib": "Connector_Generic",
+      "sym": "Conn_01x02",
+      "foot": "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal",
+      "nets": {
+        "1": "BUCK_P",
+        "2": "GND"
+      },
+      "xy": [
+        128,
+        59
+      ],
+      "sch": [
+        287.02,
+        38.1
+      ],
+      "rot": 0,
+      "mpn": "Phoenix Contact 1715721",
+      "note": "MKDS 1,5/2-5,08; 5.08 mm, 2-way; + is pin 1. Check exact purchased connector dimensions.",
+      "uuid": "ab98b9b8-2db3-52a9-9b93-3b40a5613ceb"
+    },
+    {
+      "ref": "J4",
+      "value": "FROM_BUCK_5V",
+      "lib": "Connector_Generic",
+      "sym": "Conn_01x02",
+      "foot": "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal",
+      "nets": {
+        "1": "5V_IN",
+        "2": "GND"
+      },
+      "xy": [
+        61,
+        128
+      ],
+      "sch": [
+        30.48,
+        187.96
+      ],
+      "rot": 0,
+      "mpn": "Phoenix Contact 1715721",
+      "note": "MKDS 1,5/2-5,08; 5.08 mm, 2-way; + is pin 1. Check exact purchased connector dimensions.",
+      "uuid": "ab0ea3d5-c39d-53e6-8eb7-2d73d90f213a"
+    },
+    {
+      "ref": "J5",
+      "value": "ESSENTIAL_LAMP",
+      "lib": "Connector_Generic",
+      "sym": "Conn_01x02",
+      "foot": "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal",
+      "nets": {
+        "1": "LAMP_P",
+        "2": "GND"
+      },
+      "xy": [
+        95,
+        128
+      ],
+      "sch": [
+        121.92,
+        187.96
+      ],
+      "rot": 0,
+      "mpn": "Phoenix Contact 1715721",
+      "note": "MKDS 1,5/2-5,08; 5.08 mm, 2-way; + is pin 1. Check exact purchased connector dimensions.",
+      "uuid": "c4233818-b548-549b-93fc-09d9b3d934e1"
+    },
+    {
+      "ref": "J6",
+      "value": "OPTIONAL_FAN",
+      "lib": "Connector_Generic",
+      "sym": "Conn_01x02",
+      "foot": "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal",
+      "nets": {
+        "1": "FAN_P",
+        "2": "FAN_RETURN"
+      },
+      "xy": [
+        128,
+        128
+      ],
+      "sch": [
+        218.44,
+        187.96
+      ],
+      "rot": 0,
+      "mpn": "Phoenix Contact 1715721",
+      "note": "MKDS 1,5/2-5,08; 5.08 mm, 2-way; + is pin 1. Check exact purchased connector dimensions.",
+      "uuid": "40bcee0c-434a-574f-bc12-58fc9028c3b3"
+    },
+    {
+      "ref": "R1",
+      "value": "0.1R 1% 1W",
+      "lib": "Device",
+      "sym": "R",
+      "foot": "Resistor_SMD:R_2512_6332Metric_Pad1.40x3.35mm_HandSolder",
+      "nets": {
+        "1": "BAT_P",
+        "2": "SYS_P"
+      },
+      "xy": [
+        69,
+        73
+      ],
+      "sch": [
+        66.04,
+        38.1
+      ],
+      "rot": 0,
+      "mpn": "WSL2512R1000FEA",
+      "note": "Vishay 2512 current shunt; use separate sense tracks from its pads.",
+      "uuid": "546f0b0d-1b7d-561d-a60b-0ac8055a16cc"
+    },
+    {
+      "ref": "U1",
+      "value": "INA219AIDR",
+      "lib": "Sensor_Energy",
+      "sym": "INA219AxD",
+      "foot": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+      "nets": {
+        "1": "GND",
+        "2": "GND",
+        "3": "SDA",
+        "4": "SCL",
+        "5": "3V3",
+        "6": "GND",
+        "7": "SYS_P",
+        "8": "BAT_P"
+      },
+      "xy": [
+        68,
+        84
+      ],
+      "sch": [
+        66.04,
+        81.28
+      ],
+      "rot": 90,
+      "mpn": "INA219AIDR",
+      "note": "SOIC-8, address 0x40 battery. Do not substitute DCN pinout.",
+      "uuid": "c5852925-eeac-5f36-82c7-e4d16f8265bb"
+    },
+    {
+      "ref": "C1",
+      "value": "100n 16V X7R",
+      "lib": "Device",
+      "sym": "C",
+      "foot": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "nets": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "xy": [
+        74,
+        81.5
+      ],
+      "sch": [
+        101.60000000000001,
+        81.28
+      ],
+      "rot": 0,
+      "mpn": "GRM21BR71C104KA01L",
+      "note": "",
+      "uuid": "4350d983-a474-5062-8bc5-068af9561be3"
+    },
+    {
+      "ref": "C8",
+      "value": "10n 50V X7R",
+      "lib": "Device",
+      "sym": "C",
+      "foot": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "nets": {
+        "1": "BAT_P",
+        "2": "SYS_P"
+      },
+      "xy": [
+        66.73,
+        77.5
+      ],
+      "sch": [
+        27.940000000000005,
+        81.28
+      ],
+      "rot": 0,
+      "mpn": "GRM21BR71H103KA01L",
+      "note": "Differential input capacitor; no shared high-current sense routing.",
+      "uuid": "e876d505-e089-5b5a-ae01-8131af22a204"
+    },
+    {
+      "ref": "R2",
+      "value": "0.1R 1% 1W",
+      "lib": "Device",
+      "sym": "R",
+      "foot": "Resistor_SMD:R_2512_6332Metric_Pad1.40x3.35mm_HandSolder",
+      "nets": {
+        "1": "SYS_P",
+        "2": "BUCK_P"
+      },
+      "xy": [
+        130,
+        73
+      ],
+      "sch": [
+        320.04,
+        38.1
+      ],
+      "rot": 0,
+      "mpn": "WSL2512R1000FEA",
+      "note": "Vishay 2512 current shunt; use separate sense tracks from its pads.",
+      "uuid": "7b798f4d-460b-53b5-a8f7-b6957421b67f"
+    },
+    {
+      "ref": "U2",
+      "value": "INA219AIDR",
+      "lib": "Sensor_Energy",
+      "sym": "INA219AxD",
+      "foot": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+      "nets": {
+        "1": "GND",
+        "2": "3V3",
+        "3": "SDA",
+        "4": "SCL",
+        "5": "3V3",
+        "6": "GND",
+        "7": "BUCK_P",
+        "8": "SYS_P"
+      },
+      "xy": [
+        129,
+        84
+      ],
+      "sch": [
+        320.04,
+        81.28
+      ],
+      "rot": 90,
+      "mpn": "INA219AIDR",
+      "note": "SOIC-8, address 0x41 load. Do not substitute DCN pinout.",
+      "uuid": "2897a628-aa8a-5083-9a25-9f00d5d6127b"
+    },
+    {
+      "ref": "C2",
+      "value": "100n 16V X7R",
+      "lib": "Device",
+      "sym": "C",
+      "foot": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "nets": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "xy": [
+        135,
+        81.5
+      ],
+      "sch": [
+        355.6,
+        81.28
+      ],
+      "rot": 0,
+      "mpn": "GRM21BR71C104KA01L",
+      "note": "",
+      "uuid": "77dc3e71-91d9-5783-98f3-303033050a7e"
+    },
+    {
+      "ref": "C9",
+      "value": "10n 50V X7R",
+      "lib": "Device",
+      "sym": "C",
+      "foot": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "nets": {
+        "1": "SYS_P",
+        "2": "BUCK_P"
+      },
+      "xy": [
+        127.73,
+        77.5
+      ],
+      "sch": [
+        281.94,
+        81.28
+      ],
+      "rot": 0,
+      "mpn": "GRM21BR71H103KA01L",
+      "note": "Differential input capacitor; no shared high-current sense routing.",
+      "uuid": "ac38cc0b-bd73-55cc-a978-791a98ca0472"
+    },
+    {
+      "ref": "R3",
+      "value": "0.1R 1% 1W",
+      "lib": "Device",
+      "sym": "R",
+      "foot": "Resistor_SMD:R_2512_6332Metric_Pad1.40x3.35mm_HandSolder",
+      "nets": {
+        "1": "CHG_P",
+        "2": "SYS_P"
+      },
+      "xy": [
+        99,
+        73
+      ],
+      "sch": [
+        193.04,
+        38.1
+      ],
+      "rot": 0,
+      "mpn": "WSL2512R1000FEA",
+      "note": "Vishay 2512 current shunt; use separate sense tracks from its pads.",
+      "uuid": "967f3717-46a1-5393-8212-111c7f7fb300"
+    },
+    {
+      "ref": "U3",
+      "value": "INA219AIDR",
+      "lib": "Sensor_Energy",
+      "sym": "INA219AxD",
+      "foot": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+      "nets": {
+        "1": "3V3",
+        "2": "GND",
+        "3": "SDA",
+        "4": "SCL",
+        "5": "3V3",
+        "6": "GND",
+        "7": "SYS_P",
+        "8": "CHG_P"
+      },
+      "xy": [
+        98,
+        84
+      ],
+      "sch": [
+        193.04,
+        81.28
+      ],
+      "rot": 90,
+      "mpn": "INA219AIDR",
+      "note": "SOIC-8, address 0x44 charger. Do not substitute DCN pinout.",
+      "uuid": "aa20e3fc-ebf6-59a9-ada3-f446395a9671"
+    },
+    {
+      "ref": "C3",
+      "value": "100n 16V X7R",
+      "lib": "Device",
+      "sym": "C",
+      "foot": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "nets": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "xy": [
+        104,
+        81.5
+      ],
+      "sch": [
+        228.6,
+        81.28
+      ],
+      "rot": 0,
+      "mpn": "GRM21BR71C104KA01L",
+      "note": "",
+      "uuid": "8ceadb0b-85f9-5562-8148-cf3d19ace789"
+    },
+    {
+      "ref": "C10",
+      "value": "10n 50V X7R",
+      "lib": "Device",
+      "sym": "C",
+      "foot": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "nets": {
+        "1": "CHG_P",
+        "2": "SYS_P"
+      },
+      "xy": [
+        96.73,
+        77.5
+      ],
+      "sch": [
+        154.94,
+        81.28
+      ],
+      "rot": 0,
+      "mpn": "GRM21BR71H103KA01L",
+      "note": "Differential input capacitor; no shared high-current sense routing.",
+      "uuid": "4d38386e-67f4-512c-be3f-ae209f5108be"
+    },
+    {
+      "ref": "J7",
+      "value": "ESP32_SIGNALS",
+      "lib": "Connector_Generic",
+      "sym": "Conn_01x08",
+      "foot": "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical",
+      "nets": {
+        "1": "3V3",
+        "2": "GND",
+        "3": "SDA",
+        "4": "SCL",
+        "5": "FAN_EN",
+        "6": "TEMP_DQ",
+        "7": "BTN_LOAD",
+        "8": "BTN_FULL"
+      },
+      "xy": [
+        57,
+        92
+      ],
+      "sch": [
+        38.1,
+        134.62
+      ],
+      "rot": 0,
+      "mpn": "",
+      "note": "Cable to classic ESP32; pin map in assembly guide. 3V3 is input from ESP32.",
+      "uuid": "3d7ec5b8-f569-537d-8af4-e24632516802"
+    },
+    {
+      "ref": "J8",
+      "value": "DS18B20",
+      "lib": "Connector_Generic",
+      "sym": "Conn_01x03",
+      "foot": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
+      "nets": {
+        "1": "3V3",
+        "2": "TEMP_DQ",
+        "3": "GND"
+      },
+      "xy": [
+        70,
+        110
+      ],
+      "sch": [
+        129.54,
+        129.54
+      ],
+      "rot": 0,
+      "mpn": "",
+      "note": "Powered 3-wire temperature probe; verify probe wire mapping.",
+      "uuid": "8ffe522e-50df-5a08-8c76-14d700d07830"
+    },
+    {
+      "ref": "J9",
+      "value": "LOAD_BUTTON",
+      "lib": "Connector_Generic",
+      "sym": "Conn_01x02",
+      "foot": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
+      "nets": {
+        "1": "BTN_LOAD",
+        "2": "GND"
+      },
+      "xy": [
+        84,
+        110
+      ],
+      "sch": [
+        195.58,
+        124.46
+      ],
+      "rot": 0,
+      "mpn": "",
+      "note": "External normally-open momentary button.",
+      "uuid": "d50814f4-57c7-554d-863b-7a77e14a1d5d"
+    },
+    {
+      "ref": "J10",
+      "value": "FULL_CONFIRM",
+      "lib": "Connector_Generic",
+      "sym": "Conn_01x02",
+      "foot": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
+      "nets": {
+        "1": "BTN_FULL",
+        "2": "GND"
+      },
+      "xy": [
+        97,
+        110
+      ],
+      "sch": [
+        195.58,
+        147.32
+      ],
+      "rot": 0,
+      "mpn": "",
+      "note": "External normally-open button; hold 5 s only after verified full charge.",
+      "uuid": "0d05338c-564a-5c8d-a0b2-b3081d83c5f9"
+    },
+    {
+      "ref": "R4",
+      "value": "2.2k",
+      "lib": "Device",
+      "sym": "R",
+      "foot": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "nets": {
+        "1": "3V3",
+        "2": "SDA"
+      },
+      "xy": [
+        77,
+        97
+      ],
+      "sch": [
+        68.58,
+        129.54
+      ],
+      "rot": 0,
+      "mpn": "RC0805FR-072K2L",
+      "note": "Rev B: 100 kHz I2C pullup, checked through 400 pF in reduced RC simulation.",
+      "uuid": "17df1019-bf6d-5386-be66-6354c228205e"
+    },
+    {
+      "ref": "R5",
+      "value": "2.2k",
+      "lib": "Device",
+      "sym": "R",
+      "foot": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "nets": {
+        "1": "3V3",
+        "2": "SCL"
+      },
+      "xy": [
+        85,
+        97
+      ],
+      "sch": [
+        91.44,
+        129.54
+      ],
+      "rot": 0,
+      "mpn": "RC0805FR-072K2L",
+      "note": "Rev B: 100 kHz I2C pullup, checked through 400 pF in reduced RC simulation.",
+      "uuid": "694b1888-b2c1-5404-8550-d4b9144f73e8"
+    },
+    {
+      "ref": "R6",
+      "value": "4.7k",
+      "lib": "Device",
+      "sym": "R",
+      "foot": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "nets": {
+        "1": "3V3",
+        "2": "TEMP_DQ"
+      },
+      "xy": [
+        72,
+        104
+      ],
+      "sch": [
+        160.02,
+        129.54
+      ],
+      "rot": 0,
+      "mpn": "RC0805FR-074K7L",
+      "note": "",
+      "uuid": "5ccb2ec4-8bad-575f-bbf1-45610e0a7d5c"
+    },
+    {
+      "ref": "R7",
+      "value": "330R",
+      "lib": "Device",
+      "sym": "R",
+      "foot": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "nets": {
+        "1": "FAN_EN",
+        "2": "FAN_GATE"
+      },
+      "xy": [
+        114,
+        105
+      ],
+      "sch": [
+        254,
+        223.52
+      ],
+      "rot": 0,
+      "mpn": "RC0805FR-07330RL",
+      "note": "",
+      "uuid": "c6a752e2-e716-577d-9742-3a2619737f37"
+    },
+    {
+      "ref": "R8",
+      "value": "47k",
+      "lib": "Device",
+      "sym": "R",
+      "foot": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "nets": {
+        "1": "FAN_GATE",
+        "2": "GND"
+      },
+      "xy": [
+        121,
+        113
+      ],
+      "sch": [
+        284.48,
+        243.84
+      ],
+      "rot": 0,
+      "mpn": "RC0805FR-0747KL",
+      "note": "",
+      "uuid": "a8cc476b-81c7-584b-a6de-341928cdb8ac"
+    },
+    {
+      "ref": "R9",
+      "value": "10k",
+      "lib": "Device",
+      "sym": "R",
+      "foot": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "nets": {
+        "1": "3V3",
+        "2": "BTN_LOAD"
+      },
+      "xy": [
+        87,
+        104
+      ],
+      "sch": [
+        228.6,
+        124.46
+      ],
+      "rot": 0,
+      "mpn": "RC0805FR-0710KL",
+      "note": "",
+      "uuid": "462d0aa2-4d8b-5876-8a53-32a42bce6f5d"
+    },
+    {
+      "ref": "R10",
+      "value": "10k",
+      "lib": "Device",
+      "sym": "R",
+      "foot": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "nets": {
+        "1": "3V3",
+        "2": "BTN_FULL"
+      },
+      "xy": [
+        97,
+        104
+      ],
+      "sch": [
+        228.6,
+        147.32
+      ],
+      "rot": 0,
+      "mpn": "RC0805FR-0710KL",
+      "note": "",
+      "uuid": "40b479bc-7fc6-527f-ac72-00f45d36af30"
+    },
+    {
+      "ref": "C4",
+      "value": "1u 16V X7R",
+      "lib": "Device",
+      "sym": "C",
+      "foot": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "nets": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "xy": [
+        63,
+        88
+      ],
+      "sch": [
+        68.58,
+        154.94
+      ],
+      "rot": 0,
+      "mpn": "",
+      "note": "0805 ceramic; specified voltage is minimum.",
+      "uuid": "b759237b-f2e7-50c9-9af7-a23ee9cad197"
+    },
+    {
+      "ref": "C5",
+      "value": "100n 16V X7R",
+      "lib": "Device",
+      "sym": "C",
+      "foot": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "nets": {
+        "1": "5V",
+        "2": "GND"
+      },
+      "xy": [
+        85,
+        119
+      ],
+      "sch": [
+        66.04,
+        218.44
+      ],
+      "rot": 0,
+      "mpn": "",
+      "note": "0805 ceramic; specified voltage is minimum.",
+      "uuid": "76404e71-f486-5dc8-9dab-9604ec293fd0"
+    },
+    {
+      "ref": "C6",
+      "value": "100n 16V X7R",
+      "lib": "Device",
+      "sym": "C",
+      "foot": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "nets": {
+        "1": "BTN_LOAD",
+        "2": "GND"
+      },
+      "xy": [
+        89,
+        113
+      ],
+      "sch": [
+        254,
+        124.46
+      ],
+      "rot": 0,
+      "mpn": "",
+      "note": "0805 ceramic; specified voltage is minimum.",
+      "uuid": "56636f6c-3a4e-5946-87ef-fa1be597b53d"
+    },
+    {
+      "ref": "C7",
+      "value": "100n 16V X7R",
+      "lib": "Device",
+      "sym": "C",
+      "foot": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "nets": {
+        "1": "BTN_FULL",
+        "2": "GND"
+      },
+      "xy": [
+        102,
+        113
+      ],
+      "sch": [
+        254,
+        147.32
+      ],
+      "rot": 0,
+      "mpn": "",
+      "note": "0805 ceramic; specified voltage is minimum.",
+      "uuid": "e460614c-5df1-534a-9441-939c7321f49b"
+    },
+    {
+      "ref": "C11",
+      "value": "47u 25V",
+      "lib": "Device",
+      "sym": "C_Polarized",
+      "foot": "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm",
+      "nets": {
+        "1": "5V",
+        "2": "GND"
+      },
+      "xy": [
+        78,
+        122
+      ],
+      "sch": [
+        91.44,
+        218.44
+      ],
+      "rot": 0,
+      "mpn": "Panasonic EEU-FR1E470",
+      "note": "Observe polarity; verify 5 mm diameter / 2 mm lead pitch.",
+      "uuid": "4678b5c9-0f52-5609-aac3-cabe0817b83d"
+    },
+    {
+      "ref": "Q1",
+      "value": "AO3400A",
+      "lib": "Transistor_FET",
+      "sym": "AO3400A",
+      "foot": "Package_TO_SOT_SMD:SOT-23",
+      "nets": {
+        "1": "FAN_GATE",
+        "2": "GND",
+        "3": "FAN_RETURN"
+      },
+      "xy": [
+        126,
+        109
+      ],
+      "sch": [
+        312.42,
+        223.52
+      ],
+      "rot": 0,
+      "mpn": "AO3400A",
+      "note": "Low-side switch, 3.3 V gate; pin 1 G, 2 S, 3 D.",
+      "uuid": "885b4023-64d3-59ef-993b-4f2f3e25de07"
+    },
+    {
+      "ref": "D1",
+      "value": "SS14",
+      "lib": "Device",
+      "sym": "D_Schottky",
+      "foot": "Diode_SMD:D_SMA",
+      "nets": {
+        "1": "FAN_P",
+        "2": "FAN_RETURN"
+      },
+      "xy": [
+        136,
+        116
+      ],
+      "sch": [
+        254,
+        187.96
+      ],
+      "rot": 90,
+      "mpn": "SS14-E3/61T",
+      "note": "Flyback: cathode stripe to fan positive.",
+      "uuid": "62816572-31e1-52d7-9513-66699eb9d6be"
+    },
+    {
+      "ref": "D2",
+      "value": "SMBJ15A",
+      "lib": "Device",
+      "sym": "D_Zener",
+      "foot": "Diode_SMD:D_SMB",
+      "nets": {
+        "1": "SYS_P",
+        "2": "GND"
+      },
+      "xy": [
+        114,
+        65
+      ],
+      "sch": [
+        228.6,
+        38.1
+      ],
+      "rot": 90,
+      "mpn": "SMBJ15A-E3/52",
+      "note": "Unidirectional TVS, cathode to SYS_P. Does not provide reverse-polarity protection.",
+      "uuid": "a16ae148-4843-56d7-bdc4-a5bebbb8001e"
+    },
+    {
+      "ref": "F1",
+      "value": "2A 63V FAST",
+      "lib": "Device",
+      "sym": "Fuse",
+      "foot": "Fuse:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder",
+      "nets": {
+        "1": "5V_IN",
+        "2": "5V"
+      },
+      "xy": [
+        65,
+        119
+      ],
+      "sch": [
+        66.04,
+        187.96
+      ],
+      "rot": 90,
+      "mpn": "0466002.NR",
+      "note": "Littelfuse 466 series 1206; allow 25% continuous-current derating. Validate startup pulse/time-current before final assembly.",
+      "uuid": "861f10b8-4d1a-57cb-b328-775f964a899d"
+    },
+    {
+      "ref": "F2",
+      "value": "1A 63V FAST",
+      "lib": "Device",
+      "sym": "Fuse",
+      "foot": "Fuse:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder",
+      "nets": {
+        "1": "5V",
+        "2": "LAMP_P"
+      },
+      "xy": [
+        96,
+        119
+      ],
+      "sch": [
+        157.48,
+        187.96
+      ],
+      "rot": 270,
+      "mpn": "0466001.NR",
+      "note": "Littelfuse 466 series 1206; allow 25% continuous-current derating. Validate startup pulse/time-current before final assembly.",
+      "uuid": "e9e35867-eeb1-55ce-a23a-71f29b1e813f"
+    },
+    {
+      "ref": "F3",
+      "value": "1A 63V FAST",
+      "lib": "Device",
+      "sym": "Fuse",
+      "foot": "Fuse:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder",
+      "nets": {
+        "1": "5V",
+        "2": "FAN_P"
+      },
+      "xy": [
+        127,
+        119
+      ],
+      "sch": [
+        193.04,
+        210.82
+      ],
+      "rot": 270,
+      "mpn": "0466001.NR",
+      "note": "Littelfuse 466 series 1206; allow 25% continuous-current derating. Validate startup pulse/time-current before final assembly.",
+      "uuid": "6de12014-4eb7-521f-8b1a-b11d55f70913"
+    },
+    {
+      "ref": "JP1",
+      "value": "REMOVE_FOR_USB",
+      "lib": "Connector_Generic",
+      "sym": "Conn_01x02",
+      "foot": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
+      "nets": {
+        "1": "5V",
+        "2": "ESP_5V"
+      },
+      "xy": [
+        109,
+        125
+      ],
+      "sch": [
+        353.06,
+        187.96
+      ],
+      "rot": 0,
+      "mpn": "",
+      "note": "Normally OPEN. Fit shunt only for battery-powered ESP32 with USB VBUS absent.",
+      "uuid": "9525afbb-11ba-52da-946d-8336363c5106"
+    },
+    {
+      "ref": "J11",
+      "value": "ESP32_5V_OPTION",
+      "lib": "Connector_Generic",
+      "sym": "Conn_01x02",
+      "foot": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
+      "nets": {
+        "1": "ESP_5V",
+        "2": "GND"
+      },
+      "xy": [
+        116,
+        130
+      ],
+      "sch": [
+        388.62,
+        187.96
+      ],
+      "rot": 0,
+      "mpn": "",
+      "note": "To documented ESP32 5V input only. JP1 open for ordinary USB.",
+      "uuid": "5773fd15-592d-53f6-bfe2-84fd4b76bc7b"
+    },
+    {
+      "ref": "TP1",
+      "value": "GND",
+      "lib": "Connector",
+      "sym": "TestPoint",
+      "foot": "TestPoint:TestPoint_Pad_D2.0mm",
+      "nets": {
+        "1": "GND"
+      },
+      "xy": [
+        108,
+        94
+      ],
+      "sch": [
+        292.1,
+        132.08
+      ],
+      "rot": 0,
+      "mpn": "",
+      "note": "",
+      "uuid": "45647b3c-9433-5730-b63a-b507b00b57d7"
+    },
+    {
+      "ref": "TP2",
+      "value": "3V3",
+      "lib": "Connector",
+      "sym": "TestPoint",
+      "foot": "TestPoint:TestPoint_Pad_D2.0mm",
+      "nets": {
+        "1": "3V3"
+      },
+      "xy": [
+        112,
+        94
+      ],
+      "sch": [
+        312.42,
+        132.08
+      ],
+      "rot": 0,
+      "mpn": "",
+      "note": "",
+      "uuid": "aef86ca4-7c0b-5fe1-a4b9-81ab81c1c04b"
+    },
+    {
+      "ref": "TP3",
+      "value": "SYS_P",
+      "lib": "Connector",
+      "sym": "TestPoint",
+      "foot": "TestPoint:TestPoint_Pad_D2.0mm",
+      "nets": {
+        "1": "SYS_P"
+      },
+      "xy": [
+        116,
+        94
+      ],
+      "sch": [
+        332.74,
+        132.08
+      ],
+      "rot": 0,
+      "mpn": "",
+      "note": "",
+      "uuid": "b9e200ea-5911-5ff6-b076-0337627d180d"
+    },
+    {
+      "ref": "TP4",
+      "value": "FAN_GATE",
+      "lib": "Connector",
+      "sym": "TestPoint",
+      "foot": "TestPoint:TestPoint_Pad_D2.0mm",
+      "nets": {
+        "1": "FAN_GATE"
+      },
+      "xy": [
+        120,
+        94
+      ],
+      "sch": [
+        353.06,
+        132.08
+      ],
+      "rot": 0,
+      "mpn": "",
+      "note": "",
+      "uuid": "84c2f43c-85b2-5bb4-8b52-3ec2c1debf15"
+    },
+    {
+      "ref": "H1",
+      "value": "M3_NYLON",
+      "lib": "Mechanical",
+      "sym": "MountingHole",
+      "foot": "MountingHole:MountingHole_3.2mm_M3",
+      "nets": {},
+      "xy": [
+        54,
+        54
+      ],
+      "sch": [
+        320.04,
+        157.48
+      ],
+      "rot": 0,
+      "mpn": "",
+      "note": "Use insulating M3 standoffs; no electrical connection.",
+      "uuid": "6108dfaa-5063-5a4c-8929-37885e4d6e04"
+    },
+    {
+      "ref": "H2",
+      "value": "M3_NYLON",
+      "lib": "Mechanical",
+      "sym": "MountingHole",
+      "foot": "MountingHole:MountingHole_3.2mm_M3",
+      "nets": {},
+      "xy": [
+        146,
+        54
+      ],
+      "sch": [
+        342.90000000000003,
+        157.48
+      ],
+      "rot": 0,
+      "mpn": "",
+      "note": "Use insulating M3 standoffs; no electrical connection.",
+      "uuid": "865bb53f-3166-5982-a76a-3da4ba175d26"
+    },
+    {
+      "ref": "H3",
+      "value": "M3_NYLON",
+      "lib": "Mechanical",
+      "sym": "MountingHole",
+      "foot": "MountingHole:MountingHole_3.2mm_M3",
+      "nets": {},
+      "xy": [
+        54,
+        136
+      ],
+      "sch": [
+        365.76,
+        157.48
+      ],
+      "rot": 0,
+      "mpn": "",
+      "note": "Use insulating M3 standoffs; no electrical connection.",
+      "uuid": "7b1af4f5-a5d4-5644-a817-59a2db8423e1"
+    },
+    {
+      "ref": "H4",
+      "value": "M3_NYLON",
+      "lib": "Mechanical",
+      "sym": "MountingHole",
+      "foot": "MountingHole:MountingHole_3.2mm_M3",
+      "nets": {},
+      "xy": [
+        146,
+        136
+      ],
+      "sch": [
+        388.62,
+        157.48
+      ],
+      "rot": 0,
+      "mpn": "",
+      "note": "Use insulating M3 standoffs; no electrical connection.",
+      "uuid": "4c88934e-71ec-5554-8989-31eaf1317bc3"
+    }
+  ],
+  "copper_layers": 4
+}

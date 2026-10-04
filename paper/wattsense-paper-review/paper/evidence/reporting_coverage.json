@@ -1,0 +1,25 @@
+{
+  "study_design": "descriptive engineering design and deterministic simulation study",
+  "clinical_guidelines_applicable": false,
+  "rationale": "No human, animal, clinical, diagnostic or systematic-review study. No target venue supplied.",
+  "covered": [
+    "question",
+    "architecture",
+    "assumptions",
+    "equations",
+    "scenario matrix",
+    "both-load tradeoff",
+    "negative startup results",
+    "numerical verification",
+    "limitations",
+    "planned measurements"
+  ],
+  "pending": [
+    "human evidence review",
+    "affiliations",
+    "venue instructions",
+    "contributions",
+    "funding/conflicts",
+    "institutional similarity review"
+  ]
+}

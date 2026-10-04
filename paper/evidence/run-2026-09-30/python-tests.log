@@ -1,0 +1,50 @@
+test_cli_cannot_overwrite_measurements (test_calibration.CalibrationTests.test_cli_cannot_overwrite_measurements) ... ok
+test_current_fit_requires_zero (test_calibration.CalibrationTests.test_current_fit_requires_zero) ... ok
+test_fit_matches_firmware_offset_sign (test_calibration.CalibrationTests.test_fit_matches_firmware_offset_sign) ... ok
+test_holdout_failure_is_not_hidden_by_fit (test_calibration.CalibrationTests.test_holdout_failure_is_not_hidden_by_fit) ... ok
+test_polarity_error_is_review_required (test_calibration.CalibrationTests.test_polarity_error_is_review_required) ... ok
+test_rejects_missing_degenerate_and_nonfinite_measurements (test_calibration.CalibrationTests.test_rejects_missing_degenerate_and_nonfinite_measurements) ... ok
+test_repeated_validation_point_is_not_range_validation (test_calibration.CalibrationTests.test_repeated_validation_point_is_not_range_validation) ... ok
+test_simulation_requires_explicit_opt_in_and_label (test_calibration.CalibrationTests.test_simulation_requires_explicit_opt_in_and_label) ... ok
+test_voltage_gain_only (test_calibration.CalibrationTests.test_voltage_gain_only) ... ok
+test_battery_power_conservation (test_hardware_model.HardwareModelTests.test_battery_power_conservation) ... ok
+test_constant_power_matches_kirchhoff (test_hardware_model.HardwareModelTests.test_constant_power_matches_kirchhoff) ... ok
+test_ideal_source_and_zero_load (test_hardware_model.HardwareModelTests.test_ideal_source_and_zero_load) ... ok
+test_impossible_source_and_invalid_inputs_rejected (test_hardware_model.HardwareModelTests.test_impossible_source_and_invalid_inputs_rejected) ... ok
+test_lower_efficiency_increases_battery_demand (test_hardware_model.HardwareModelTests.test_lower_efficiency_increases_battery_demand) ... ok
+test_network_conservation_and_fan_off (test_hardware_model.HardwareModelTests.test_network_conservation_and_fan_off) ... ok
+test_network_ideal_limit (test_hardware_model.HardwareModelTests.test_network_ideal_limit) ... ok
+test_ocv_interpolation_and_invalid_order (test_hardware_model.HardwareModelTests.test_ocv_interpolation_and_invalid_order) ... ok
+test_charging_never_has_negative_runtime (test_model.EstimatorTests.test_charging_never_has_negative_runtime) ... ok
+test_gap_requires_new_reference (test_model.EstimatorTests.test_gap_requires_new_reference) ... ok
+test_input_validation (test_model.EstimatorTests.test_input_validation) ... ok
+test_known_charge_balance_and_sign (test_model.EstimatorTests.test_known_charge_balance_and_sign) ... ok
+test_restore_checks_full_load_and_keeps_latched_off (test_model.EstimatorTests.test_restore_checks_full_load_and_keeps_latched_off) ... ok
+test_runtime_includes_reserve (test_model.EstimatorTests.test_runtime_includes_reserve) ... ok
+test_shed_reason_survives_the_resulting_lower_load (test_model.EstimatorTests.test_shed_reason_survives_the_resulting_lower_load) ... ok
+test_simulator_scenarios_and_fault (test_model.EstimatorTests.test_simulator_scenarios_and_fault) ... ok
+test_sustained_shedding_not_single_transient (test_model.EstimatorTests.test_sustained_shedding_not_single_transient) ... ok
+test_temperature_and_reserve_override_requests (test_model.EstimatorTests.test_temperature_and_reserve_override_requests) ... ok
+test_unknown_at_boot_and_after_invalid_measurement (test_model.EstimatorTests.test_unknown_at_boot_and_after_invalid_measurement) ... ok
+test_current_limit_is_consistent_with_firmware (test_policy_boundaries.BoundaryTests.test_current_limit_is_consistent_with_firmware) ... ok
+test_fault_recovery_needs_reference_and_explicit_restore (test_policy_boundaries.BoundaryTests.test_fault_recovery_needs_reference_and_explicit_restore) ... ok
+test_restore_rejects_nonfinite_and_out_of_range_arguments (test_policy_boundaries.BoundaryTests.test_restore_rejects_nonfinite_and_out_of_range_arguments) ... ok
+test_thermal_interruption_resets_sustained_timer (test_policy_boundaries.BoundaryTests.test_thermal_interruption_resets_sustained_timer) ... ok
+test_voltage_operating_limits_override_optional_load (test_policy_boundaries.BoundaryTests.test_voltage_operating_limits_override_optional_load) ... ok
+test_bad_input_and_unknown_paths (test_server.HTTPTests.test_bad_input_and_unknown_paths) ... ok
+test_hardware_is_read_only (test_server.HTTPTests.test_hardware_is_read_only) ... ok
+test_reject_cross_origin_control (test_server.HTTPTests.test_reject_cross_origin_control) ... ok
+test_simulated_commands_and_logged_data (test_server.HTTPTests.test_simulated_commands_and_logged_data) ... ok
+test_bad_scenario_type_returns_validation_error (test_server.ProtocolTests.test_bad_scenario_type_returns_validation_error) ... ok
+test_csv_text_is_not_a_formula_but_negative_current_is_preserved (test_server.ProtocolTests.test_csv_text_is_not_a_formula_but_negative_current_is_preserved) ... ok
+test_extreme_or_inconsistent_frames_are_rejected (test_server.ProtocolTests.test_extreme_or_inconsistent_frames_are_rejected) ... ok
+test_frame_preserves_negative_charging_and_missing_solar (test_server.ProtocolTests.test_frame_preserves_negative_charging_and_missing_solar) ... ok
+test_malformed_json_shapes_reject_without_crashing_reader (test_server.ProtocolTests.test_malformed_json_shapes_reject_without_crashing_reader) ... ok
+test_reject_fake_hardware_and_bad_frames (test_server.ProtocolTests.test_reject_fake_hardware_and_bad_frames) ... ok
+test_serial_reader_survives_bad_frame_then_records_valid_frame (test_server.ProtocolTests.test_serial_reader_survives_bad_frame_then_records_valid_frame) ... ok
+test_stale_and_export_provenance (test_server.ProtocolTests.test_stale_and_export_provenance) ... ok
+
+----------------------------------------------------------------------
+Ran 45 tests in 2.287s
+
+OK

@@ -1,0 +1,114 @@
+{
+  "audit_date": "2026-09-30",
+  "manuscript": "paper/src/manuscript.json",
+  "manuscript_sha256": "c537aef1889ae241c99c2af450bd700ce485c66ba77ffc6f2c271ed4f668e6d8",
+  "method": "Local case-folded, diacritic-normalized exact eight-word matching, independently within each paragraph; citation brackets, punctuation and source line-end hyphenation normalized. Adjacent windows merged.",
+  "draft_scope": "Abstract and prose paragraphs C001-C041; headings, equations, keywords, tables, figure captions and bibliography excluded. No draft text transmitted externally.",
+  "paragraphs_checked": 42,
+  "normalized_draft_words": 3280,
+  "sources_available": 4,
+  "source_coverage": [
+    {
+      "id": "movassagh2021",
+      "format": "pdf",
+      "coverage": "full article plus references",
+      "url": "https://ntrs.nasa.gov/api/citations/20220008848/downloads/2021.07%20-%20Energies%20-%20A%20Critical%20Look%20at%20Coulomb%20Counting%20Approach%20for%20State%20of%20Charge%20Estimation.pdf",
+      "doi": "10.3390/en14144074",
+      "retrieved_date": "2026-09-30",
+      "status": "available",
+      "raw_path": "paper/evidence/originality-corpus/movassagh2021.pdf",
+      "raw_sha256": "fbdbba03c18a539a412af7283d9ad67412ce8ba96f70b4dab00ea4a9fa9471c2",
+      "pages": 33,
+      "text_path": "paper/evidence/originality-corpus/movassagh2021.txt",
+      "text_sha256": "f1734752c52e7265af729a277f8fd6b777e6dff014203f92dfaf380f89ef2028",
+      "normalized_words": 11461
+    },
+    {
+      "id": "zhang2018",
+      "format": "pdf",
+      "coverage": "full article plus references and repository cover",
+      "url": "https://wrap.warwick.ac.uk/id/eprint/94268/9/WRAP-online-estimation-battery-Marco-2017.pdf",
+      "alternate_url": "https://pure.coventry.ac.uk/ws/portalfiles/portal/27426271/Binder9.pdf",
+      "doi": "10.1016/j.energy.2017.10.043",
+      "retrieved_date": "2026-09-30",
+      "status": "available",
+      "raw_path": "paper/evidence/originality-corpus/zhang2018.pdf",
+      "downloaded_from": "https://wrap.warwick.ac.uk/id/eprint/94268/9/WRAP-online-estimation-battery-Marco-2017.pdf",
+      "raw_sha256": "ec3fb2d192717ada10cf900562b816c906b85c5bb407d7a2eb6a8c67699e1813",
+      "pages": 12,
+      "text_path": "paper/evidence/originality-corpus/zhang2018.txt",
+      "text_sha256": "15a36d4a8c8fedf4ffaa2f7cfef9553b02deffe94d6ac49d2bf9d28cce36cc51",
+      "normalized_words": 5229
+    },
+    {
+      "id": "marahatta2021",
+      "format": "html",
+      "coverage": "One abstract sentence (18 normalized words) only; full-text download unavailable. This is a very narrow excerpt check, not full-paper coverage.",
+      "url": "https://www.researchgate.net/publication/346036129_Priority-based_low_voltage_DC_microgrid_system_for_rural_electrification",
+      "doi": "10.1016/j.egyr.2020.11.030",
+      "retrieved_date": "2026-09-30",
+      "status": "available",
+      "raw_path": "paper/evidence/originality-corpus/marahatta2021.html",
+      "retrieval_attempts": [
+        {
+          "url": "https://www.researchgate.net/publication/346036129_Priority-based_low_voltage_DC_microgrid_system_for_rural_electrification",
+          "error": "HTTPError: HTTP Error 403: Forbidden"
+        }
+      ],
+      "retrieval_error": "HTTPError: HTTP Error 403: Forbidden",
+      "excerpt_provenance": {
+        "url": "https://www.sciencedirect.com/science/article/pii/S2352484720314554",
+        "author_copy_url": "https://www.researchgate.net/publication/346036129_Priority-based_low_voltage_DC_microgrid_system_for_rural_electrification",
+        "locator": "Abstract, sentence beginning Direct load control-based approach",
+        "retrieval_method": "Previously inspected publisher abstract and author-uploaded article through the web tool; excerpt retained locally for reproducible comparison.",
+        "access_date": "2026-09-30",
+        "license_note": "Article is CC BY-NC-ND; retain only this short attributed excerpt in the audit record. No source figure reused."
+      },
+      "text_sha256": "3328a30acafb30a167cff4a876260217c11a7fba5e3ee4af3893136b125ff9cc",
+      "normalized_words": 18,
+      "text_path": "paper/evidence/originality-corpus/marahatta2021.txt"
+    },
+    {
+      "id": "rajbhandari2024",
+      "format": "html",
+      "coverage": "One abstract sentence (18 normalized words) only; full-text download returned HTTP 403. This is a very narrow excerpt check, not full-paper coverage.",
+      "url": "https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/stg2.12151",
+      "doi": "10.1049/stg2.12151",
+      "retrieved_date": "2026-09-30",
+      "status": "available",
+      "raw_path": "paper/evidence/originality-corpus/rajbhandari2024.html",
+      "retrieval_attempts": [
+        {
+          "url": "https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/stg2.12151",
+          "error": "HTTPError: HTTP Error 403: Forbidden"
+        }
+      ],
+      "retrieval_error": "HTTPError: HTTP Error 403: Forbidden",
+      "excerpt_provenance": {
+        "url": "https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/stg2.12151",
+        "locator": "Abstract, second sentence",
+        "retrieval_method": "Previously inspected publisher full text through the web tool; excerpt retained locally for reproducible comparison.",
+        "access_date": "2026-09-30",
+        "license_note": "Short attributed excerpt retained for local audit; no source figure reused."
+      },
+      "text_sha256": "296fcddc58d9e33b4a9845832bc210f12ddeb66ae20ec73e0a7920d398717358",
+      "normalized_words": 18,
+      "text_path": "paper/evidence/originality-corpus/rajbhandari2024.txt"
+    }
+  ],
+  "matched_spans": [],
+  "claim_citation_review": {
+    "C001": "Supported: Marahatta describes charge-threshold priority groups; Rajbhandari describes forecast-assisted allocation. Opening motivation is an explicit physical/design rationale, not an external numerical claim.",
+    "C004": "Supported by Movassagh abstract/error taxonomy. The sentence about shared simulator inputs is a project-method inference and is not claimed as that paper's finding.",
+    "C005": "Supported by Marahatta section 2.2.2/Table 3 and reported experiment; Rajbhandari sections 2.1-2.2 support forecast/optimization characterization. No external performance metric transferred.",
+    "C006": "Supported by Zhang abstract and experimental section 4.1. Need for model characterization is a reasonable explicitly worded inference; remaining sentences refer to the local Wattsense design."
+  },
+  "manual_wording_review": "The four inspected literature-discussion paragraphs C001/C004/C005/C006 use brief attributed summaries. No distinctive unattributed copying was noticed in that bounded comparison. Terms such as state of charge, coulomb counting and equivalent circuit are standard terminology, not evidence of plagiarism by themselves. This is an assistant review; accountable author/institutional review is pending.",
+  "limits": [
+    "Not a plagiarism certificate, similarity percentage, or exhaustive originality search.",
+    "Coverage is limited to the locally available texts listed; access failures and excerpts are disclosed per source.",
+    "Exact eight-word matching misses paraphrase, translation, ideas, shorter copying and extraction/line-break errors; generic technical sequences can produce false positives.",
+    "No institutional corpus, paid similarity service, unpublished student theses or proprietary database was searched.",
+    "Scientific novelty is separate: priority shedding and coulomb counting are established methods. Author/institutional review remains necessary."
+  ]
+}

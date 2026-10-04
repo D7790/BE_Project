@@ -1,0 +1,135 @@
+{
+  "provenance": "SIMULATION ONLY - not experimental results",
+  "baseline": {
+    "name": "runtime_baseline",
+    "runtime_to_true_reserve_h": 4.879166666666666,
+    "shed_time_h": null,
+    "capacity_Ah": 6,
+    "converter_efficiency": 0.9,
+    "model": "constant 12.8 V, exact capacity, no solar, no ageing or noise"
+  },
+  "priority": {
+    "name": "runtime_priority",
+    "runtime_to_true_reserve_h": 7.247222222222222,
+    "shed_time_h": 1.8797222222222223,
+    "capacity_Ah": 6,
+    "converter_efficiency": 0.9,
+    "model": "constant 12.8 V, exact capacity, no solar, no ageing or noise"
+  },
+  "runtime_extension_pct": 48.53401651010532,
+  "sweep_pairs": [
+    {
+      "capacity_Ah": 4,
+      "efficiency": 0.8,
+      "baseline_h": 2.891388888888889,
+      "priority_h": 5.173333333333333
+    },
+    {
+      "capacity_Ah": 4,
+      "efficiency": 0.9,
+      "baseline_h": 3.2527777777777778,
+      "priority_h": 5.620833333333334
+    },
+    {
+      "capacity_Ah": 4,
+      "efficiency": 0.95,
+      "baseline_h": 3.433611111111111,
+      "priority_h": 5.801388888888889
+    },
+    {
+      "capacity_Ah": 6,
+      "efficiency": 0.8,
+      "baseline_h": 4.336944444444445,
+      "priority_h": 6.705
+    },
+    {
+      "capacity_Ah": 6,
+      "efficiency": 0.9,
+      "baseline_h": 4.879166666666666,
+      "priority_h": 7.247222222222222
+    },
+    {
+      "capacity_Ah": 6,
+      "efficiency": 0.95,
+      "baseline_h": 5.150277777777778,
+      "priority_h": 7.518055555555556
+    },
+    {
+      "capacity_Ah": 8,
+      "efficiency": 0.8,
+      "baseline_h": 5.782777777777778,
+      "priority_h": 8.150555555555556
+    },
+    {
+      "capacity_Ah": 8,
+      "efficiency": 0.9,
+      "baseline_h": 6.5055555555555555,
+      "priority_h": 8.873333333333333
+    },
+    {
+      "capacity_Ah": 8,
+      "efficiency": 0.95,
+      "baseline_h": 6.866944444444444,
+      "priority_h": 9.234722222222222
+    }
+  ],
+  "fault_cases": [
+    {
+      "case": "sensor_disconnect",
+      "state": "SENSOR_FAULT",
+      "optional_on": false,
+      "charge_reference_valid": false
+    },
+    {
+      "case": "temperature",
+      "state": "TEMPERATURE",
+      "optional_on": false,
+      "charge_reference_valid": true
+    },
+    {
+      "case": "low_voltage",
+      "state": "RESERVE",
+      "optional_on": false,
+      "charge_reference_valid": true
+    },
+    {
+      "case": "high_voltage",
+      "state": "RESERVE",
+      "optional_on": false,
+      "charge_reference_valid": true
+    },
+    {
+      "case": "current_overrange",
+      "state": "SENSOR_FAULT",
+      "optional_on": false,
+      "charge_reference_valid": false
+    },
+    {
+      "case": "integration_gap",
+      "state": "SENSOR_FAULT",
+      "optional_on": false,
+      "charge_reference_valid": false
+    },
+    {
+      "case": "nan_temperature",
+      "state": "SENSOR_FAULT",
+      "optional_on": false,
+      "charge_reference_valid": false
+    }
+  ],
+  "one_hour_charge_final_soc_pct": 68.16666666667061,
+  "capacity_and_offset_error": {
+    "true_capacity_Ah": 4.8,
+    "configured_capacity_Ah": 6,
+    "true_discharge_A": 0.5,
+    "measured_discharge_A": 0.52,
+    "hours": 4,
+    "true_soc_pct": 38.333333333325754,
+    "estimated_soc_pct": 45.333333333332504,
+    "error_percentage_points": 7.00000000000675
+  },
+  "source_sha256": {
+    "wattsense\\model.py": "9b69bfbe30fda38aebd43f7b7c0b7095046156f247f20f977a7db7c7e6599f46",
+    "simulations\\run_system.py": "fe30157808ea1ec20a478b683c3b0629f37a6cf7edd1c819edb8edecdbe68675"
+  }
+}

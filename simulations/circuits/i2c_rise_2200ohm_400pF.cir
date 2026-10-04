@@ -1,0 +1,9 @@
+Wattsense pullup bus capacitance envelope
+V3 VCC 0 3.3
+Rpull VCC SDA 2200
+Cbus SDA 0 400p
+Vctrl CTRL 0 PULSE(3.3 0 1u 1n 1n 9u 20u)
+Ssink SDA 0 CTRL 0 SOPEN
+.model SOPEN SW(Ron=20 Roff=1e12 Vt=1.65 Vh=0.02)
+.tran 2n 10u 0 2n
+.end

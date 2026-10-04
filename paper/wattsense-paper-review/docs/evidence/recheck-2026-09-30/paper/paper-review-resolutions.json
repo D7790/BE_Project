@@ -1,0 +1,46 @@
+{
+  "created_utc": "2026-09-30T07:30:15.928811+00:00",
+  "status": "PASS_RESOLVED",
+  "resolutions": [
+    {
+      "finding": "PAPER-01",
+      "resolved": true,
+      "detail": "C019 identifies the Python plant/control experiment and separately host-tested production C++ logic."
+    },
+    {
+      "finding": "PAPER-02",
+      "resolved": true,
+      "detail": "Canonical notation is E_est/T_est; the regenerated Figure 2 was visually re-inspected and its subscript is legible."
+    },
+    {
+      "finding": "PAPER-03",
+      "resolved": true,
+      "detail": "C004 now links local model evidence as well as the literature source."
+    },
+    {
+      "finding": "PAPER-04",
+      "resolved": true,
+      "detail": "New reusable actual-manuscript/data comparator detects wrong table values, wrong abstract percentage and stale PDF prose. Its report is separate from the scientific-writing registry check."
+    }
+  ],
+  "automated_manuscript_comparisons": 96,
+  "independent_readonly_comparisons": 89,
+  "negative_fixture_tests": {
+    "status": "PASS",
+    "checks": {
+      "table_value_mutation_rejected": true,
+      "abstract_percentage_mutation_rejected": true,
+      "stale_PDF_prose_rejected": true,
+      "live_source_unchanged": true
+    }
+  },
+  "inspected_sha256": {
+    "paper/src/manuscript.json": "c537aef1889ae241c99c2af450bd700ce485c66ba77ffc6f2c271ed4f668e6d8",
+    "output/pdf/wattsense_research_paper.pdf": "98c1233a0a91ae71f2737dc48b43bdbf177622d5975e39a3a7c4f2ff09d1f3c2",
+    "paper/src/check_manuscript_data.py": "b748f8fa969efebc92563344c01fcce179a7ffcc4a81df2ad15cab1df39cf661",
+    "paper/figures/fig2_control_flow.png": "f1a2a0c5e36b15b0aefa8e1a01b212943f24ffe256e0d450278d79070cf9745b"
+  },
+  "assistant_figure_review": "The final Figure 2 PNG was visually re-inspected; no clipping, overlap or missing subscript glyph was found. Other four figures were inspected earlier in this recheck.",
+  "prior_evidence": "independent-paper-review-before-final-build.json preserves the intermediate comparison before the current PDF was regenerated.",
+  "remaining_gates": "Human verification/author approvals, venue/template requirements, institutional similarity review and physical measurements remain incomplete. No submission or hardware qualification is claimed."
+}

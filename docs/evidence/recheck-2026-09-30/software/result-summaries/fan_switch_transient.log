@@ -1,0 +1,17 @@
+stdout Note: No compatibility mode selected!
+stdout Circuit: wattsense illustrative fan switching / flyback
+stdout Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+stdout Using SPARSE 1.3 as Direct Linear Solver
+stdout Initial Transient Solution
+stdout --------------------------
+stdout Node                                   Voltage
+stdout ----                                   -------
+stdout fan_p                                        5
+stdout gpio                                         0
+stdout fan_gate                                     0
+stdout coil                                         5
+stdout fan_return                                   5
+stdout lfan#branch                        4.99846e-09
+stdout vgpio#branch                                 0
+stdout v5#branch                               -5e-09
+stdout No. of Data Rows : 8214

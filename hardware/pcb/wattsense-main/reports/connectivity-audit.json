@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "pcb_components": 50,
+  "electrical_pin_assignments": 114,
+  "nets": 19,
+  "copper_layers": 2,
+  "board_mm": [
+    100,
+    90
+  ],
+  "tracks_and_vias": 881,
+  "vias": 47,
+  "erc_violations": 0,
+  "drc_violations": 0,
+  "unconnected_items": 0,
+  "schematic_parity_issues": 0,
+  "critical_pin_mapping_checks": "PASS",
+  "hardware_validation": "NOT PERFORMED",
+  "sha256": {
+    "wattsense-main.kicad_sch": "57d2dc4ac16e124e2cfa7676f3dea675db619e84e2d7409d7541de9abce9ca9b",
+    "wattsense-main.kicad_pcb": "38b79bb5cbe57e4a6a02430cdf5caa9495fe72437a361cbbbee1eac79bca99f2",
+    "wattsense-main.kicad_pro": "0fb2c184b8a00d4234887b7cde1f03a0b099921adde5f9513f65b6b8b635802f",
+    "BOM.csv": "924aeab28a5a32e5e8e27cea8dbaf56df7e452ae5fcdde5e4bcaa2668c994670"
+  }
+}

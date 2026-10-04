@@ -1,0 +1,14 @@
+test_changed_figure_rejected (__main__.ArtifactIntegrityTests.test_changed_figure_rejected) ... ok
+test_changed_manuscript_rejected (__main__.ArtifactIntegrityTests.test_changed_manuscript_rejected) ... ok
+test_changed_pdf_rejected (__main__.ArtifactIntegrityTests.test_changed_pdf_rejected) ... ok
+test_changed_render_rejected (__main__.ArtifactIntegrityTests.test_changed_render_rejected) ... ok
+test_current_binding_accepted (__main__.ArtifactIntegrityTests.test_current_binding_accepted) ... ok
+test_missing_input_binding_rejected (__main__.ArtifactIntegrityTests.test_missing_input_binding_rejected) ... ok
+test_missing_reviewed_page_rejected (__main__.ArtifactIntegrityTests.test_missing_reviewed_page_rejected) ... ok
+test_no_automatic_human_approval (__main__.ArtifactIntegrityTests.test_no_automatic_human_approval) ... ok
+test_visual_review_wrong_pdf_rejected (__main__.ArtifactIntegrityTests.test_visual_review_wrong_pdf_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.350s
+
+OK

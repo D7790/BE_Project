@@ -1,0 +1,698 @@
+{
+  "created_utc": "2026-09-30T08:04:03.305130+00:00",
+  "status": "PASS_MANUSCRIPT_DATA_COMPARISONS",
+  "checks": [
+    {
+      "check": "source simulation completed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "performance is marked as simulation only",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rendered PDF contains author names in source order",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph abstract",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C001",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C002",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C003",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C004",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C005",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C006",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C007",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C008",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C009",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C010",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C011",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C012",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C013",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C014",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C015",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C016",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C017",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C018",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C019",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C020",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C021",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C022",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C023",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C024",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C025",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C026",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C027",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C028",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C029",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C030",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C031",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C032",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C033",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C034",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C035",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C036",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C037",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C038",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C039",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C040",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "PDF contains canonical paragraph C041",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "abstract rounds baseline hours correctly",
+      "pass": true,
+      "detail": 5.476388888888889
+    },
+    {
+      "check": "abstract rounds priority hours correctly",
+      "pass": true,
+      "detail": 7.883611111111111
+    },
+    {
+      "check": "abstract rounds fan hours correctly",
+      "pass": true,
+      "detail": 2.493611111111111
+    },
+    {
+      "check": "abstract discloses calculated lamp gain and fan loss",
+      "pass": true,
+      "detail": {
+        "lamp_gain_pct": 43.95637839208724,
+        "fan_loss_pct": 54.46614253106772
+      }
+    },
+    {
+      "check": "Table II has exactly five distinct expected metrics",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Table II data: Lamp service (h)",
+      "pass": true,
+      "detail": {
+        "actual": [
+          "5.4764",
+          "7.8836"
+        ],
+        "expected": [
+          "5.4764",
+          "7.8836"
+        ]
+      }
+    },
+    {
+      "check": "Table II data: Fan service (h)",
+      "pass": true,
+      "detail": {
+        "actual": [
+          "5.4764",
+          "2.4936"
+        ],
+        "expected": [
+          "5.4764",
+          "2.4936"
+        ]
+      }
+    },
+    {
+      "check": "Table II data: Lamp + fan energy (Wh)",
+      "pass": true,
+      "detail": {
+        "actual": [
+          "27.3819",
+          "25.9431"
+        ],
+        "expected": [
+          "27.3819",
+          "25.9431"
+        ]
+      }
+    },
+    {
+      "check": "Table II data: All loads incl. controller (Wh)",
+      "pass": true,
+      "detail": {
+        "actual": [
+          "31.7631",
+          "32.2499"
+        ],
+        "expected": [
+          "31.7631",
+          "32.2499"
+        ]
+      }
+    },
+    {
+      "check": "Table II data: Chemical energy (Wh, approx.)",
+      "pass": true,
+      "detail": {
+        "actual": [
+          "37.41",
+          "37.41"
+        ],
+        "expected": [
+          "37.41",
+          "37.41"
+        ]
+      }
+    },
+    {
+      "check": "Table I data: Capacity / initial SOC",
+      "pass": true,
+      "detail": {
+        "actual": "6 Ah / 68%",
+        "expected": "6 Ah / 68%"
+      }
+    },
+    {
+      "check": "Table I data: Endpoint / time step",
+      "pass": true,
+      "detail": {
+        "actual": "20% / 1 s",
+        "expected": "20% / 1 s"
+      }
+    },
+    {
+      "check": "Table I data: Lamp / fan delivered power",
+      "pass": true,
+      "detail": {
+        "actual": "2.5 / 2.5 W",
+        "expected": "2.5 / 2.5 W"
+      }
+    },
+    {
+      "check": "Table I data: Controller demand",
+      "pass": true,
+      "detail": {
+        "actual": "0.8 W",
+        "expected": "0.8 W"
+      }
+    },
+    {
+      "check": "Table I data: Converter efficiency",
+      "pass": true,
+      "detail": {
+        "actual": "90% fixed",
+        "expected": "90% fixed"
+      }
+    },
+    {
+      "check": "Table I data: Battery/BMS resistance",
+      "pass": true,
+      "detail": {
+        "actual": "0.10 ohm",
+        "expected": "0.10 ohm"
+      }
+    },
+    {
+      "check": "Table I data: Shunt resistance, each",
+      "pass": true,
+      "detail": {
+        "actual": "0.10 ohm",
+        "expected": "0.10 ohm"
+      }
+    },
+    {
+      "check": "Table I data: Main / branch fuse cold R",
+      "pass": true,
+      "detail": {
+        "actual": "0.030 / 0.075 ohm",
+        "expected": "0.030 / 0.075 ohm"
+      }
+    },
+    {
+      "check": "baseline endpoint matches raw trace",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "baseline raw endpoint crosses true SOC reserve",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "priority endpoint matches raw trace",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "priority raw endpoint crosses true SOC reserve",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fan shedding time matches raw state transition",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all 18 sensitivity pairs retained",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "priority supplies longer lamp service in each reported pair",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C025 service changes",
+      "pass": true,
+      "detail": {
+        "claim_id": "C025",
+        "expected": [
+          "2.4072 h",
+          "2.9828 h",
+          "+43.96%",
+          "-54.47%"
+        ]
+      }
+    },
+    {
+      "check": "C027 heuristic counterfactual",
+      "pass": true,
+      "detail": {
+        "claim_id": "C027",
+        "expected": [
+          "2.9993 h",
+          "2.9828 h",
+          "59 s"
+        ]
+      }
+    },
+    {
+      "check": "C028 DC result output_a",
+      "pass": true,
+      "detail": {
+        "claim_id": "C028",
+        "expected": [
+          "1.2077"
+        ]
+      }
+    },
+    {
+      "check": "C028 DC result battery_a",
+      "pass": true,
+      "detail": {
+        "claim_id": "C028",
+        "expected": [
+          "0.5196"
+        ]
+      }
+    },
+    {
+      "check": "C028 DC result rail_v",
+      "pass": true,
+      "detail": {
+        "claim_id": "C028",
+        "expected": [
+          "4.8847"
+        ]
+      }
+    },
+    {
+      "check": "C028 DC result lamp_v",
+      "pass": true,
+      "detail": {
+        "claim_id": "C028",
+        "expected": [
+          "4.8342"
+        ]
+      }
+    },
+    {
+      "check": "C028 DC result fan_v",
+      "pass": true,
+      "detail": {
+        "claim_id": "C028",
+        "expected": [
+          "4.7461"
+        ]
+      }
+    },
+    {
+      "check": "C028 DC result converter_loss_w",
+      "pass": true,
+      "detail": {
+        "claim_id": "C028",
+        "expected": [
+          "0.6709"
+        ]
+      }
+    },
+    {
+      "check": "C028 DC result output_path_loss_w",
+      "pass": true,
+      "detail": {
+        "claim_id": "C028",
+        "expected": [
+          "0.2384"
+        ]
+      }
+    },
+    {
+      "check": "C028 DC result two_shunts_loss_w",
+      "pass": true,
+      "detail": {
+        "claim_id": "C028",
+        "expected": [
+          "0.0540"
+        ]
+      }
+    },
+    {
+      "check": "C029 range of baseline_h",
+      "pass": true,
+      "detail": {
+        "claim_id": "C029",
+        "expected": [
+          "3.8667-5.7978 h"
+        ]
+      }
+    },
+    {
+      "check": "C029 range of priority_h",
+      "pass": true,
+      "detail": {
+        "claim_id": "C029",
+        "expected": [
+          "6.2836-8.2031 h"
+        ]
+      }
+    },
+    {
+      "check": "C029 SOC error recomputed",
+      "pass": true,
+      "detail": {
+        "claim_id": "C029",
+        "expected": [
+          "7.0 percentage-point"
+        ]
+      }
+    },
+    {
+      "check": "six startup cases retained",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "three startup cases fail the stated rail screen",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C030 S3 min_rail_v",
+      "pass": true,
+      "detail": {
+        "claim_id": "C030",
+        "expected": [
+          "2.995 V"
+        ]
+      }
+    },
+    {
+      "check": "C030 S5 min_rail_v",
+      "pass": true,
+      "detail": {
+        "claim_id": "C030",
+        "expected": [
+          "4.694 V"
+        ]
+      }
+    },
+    {
+      "check": "C031 S6 min_rail_v",
+      "pass": true,
+      "detail": {
+        "claim_id": "C031",
+        "expected": [
+          "4.7907 V"
+        ]
+      }
+    },
+    {
+      "check": "C031 S6 min_fan_terminal_v",
+      "pass": true,
+      "detail": {
+        "claim_id": "C031",
+        "expected": [
+          "4.5512 V"
+        ]
+      }
+    },
+    {
+      "check": "C034 convergence 1",
+      "pass": true,
+      "detail": {
+        "claim_id": "C034",
+        "expected": [
+          "0.50"
+        ]
+      }
+    },
+    {
+      "check": "C034 convergence 2",
+      "pass": true,
+      "detail": {
+        "claim_id": "C034",
+        "expected": [
+          "0.75"
+        ]
+      }
+    },
+    {
+      "check": "C032 rise time 2200 ohm",
+      "pass": true,
+      "detail": {
+        "claim_id": "C032",
+        "expected": [
+          "746 ns"
+        ]
+      }
+    },
+    {
+      "check": "C032 rise time 4700 ohm",
+      "pass": true,
+      "detail": {
+        "claim_id": "C032",
+        "expected": [
+          "1593 ns"
+        ]
+      }
+    },
+    {
+      "check": "C032 shunt arithmetic",
+      "pass": true,
+      "detail": {
+        "claim_id": "C032",
+        "expected": [
+          "0.4 W",
+          "0.4 V",
+          "0.8 W"
+        ]
+      }
+    },
+    {
+      "check": "Figure 3 caption reports paired outcomes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Conclusion reports computed service tradeoff",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "passed": 96,
+  "total": 96,
+  "inputs_sha256": {
+    "paper/src/manuscript.json": "c537aef1889ae241c99c2af450bd700ce485c66ba77ffc6f2c271ed4f668e6d8",
+    "output/pdf/wattsense_research_paper.pdf": "bd3dbb31a6113b92730afadf65a902c1104e4f1662ecc6721d4e5585c80d1eee",
+    "paper/figures/figure-provenance.json": "e1b0f6d49603f9dde104b4ab55af8a3d87c5fa7883c097b0e0546ec687202cb4",
+    "simulations/hardware-assumptions.json": "c5f0986d26e4cd6ed7b9aaebf4357fa56f6d0a792d8f71a949d33fa8d8b0fb88",
+    "simulations/results/hardware-summary.json": "355f55531617a35f5d9c483dcb6578e71cd817236cbbc238b7f98578beb76ecd",
+    "simulations/results/system-summary.json": "1f74456ba154f7f1bfd0774bc4cbc6bb5e9a9f02f1c7b8b16cf092ae7b9c76f9",
+    "simulations/results/spice-summary.json": "3722f64a8db3aa551e640f9398cc67ac7ce8097e67c60ba9ee3186fb8aad09f3",
+    "simulations/results/hardware-runtime-baseline.csv": "7cea5e568e83a45a05e745a9bb567561dff7d0c90a06125a5da1c983d4bb437f",
+    "simulations/results/hardware-runtime-priority.csv": "93bf7d163e595274021e82426d1894e32dab322f1c013679bcea7f46c68c93ce",
+    "simulations/results/hardware-runtime-sensitivity.csv": "d45cf3663baa12499f92b1b9772a75c5d8d31fa7dcafce1c51b4cc8e9af615c1",
+    "paper/src/check_manuscript_data.py": "ebb23ccbc1615139b70d4f07b75ddf82a75d37c9f2bdc7841fff990a4265b458"
+  },
+  "manuscript_fixture": false,
+  "pdf_pages": 7,
+  "scope": "Actual canonical abstract, prose, tables and one numeric figure caption checked against saved data; all abstract/prose paragraphs compared with extracted current PDF text. Not a full semantic proof, manual visual review, source verification, physical validation or publication approval.",
+  "limitations": [
+    "Numeric prose checks locate expected rounded values in the named paragraph; they do not interpret every sentence or every possible reordered relationship.",
+    "PDF extraction normalizes markup, case and punctuation; it cannot detect visual clipping or corrupt outlined figure glyphs.",
+    "The data are deterministic model outputs; matching them does not validate real hardware."
+  ]
+}

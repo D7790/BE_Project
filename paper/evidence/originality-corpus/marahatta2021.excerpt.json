@@ -1,0 +1,12 @@
+{
+  "coverage": "One abstract sentence (18 normalized words) only; full-text download unavailable. This is a very narrow excerpt check, not full-paper coverage.",
+  "provenance": {
+    "url": "https://www.sciencedirect.com/science/article/pii/S2352484720314554",
+    "author_copy_url": "https://www.researchgate.net/publication/346036129_Priority-based_low_voltage_DC_microgrid_system_for_rural_electrification",
+    "locator": "Abstract, sentence beginning Direct load control-based approach",
+    "retrieval_method": "Previously inspected publisher abstract and author-uploaded article through the web tool; excerpt retained locally for reproducible comparison.",
+    "access_date": "2026-09-30",
+    "license_note": "Article is CC BY-NC-ND; retain only this short attributed excerpt in the audit record. No source figure reused."
+  },
+  "text": "Direct load control-based approach can ensure a continuous supply of power to the loads with various priorities."
+}

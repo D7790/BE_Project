@@ -1,0 +1,51 @@
+Reference,Value,Manufacturer_part,Footprint,Notes
+J1,BATTERY_AFTER_FUSE,Phoenix Contact 1715721,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal","MKDS 1,5/2-5,08; 5.08 mm, 2-way; + is pin 1. Check exact purchased connector dimensions."
+J2,CHARGER_BAT_PORT,Phoenix Contact 1715721,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal","MKDS 1,5/2-5,08; 5.08 mm, 2-way; + is pin 1. Check exact purchased connector dimensions."
+J3,TO_BUCK_INPUT,Phoenix Contact 1715721,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal","MKDS 1,5/2-5,08; 5.08 mm, 2-way; + is pin 1. Check exact purchased connector dimensions."
+J4,FROM_BUCK_5V,Phoenix Contact 1715721,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal","MKDS 1,5/2-5,08; 5.08 mm, 2-way; + is pin 1. Check exact purchased connector dimensions."
+J5,ESSENTIAL_LAMP,Phoenix Contact 1715721,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal","MKDS 1,5/2-5,08; 5.08 mm, 2-way; + is pin 1. Check exact purchased connector dimensions."
+J6,OPTIONAL_FAN,Phoenix Contact 1715721,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal","MKDS 1,5/2-5,08; 5.08 mm, 2-way; + is pin 1. Check exact purchased connector dimensions."
+R1,0.1R 1% 1W,WSL2512R1000FEA,Resistor_SMD:R_2512_6332Metric_Pad1.40x3.35mm_HandSolder,Vishay 2512 current shunt; use separate sense tracks from its pads.
+U1,INA219AID,INA219AID,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,"SOIC-8, address 0x40 battery. Do not substitute DCN pinout."
+C1,100n 16V X7R,GRM21BR71C104KA01L,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,
+C8,10n 50V X7R,GRM21BR71H103KA01L,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,Differential input capacitor; no shared high-current sense routing.
+R2,0.1R 1% 1W,WSL2512R1000FEA,Resistor_SMD:R_2512_6332Metric_Pad1.40x3.35mm_HandSolder,Vishay 2512 current shunt; use separate sense tracks from its pads.
+U2,INA219AID,INA219AID,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,"SOIC-8, address 0x41 load. Do not substitute DCN pinout."
+C2,100n 16V X7R,GRM21BR71C104KA01L,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,
+C9,10n 50V X7R,GRM21BR71H103KA01L,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,Differential input capacitor; no shared high-current sense routing.
+R3,0.1R 1% 1W,WSL2512R1000FEA,Resistor_SMD:R_2512_6332Metric_Pad1.40x3.35mm_HandSolder,Vishay 2512 current shunt; use separate sense tracks from its pads.
+U3,INA219AID,INA219AID,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,"SOIC-8, address 0x44 charger. Do not substitute DCN pinout."
+C3,100n 16V X7R,GRM21BR71C104KA01L,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,
+C10,10n 50V X7R,GRM21BR71H103KA01L,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,Differential input capacitor; no shared high-current sense routing.
+J7,ESP32_SIGNALS,,Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical,Cable to classic ESP32; pin map in assembly guide. 3V3 is input from ESP32.
+J8,DS18B20,,Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical,Powered 3-wire temperature probe; verify probe wire mapping.
+J9,LOAD_BUTTON,,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical,External normally-open momentary button.
+J10,FULL_CONFIRM,,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical,External normally-open button; hold 5 s only after verified full charge.
+R4,4.7k,RC0805FR-074K7L,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,
+R5,4.7k,RC0805FR-074K7L,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,
+R6,4.7k,RC0805FR-074K7L,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,
+R7,330R,RC0805FR-07330RL,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,
+R8,47k,RC0805FR-0747KL,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,
+R9,10k,RC0805FR-0710KL,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,
+R10,10k,RC0805FR-0710KL,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,
+C4,1u 16V X7R,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,0805 ceramic; specified voltage is minimum.
+C5,100n 16V X7R,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,0805 ceramic; specified voltage is minimum.
+C6,100n 16V X7R,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,0805 ceramic; specified voltage is minimum.
+C7,100n 16V X7R,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,0805 ceramic; specified voltage is minimum.
+C11,47u 25V,Panasonic EEU-FR1E470,Capacitor_THT:CP_Radial_D5.0mm_P2.00mm,Observe polarity; verify 5 mm diameter / 2 mm lead pitch.
+Q1,AO3400A,AO3400A,Package_TO_SOT_SMD:SOT-23,"Low-side switch, 3.3 V gate; pin 1 G, 2 S, 3 D."
+D1,SS14,SS14-E3/61T,Diode_SMD:D_SMA,Flyback: cathode stripe to fan positive.
+D2,SMBJ15A,SMBJ15A-E3/52,Diode_SMD:D_SMB,"Unidirectional TVS, cathode to SYS_P. Does not provide reverse-polarity protection."
+F1,2A 63V FAST,0466002.NR,Fuse:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder,Littelfuse 466 series 1206; allow 25% continuous-current derating. Validate startup pulse/time-current before final assembly.
+F2,1A 63V FAST,0466001.NR,Fuse:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder,Littelfuse 466 series 1206; allow 25% continuous-current derating. Validate startup pulse/time-current before final assembly.
+F3,1A 63V FAST,0466001.NR,Fuse:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder,Littelfuse 466 series 1206; allow 25% continuous-current derating. Validate startup pulse/time-current before final assembly.
+JP1,REMOVE_FOR_USB,,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical,Normally OPEN. Fit shunt only for battery-powered ESP32 with USB VBUS absent.
+J11,ESP32_5V_OPTION,,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical,To documented ESP32 5V input only. JP1 open for ordinary USB.
+TP1,GND,,TestPoint:TestPoint_Pad_D2.0mm,
+TP2,3V3,,TestPoint:TestPoint_Pad_D2.0mm,
+TP3,SYS_P,,TestPoint:TestPoint_Pad_D2.0mm,
+TP4,FAN_GATE,,TestPoint:TestPoint_Pad_D2.0mm,
+H1,M3_NYLON,,MountingHole:MountingHole_3.2mm_M3,Use insulating M3 standoffs; no electrical connection.
+H2,M3_NYLON,,MountingHole:MountingHole_3.2mm_M3,Use insulating M3 standoffs; no electrical connection.
+H3,M3_NYLON,,MountingHole:MountingHole_3.2mm_M3,Use insulating M3 standoffs; no electrical connection.
+H4,M3_NYLON,,MountingHole:MountingHole_3.2mm_M3,Use insulating M3 standoffs; no electrical connection.

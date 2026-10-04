@@ -1,0 +1,27 @@
+{
+  "status": "PASS_ASSISTANT_VISUAL_QA",
+  "pages": 7,
+  "pdf_sha256": "3687c377299b82fd2d513eb52eac1856e61281828b124eb61ee80213388e02a3",
+  "body_font": "Times New Roman 10 pt",
+  "page": "US Letter; two columns",
+  "source": "paper/src/manuscript.json",
+  "standalone_figures": "SVG vector and 300 dpi PNG",
+  "native_pdf_figures": "SVG converted to PDF vector drawing",
+  "human_review_pending": true,
+  "visual_review": {
+    "reviewer": "Codex assistant",
+    "date": "2026-09-30",
+    "pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "method": "Poppler PNG rendering at 110 dpi and visual inspection of every final page; figure SVG and PNG QA separately recorded",
+    "findings": "No clipping, content overlap, missing glyphs, orphan section heading or unresolved figure/table placement defect observed. This is assistant QA, not human author approval."
+  },
+  "manuscript_sha256": "aa49e46066b557055087d32eae05490bec384cde3650003cf39150264fc5d575"
+}

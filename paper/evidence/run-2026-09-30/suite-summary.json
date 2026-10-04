@@ -1,0 +1,77 @@
+{
+  "started_utc": "2026-09-30T07:17:05.535835+00:00",
+  "status": "PASS",
+  "hardware_tested": false,
+  "checks": [
+    {
+      "name": "python-tests",
+      "exit_code": 0,
+      "log": "python-tests.log"
+    },
+    {
+      "name": "run_firmware_host_tests",
+      "exit_code": 0,
+      "log": "run_firmware_host_tests.log"
+    },
+    {
+      "name": "run_spice",
+      "exit_code": 0,
+      "log": "run_spice.log"
+    },
+    {
+      "name": "run_system",
+      "exit_code": 0,
+      "log": "run_system.log"
+    },
+    {
+      "name": "run_hardware",
+      "exit_code": 0,
+      "log": "run_hardware.log"
+    },
+    {
+      "name": "make_plots",
+      "exit_code": 0,
+      "log": "make_plots.log"
+    },
+    {
+      "name": "make_hardware_plots",
+      "exit_code": 0,
+      "log": "make_hardware_plots.log"
+    }
+  ],
+  "finished_utc": "2026-09-30T07:17:31.101444+00:00",
+  "source_sha256": {
+    "wattsense\\calibration.py": "8f3e51e38783b4764406fc1344414a57932d60edcd9e851a99f21bab2de2bcdc",
+    "wattsense\\model.py": "9b69bfbe30fda38aebd43f7b7c0b7095046156f247f20f977a7db7c7e6599f46",
+    "wattsense\\server.py": "a06050c733385ed6f0900170bf6bc2cd98b38372613d4ac2ad964e251b8bd426",
+    "wattsense\\simulator.py": "21f87cc7cd94874eef24e7733dd92e9a638eb52184dfc8fe949cf93979b0fb37",
+    "wattsense\\__init__.py": "041f553dbf30d0587b7d7e633af3e9625002241386d4d6c2d7963e0925cad3ad",
+    "tests\\test_calibration.py": "c2c6383bad3aae29e6819d40c48ba0e8e2a17c8ef5b6fddbc18c35ac46933424",
+    "tests\\test_hardware_model.py": "89f5a383b7db4c4d42e58a8b131b9462297ac3762f774ff1afd1a97f46dd191e",
+    "tests\\test_model.py": "060377e3e8cfd9382de77a4dce7346d633e51467833a3b903c4811a66b2ee339",
+    "tests\\test_policy_boundaries.py": "2c24537da8b689768d0cfba854d48e0c20c5a0d0581e66b3e525582cf26ebf68",
+    "tests\\test_server.py": "bc266b44d56363e26674cecc03d21c601a428e0d47b37a26ba1eec7646827a63",
+    "simulations\\extract_copper.py": "65389ec977f491d8a0586d0cfe24176e219afb7b14f4b70675f1e636f725cbdb",
+    "simulations\\hardware_model.py": "7e4445c59948ca3bda737d872d62a251e9f3eb295a4b4d1f88dcbadb6bcff81e",
+    "simulations\\make_hardware_plots.py": "f3b98e65a63650068f4e3ccec22614184c0efd9b16d668dbb97f1843edc57fbf",
+    "simulations\\make_plots.py": "6d3969385c3edc43f6b6da209c96434c26765d773c5ab425943439a4fa04b247",
+    "simulations\\ngspice_shared.py": "297f2e08fdefa0e2f552e5664ba9888e45e8a2ad20a32f844c727453d8b651e2",
+    "simulations\\run_all.py": "9c4cbce36d6c38163d232999ba56d5293ab0d9e2e6c153f0ba15aa77b4ae72a1",
+    "simulations\\run_firmware_host_tests.py": "be3c18de2b3ff499bf8781d4db069f1b7ff1be4a950b9c38bdaab2d3ca0dce6a",
+    "simulations\\run_hardware.py": "75b8bd43fcac88ba4422d01f1cb673de2ff9e07da8dd6c49d334173aca8ee152",
+    "simulations\\run_spice.py": "1cd3be5db5e526020e7d8c00caab6576d79a541ff94748aa9c831bf6cdbafdde",
+    "simulations\\run_system.py": "fe30157808ea1ec20a478b683c3b0629f37a6cf7edd1c819edb8edecdbe68675",
+    "firmware\\include\\config.h": "da0bc5a059a8b82c31051416cf1eb0786083de2bce32f1d194b98b488f45356c",
+    "firmware\\include\\controller.h": "7be594808347f0e92ef468de28d10a9c16f6e57f3d66a332030a176cae384565",
+    "firmware\\include\\ina219_checked.h": "02c6b5a07cb84b210e058a7e8dc5e3d4ba9aea61ea96facf1bcce51479794cc3",
+    "firmware\\src\\bringup.cpp": "a3878f7148613d0a9bc611dc335643494860fe9f27f98909571273bda1e210b3",
+    "firmware\\src\\main.cpp": "0cdc08d2dce99ba73be3c9d399aa9e9c178242ec46b35544a047b6cb5e358bc3",
+    "simulations\\firmware_policy_tests.cpp": "cd856c7b4302d3a15c8249ddc004385bece0f1255f573eec053c943f28c55086",
+    "simulations\\ina219_register_tests.cpp": "a2f5a09e67ac22eb4643fbfb4d7b65c13a52c7d20b096224fda5029115f3af50",
+    "firmware\\platformio.ini": "36774a6f2647894689dbb1fe6fd129b3df086dc6eea8d3b76076ce4031392271",
+    "web\\app.js": "0c21919c9c23335beb2bac53a54c884ff22cae9768ea808239c7a4a34d5f91be",
+    "web\\index.html": "661041f9d7c216de87bbbd7e792a50256787779137b2149a3b057bd1ad49f092",
+    "web\\style.css": "e94edc698251bbf7a247a673a707b326aa3a4382ea8c582293b4a0dae1911916",
+    "simulations\\hardware-assumptions.json": "c5f0986d26e4cd6ed7b9aaebf4357fa56f6d0a792d8f71a949d33fa8d8b0fb88"
+  }
+}

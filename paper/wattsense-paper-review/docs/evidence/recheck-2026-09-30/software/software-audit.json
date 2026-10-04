@@ -1,0 +1,214 @@
+{
+  "recorded_utc": "2026-09-30T07:21:51.308388+00:00",
+  "status": "PASS_WITH_HARDWARE_VALIDATION_PENDING",
+  "python_tests": 45,
+  "native_cpp_assertions": 67,
+  "original_spice_cases": 9,
+  "original_spice_outside_envelope": [
+    "I2C rise with 4700 ohm at 400 pF"
+  ],
+  "nonideal_startup_cases": 6,
+  "nonideal_runtime_sensitivity_pairs": 18,
+  "checks": [
+    {
+      "check": "suite_sources_current",
+      "source_count": 32,
+      "pass": true
+    }
+  ],
+  "independent_numeric_checks": 15,
+  "cpp_python_differential_samples": 12000,
+  "builds": [
+    {
+      "target": "esp32dev",
+      "status": "PASS",
+      "memory": {
+        "ram": {
+          "used_bytes": 22164,
+          "capacity_bytes": 327680
+        },
+        "flash": {
+          "used_bytes": 323053,
+          "capacity_bytes": 1310720
+        }
+      },
+      "binary_sha256": {
+        "bin": "640b793f24b9d5bb319e17e32e7f587ada419be98df69939628dbd4b32e3f46a",
+        "elf": "37ee1aa3e587448898b4500888b708f5ab47dd2e3e306c5c3dd131b161e2f32b"
+      }
+    },
+    {
+      "target": "bringup",
+      "status": "PASS",
+      "memory": {
+        "ram": {
+          "used_bytes": 21960,
+          "capacity_bytes": 327680
+        },
+        "flash": {
+          "used_bytes": 303189,
+          "capacity_bytes": 1310720
+        }
+      },
+      "binary_sha256": {
+        "bin": "831b52520bf488cae1d5766aa6f173101af8886f2f2f237e0b3b9cc01715b887",
+        "elf": "8d490de55b96d30d2cd9f9b98cc8894efbf2abe8d36644250ddbd3db0cc7ea67"
+      }
+    }
+  ],
+  "reproduced_summaries": [
+    {
+      "file": "suite-summary.json",
+      "unchanged_except_run_timestamps": true
+    },
+    {
+      "file": "firmware-host-summary.json",
+      "unchanged_except_run_timestamps": true
+    },
+    {
+      "file": "spice-summary.json",
+      "unchanged_except_run_timestamps": true
+    },
+    {
+      "file": "system-summary.json",
+      "unchanged_except_run_timestamps": true
+    },
+    {
+      "file": "hardware-summary.json",
+      "unchanged_except_run_timestamps": true
+    },
+    {
+      "file": "copper-resistance.json",
+      "unchanged_except_run_timestamps": true
+    }
+  ],
+  "byte_identical_csv_count": 39,
+  "production_source_changes": [],
+  "hardware_tested": false,
+  "flashed": false,
+  "source_sha256": {
+    "wattsense\\calibration.py": "8f3e51e38783b4764406fc1344414a57932d60edcd9e851a99f21bab2de2bcdc",
+    "wattsense\\model.py": "9b69bfbe30fda38aebd43f7b7c0b7095046156f247f20f977a7db7c7e6599f46",
+    "wattsense\\server.py": "a06050c733385ed6f0900170bf6bc2cd98b38372613d4ac2ad964e251b8bd426",
+    "wattsense\\simulator.py": "21f87cc7cd94874eef24e7733dd92e9a638eb52184dfc8fe949cf93979b0fb37",
+    "wattsense\\__init__.py": "041f553dbf30d0587b7d7e633af3e9625002241386d4d6c2d7963e0925cad3ad",
+    "tests\\test_calibration.py": "c2c6383bad3aae29e6819d40c48ba0e8e2a17c8ef5b6fddbc18c35ac46933424",
+    "tests\\test_hardware_model.py": "89f5a383b7db4c4d42e58a8b131b9462297ac3762f774ff1afd1a97f46dd191e",
+    "tests\\test_model.py": "060377e3e8cfd9382de77a4dce7346d633e51467833a3b903c4811a66b2ee339",
+    "tests\\test_policy_boundaries.py": "2c24537da8b689768d0cfba854d48e0c20c5a0d0581e66b3e525582cf26ebf68",
+    "tests\\test_server.py": "bc266b44d56363e26674cecc03d21c601a428e0d47b37a26ba1eec7646827a63",
+    "simulations\\extract_copper.py": "65389ec977f491d8a0586d0cfe24176e219afb7b14f4b70675f1e636f725cbdb",
+    "simulations\\hardware_model.py": "7e4445c59948ca3bda737d872d62a251e9f3eb295a4b4d1f88dcbadb6bcff81e",
+    "simulations\\make_hardware_plots.py": "f3b98e65a63650068f4e3ccec22614184c0efd9b16d668dbb97f1843edc57fbf",
+    "simulations\\make_plots.py": "6d3969385c3edc43f6b6da209c96434c26765d773c5ab425943439a4fa04b247",
+    "simulations\\ngspice_shared.py": "297f2e08fdefa0e2f552e5664ba9888e45e8a2ad20a32f844c727453d8b651e2",
+    "simulations\\run_all.py": "9c4cbce36d6c38163d232999ba56d5293ab0d9e2e6c153f0ba15aa77b4ae72a1",
+    "simulations\\run_firmware_host_tests.py": "be3c18de2b3ff499bf8781d4db069f1b7ff1be4a950b9c38bdaab2d3ca0dce6a",
+    "simulations\\run_hardware.py": "75b8bd43fcac88ba4422d01f1cb673de2ff9e07da8dd6c49d334173aca8ee152",
+    "simulations\\run_spice.py": "1cd3be5db5e526020e7d8c00caab6576d79a541ff94748aa9c831bf6cdbafdde",
+    "simulations\\run_system.py": "fe30157808ea1ec20a478b683c3b0629f37a6cf7edd1c819edb8edecdbe68675",
+    "firmware\\include\\config.h": "da0bc5a059a8b82c31051416cf1eb0786083de2bce32f1d194b98b488f45356c",
+    "firmware\\include\\controller.h": "7be594808347f0e92ef468de28d10a9c16f6e57f3d66a332030a176cae384565",
+    "firmware\\include\\ina219_checked.h": "02c6b5a07cb84b210e058a7e8dc5e3d4ba9aea61ea96facf1bcce51479794cc3",
+    "firmware\\src\\bringup.cpp": "a3878f7148613d0a9bc611dc335643494860fe9f27f98909571273bda1e210b3",
+    "firmware\\src\\main.cpp": "0cdc08d2dce99ba73be3c9d399aa9e9c178242ec46b35544a047b6cb5e358bc3",
+    "simulations\\firmware_policy_tests.cpp": "cd856c7b4302d3a15c8249ddc004385bece0f1255f573eec053c943f28c55086",
+    "simulations\\ina219_register_tests.cpp": "a2f5a09e67ac22eb4643fbfb4d7b65c13a52c7d20b096224fda5029115f3af50",
+    "firmware\\platformio.ini": "36774a6f2647894689dbb1fe6fd129b3df086dc6eea8d3b76076ce4031392271",
+    "web\\app.js": "0c21919c9c23335beb2bac53a54c884ff22cae9768ea808239c7a4a34d5f91be",
+    "web\\index.html": "661041f9d7c216de87bbbd7e792a50256787779137b2149a3b057bd1ad49f092",
+    "web\\style.css": "e94edc698251bbf7a247a673a707b326aa3a4382ea8c582293b4a0dae1911916",
+    "simulations\\hardware-assumptions.json": "c5f0986d26e4cd6ed7b9aaebf4357fa56f6d0a792d8f71a949d33fa8d8b0fb88"
+  },
+  "result_sha256": {
+    "copper-resistance.json": "8c3fe14eecd736a8141b494ce6b9afe70f09a3fa699e3c816ab35cf9450c3967",
+    "fan-transient.png": "7269b5c3b340f5b47eae0d9b7b790f8b16da98bc1cba6ee659a326f4ae5a52e0",
+    "fan-transient.svg": "c0ad5c6be92423f31b436bf4d35fc32972ac78496a5fc01ba170d61324c33a11",
+    "fan_switch_transient.csv": "3d9d404247969a7b4561f26d67bce856a231a6b3774ce451a2a67e1675399ca6",
+    "fan_switch_transient.log": "5752a87acac557068fd08f1accced2a57d5da1d0fe842be6ae0d1990338938c1",
+    "firmware-host-summary.json": "b5fa6bb46adbe3eec3557b55230732b8d888de182fe665c6464c106594af63c5",
+    "gate_high_impedance_reset.csv": "c3a5c37c1b1d64af2c8b46b459553d3948994d0ee684a578e71fa5e3cb2db30a",
+    "gate_high_impedance_reset.log": "99eb8df626baf165bdcb10694d91d5dfd0fb24e9e04a5c9c35e689502142be01",
+    "hardware-dc.csv": "4c0e4154d589acee2aef3f7b2133e785611a98263946b779a869f509c806cd03",
+    "hardware-losses.png": "4ea7d69573d4b39fe22149d5d59b11a4481a30fd99b9922e61f8c255ec03946f",
+    "hardware-losses.svg": "810baffa94de2af13ce72623dafafd3508f822568ffb62216a229a2b82cf4ef9",
+    "hardware-runtime-baseline.csv": "7cea5e568e83a45a05e745a9bb567561dff7d0c90a06125a5da1c983d4bb437f",
+    "hardware-runtime-priority.csv": "93bf7d163e595274021e82426d1894e32dab322f1c013679bcea7f46c68c93ce",
+    "hardware-runtime-sensitivity.csv": "d45cf3663baa12499f92b1b9772a75c5d8d31fa7dcafce1c51b4cc8e9af615c1",
+    "hardware-runtime.png": "624c0a254ac2cf4845557fd6988f8e65601567013e8d163d6280ac709cdca264",
+    "hardware-runtime.svg": "7dfe06242ee123471e8b8469024bd8535032d25a811e673c067148dd878e7336",
+    "hardware-startup.png": "9d75ff40d9f117d7faae9c8472f384fcd1a3a5b411326c51569fca59e6e5cbaf",
+    "hardware-startup.svg": "cdf76543bc32901625edc1a6a96c7235836fb68ee16506ce8fa3f6230a056473",
+    "hardware-summary.json": "355f55531617a35f5d9c483dcb6578e71cd817236cbbc238b7f98578beb76ecd",
+    "i2c-pullup-comparison.png": "48390a3bfc5b438c6b3e23c2f8d4f6fffa0bb152447a8a0d7204c1a0be480aca",
+    "i2c-pullup-comparison.svg": "dba189c731411bdd3afbb7f290a2886d266432065b283ffa7cf459730da92ebf",
+    "i2c_rise_2200ohm_100pF.csv": "6f2626bcf0bbbcc84c5e49c9b2ca70033988538fd9cc060fd730b776a0f82a9a",
+    "i2c_rise_2200ohm_100pF.log": "26c0a8c69708254d3f76abd3d442a850d9340e8dcf68217656f47858def7d465",
+    "i2c_rise_2200ohm_200pF.csv": "39036a80dd4a84a629754678de3c6805428066a761903b90b1beabd185f88a71",
+    "i2c_rise_2200ohm_200pF.log": "3132c00979e6f6ff2d00f2402594913e686afdd48eaf32e978049500db4a65ad",
+    "i2c_rise_2200ohm_400pF.csv": "6633ed382029c46f65a73138c9d35bec9100d0e8942576d3db1f74edda044462",
+    "i2c_rise_2200ohm_400pF.log": "26c0a8c69708254d3f76abd3d442a850d9340e8dcf68217656f47858def7d465",
+    "i2c_rise_4700ohm_100pF.csv": "1eaaa245e60b1ab0349561b6c307718071beec6f9637093b774aaf566cc936ab",
+    "i2c_rise_4700ohm_100pF.log": "a22e5adc1b1d735907686c4ce67890b2f266bfe10327a2560023d3777468f060",
+    "i2c_rise_4700ohm_200pF.csv": "d6364dc2b277675e660a73b1e1ce4579182a135fac5ed87378f8fe2533e27d67",
+    "i2c_rise_4700ohm_200pF.log": "a22e5adc1b1d735907686c4ce67890b2f266bfe10327a2560023d3777468f060",
+    "i2c_rise_4700ohm_400pF.csv": "b6155e93658d6f5bbd699cedcb666a2160b7e5edf1a5d11e141ce8a2f822e42b",
+    "i2c_rise_4700ohm_400pF.log": "a22e5adc1b1d735907686c4ce67890b2f266bfe10327a2560023d3777468f060",
+    "make_hardware_plots.log": "12df907fe322d3fad8324c469b6bc3fab0bfe57ae78d8153dfb967f5fbb0651c",
+    "make_plots.log": "75cfc8c7b2ec5aba736751b70c89f13c1f98d4fb68b4e317c61871ef156c1c51",
+    "python-tests.log": "1063943f924dd237d772df7da798be68848d0bc2509808b81a1abbd038df9fe3",
+    "runtime-comparison.png": "51edaef05f5258fc4fd93555de09caf06a12814d72087f43a8ca09d9d0f3e310",
+    "runtime-comparison.svg": "4729d6a396bc215e2acdaad054be60a1b9bff40e3816b7ffe485195d58964156",
+    "runtime_baseline.csv": "b7e89845515920d53f7a5149ee5f22039daffeff1cc073e55162587598663294",
+    "runtime_priority.csv": "d1db7fdea9727b37246946ed1601a6cbe6ff2163057579c48a4e9a739f5b3487",
+    "run_firmware_host_tests.log": "75a877f57bd9647522e8c380ff6548127f47010bbd028d74a96f30b4490f33b7",
+    "run_hardware.log": "c3fdb89d44689ca43fdc67503ea54572963ba4ceecb07a292151f8fabf39e527",
+    "run_spice.log": "ba7f375bf5799cdc363a086c6c57b8436d7a14e114dd9efa4a8dc5b63facf3f5",
+    "run_system.log": "8872f5cb7c7d645a9715445772fac1fdc493b73207a2d3e48de1063b2b8c2735",
+    "spice-summary.json": "3722f64a8db3aa551e640f9398cc67ac7ce8097e67c60ba9ee3186fb8aad09f3",
+    "startup_2x_2A.csv": "fc250ff63bb957a65b129bbde08a724fa0c8c83e96e5ce49c7ce65ef220a13a1",
+    "startup_2x_2A.log": "cf14f76cc1d0cc8890fecaef61aa3c01e2321d233f661bbacce655b03a0fca5c",
+    "startup_3x_1_5A.csv": "0006321c1ce6c63f0588eb019621e60f9efc2cf8880eed50d15fcc562dcecfab",
+    "startup_3x_1_5A.log": "197080b329ffed6f18ed86b94691a7629e6c05be30511b7020ec5cca1a7e683e",
+    "startup_3x_1_5A_large_cap.csv": "4d97db7e08187d56a47153b65f85539dab7d50e90f1b26ad9b2175b212ab1165",
+    "startup_3x_1_5A_large_cap.log": "80647838430de0314fee9822f756d73b5b3958b3ad01cac2417374fc4c1dd43b",
+    "startup_3x_3A.csv": "cc862139b285e2a0e7761d72df011aae49f05ee01ef5dc1578715079f8f804e9",
+    "startup_3x_3A.log": "5ed0f153f9bbe310763b2e6e71b775824862fcb92730ff6a1c040795ad5b94b8",
+    "startup_no_surge.csv": "2da7bfba6a963e3e6814b9a3bd857d84f5a069a6762c36de1a29788f8d3d2872",
+    "startup_no_surge.log": "e677da79100f4ea93a80986f5a70f518f9c290113987f26b23a7321ce7da82cb",
+    "startup_starter_2x_2A.csv": "f6d8460d96dd425eafcf1d8f15bda7c7d257025a5328932b55035e471da50689",
+    "startup_starter_2x_2A.log": "f6a1101ad90210f3d8aa6f86f11950ebfcef42ea0df7b35765b641d496e46313",
+    "suite-summary.json": "e31a51fdc292600797f0f291d2b234ce4c6248c1765f771b5167de9328e8dc07",
+    "sweep_4Ah_80eff_baseline.csv": "0638b6f8589ddf767615a3bc42bdb5bb2c7d69d3ee6c80128968ac3613c96106",
+    "sweep_4Ah_80eff_priority.csv": "4b6d00322d4f8d2b5b45a6580b430b37280f0696a7682ba3202876d5c13c3c5b",
+    "sweep_4Ah_90eff_baseline.csv": "d8a1c23935070fc36c016e107e490b2f3e00b5184143656ec943160b67145a93",
+    "sweep_4Ah_90eff_priority.csv": "802fe557f84c0937f90ce4553a7c0a2ffa591528e3d15a5b685db576c9037572",
+    "sweep_4Ah_95eff_baseline.csv": "7a43fbcd69d34916aeded987ed334d1760eba9d4dc23991733ae387e4d095723",
+    "sweep_4Ah_95eff_priority.csv": "6d9ae072345216f56412e07de01de3604a0066aca6940bef31b53e5631f51deb",
+    "sweep_6Ah_80eff_baseline.csv": "727147f2621156fdd8a9069900ce67fd8e6294c75c6632abe893722daeac8159",
+    "sweep_6Ah_80eff_priority.csv": "3a8c0cca307d9f2eb62ee5f6e1f196cdfa63d080c01da96d9e5b9e8b09bccd5e",
+    "sweep_6Ah_90eff_baseline.csv": "b7e89845515920d53f7a5149ee5f22039daffeff1cc073e55162587598663294",
+    "sweep_6Ah_90eff_priority.csv": "d1db7fdea9727b37246946ed1601a6cbe6ff2163057579c48a4e9a739f5b3487",
+    "sweep_6Ah_95eff_baseline.csv": "b9d32efa6a18679520ea55b4270985751c4b6c574adb5062632496d17b20f7d6",
+    "sweep_6Ah_95eff_priority.csv": "d0e188970c3a937492a5e0ee0f37147ef8e0e7c48c143a018717bca856f2ab75",
+    "sweep_8Ah_80eff_baseline.csv": "b4427a57986b8e5d5a23ba434dc4a13369e1c4636aef31eca9a409ba8c55f394",
+    "sweep_8Ah_80eff_priority.csv": "4f2c685aed55b0a664e8dee1162720236d33b4541788443b3fc2418a0279d704",
+    "sweep_8Ah_90eff_baseline.csv": "948fa1e88b95717bd8278f6c9fdedd07737e7c43dbc9a7a7b219cc5c34503f9e",
+    "sweep_8Ah_90eff_priority.csv": "71acff699260556cd90d52edb9b9ad854722e3fdaf2e9d811835ebf054174a4e",
+    "sweep_8Ah_95eff_baseline.csv": "b389cb23552af4175297bee7423c3eeb393c5b6b499c6fe81e500455f54934f8",
+    "sweep_8Ah_95eff_priority.csv": "82acff5bfb0b76b9225e1c955eae73d1abbe734e60441a17e0cfbf3701c50972",
+    "system-summary.json": "1f74456ba154f7f1bfd0774bc4cbc6bb5e9a9f02f1c7b8b16cf092ae7b9c76f9",
+    "three_shunt_dc.csv": "df2c146d646912550f646baf20b0ad114d5d1fbdc27b760871954b699946d206",
+    "three_shunt_dc.log": "3415c9da74beb2f2cd10fc7442a7199f640130d9ef4b61d1f691472c900e3a73"
+  },
+  "limitations": [
+    "Both builds are compile/link evidence only; no ESP32 or physical board exercised.",
+    "Host policy and Python agree over this deterministic input corpus, not all possible inputs.",
+    "Whole-system model executes the Python policy; the separately tested C++ controller is not coupled to SPICE.",
+    "OCV, capacity, resistance, efficiency and startup loads remain unmeasured assumptions.",
+    "Three startup cases intentionally fail the provisional 4.75 V rail screen; larger capacitor does not cure sustained overload.",
+    "The comparison using 4.7 kohm I2C pull-ups at 400 pF is outside the 1 us screen; the current PCB uses 2.2 kohm.",
+    "Runtime prioritisation trades fan service for lamp service and is not an efficiency or capacity gain.",
+    "Firmware remains HARDWARE_CONFIRMED=false; no firmware was flashed or hardware armed."
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "checked_utc": "2026-09-30T07:55:57.603920+00:00",
+  "reviewer": "Codex assistant",
+  "human_review_pending": true,
+  "checks": [
+    "All five figures inspected in the final rendered PDF; independent reviewer inspected source PNGs and revised Figure 2.",
+    "Runtime notation is T_est in canonical prose, PDF equations and the Figure 2 flowchart.",
+    "Figure 1/3/4/5 SVG/PNG files retain the previously visually checked content hashes; only Figure 2 graphical content changed.",
+    "All scenarios and negative startup cases retained. Source and output hashes are bound in figure-provenance.json."
+  ],
+  "files_sha256": {
+    "fig1_architecture.png": "f0b1d3958ef0dc68804748d8ee75489106dc9fd2a486bfbe46c3bee1abc6b847",
+    "fig1_architecture.svg": "f93855cfd705943af15717169d9f635ffc34ddc08de9256d2b2ac8cce6eab9fd",
+    "fig2_control_flow.png": "f1a2a0c5e36b15b0aefa8e1a01b212943f24ffe256e0d450278d79070cf9745b",
+    "fig2_control_flow.svg": "8a7d9ea31777e372178bebdffdd5f51c0e799eb48da14be60e98919b6a27b505",
+    "fig3_runtime.png": "8daf86227920cdaf792c7bed669fd4c919dc9da4991279d5c424f5f7c2b827cd",
+    "fig3_runtime.svg": "089d242269637d8342e018a945c18a1481f3e795a062cd888b8324916b8a575c",
+    "fig4_sensitivity.png": "b7d01855ecdf509b5c9858eea48bb0cd6f309e03e00a4ea9a4a4e285d98d8b02",
+    "fig4_sensitivity.svg": "6c7932814279184fb5c24aed8fec780d8c534af74a68ad492b5eebf307b24a74",
+    "fig5_startup.png": "403915e12ad8f057540d6a34b3360e272df5bbc2d519af3ec8d95ec8e85b9e54",
+    "fig5_startup.svg": "90ec5b6838fd6491a087f1721ccedb5e9a85275744c9d6409a73d648441fdb93"
+  }
+}

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wattsense · Energy overview</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Wattsense home"><span class="brand-mark">w<span>·</span></span>wattsense<span class="brand-caption">ENERGY MONITOR</span></a>
+    <nav aria-label="Main navigation"><a href="#overview" class="active">Overview</a><a href="#events">Activity log</a></nav>
+    <div class="connection"><span class="status-dot" id="connectionDot"></span><span id="connectionText">Connecting</span></div>
+  </header>
+  <main id="overview">
+    <div class="page-heading"><div><p class="eyebrow">SMALL SYSTEM. CLEARER DECISIONS.</p><h1>Know your remaining energy.</h1><p class="subtitle">Monitor your battery. Keep essential loads running.</p></div><a class="button secondary export" href="/api/export">↓ Export session CSV</a></div>
+    <div class="source-banner" id="sourceBanner" role="status"><span class="source-tag" id="sourceTag">CONNECTING</span><span id="sourceCopy">Waiting for a local data source.</span><span id="lastSeen"></span></div>
+    <div class="workspace">
+      <div class="main-column">
+        <section class="battery-card" aria-labelledby="batteryHeading">
+          <div class="section-top"><h2 id="batteryHeading">Battery reserve</h2><span id="flowState" class="flow-state">Waiting</span></div>
+          <div class="battery-overview">
+            <div class="charge-dial">
+              <svg viewBox="0 0 220 160" role="img" aria-label="Estimated battery state of charge">
+                <path class="dial-track" d="M 31 128 A 88 88 0 1 1 189 128" pathLength="100"></path>
+                <path class="dial-value" id="socArc" d="M 31 128 A 88 88 0 1 1 189 128" pathLength="100"></path>
+              </svg>
+              <div class="dial-label"><span id="socValue">—</span><small>estimated charge</small></div>
+            </div>
+            <div class="runtime"><p class="light-label">Backup without future solar</p><div class="runtime-value" id="runtimeValue">—</div><p class="runtime-note">To the configured operating reserve</p><div class="runtime-detail"><span>At current net battery flow</span><strong id="netRuntime">—</strong></div></div>
+          </div>
+          <div class="battery-bottom"><div><span>Available above reserve</span><strong id="energyValue">—</strong></div><div><span>Operating reserve</span><strong id="reserveValue">—</strong></div><div><span>Surface temperature</span><strong id="temperatureValue">—</strong></div></div>
+        </section>
+        <div class="measurements">
+          <section class="measurement"><div class="metric-label">Battery voltage <span>V</span></div><p class="metric-value" id="voltageValue">—</p><p class="metric-foot" id="currentValue">Waiting for current</p></section>
+          <section class="measurement"><div class="metric-label">System consumption <span>W</span></div><p class="metric-value" id="loadValue">—</p><p class="metric-foot" id="loadFoot">Measured at load-branch input</p></section>
+          <section class="measurement"><div class="metric-label">Solar contribution <span>W</span></div><p class="metric-value" id="solarValue">—</p><p class="metric-foot">Measured at charger output</p></section>
+        </div>
+        <section class="panel chart-panel" aria-labelledby="powerHeading">
+          <div class="section-top"><div><h2 id="powerHeading">Power over time</h2><p class="muted small">Latest 10 minutes · positive battery power means discharge</p></div><div class="legend"><span><i class="key battery-key"></i>Battery</span><span><i class="key load-key"></i>Load</span></div></div>
+          <div class="chart-container"><svg id="powerChart" role="img" aria-label="Battery and load power in watts over time"></svg><p class="chart-empty" id="chartEmpty">Collecting measurements…</p></div>
+        </section>
+        <section class="panel events-panel" id="events" aria-labelledby="eventsHeading">
+          <div class="section-top"><h2 id="eventsHeading">Activity log</h2><span class="muted small" id="sampleCount">0 recorded samples</span></div>
+          <ol id="eventList" class="event-list"><li>Waiting for events.</li></ol>
+        </section>
+      </div>
+      <aside class="side-column">
+        <section class="panel policy-panel" aria-labelledby="policyHeading">
+          <div class="section-top"><h2 id="policyHeading">Backup policy</h2><span class="tiny-tag">LOCAL CONTROL</span></div>
+          <p class="muted policy-intro">Preserve essential service by switching off optional loads when backup time is too short.</p>
+          <label class="range-label" for="runtimeSlider">Minimum backup time<strong><span id="sliderValue">3.0</span> h</strong></label>
+          <input type="range" id="runtimeSlider" min="0" max="12" step="0.5" value="3">
+          <div class="range-extents"><span>0 h</span><span>12 h</span></div>
+          <div class="policy-state" id="policyState"><span class="policy-indicator"></span><div><strong id="stateTitle">Waiting for data</strong><p id="stateReason">The controller status will appear here.</p></div></div>
+          <p class="policy-foot">A sustained 3-second condition triggers shedding. Restoration requires an explicit request and sufficient margin.</p>
+        </section>
+        <section class="panel loads-panel" aria-labelledby="loadsHeading">
+          <div class="section-top"><h2 id="loadsHeading">Load priorities</h2><span class="muted small">DC system</span></div>
+          <div class="load-row"><div class="load-symbol" aria-hidden="true">☀</div><div class="load-copy"><strong>Essential lamp</strong><span>Priority 1 · preserved</span></div><span class="load-status" id="essentialStatus">—</span></div>
+          <div class="load-row"><div class="load-symbol" aria-hidden="true">✳</div><div class="load-copy"><strong>Optional fan</strong><span>Priority 2 · controllable</span></div><span class="load-status" id="optionalStatus">—</span></div>
+          <div class="load-actions"><button type="button" class="button secondary" id="offButton">Switch fan off</button><button type="button" class="button primary" id="restoreButton">Restore fan</button></div>
+          <p class="muted small" id="loadNote">Commands affect the simulator only.</p>
+        </section>
+        <section class="panel scenario-panel" id="scenarioPanel" aria-labelledby="scenarioHeading">
+          <div class="section-top"><h2 id="scenarioHeading">Try a scenario</h2><span class="tiny-tag amber">SIMULATED</span></div>
+          <p class="muted small">Each scenario resets the illustrative battery model. These are not test results.</p>
+          <div class="scenario-buttons">
+            <button type="button" class="scenario selected" data-scenario="normal"><span>01</span><div><strong>Normal load</strong><small>68% charge · no solar</small></div><b>↗</b></button>
+            <button type="button" class="scenario" data-scenario="reserve"><span>02</span><div><strong>Limited backup</strong><small>27% charge · watch load shedding</small></div><b>↗</b></button>
+            <button type="button" class="scenario" data-scenario="solar"><span>03</span><div><strong>Solar charging</strong><small>10 W illustrative charger output</small></div><b>↗</b></button>
+            <button type="button" class="scenario" data-scenario="fault"><span>04</span><div><strong>Sensor disconnected</strong><small>Invalid estimate · optional load off</small></div><b>↗</b></button>
+          </div>
+        </section>
+        <div class="assumptions"><strong>Prototype assumptions</strong><p id="assumptionsText">4S LiFePO₄ · 6 Ah nominal. Charge and runtime are estimates. Actual capacity and accuracy require hardware validation.</p></div>
+      </aside>
+    </div>
+    <footer><span>WATTSENSE <span class="footer-divider">/</span> FINAL-YEAR ENGINEERING PROJECT</span><span id="logName">Local session logging</span></footer>
+  </main>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

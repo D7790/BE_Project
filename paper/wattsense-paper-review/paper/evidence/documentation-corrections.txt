@@ -1,0 +1,43 @@
+Documentation terminology corrections - 30 September 2026
+
+Corrected unjustified descriptions of no-future-solar runtime as conservative.
+The policy uses nominal remaining energy / measured load-branch power and omits
+some upstream losses. Excluding future charge does not make a guaranteed lower
+bound on runtime. It is now described as a no-future-charge heuristic estimate.
+
+Changed paths:
+README.md
+  before SHA-256: 8c4f8f7a2be837377b8caa65dfb0982d36d6eb39e886c96b4050857aec36979f
+  after SHA-256:  02193e454014c8c073b557384f98d6e03bdaf2ba716a9f6dff7ec8acc3ce8ddc
+docs\PROTOCOL.md
+  before SHA-256: c022d73cc3ba9efe80ab0c3745a59bb8e25bb5d07c8137774d2658c13172ae31
+  after SHA-256:  9ac4604a1433a2ccc2ba73e1a2e5f280ceff5829db4ec548b4cf41905957590d
+docs\REVIEW_DEMO.md
+  before SHA-256: 9a835ad4e0c002ebbc78c2ca49ce4f9cf2366b8170df915ad8d1beff337c3386
+  after SHA-256:  bf493cb00fa4ec43ccffaa55aeb9c2b4b3432f8863629aaf267e385200f92171
+firmware\README.md
+  before SHA-256: cc95ff536f9277ebc2c6e6acc9d7d3ce1174afbd48fbafc49157f0fb8357a50a
+  after SHA-256:  095ebd6be632e668cd9840b74f236e476e048824e2ee79f5b3779b6530e29a78
+WATTSENSE_PROJECT_BLUEPRINT.md
+  before SHA-256: 6d7d8892fc297e30f4f7bfac1ffbde2469b61ce76cb257c6160954eb06acb064
+  after SHA-256:  945d01069a77cc2541be197a4deeff63e646083f9a6305afe5b108b3eabac2f3
+docs\PROJECT_FLOW.md
+  before SHA-256: 598da0f8dae5585d11a6b1c2d7f31cc29e53ceca86488b55a84fc47781a3e17d
+  after SHA-256:  d00c967b120aa323ad606e1804d0f24799869c765750a1889cb6ac6746133095
+
+README: demo wording and limitations clarified.
+PROTOCOL: existing runtime_no_solar_h field documented accurately; API unchanged.
+REVIEW_DEMO: presentation language corrected to avoid a guaranteed minimum.
+firmware/README: behavior and MIN_H command description corrected; code unchanged.
+BLUEPRINT: distinguishes net runtime from the no-future-charge heuristic.
+PROJECT_FLOW: clarifies the same policy limitation in the end-to-end explanation.
+
+No API/internal variable, firmware, model, test, configuration or CAD changes.
+All recorded software/model and native CAD hashes still match 28 September.
+The manufacturing archive is unchanged. The September 28 audit remains historical.
+The earlier September 30 publication recheck records the pre-correction snapshot;
+documentation-finalization.json records this intentional subsequent change.
+
+Paper tables:
+paper/evidence/recheck/startup-case-table.csv contains six case IDs and outcomes.
+paper/evidence/recheck/ignored-cad-checks.csv lists four ERC and five DRC ignored categories.

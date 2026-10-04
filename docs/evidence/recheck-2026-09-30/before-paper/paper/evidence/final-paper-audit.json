@@ -1,0 +1,287 @@
+{
+  "status": "PASS_DRAFT_PACKAGE_CHECKS",
+  "checks": [
+    {
+      "check": "seven-page manuscript",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "four supplied authors in order",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "no invented affiliation",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "every author in PDF",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "all nine references numbered",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "working draft and simulation scope visible",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "no replacement glyph in extracted prose",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "nine linked bibliography sources",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "abstract runtimes match",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "both service changes disclosed",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "current suite pass",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "45 Python tests recorded",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "67 host assertions",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "hardware remains unarmed",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "18 scenario pairs and six startup cases",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "E101 current local evidence hashes",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "E102 current local evidence hashes",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "E103 current local evidence hashes",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "E104 current local evidence hashes",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "E105 current local evidence hashes",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "E106 current local evidence hashes",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "E109 current local evidence hashes",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "E110 current local evidence hashes",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "E111 current local evidence hashes",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "fig1_architecture source hashes",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "fig1_architecture output hashes",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "fig2_control_flow source hashes",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "fig2_control_flow output hashes",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "fig3_runtime source hashes",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "fig3_runtime output hashes",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "fig4_sensitivity source hashes",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "fig4_sensitivity output hashes",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "fig5_startup source hashes",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "fig5_startup output hashes",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "53 unique claim records",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "claim evidence IDs resolve",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "human verification not invented",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "originality report matches final manuscript",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "check": "skill consistency",
+      "pass_": true,
+      "detail": {}
+    },
+    {
+      "check": "skill reference-syntax",
+      "pass_": true,
+      "detail": {
+        "NO_IDENTIFIER_TO_CHECK": 9,
+        "NO_SOURCE_IDENTIFIER": 9
+      }
+    },
+    {
+      "check": "skill source-schema",
+      "pass_": true,
+      "detail": {
+        "NO_SOURCE_IDENTIFIER": 9
+      }
+    }
+  ],
+  "passed": 41,
+  "pdf_sha256": "3687c377299b82fd2d513eb52eac1856e61281828b124eb61ee80213388e02a3",
+  "manuscript_sha256": "aa49e46066b557055087d32eae05490bec384cde3650003cf39150264fc5d575",
+  "skill_results": [
+    {
+      "check": "consistency",
+      "status": "pass",
+      "exit_code": 0,
+      "codes": {}
+    },
+    {
+      "check": "reference-syntax",
+      "status": "pass",
+      "exit_code": 0,
+      "codes": {
+        "NO_IDENTIFIER_TO_CHECK": 9,
+        "NO_SOURCE_IDENTIFIER": 9
+      }
+    },
+    {
+      "check": "source-schema",
+      "status": "pass",
+      "exit_code": 0,
+      "codes": {
+        "NO_SOURCE_IDENTIFIER": 9
+      }
+    },
+    {
+      "check": "draft-lint",
+      "status": "fail",
+      "exit_code": 1,
+      "codes": {
+        "CONFIDENTIALITY_REVIEW_INCOMPLETE": 1,
+        "POLICY_REVIEW_INCOMPLETE": 1,
+        "POTENTIAL_OVERSTATEMENT": 2
+      }
+    },
+    {
+      "check": "claim-human-gate",
+      "status": "fail",
+      "exit_code": 1,
+      "codes": {
+        "CLAIM_NOT_VERIFIED": 53,
+        "UNTAGGED_NUMERIC_CONTENT": 28,
+        "UNVERIFIED_CITATION_MARKER": 99,
+        "UNVERIFIED_CLAIM_EVIDENCE": 99
+      }
+    },
+    {
+      "check": "authorship-human-gate",
+      "status": "fail",
+      "exit_code": 1,
+      "codes": {
+        "AI_OUTPUT_NOT_HUMAN_VERIFIED": 1,
+        "AUTHORSHIP_CRITERION_NOT_MET": 16,
+        "DECLARATION_NOT_VERIFIED": 4,
+        "DECLARATION_VERIFIER_MISSING": 4,
+        "FINAL_APPROVAL_INCOMPLETE": 1,
+        "INVALID_CORRESPONDING_AUTHOR": 1,
+        "INVALID_DECLARATION_DATE": 4,
+        "INVALID_DECLARATION_HASH": 4,
+        "JOURNAL_AI_POLICY_NOT_CHECKED": 1,
+        "NO_ACCOUNTABILITY_GUARANTOR": 1,
+        "NO_CREDIT_ROLE": 4,
+        "RESTRICTED_EXTERNAL_TRANSFER_POLICY_UNREVIEWED": 1
+      }
+    }
+  ],
+  "submission_ready": false,
+  "physical_measurements": false,
+  "human_review_complete": false,
+  "interpretation": "Internal checks only. Human gates deliberately remain incomplete. Scenario sample_size fields count deterministic cases, not experimental subjects/trials."
+}

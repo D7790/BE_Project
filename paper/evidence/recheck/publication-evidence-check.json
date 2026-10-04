@@ -1,0 +1,409 @@
+{
+  "created_utc": "2026-09-30T06:34:39.499864+00:00",
+  "status": "PASS",
+  "scope": "Independent hashes, archive/CAD reports, CSV/summary comparisons, algebra and numerical quadrature. No physical measurements.",
+  "hardware_tested": false,
+  "kiCad_commands": [
+    "kicad-cli sch erc <native_schematic> --format json --severity-all --exit-code-violations -o paper/evidence/recheck/erc.json",
+    "kicad-cli pcb drc <native_pcb> --schematic-parity --format json --severity-all --exit-code-violations --refill-zones -o paper/evidence/recheck/drc.json"
+  ],
+  "cad_was_saved": false,
+  "checks": [
+    {
+      "check": "source_sha256_matches_28_Sep_checkpoint",
+      "pass": true,
+      "files": 32,
+      "mismatches": []
+    },
+    {
+      "check": "cad_native_sha256_matches_28_Sep_checkpoint",
+      "pass": true,
+      "files": 6,
+      "mismatches": []
+    },
+    {
+      "check": "evidence_sha256_matches_28_Sep_checkpoint",
+      "pass": true,
+      "files": 8,
+      "mismatches": []
+    },
+    {
+      "check": "document_sha256_matches_28_Sep_checkpoint",
+      "pass": true,
+      "files": 21,
+      "mismatches": []
+    },
+    {
+      "check": "archive_matches_28_Sep_checkpoint",
+      "pass": true,
+      "sha256": "67104e14f3a16d4c21f371d1b55bd28e5f06980c7c53ddc32208ecef1b4bc20a"
+    },
+    {
+      "check": "archive_CRC_and_entry_count",
+      "pass": true,
+      "count": 15
+    },
+    {
+      "check": "archive_source_hash_manifest",
+      "pass": true,
+      "entries": 6
+    },
+    {
+      "check": "archive_power_path_source_hashes",
+      "pass": true
+    },
+    {
+      "check": "archive_matches_saved_fabrication_bytes",
+      "pass": true,
+      "fabrication_files": 12
+    },
+    {
+      "check": "archive_instruction_and_audit_contents_match",
+      "pass": true
+    },
+    {
+      "check": "fresh_readonly_KiCad_ERC",
+      "pass": true,
+      "violation_count": 0,
+      "ignored_checks": [
+        {
+          "description": "Global label only appears once in the schematic",
+          "key": "single_global_label"
+        },
+        {
+          "description": "Four connection points are joined together",
+          "key": "four_way_junction"
+        },
+        {
+          "description": "SPICE model issue",
+          "key": "simulation_model_issue"
+        },
+        {
+          "description": "Assigned footprint doesn't match footprint filters",
+          "key": "footprint_filter"
+        }
+      ]
+    },
+    {
+      "check": "fresh_readonly_KiCad_DRC_and_parity",
+      "pass": true,
+      "violation_count": 0,
+      "unconnected": 0,
+      "schematic_parity": 0,
+      "ignored_checks": [
+        {
+          "description": "Footprint has no courtyard defined",
+          "key": "missing_courtyard"
+        },
+        {
+          "description": "Track endpoint not centered on via",
+          "key": "track_not_centered_on_via"
+        },
+        {
+          "description": "Tuning profile track geometries",
+          "key": "tuning_profile_track_geometries"
+        },
+        {
+          "description": "Footprint doesn't match symbol's footprint filters",
+          "key": "footprint_filters_mismatch"
+        },
+        {
+          "description": "Footprint component type doesn't match footprint pads",
+          "key": "footprint_type_mismatch"
+        }
+      ]
+    },
+    {
+      "check": "production_physical_control_and_solar_remain_disabled",
+      "pass": true,
+      "flags": {
+        "HARDWARE_CONFIRMED": false,
+        "SOLAR_SENSOR_FITTED": false
+      }
+    },
+    {
+      "check": "hardware_model_explicit_provenance",
+      "pass": true,
+      "scope": "Lumped battery and converter efficiency, selected PCB copper paths, DC loss and constant-power discharge. Six separate behavioural startup circuits. No complete ESP32/BMS/charger/BLDC/PWM/thermal/EMC simulation."
+    },
+    {
+      "check": "hardware_summary_source_hashes",
+      "pass": true
+    },
+    {
+      "check": "table_matches_raw_hardware-dc.csv",
+      "pass": true,
+      "rows": 4,
+      "maximum_numeric_error": 0
+    },
+    {
+      "check": "table_matches_raw_hardware-runtime-sensitivity.csv",
+      "pass": true,
+      "rows": 18,
+      "maximum_numeric_error": 0
+    },
+    {
+      "check": "baseline_raw_endpoint_matches_summary",
+      "pass": true,
+      "time_s": 19715.0,
+      "final_soc_pct": 19.998568277112664
+    },
+    {
+      "check": "baseline_ideal_current_counting_matches_truth",
+      "pass": true,
+      "warning": "This checks an exact-capacity/no-sensor-error scenario, not physical SOC accuracy."
+    },
+    {
+      "check": "priority_raw_endpoint_matches_summary",
+      "pass": true,
+      "time_s": 28381.0,
+      "final_soc_pct": 19.999019223161906
+    },
+    {
+      "check": "priority_ideal_current_counting_matches_truth",
+      "pass": true,
+      "warning": "This checks an exact-capacity/no-sensor-error scenario, not physical SOC accuracy."
+    },
+    {
+      "check": "priority_shedding_event_matches_raw",
+      "pass": true
+    },
+    {
+      "check": "independent_5V_bisection",
+      "pass": true,
+      "rail_v": 4.884682960885661,
+      "output_w": 6.038383228047759
+    },
+    {
+      "check": "independent_Simpson_runtime_baseline",
+      "pass": true,
+      "independent_h": 5.476224232281355,
+      "difference_s": 0.5927637871206315
+    },
+    {
+      "check": "independent_Simpson_runtime_priority",
+      "pass": true,
+      "independent_h": 7.883408191567862,
+      "difference_s": 0.7305103556944914
+    },
+    {
+      "check": "independent_OCV_integral_energy",
+      "pass": true,
+      "independent_chemical_energy_wh": 37.4076
+    },
+    {
+      "check": "startup_no_surge_raw_extrema",
+      "pass": true,
+      "minimum_rail_v": 4.8247461736333905,
+      "minimum_fan_terminal_v": 4.677085316766191,
+      "peak_supply_a": 1.293513283003179,
+      "model_screen": "PASS_MODEL_ONLY"
+    },
+    {
+      "check": "startup_no_surge_steady_KCL",
+      "pass": true,
+      "error_a": 2.4942492515833692e-11
+    },
+    {
+      "check": "startup_2x_2A_raw_extrema",
+      "pass": true,
+      "minimum_rail_v": 4.756408851237264,
+      "minimum_fan_terminal_v": 4.4739157237545095,
+      "peak_supply_a": 1.7978973302813586,
+      "model_screen": "PASS_MODEL_ONLY"
+    },
+    {
+      "check": "startup_2x_2A_steady_KCL",
+      "pass": true,
+      "error_a": 2.542566157615056e-11
+    },
+    {
+      "check": "startup_3x_1_5A_raw_extrema",
+      "pass": true,
+      "minimum_rail_v": 2.994659802812407,
+      "minimum_fan_terminal_v": 2.735565172291331,
+      "peak_supply_a": 1.4999999999984999,
+      "model_screen": "FAIL_MODEL_ONLY"
+    },
+    {
+      "check": "startup_3x_1_5A_steady_KCL",
+      "pass": true,
+      "error_a": 1.642530556011934e-11
+    },
+    {
+      "check": "startup_3x_1_5A_large_cap_raw_extrema",
+      "pass": true,
+      "minimum_rail_v": 2.994659811585177,
+      "minimum_fan_terminal_v": 2.73556518030509,
+      "peak_supply_a": 1.4999999999984999,
+      "model_screen": "FAIL_MODEL_ONLY"
+    },
+    {
+      "check": "startup_3x_1_5A_large_cap_steady_KCL",
+      "pass": true,
+      "error_a": -2.6381721252022317e-08
+    },
+    {
+      "check": "startup_3x_3A_raw_extrema",
+      "pass": true,
+      "minimum_rail_v": 4.6937614226009545,
+      "minimum_fan_terminal_v": 4.287662412489436,
+      "peak_supply_a": 2.2602854148478997,
+      "model_screen": "FAIL_MODEL_ONLY"
+    },
+    {
+      "check": "startup_3x_3A_steady_KCL",
+      "pass": true,
+      "error_a": 2.5726976105033827e-11
+    },
+    {
+      "check": "startup_starter_2x_2A_raw_extrema",
+      "pass": true,
+      "minimum_rail_v": 4.790715691312717,
+      "minimum_fan_terminal_v": 4.551236257685004,
+      "peak_supply_a": 1.5446854361090772,
+      "model_screen": "PASS_MODEL_ONLY"
+    },
+    {
+      "check": "startup_starter_2x_2A_steady_KCL",
+      "pass": true,
+      "error_a": 2.531175269382402e-11
+    }
+  ],
+  "publication_numbers": {
+    "lamp_baseline_h": 5.476388888888889,
+    "lamp_priority_h": 7.883611111111111,
+    "fan_baseline_h": 5.476388888888889,
+    "fan_priority_h": 2.493611111111111,
+    "lamp_service_gain_pct": 43.95637839208724,
+    "fan_service_reduction_pct": 54.46614253106772,
+    "lamp_delivered_energy_gain_wh": 6.018055555555555,
+    "fan_delivered_energy_reduction_wh": 7.456944444444444,
+    "total_delivered_energy_baseline_wh": 31.763055555549307,
+    "total_delivered_energy_priority_wh": 32.24994444442113,
+    "sensitivity_pairs": 18,
+    "sensitivity_baseline_h_range": [
+      3.8666666666666667,
+      5.797777777777778
+    ],
+    "sensitivity_priority_h_range": [
+      6.283611111111111,
+      8.203055555555556
+    ],
+    "startup_model_screen_pass": 3,
+    "startup_model_screen_fail": 3
+  },
+  "critical_scope_limits": [
+    "Simulation/design study only: no assembled board, calibration results, cell tests, or measured runtime.",
+    "The OCV curve, battery/wiring resistances, converter efficiency, startup demand and capacitance are illustrative assumptions.",
+    "Battery capacity and current counting are exact in the runtime comparison; no stochastic uncertainty, measured validation, or statistical significance is claimed.",
+    "Only selected F.Cu paths are modelled; ground planes, pad spreading, vias, parasitic inductance and thermal feedback are omitted.",
+    "Startup supply is an instantaneous behavioural current limiter; fan is voltage-dependent resistance, not a selected BLDC device model.",
+    "4.75 V is a provisional common-rail screen and does not establish ESP32 reset limits or fan terminal-voltage compatibility.",
+    "Reduced startup cases use different load behaviours from constant-power discharge/DC cases and must not be merged into one validated model.",
+    "Essential load remains powered at reserve; the model stops the trial externally. This is not full battery protection.",
+    "No live solar-harvesting, MPPT, cloud/AI, custom BMS, cell balancing, EMC/thermal or safety-certification claim.",
+    "Runtime gain is service reallocation with less fan service, not increased battery capacity or equal-service efficiency improvement.",
+    "18 deterministic sensitivity pairs are scenarios, not repeated trials or confidence intervals."
+  ],
+  "inputs_sha256": {
+    "docs\\evidence\\final-audit-record.json": "4c5701f416275deaea16597b255db18408885b97931b4043173a5d0a94ff6f61",
+    "wattsense\\calibration.py": "8f3e51e38783b4764406fc1344414a57932d60edcd9e851a99f21bab2de2bcdc",
+    "wattsense\\model.py": "9b69bfbe30fda38aebd43f7b7c0b7095046156f247f20f977a7db7c7e6599f46",
+    "wattsense\\server.py": "a06050c733385ed6f0900170bf6bc2cd98b38372613d4ac2ad964e251b8bd426",
+    "wattsense\\simulator.py": "21f87cc7cd94874eef24e7733dd92e9a638eb52184dfc8fe949cf93979b0fb37",
+    "wattsense\\__init__.py": "041f553dbf30d0587b7d7e633af3e9625002241386d4d6c2d7963e0925cad3ad",
+    "tests\\test_calibration.py": "c2c6383bad3aae29e6819d40c48ba0e8e2a17c8ef5b6fddbc18c35ac46933424",
+    "tests\\test_hardware_model.py": "89f5a383b7db4c4d42e58a8b131b9462297ac3762f774ff1afd1a97f46dd191e",
+    "tests\\test_model.py": "060377e3e8cfd9382de77a4dce7346d633e51467833a3b903c4811a66b2ee339",
+    "tests\\test_policy_boundaries.py": "2c24537da8b689768d0cfba854d48e0c20c5a0d0581e66b3e525582cf26ebf68",
+    "tests\\test_server.py": "bc266b44d56363e26674cecc03d21c601a428e0d47b37a26ba1eec7646827a63",
+    "simulations\\extract_copper.py": "65389ec977f491d8a0586d0cfe24176e219afb7b14f4b70675f1e636f725cbdb",
+    "simulations\\hardware_model.py": "7e4445c59948ca3bda737d872d62a251e9f3eb295a4b4d1f88dcbadb6bcff81e",
+    "simulations\\make_hardware_plots.py": "f3b98e65a63650068f4e3ccec22614184c0efd9b16d668dbb97f1843edc57fbf",
+    "simulations\\make_plots.py": "6d3969385c3edc43f6b6da209c96434c26765d773c5ab425943439a4fa04b247",
+    "simulations\\ngspice_shared.py": "297f2e08fdefa0e2f552e5664ba9888e45e8a2ad20a32f844c727453d8b651e2",
+    "simulations\\run_all.py": "9c4cbce36d6c38163d232999ba56d5293ab0d9e2e6c153f0ba15aa77b4ae72a1",
+    "simulations\\run_firmware_host_tests.py": "be3c18de2b3ff499bf8781d4db069f1b7ff1be4a950b9c38bdaab2d3ca0dce6a",
+    "simulations\\run_hardware.py": "75b8bd43fcac88ba4422d01f1cb673de2ff9e07da8dd6c49d334173aca8ee152",
+    "simulations\\run_spice.py": "1cd3be5db5e526020e7d8c00caab6576d79a541ff94748aa9c831bf6cdbafdde",
+    "simulations\\run_system.py": "fe30157808ea1ec20a478b683c3b0629f37a6cf7edd1c819edb8edecdbe68675",
+    "firmware\\include\\config.h": "da0bc5a059a8b82c31051416cf1eb0786083de2bce32f1d194b98b488f45356c",
+    "firmware\\include\\controller.h": "7be594808347f0e92ef468de28d10a9c16f6e57f3d66a332030a176cae384565",
+    "firmware\\include\\ina219_checked.h": "02c6b5a07cb84b210e058a7e8dc5e3d4ba9aea61ea96facf1bcce51479794cc3",
+    "firmware\\src\\bringup.cpp": "a3878f7148613d0a9bc611dc335643494860fe9f27f98909571273bda1e210b3",
+    "firmware\\src\\main.cpp": "0cdc08d2dce99ba73be3c9d399aa9e9c178242ec46b35544a047b6cb5e358bc3",
+    "simulations\\firmware_policy_tests.cpp": "cd856c7b4302d3a15c8249ddc004385bece0f1255f573eec053c943f28c55086",
+    "simulations\\ina219_register_tests.cpp": "a2f5a09e67ac22eb4643fbfb4d7b65c13a52c7d20b096224fda5029115f3af50",
+    "firmware\\platformio.ini": "36774a6f2647894689dbb1fe6fd129b3df086dc6eea8d3b76076ce4031392271",
+    "web\\app.js": "0c21919c9c23335beb2bac53a54c884ff22cae9768ea808239c7a4a34d5f91be",
+    "web\\index.html": "661041f9d7c216de87bbbd7e792a50256787779137b2149a3b057bd1ad49f092",
+    "web\\style.css": "e94edc698251bbf7a247a673a707b326aa3a4382ea8c582293b4a0dae1911916",
+    "simulations\\hardware-assumptions.json": "c5f0986d26e4cd6ed7b9aaebf4357fa56f6d0a792d8f71a949d33fa8d8b0fb88",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\wattsense-main.kicad_sch": "36ab6bbf821e43cff3f6d44e22e026264d79af908c6752d489ef2ab9a02a2146",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\wattsense-main.kicad_pcb": "9de46d183a071fccd4326460e73dcab40f95a9aa8d4e6c271abb26a6925283f1",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\wattsense-main.kicad_pro": "0fb2c184b8a00d4234887b7cde1f03a0b099921adde5f9513f65b6b8b635802f",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\BOM.csv": "00802af26c2f057d605f6048d05aa86c459c6810d5baac71f42886952afa6e1b",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\design.json": "d8602664f8dd28386e927c9920a31ea64236964f6e1745d31aefff2c13821308",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\tools\\audit_design.py": "3ca8952cf8b1fffe9a7a453d6ce899d5f432e0e054addddfe69c58177eb6e547",
+    "docs\\evidence\\final-audit\\build-bringup.log": "a185334186a580ff140f86f9fffcd2ecc7afc8c7e2f6896c320c28d16d4c0153",
+    "docs\\evidence\\final-audit\\build-esp32dev.log": "eb2930ff4b08d02c02c2d8f4ace32ed85ddc5edb31d0fd7e2700695d5bbdb378",
+    "docs\\evidence\\final-audit\\connectivity-audit.json": "b1954c567708774770e18c4d3f39c9692af26fb2fdb3df7eee2fde3098b0e411",
+    "docs\\evidence\\final-audit\\drc.json": "4804f7d752a5724415cc28fc3c3dd8f861a1f7a18c38755c3d8e789230a84ed7",
+    "docs\\evidence\\final-audit\\erc.json": "427383ea644690f7b3e7936bc50f91b9a1e9aab6ba7d8ce31729b6e6c877ec36",
+    "docs\\evidence\\final-audit\\independent-simulation-check.json": "84f60f7cf644b8e4e27797d1565a009f9577aa33316a939a94961d9ddd9bba08",
+    "docs\\evidence\\final-audit\\pcb-verification.json": "faba47b086e7841aed8463b4f266d10a979eeb598c03f36269c67d8b1185cb8f",
+    "docs\\evidence\\final-audit\\power-path-audit.json": "b5e905de0beb2bc5a1abe27d2688d08a0f746d585d22c2f2867f878413d2e9dd",
+    "README.md": "8c4f8f7a2be837377b8caa65dfb0982d36d6eb39e886c96b4050857aec36979f",
+    "CONTINUE_HERE.md": "683bff5f20dbda33c33cc63bf2d6935374d68d3b99124354135f0f59b053ca96",
+    "WATTSENSE_PROJECT_BLUEPRINT.md": "6d7d8892fc297e30f4f7bfac1ffbde2469b61ce76cb257c6160954eb06acb064",
+    "docs\\CROSSCHECK_REPORT.md": "31b71c089622f6f1b504b61589e79f8030c1341bad7918e42366196248979f0b",
+    "docs\\FINAL_AUDIT.md": "d85019127eb16e2ebfa2b0805871e4ee5cbec5439c6056f62021eddc300007e9",
+    "docs\\HARDWARE_PERFORMANCE.md": "66b56207c849178eaeda71194f1b094c542f0b6e6031ab7559f59940d4b35d30",
+    "docs\\LAB_START_GUIDE.md": "df713b81712b1afbd1a6be487624f82765fedb59cdcfe63ae9c81f393fdf772a",
+    "docs\\NEXT_STEPS.md": "8b4af810371d52fbaf6215c7858c8211df991b2b7d32496929889af434d287cd",
+    "docs\\PROJECT_FLOW.md": "598da0f8dae5585d11a6b1c2d7f31cc29e53ceca86488b55a84fc47781a3e17d",
+    "docs\\PROTOCOL.md": "c022d73cc3ba9efe80ab0c3745a59bb8e25bb5d07c8137774d2658c13172ae31",
+    "docs\\REVIEW_DEMO.md": "9a835ad4e0c002ebbc78c2ca49ce4f9cf2366b8170df915ad8d1beff337c3386",
+    "docs\\SIMULATION_REPORT.md": "d8308eba7bf396e91e86c04eace2a50df76904bccad94ffd01055f42c0c228c5",
+    "docs\\TEST_PLAN.md": "74b015c334dbed6fcc53ebc1abbb6b6f92b3f567bdd50c55ff4dac50c4510b56",
+    "docs\\VALIDATION.md": "9a5701e9d97c5591b3df2bedb1f25e6203a8e3a7f28634978ea050848964580f",
+    "hardware\\BOM.md": "25e67a9dd9af3c0d3d4b95c4a837a38b3ee71851bb1ad03501c1cca75aff3908",
+    "hardware\\BUYING_PLAN_PUNE.md": "ed0441b9685dac41eee69aaf2d149d3ac446a6595cbc2d754ac0116ad03aea10",
+    "hardware\\PCB_REQUIREMENTS.md": "a6aee65cc1ef886e3e929df6319c0caebefe9ee73d807a5df690824fce6e8f99",
+    "hardware\\REFERENCE_WIRING.md": "290c08381fa4222632fbe3d7a9b7be34fb716ea38cfc8c1d767da7e4e3d8fff0",
+    "hardware\\SUPPLIER_QUESTIONS.md": "06c683bafc8a74af30af1e802091860bb2fb4783bd11b7d34ef52c3499a67294",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\ASSEMBLY_AND_BRINGUP.md": "b4e57f807b8421843510f2a4da46a7f16b86ce5d2753818a54603f0958b8941a",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\FABRICATION.md": "a50dbe9b524257f491cba8ac27fdba208074541be5067eb34a433c0dbb09a48e",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\exports\\wattsense-main-revB-4layer-prototype.zip": "67104e14f3a16d4c21f371d1b55bd28e5f06980c7c53ddc32208ecef1b4bc20a",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\tools\\check_power_paths.py": "5d3be18bc15fd5b84b90ceaf7bab35eabcf37459d46bb94a692e7ee0fafd3ac1",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\exports\\gerbers\\wattsense-main-F_Cu.gtl": "147bd6d09836833c750b3dc20d1de52d010e08072de5adfaffcacb8fdef888e4",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\exports\\gerbers\\wattsense-main-In1_Cu.g1": "d0a88c1b0300824fd5edf38253428cefbc588769d41188da480f7590144eecb3",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\exports\\gerbers\\wattsense-main-In2_Cu.g2": "8dc6e4e9407eb77cf43751fdb5960eae4e1626f5426ef60c5af0890bff779511",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\exports\\gerbers\\wattsense-main-B_Cu.gbl": "8c86d3205d3a1f4462f655029f2ed530064e2259a635c31f0fd4580e86bc9288",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\exports\\gerbers\\wattsense-main-F_Mask.gts": "d8f8fc77e91f2439c4ab7d23e753a5728c350842ccfa44ca1d311e765db9f525",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\exports\\gerbers\\wattsense-main-B_Mask.gbs": "58ae8bf124320f8079fa935a4f70d1814abc7eb94c303ffc54227cb50b303cb9",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\exports\\gerbers\\wattsense-main-F_Silkscreen.gto": "7809a704b8e0ef275aabb89067430fe5730c446afc693a22833dc38a38bed45e",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\exports\\gerbers\\wattsense-main-B_Silkscreen.gbo": "e7d5265ba436747118826f533e435aad76db19a3cf8da5517a6acd259fde4044",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\exports\\gerbers\\wattsense-main-Edge_Cuts.gm1": "6bc0458cbe91846208fb4cba6bfbbce5c7936a4f999ac74168a3db296574be1e",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\exports\\gerbers\\wattsense-main-job.gbrjob": "7a2fef9ee6e8c86f770d3e7936629fcaeb06e767d3f6ef5da16549fa4a36361e",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\exports\\gerbers\\wattsense-main-PTH.drl": "f6d3a256ca6de8dd9fe04efc8204db6d862dc3d536e45ac13738a07f02a31dd5",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\exports\\gerbers\\wattsense-main-NPTH.drl": "933b927d6834b466f616e99134927766b066ad6914492f6707aae66d79cfd03c",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\reports\\connectivity-audit.json": "b1954c567708774770e18c4d3f39c9692af26fb2fdb3df7eee2fde3098b0e411",
+    "hardware\\pcb\\wattsense-main-revB-4layer\\reports\\power-path-audit.json": "b5e905de0beb2bc5a1abe27d2688d08a0f746d585d22c2f2867f878413d2e9dd",
+    "paper\\evidence\\recheck\\erc.json": "bf7f5a1853bd1398f5c6ca50bedd405a5e7ce436b7ee54aff23ca68551934541",
+    "paper\\evidence\\recheck\\drc.json": "e1ef7f669b923569e9f2b247a0453ce4c63c01ea2ba18a9ba71ec22bad8dc09b",
+    "simulations\\results\\hardware-summary.json": "3899547145dbfc36870b99dc9402e9f9163f3cccffc39b6d60117490d0a7a740",
+    "simulations\\results\\copper-resistance.json": "8c3fe14eecd736a8141b494ce6b9afe70f09a3fa699e3c816ab35cf9450c3967",
+    "simulations\\results\\hardware-dc.csv": "4c0e4154d589acee2aef3f7b2133e785611a98263946b779a869f509c806cd03",
+    "simulations\\results\\hardware-runtime-sensitivity.csv": "d45cf3663baa12499f92b1b9772a75c5d8d31fa7dcafce1c51b4cc8e9af615c1",
+    "simulations\\results\\hardware-runtime-baseline.csv": "7cea5e568e83a45a05e745a9bb567561dff7d0c90a06125a5da1c983d4bb437f",
+    "simulations\\results\\hardware-runtime-priority.csv": "93bf7d163e595274021e82426d1894e32dab322f1c013679bcea7f46c68c93ce",
+    "simulations\\results\\startup_no_surge.csv": "2da7bfba6a963e3e6814b9a3bd857d84f5a069a6762c36de1a29788f8d3d2872",
+    "simulations\\results\\startup_2x_2A.csv": "fc250ff63bb957a65b129bbde08a724fa0c8c83e96e5ce49c7ce65ef220a13a1",
+    "simulations\\results\\startup_3x_1_5A.csv": "0006321c1ce6c63f0588eb019621e60f9efc2cf8880eed50d15fcc562dcecfab",
+    "simulations\\results\\startup_3x_1_5A_large_cap.csv": "4d97db7e08187d56a47153b65f85539dab7d50e90f1b26ad9b2175b212ab1165",
+    "simulations\\results\\startup_3x_3A.csv": "cc862139b285e2a0e7761d72df011aae49f05ee01ef5dc1578715079f8f804e9",
+    "simulations\\results\\startup_starter_2x_2A.csv": "f6d8460d96dd425eafcf1d8f15bda7c7d257025a5328932b55035e471da50689"
+  }
+}

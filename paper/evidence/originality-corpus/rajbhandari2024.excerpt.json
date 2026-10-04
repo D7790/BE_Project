@@ -1,0 +1,11 @@
+{
+  "coverage": "One abstract sentence (18 normalized words) only; full-text download returned HTTP 403. This is a very narrow excerpt check, not full-paper coverage.",
+  "provenance": {
+    "url": "https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/stg2.12151",
+    "locator": "Abstract, second sentence",
+    "retrieval_method": "Previously inspected publisher full text through the web tool; excerpt retained locally for reproducible comparison.",
+    "access_date": "2026-09-30",
+    "license_note": "Short attributed excerpt retained for local audit; no source figure reused."
+  },
+  "text": "The system's main goal is to maximise energy supply to essential loads while effectively managing available resources."
+}
